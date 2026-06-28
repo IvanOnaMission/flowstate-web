@@ -1,0 +1,10 @@
+# Local Netlify folder
+.netlify
+
+# Dependencies & build output (regenerated; not source)
+node_modules
+dist
+
+# OS cruft
+.DS_Store
+**/.DS_Store
