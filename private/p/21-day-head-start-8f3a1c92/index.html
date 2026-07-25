@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRIVATE PAGE — do not index, do not link from anywhere -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Flowstate — The 21-Day AI Head Start</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bd-bg: #0B0E14;
+      --bd-bg-elev: #131418;
+      --bd-fg: #F4F4F2;
+      --bd-fg-mute: #A1A2A8;
+      --bd-fg-dim: #6E6F77;
+      --bd-accent: #0096FF;
+      --bd-good: #0096FF;
+      --bd-line: #1F2026;
+      --bd-line-strong: #2A2C34;
+      --bd-font-body: "Geist", "Helvetica Neue", system-ui, sans-serif;
+      --bd-font-editorial: "Instrument Serif", "Times New Roman", serif;
+      --bd-font-mono: "Geist Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--bd-bg);
+      color: var(--bd-fg);
+      font-family: var(--bd-font-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 48px 24px 96px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+
+    .head {
+      display: flex; align-items: center; gap: 14px;
+      padding-bottom: 22px; margin-bottom: 52px;
+      border-bottom: 1px solid var(--bd-line);
+    }
+    .head .brand { display: inline-flex; line-height: 0; }
+    .head img { height: 52px; width: auto; display: block; }
+    .head .home-link {
+      margin-left: auto; text-decoration: none;
+      font-family: var(--bd-font-mono); font-size: 12px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--bd-fg-mute);
+      border: 1px solid var(--bd-line-strong); border-radius: 999px; padding: 7px 14px;
+      transition: color .12s ease, border-color .12s ease;
+    }
+    .head .home-link:hover { color: var(--bd-fg); border-color: var(--bd-fg-dim); }
+
+    .offer-flag {
+      display: inline-block; margin-bottom: 20px;
+      font-family: var(--bd-font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bd-good); background: rgba(0,150,255,0.12);
+      border: 1px solid var(--bd-line-strong); border-radius: 999px; padding: 7px 14px;
+    }
+    .eyebrow {
+      font-family: var(--bd-font-mono);
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bd-accent); margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 600; letter-spacing: -0.02em; line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    h1 em { font-family: var(--bd-font-editorial); font-style: italic; font-weight: 400; color: var(--bd-accent); }
+    .lede { font-size: 18px; color: var(--bd-fg-mute); max-width: 560px; }
+
+    .section-label {
+      font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--bd-fg); margin: 60px 0 20px;
+    }
+    .section-intro { font-size: 15px; color: var(--bd-fg-mute); margin: -8px 0 22px; max-width: 620px; line-height: 1.5; }
+    .gets { list-style: none; display: grid; gap: 16px; }
+    .gets li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 18px 20px;
+      background: var(--bd-bg-elev);
+      border: 1px solid var(--bd-line);
+      border-radius: 14px;
+    }
+    .gets .tick {
+      flex: none; width: 22px; height: 22px; border-radius: 7px;
+      background: rgba(0,150,255,0.12); color: var(--bd-good);
+      display: grid; place-items: center; font-size: 13px; margin-top: 1px;
+    }
+    .gets h3 { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+    .gets p { font-size: 14px; color: var(--bd-fg-mute); }
+    .gets .amt { flex: none; margin-left: auto; font-family: var(--bd-font-mono); font-size: 13px; color: var(--bd-good); white-space: nowrap; padding-left: 12px; }
+    .gets .bonus-tag { font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bd-fg-dim); margin-right: 6px; }
+
+    .price-card {
+      margin-top: 28px;
+      background: linear-gradient(180deg, rgba(0,150,255,0.06), rgba(0,150,255,0) 60%), var(--bd-bg-elev);
+      border: 1px solid var(--bd-line-strong);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+    .price-row { display: flex; flex-wrap: wrap; gap: 36px 56px; }
+    .price-block .k {
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--bd-fg-dim); margin-bottom: 8px;
+    }
+    .price-block .v { font-size: 40px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+    .price-block .v span { font-size: 16px; font-weight: 400; color: var(--bd-fg-mute); }
+    .price-block .v .was { font-size: 24px; font-weight: 400; color: var(--bd-fg-dim); text-decoration: line-through; margin-right: 12px; }
+    .price-block .sub { font-size: 13px; color: var(--bd-fg-mute); margin-top: 8px; max-width: 240px; }
+    .save-badge {
+      display: inline-block; margin-top: 14px;
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bd-good); background: rgba(0,150,255,0.12); border-radius: 999px; padding: 5px 12px;
+    }
+    .price-note {
+      margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--bd-line);
+      font-size: 13px; color: var(--bd-fg-dim);
+    }
+
+    .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      padding: 15px 26px; border-radius: 12px; transition: transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--bd-accent); color: #fff; }
+    .btn-ghost { background: transparent; color: var(--bd-fg); border: 1px solid var(--bd-line-strong); }
+    .cta-sub { font-size: 15px; color: var(--bd-fg-mute); margin-top: 16px; max-width: 560px; line-height: 1.45; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .steps { grid-template-columns: 1fr; } }
+    .step {
+      padding: 22px 20px;
+      background: var(--bd-bg-elev);
+      border: 1px solid var(--bd-line);
+      border-radius: 14px;
+    }
+    .step .num {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(0,150,255,0.12); color: var(--bd-accent);
+      display: grid; place-items: center;
+      font-family: var(--bd-font-mono); font-size: 15px; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .step .when { font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bd-fg-dim); margin-bottom: 6px; }
+    .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .step p { font-size: 13.5px; color: var(--bd-fg-mute); line-height: 1.45; }
+
+    .card-guarantee { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--bd-line); }
+    .card-guarantee h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .card-guarantee p { font-size: 15px; color: var(--bd-fg-mute); max-width: 560px; }
+
+    .proof { margin-top: 30px; font-size: 14px; color: var(--bd-fg-mute); font-family: var(--bd-font-editorial); font-style: italic; font-size: 18px; }
+
+    footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--bd-line);
+      font-size: 13px; color: var(--bd-fg-dim); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+    footer a { color: var(--bd-fg-mute); text-decoration: none; }
+    footer a:hover { color: var(--bd-fg); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="head">
+      <a class="brand" href="https://flowstate.net.nz" aria-label="Flowstate — home"><img src="./logo.svg" alt="Flowstate" /></a>
+      <a class="home-link" href="https://flowstate.net.nz">Home &rarr;</a>
+    </header>
+
+    <span class="offer-flag">Grand opening &middot; 50% off &middot; 2 spots only</span>
+    <p class="eyebrow">For Auckland residential trades</p>
+    <h1>The <em>21-Day AI Head Start</em></h1>
+    <p class="lede">In 21 days: know exactly where your business is leaking money &mdash; and have AI already plugging it. Done for you.</p>
+
+    <p class="section-label">What you get</p>
+    <ul class="gets">
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Full audit</h3>
+          <p>We map your whole business and show you exactly where you're leaking time and money &mdash; in dollars.</p>
+        </div>
+        <span class="amt">$2,500</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Your AI foundation &amp; context, built</h3>
+          <p>The brain your automations run on &mdash; your pricing, your voice, your rules &mdash; so it works like you, not a generic bot.</p>
+        </div>
+        <span class="amt">$3,000</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>One automation live</h3>
+          <p>Your first automation built and running, taking real work off your plate from the first couple of weeks.</p>
+        </div>
+        <span class="amt">$1,500</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3><span class="bonus-tag">Bonus</span>AI Training Course</h3>
+          <p>The full course for you and your crew, so the whole team's up to speed and comfortable with it.</p>
+        </div>
+        <span class="amt">$2,000</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3><span class="bonus-tag">Bonus</span>Done-for-you follow-up system</h3>
+          <p>A proven follow-up sequence set up for you, so quotes and leads get chased without you lifting a finger.</p>
+        </div>
+        <span class="amt">$500</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3><span class="bonus-tag">Bonus</span>Compliance agent</h3>
+          <p>An AI you and your team can ask anything about the standards &mdash; plain-English answers in seconds, not hours.</p>
+        </div>
+        <span class="amt">$1,500</span>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3><span class="bonus-tag">Bonus</span>Your business documented into a sellable asset</h3>
+          <p>Your whole operation mapped and written up &mdash; the backbone of a business you could actually sell one day.</p>
+        </div>
+        <span class="amt">$1,500</span>
+      </li>
+    </ul>
+
+    <p class="section-label">Your investment</p>
+    <div class="price-card">
+      <div class="price-row">
+        <div class="price-block">
+          <div class="k">Total value</div>
+          <div class="v" style="color:var(--bd-fg-mute)">$12,500</div>
+          <div class="sub">Everything above, delivered in 21 days.</div>
+        </div>
+        <div class="price-block">
+          <div class="k">Founding price &mdash; first 2 only</div>
+          <div class="v"><span class="was">$5,000</span>$2,500</div>
+          <div class="sub">50% off for the first two Auckland trades, in exchange for a case study.</div>
+          <span class="save-badge">50% off</span>
+        </div>
+      </div>
+      <div class="card-guarantee">
+        <h3>Our guarantee</h3>
+        <p>In 21 days we'll show you exactly where you're losing time and money, and leave you with an automation already saving you hours &mdash; or you don't pay.</p>
+      </div>
+      <p class="price-note">All prices NZD, ex GST. No retainer commitment &mdash; this is the 21-day head start. Only 2 Auckland slots at the founding price.</p>
+    </div>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://buy.stripe.com/aFa6oI9IggjdaEu3zudjO06?prefilled_promo_code=FOUNDING50" target="_blank" rel="noopener">Claim a founding spot &rarr;</a>
+      <a class="btn btn-ghost" href="https://calendly.com/barnettdigital/discovery_call" target="_blank" rel="noopener">Book a call first</a>
+    </div>
+    <p class="cta-sub">Only 2 Auckland slots at the founding price. Once they're gone, it's $5,000.</p>
+
+    <p class="section-label">How the 21 days works</p>
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <div class="when">Week 1</div>
+        <h3>We map your business</h3>
+        <p>Find where your week and your money disappear, and show you the leaks in real dollars.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <div class="when">Week 2</div>
+        <h3>We build it</h3>
+        <p>Your AI foundation, plus your first automation &mdash; live and taking work off your plate.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <div class="when">Week 3</div>
+        <h3>We train you</h3>
+        <p>You and your crew up to speed and confident, with a clear plan for what to build next.</p>
+      </div>
+    </div>
+
+    <p class="proof">Already running for Auckland trades like The Conduction Company &amp; Leck Electrical.</p>
+
+    <footer>
+      <span>Flowstate</span>
+      <a href="mailto:office@flowstate.net.nz">office@flowstate.net.nz</a>
+      <a href="https://flowstate.net.nz" target="_blank" rel="noopener">flowstate.net.nz</a>
+    </footer>
+  </div>
+</body>
+</html>
