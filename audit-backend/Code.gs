@@ -14,7 +14,7 @@
 
 // ---- CONFIG (edit these) ----
 var OWNER_EMAIL  = 'ivan@barnettdigital.co';                 // where YOUR lead alerts go
-var BOOK_CALL_URL = 'https://calendly.com/barnettdigital';   // the "book a call" link in the lead's email
+var BOOK_CALL_URL = 'https://calendly.com/barnettdigital/discovery_call';   // the "book a call" link in the lead's email
 var SHEET_NAME   = 'Leads';
 var FROM_NAME    = 'Ivan — Flowstate';
 
