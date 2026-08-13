@@ -1,4 +1,20 @@
 /* ============================================================
+   Zodiak — self-hosted display serif (Fontshare, free licence).
+   Found via bradtraversy/design-resources-for-developers.
+   Display only: the statement and headings. Body stays on the
+   system serif, which is better at small sizes and costs nothing.
+   42kb total, two weights, woff2.
+   ============================================================ */
+@font-face{
+  font-family:'Zodiak'; src:url('/assets/fonts/zodiak-400.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Zodiak'; src:url('/assets/fonts/zodiak-700.woff2') format('woff2');
+  font-weight:700; font-style:normal; font-display:swap;
+}
+
+/* ============================================================
    Flowstate — editorial layer
    Direction B, chosen 2026-08-13. Structure follows the Anthropic
    model: neutral paper, one enormous statement, air, and contrast
@@ -22,6 +38,7 @@
   --on-deep:  #A9CBDB;
   --flow-stroke: 15,75,112;   /* Atlantic, as rgb for the canvas */
 
+  --display: Zodiak, Charter, "Iowan Old Style", Georgia, serif;
   --serif: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -263,3 +280,16 @@ img { max-width: 100%; height: auto; }
   .statement-short { padding: 3.5rem 0 3.5rem; }
   .form { grid-template-columns: 1fr; gap: 1.5rem; }
 }
+
+/* ---------- display face ---------- */
+/* Zodiak is drawn for size — it goes on the statement and headings only.
+   It's heavier on the page than the body serif, so the weights come down
+   and the tracking opens slightly to stop it feeling cramped. */
+.statement h1, .panel h2, .offer h2, .step h3, .stat, .mark {
+  font-family: var(--display);
+}
+.statement h1 { font-weight: 700; letter-spacing: -.028em; }
+.panel h2, .offer h2 { font-weight: 700; letter-spacing: -.02em; }
+.step h3 { font-weight: 700; letter-spacing: -.008em; }
+.mark { font-weight: 700; }
+.pull { font-family: var(--display); font-weight: 400; }
