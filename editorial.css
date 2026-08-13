@@ -237,3 +237,29 @@ img { max-width: 100%; height: auto; }
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
             mask-image: linear-gradient(to bottom, transparent 0%, #000 55%); }
 }
+
+/* ---------- inner pages ---------- */
+/* Sub-pages get a shorter statement — only the homepage earns a full screen. */
+.statement-short { padding: 6.5rem 0 7rem; }
+.statement-short h1 { font-size: clamp(2.5rem, 5.6vw, 4.2rem); max-width: 18ch; }
+
+/* ---------- form ---------- */
+.form { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 2rem; max-width: 42rem; }
+.field { display: flex; flex-direction: column; gap: .55rem; }
+.field-wide { grid-column: 1 / -1; }
+.form input, .form textarea {
+  font-family: var(--serif); font-size: 1rem; color: var(--ink);
+  background: transparent; border: 0; border-bottom: 1px solid var(--rule);
+  padding: .55rem 0; border-radius: 0;
+}
+.form input:focus, .form textarea:focus {
+  outline: none; border-bottom-color: var(--deep); border-bottom-width: 2px;
+}
+.form textarea { resize: vertical; }
+.form .btn { grid-column: 1 / -1; justify-self: start; }
+
+@media (max-width: 60rem) {
+  .statement-short { padding: 3.5rem 0 3.5rem; }
+  .form { grid-template-columns: 1fr; gap: 1.5rem; }
+}
