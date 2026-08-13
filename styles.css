@@ -1,22 +1,26 @@
 /* Flowstate — shared tokens */
 
+/* Atlantic palette — adopted 2026-08-13, supersedes hero blue #0096FF on the site.
+   Deep blue + serif reads "trusted trade professional". Bright blue + sans reads
+   "AI startup", which is what we're deliberately moving away from. */
 :root {
-  --bd-bg: #0B0E14;
-  --bd-bg-elev: #131418;
-  --bd-line: #1F2026;
-  --bd-line-strong: #2A2C34;
-  --bd-fg: #F4F4F2;
-  --bd-fg-mute: #A1A2A8;
-  --bd-fg-dim: #6E6F77;
-  --bd-accent: #0096FF;
-  --bd-accent-ink: #0A0C12;
-  --bd-warn: #0096FF;
-  --bd-good: #0096FF;
+  --bd-bg: #F4FAFC;
+  --bd-bg-elev: #E9F4F8;
+  --bd-line: #CBE3EB;
+  --bd-line-strong: #A9CFDC;
+  --bd-fg: #0B2C3E;
+  --bd-fg-mute: #4A6B7B;
+  --bd-fg-dim: #7A97A5;
+  --bd-accent: #0F4B70;
+  --bd-accent-ink: #F4FAFC;
+  --bd-warn: #0F4B70;
+  --bd-good: #0F4B70;
 
-  --bd-font-display: "Geist", "Söhne", "Helvetica Neue", system-ui, sans-serif;
-  --bd-font-body: "Geist", "Söhne", "Helvetica Neue", system-ui, sans-serif;
-  --bd-font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
-  --bd-font-editorial: "Instrument Serif", "Times New Roman", serif;
+  /* No sans anywhere: serif for everything you read, mono for labels and numbers. */
+  --bd-font-display: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --bd-font-body: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --bd-font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --bd-font-editorial: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
 }
 
 .bd-root {
@@ -143,12 +147,6 @@
 }
 
 /* No-scroll inside artboards */
-html, body { background: #1A1A1C; }
-
-:root {
-  --bd-accent: #0096FF;
-  --bd-accent-ink: #FFFFFF;
-}
 html, body { margin: 0; padding: 0; background: var(--bd-bg); }
 body { display: flex; justify-content: center; }
 #root { width: 1280px; max-width: 100%; min-height: 100vh; }
@@ -395,3 +393,279 @@ body { display: flex; justify-content: center; }
 .bd-input:focus, .bd-textarea:focus { outline: none; border-color: var(--bd-accent); }
 .bd-textarea { min-height: 120px; resize: vertical; }
 .bd-input::placeholder, .bd-textarea::placeholder { color: var(--bd-fg-dim); }
+
+/* ============================================================
+   ANTI-SLOP LAYER — 2026-08-13
+   The palette was never what made it look AI-made. These are:
+   rounded cards, filled panels, dot grids, pill chips, sans type.
+   Loaded last so it beats the inline styles in the page markup.
+   ============================================================ */
+
+/* 1. Nothing is rounded. Hairlines divide, not containers. */
+.bd-root [style*="border-radius"],
+.bd-btn, .bd-tag, .bd-card, .bd-placeholder {
+  border-radius: 0 !important;
+}
+
+/* 2. Cards become rules. No filled panels floating on the ground. */
+.bd-root [style*="border:1px solid var(--bd-line)"][style*="border-radius"] {
+  background: transparent !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 1px solid var(--bd-line) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 3. Kill the dot grid — it was white-on-black and is invisible now anyway. */
+.bd-grid-bg { background-image: none; }
+
+/* 4. Serif needs looser tracking than the sans it replaced. */
+.bd-h1 { letter-spacing: -0.022em; line-height: 1.0; }
+.bd-h2 { letter-spacing: -0.018em; }
+.bd-h3 { letter-spacing: -0.01em; }
+
+/* 5. Buttons: square, mono, no lift on hover. Restraint reads as expensive. */
+.bd-btn {
+  font-family: var(--bd-font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 24px;
+}
+.bd-btn-primary:hover { transform: none; filter: brightness(1.12); }
+.bd-btn-ghost { border-color: var(--bd-fg); }
+.bd-btn:focus-visible { outline: 2px solid var(--bd-accent); outline-offset: 3px; }
+
+/* 6. The pill chip becomes a plain label. */
+.bd-tag {
+  border: 0;
+  border-left: 2px solid var(--bd-accent);
+  padding: 2px 0 2px 10px;
+}
+.bd-tag .dot { display: none; }
+
+/* 7. Placeholders read as "screenshot goes here", not decorative texture. */
+.bd-placeholder {
+  background: var(--bd-bg-elev);
+  border: 1px solid var(--bd-line);
+  color: var(--bd-fg-mute);
+}
+
+/* 8. Wordmark, set in type — every logo file was deleted on 2026-08-10. */
+.fs-mark {
+  font-family: var(--bd-font-display);
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--bd-fg);
+  text-decoration: none;
+  display: inline-block;
+}
+.fs-mark em {
+  font-style: normal;
+  border-bottom: 3px solid var(--bd-accent);
+  padding-bottom: 1px;
+}
+
+/* 9. The hero video was shot for a black ground; veil it toward the new one. */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--bd-bg) 82%, transparent),
+    var(--bd-bg)
+  ) !important;
+}
+.hero-bg { opacity: .28; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-btn, * { transition: none !important; }
+  .hero-bg { display: none; }
+}
+
+/* 10. The nav was a hard-coded near-black from the dark theme. */
+.bd-nav { background: var(--bd-bg); }
+.bd-nav-links a.bd-mono { color: var(--bd-fg-mute); }
+.bd-nav-links a.bd-mono:hover { color: var(--bd-accent); }
+
+/* 11. Footer picks up the ground rather than inheriting nothing. */
+.bd-foot { background: var(--bd-bg); }
+
+/* ============================================================
+   12. FULL BLEED — 2026-08-13
+   Was: a fixed 1280px box centred in the viewport, so wide screens
+   showed dead margins either side. Now: backgrounds and rules run
+   edge to edge, while text stays on a 1280px measure via gutters
+   that grow with the viewport. Content alignment is unchanged.
+   ============================================================ */
+body { display: block; }
+#root { width: 100%; max-width: none; }
+
+:root { --gutter: max(64px, calc((100% - 1280px) / 2)); }
+
+.bd-nav,
+.bd-section,
+.bd-section-tight,
+.hero-header,
+.bd-foot {
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+/* Sections carrying their own inline horizontal padding get the same treatment. */
+.bd-root > section[style*="padding"] {
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+@media (max-width: 820px) {
+  :root { --gutter: 20px; }
+}
+
+/* ============================================================
+   13. EXPLANATORY DIAGRAM — 2026-08-13
+   One animation on the whole site, and it explains the product
+   rather than decorating it: the lines draw once when the section
+   scrolls in, the boxes settle in sequence. Static if the visitor
+   asked for reduced motion, and static before JS runs.
+   ============================================================ */
+.fs-diagram svg { width: 100%; height: auto; display: block; color: var(--bd-fg-mute); }
+
+.fs-d-line path { fill: none; stroke: var(--bd-line-strong); stroke-width: 1.5; }
+
+.fs-d-node rect {
+  fill: none; stroke: var(--bd-line-strong); stroke-width: 1.5;
+}
+.fs-d-brain rect { stroke: var(--bd-accent); stroke-width: 2; }
+
+.fs-d-node text {
+  text-anchor: middle;
+  font-family: var(--bd-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  fill: var(--bd-fg);
+}
+.fs-d-node text.sub {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  fill: var(--bd-fg-mute);
+}
+.fs-d-brain text:first-of-type { fill: var(--bd-accent); }
+
+/* --- motion: only after the section is in view, and only once --- */
+.fs-diagram-sec.is-in .fs-d-line path {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: fsDraw .7s ease-out forwards;
+}
+.fs-diagram-sec.is-in .fs-d-line path:nth-child(2) { animation-delay: .45s; }
+.fs-diagram-sec.is-in .fs-d-line path:nth-child(3) { animation-delay: .55s; }
+.fs-diagram-sec.is-in .fs-d-line path:nth-child(4) { animation-delay: .65s; }
+
+.fs-diagram-sec.is-in .fs-d-node {
+  opacity: 0;
+  animation: fsRise .5s cubic-bezier(.2,.7,.2,1) forwards;
+  animation-delay: calc(var(--i) * .13s);
+}
+
+@keyframes fsDraw { to { stroke-dashoffset: 0; } }
+@keyframes fsRise { from { opacity: 0; transform: translateY(8px); }
+                    to   { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-diagram-sec.is-in .fs-d-line path,
+  .fs-diagram-sec.is-in .fs-d-node { animation: none; opacity: 1; stroke-dashoffset: 0; }
+}
+
+@media (max-width: 820px) {
+  .fs-diagram figcaption { font-size: 10px !important; }
+}
+
+
+/* ============================================================
+   14. COLOUR DISCIPLINE — 2026-08-13 (rewrite)
+   Studied Stripe and Anthropic. Neither uses its brand colour as
+   a page ground: both sit on a neutral, take contrast from VALUE
+   (a dark panel), and let the hue appear as one object.
+   So here: neutral paper, near-black type, and Atlantic Blue used
+   in exactly three places — the hero panel, the primary button,
+   and the wordmark rule. Soft Sky exists only as type on the blue.
+   ============================================================ */
+:root {
+  --bd-bg:        #F6F5F3;   /* paper — a chosen neutral, faintly cool */
+  --bd-bg-elev:   #EDECE8;   /* the only second surface */
+  --bd-line:      #DEDCD6;
+  --bd-line-strong:#C2BFB7;
+  --bd-fg:        #16191C;   /* near-black. Type is NOT blue. */
+  --bd-fg-mute:   #6B7075;
+  --bd-fg-dim:    #93979B;
+  --bd-accent:    #0F4B70;   /* Atlantic — rationed */
+  --bd-accent-ink:#FFFFFF;
+
+  --bd-deep:      #0F4B70;
+  --bd-on-deep:   #C4F8FF;   /* Soft Sky — only ever on the deep panel */
+}
+
+/* --- The one colour object: a contained hero panel, inset from the page. --- */
+.hero-header {
+  background: var(--bd-deep);
+  margin: 0 var(--gutter) 0;
+  padding-left: 72px !important;
+  padding-right: 72px !important;
+}
+.hero-header .bd-h1        { color: #FFFFFF; }
+.hero-header .bd-h1 span   { color: var(--bd-on-deep) !important; }
+.hero-header p             { color: #A9CBDB !important; }
+.hero-header .bd-tag       { color: var(--bd-on-deep); border-left-color: var(--bd-on-deep); }
+.hero-header .bd-mono      { color: #8FB4C6; }
+
+.hero-header .bd-btn-primary { background: var(--bd-on-deep); color: var(--bd-deep); }
+.hero-header .bd-btn-ghost   { color: #FFFFFF; border-color: rgba(196,248,255,.45); }
+.hero-header .bd-btn-ghost:hover { background: rgba(196,248,255,.1); }
+
+.hero-header [style*="grid-template-columns:repeat(4,1fr)"] {
+  border-top-color: rgba(196,248,255,.24) !important;
+  border-bottom-color: rgba(196,248,255,.24) !important;
+}
+.hero-header [style*="grid-template-columns:repeat(4,1fr)"] > div {
+  background: transparent !important;
+  border-right-color: rgba(196,248,255,.18) !important;
+}
+.hero-header [style*="grid-template-columns:repeat(4,1fr)"] > div > div:first-child { color: #FFFFFF; }
+
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(15,75,112,.80), rgba(15,75,112,.96)) !important;
+}
+.hero-bg { opacity: .45; }
+
+/* --- Everything else is paper and ink. No blue washes, no alternating bands. --- */
+.bd-nav  { background: var(--bd-bg); border-bottom-color: var(--bd-line); }
+.bd-nav .fs-mark { color: var(--bd-fg); }
+.bd-nav .fs-mark em { border-bottom-color: var(--bd-accent); }
+.bd-nav-links a.bd-mono { color: var(--bd-fg-mute); }
+.bd-nav-links a.bd-mono:hover { color: var(--bd-fg); }
+
+.bd-section:nth-of-type(even) { background: transparent; }
+.bd-foot { background: var(--bd-bg); color: var(--bd-fg-dim); border-top: 1px solid var(--bd-line); }
+.bd-foot a { color: var(--bd-fg-mute); }
+
+/* Headlines are ink, not accent — the blue was doing too much work before. */
+.bd-h2, .bd-h3 { color: var(--bd-fg); }
+
+/* Step numerals: the one place accent earns a mention outside the panel. */
+.bd-section [style*="color:var(--bd-accent)"] { color: var(--bd-accent) !important; }
+
+/* Diagram: greyscale, with the brain the single blue element. */
+.fs-d-line path  { stroke: var(--bd-line-strong); }
+.fs-d-node rect  { stroke: var(--bd-line-strong); }
+.fs-d-node text  { fill: var(--bd-fg); }
+.fs-d-node text.sub { fill: var(--bd-fg-mute); }
+.fs-d-brain rect { stroke: var(--bd-accent); stroke-width: 2; }
+.fs-d-brain text:first-of-type { fill: var(--bd-accent); }
+
+@media (max-width: 820px) {
+  .hero-header { margin: 0; padding-left: 20px !important; padding-right: 20px !important; }
+}

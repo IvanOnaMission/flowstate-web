@@ -1,0 +1,239 @@
+/* ============================================================
+   Flowstate — editorial layer
+   Direction B, chosen 2026-08-13. Structure follows the Anthropic
+   model: neutral paper, one enormous statement, air, and contrast
+   taken from deep panels rather than from hue. Atlantic Blue is
+   rationed — panels, the primary button, the wordmark rule.
+   Standalone: does not depend on the legacy .bd-* system.
+   ============================================================ */
+
+/* The agreed pair, both on the page: Soft Sky Blue as the ground,
+   Atlantic Blue as the dark. Ink is a near-black pulled toward the
+   blue so it belongs to the same family rather than sitting on top. */
+:root {
+  --paper:    #D9F2F9;   /* Soft Sky — the light half of the pair */
+  --paper-2:  #C4F8FF;   /* the pure value, for panels within the page */
+  --ink:      #082A3A;   /* near-black, blue-biased */
+  --mut:      #3D6376;
+  --dim:      #6791A3;
+  --rule:     #A8D8E6;
+  --deep:     #0F4B70;   /* Atlantic — the dark half */
+  --sky:      #C4F8FF;
+  --on-deep:  #A9CBDB;
+  --flow-stroke: 15,75,112;   /* Atlantic, as rgb for the canvas */
+
+  --serif: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --shell: 1180px;
+  --gut: 2rem;
+  --measure: 32rem;
+}
+
+/* Dark: the pair inverts — Atlantic deepened becomes the ground,
+   Soft Sky becomes the type. Same two colours, opposite roles. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #071E2A; --paper-2: #0C2C3D; --ink: #DCF3F9;
+    --mut: #8FBACC; --dim: #5D8598; --rule: #163F55;
+    --deep: #0C3450; --on-deep: #A9CBDB;
+    --flow-stroke: 196,248,255;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #071E2A; --paper-2: #0C2C3D; --ink: #DCF3F9;
+  --mut: #8FBACC; --dim: #5D8598; --rule: #163F55;
+  --deep: #0C3450; --on-deep: #A9CBDB;
+  --flow-stroke: 196,248,255;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+p { margin: 0; max-width: var(--measure); }
+h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
+a { color: inherit; }
+img { max-width: 100%; height: auto; }
+
+.shell { max-width: var(--shell); margin: 0 auto; padding: 0 var(--gut); }
+
+.lab {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+/* ---------- nav ---------- */
+.nav {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+  padding-top: 1.9rem; padding-bottom: 1.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.mark { font-size: 1.2rem; font-weight: 600; letter-spacing: -.022em; text-decoration: none; }
+.mark em { font-style: normal; border-bottom: 2px solid var(--deep); padding-bottom: 1px; }
+.nav-links { display: flex; gap: 1.75rem; align-items: baseline; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a[aria-current="page"] { color: var(--ink); }
+
+/* ---------- the statement ---------- */
+.statement { position: relative; padding: 11rem 0 12rem; overflow: hidden; }
+.statement-in { position: relative; z-index: 2; }
+
+/* The flow: right half of the hero, bleeding off the edge, behind the type.
+   Faded out on its left so it never competes with the headline. */
+.flow {
+  position: absolute; top: 0; right: 0; z-index: 1;
+  width: 62%; height: 100%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 34%, #000 100%);
+}
+.statement h1 {
+  font-size: clamp(2.9rem, 7.2vw, 5.4rem);
+  line-height: 1.0;
+  letter-spacing: -.03em;
+  max-width: 16ch;
+}
+.statement h1 span { color: var(--deep); }
+
+/* ---------- two-up under the statement ---------- */
+.under {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  padding-bottom: 9rem;
+}
+.under p { color: var(--mut); margin-top: 1rem; }
+
+.btn {
+  display: inline-block; margin-top: 2rem;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .12em;
+  text-transform: uppercase; text-decoration: none;
+  background: var(--deep); color: #FFFFFF;
+  padding: 1rem 1.7rem;
+}
+.btn:hover { filter: brightness(1.12); }
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.btn-quiet {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink); margin-left: .75rem;
+}
+.btn-quiet:hover { background: var(--ink); color: var(--paper); filter: none; }
+
+/* ---------- deep panel ---------- */
+.panel { background: var(--deep); color: var(--on-deep); }
+.panel .shell { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+.panel h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem); color: #FFFFFF;
+  letter-spacing: -.022em; max-width: 20ch; margin-top: 1rem;
+}
+.panel p { margin-top: 1.5rem; color: var(--on-deep); }
+.panel .lab { color: #7FB3CB; }
+.panel .btn { background: var(--sky); color: var(--deep); }
+
+/* ---------- sequence ---------- */
+.seq { padding: 8rem 0; border-bottom: 1px solid var(--rule); }
+.step { display: grid; grid-template-columns: 7rem 1fr; gap: 3rem; align-items: start; }
+.step + .step { margin-top: 3.5rem; padding-top: 3.5rem; border-top: 1px solid var(--rule); }
+.step .n {
+  font-family: var(--mono); font-size: 1.5rem; font-variant-numeric: tabular-nums;
+  color: var(--deep); line-height: 1;
+}
+.step .n small { display: block; margin-top: .6rem; }
+.step h3 { font-size: 1.55rem; letter-spacing: -.014em; }
+.step p { margin-top: .7rem; color: var(--mut); }
+
+/* ---------- proof ---------- */
+.proof { padding: 8rem 0; border-bottom: 1px solid var(--rule); }
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 2.5rem; }
+.stat {
+  font-family: var(--mono); font-size: 3.4rem; letter-spacing: -.035em;
+  font-variant-numeric: tabular-nums; line-height: 1;
+}
+.stat small { font-family: var(--serif); font-size: 1.05rem; color: var(--mut); letter-spacing: 0; }
+.pull {
+  font-size: 1.2rem; border-left: 2px solid var(--deep);
+  padding-left: 1.3rem; max-width: 28rem;
+}
+
+/* ---------- offer ---------- */
+.offer { padding: 8rem 0; }
+.offer h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); letter-spacing: -.022em; margin-top: .8rem; }
+.price { display: flex; align-items: baseline; gap: 1.1rem; margin: 1.75rem 0 .25rem; flex-wrap: wrap; }
+.price .now {
+  font-family: var(--mono); font-size: 2.9rem; letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.price .was {
+  font-family: var(--mono); font-size: 1.15rem; color: var(--mut); text-decoration: line-through;
+}
+.incl { list-style: none; padding: 0; margin: 2.25rem 0 0; max-width: 38rem; }
+.incl li { display: flex; gap: 1.25rem; padding: .9rem 0; border-top: 1px solid var(--rule); }
+.incl li:last-child { border-bottom: 1px solid var(--rule); }
+.incl .k {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .11em;
+  text-transform: uppercase; color: var(--mut); flex: 0 0 4.5rem; padding-top: .3rem;
+}
+.guarantee {
+  margin-top: 2.5rem; border-left: 2px solid var(--deep);
+  padding: 1.1rem 0 1.1rem 1.3rem; max-width: 34rem;
+}
+
+/* ---------- foot ---------- */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: 3rem 0 4.5rem;
+  display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+}
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 60rem) {
+  :root { --gut: 1.25rem; }
+  .statement { padding: 5.5rem 0 5rem; }
+  .under, .proof-grid { grid-template-columns: 1fr; gap: 2.75rem; padding-bottom: 5rem; }
+  .seq, .proof, .offer { padding: 5rem 0; }
+  .panel .shell { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .step { grid-template-columns: 1fr; gap: .85rem; }
+  .step .n { display: flex; align-items: baseline; gap: .8rem; }
+  .step .n small { margin-top: 0; }
+  .btn-quiet { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Headings inherit body leading otherwise — too loose at display sizes. */
+.panel h2 { line-height: 1.12; }
+.offer h2 { line-height: 1.14; }
+.step h3  { line-height: 1.22; }
+.stat small { display: block; margin-top: .6rem; }
+
+/* The blue phrase in the statement needs to sit apart from ink now that
+   ink is itself blue-biased — Atlantic at full strength does that. */
+.statement h1 span { color: var(--deep); }
+.btn-quiet { border-color: var(--deep); color: var(--deep); }
+.btn-quiet:hover { background: var(--deep); color: var(--sky); }
+
+@media (max-width: 60rem) {
+  /* On a phone the headline owns the screen — the flow drops behind it, quieter. */
+  .flow { width: 100%; opacity: .5;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 55%); }
+}
