@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Flowstate design tokens
+   Two brand blues (Atlantic / Soft Sky) on white, a near-black
+   ink for reading, and one warm ember for anything you click.
+   Every pair below is contrast-checked — ratios in the comments.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  /* Ground */
+  --fs-white:         #FFFFFF;
+  --fs-paper:         #F6FBFD;  /* page tint */
+  --fs-mist:          #EAF6FA;  /* raised surface */
+  --fs-line:          #DCEEF5;
+  --fs-line-strong:   #B8D7E4;
+
+  /* Brand */
+  --fs-atlantic:      #0F4B70;  /* 9.29:1 on white */
+  --fs-atlantic-deep: #0A3550;
+  --fs-atlantic-dim:  #17618E;
+  --fs-sky:           #C4F8FF;  /* 8.06:1 on atlantic */
+  --fs-sky-deep:      #8FE4F5;
+
+  /* Reading */
+  --fs-ink:           #0B1B26;  /* 17.51:1 on white */
+  --fs-mute:          #4A6E80;  /*  5.48:1 on white */
+
+  /* The one warm thing */
+  --fs-ember:         #C2410C;  /* 5.18:1 both ways vs white */
+  --fs-ember-deep:    #9A3309;
+  --fs-ember-lift:    #FCA55A;  /* 4.72:1 on atlantic — dark sections only */
+
+  /* Motion */
+  --fs-flow-stroke:   15, 75, 112;   /* atlantic, as rgb parts */
+  --fs-ease:          cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-white: var(--fs-white);
+  --color-paper: var(--fs-paper);
+  --color-mist: var(--fs-mist);
+  --color-line: var(--fs-line);
+  --color-line-strong: var(--fs-line-strong);
+
+  --color-atlantic: var(--fs-atlantic);
+  --color-atlantic-deep: var(--fs-atlantic-deep);
+  --color-atlantic-dim: var(--fs-atlantic-dim);
+  --color-sky: var(--fs-sky);
+  --color-sky-deep: var(--fs-sky-deep);
+
+  --color-ink: var(--fs-ink);
+  --color-mute: var(--fs-mute);
+
+  --color-ember: var(--fs-ember);
+  --color-ember-deep: var(--fs-ember-deep);
+  --color-ember-lift: var(--fs-ember-lift);
+
+  --font-display: var(--font-zodiak), Charter, "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jet), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--fs-white);
+  color: var(--fs-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--fs-sky);
+  color: var(--fs-atlantic-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fs-ember);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Type primitives ───────────────────────────────────────── */
+.fs-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* The small uppercase mono label that heads every block. */
+.fs-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fs-mute);
+  font-weight: 500;
+}
+
+.fs-prose p {
+  max-width: 62ch;
+  line-height: 1.62;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.fs-shell {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+.fs-rule { border-top: 1px solid var(--fs-line); }
+
+/* ── Reveal-on-scroll ──────────────────────────────────────────
+   Progressive enhancement: the copy is visible by default and only
+   starts hidden once the inline head script confirms JS is running,
+   so a hydration hiccup or a blocked bundle can never blank the page.
+   ───────────────────────────────────────────────────────────── */
+.fs-reveal {
+  transition:
+    opacity 0.7s var(--fs-ease),
+    transform 0.7s var(--fs-ease);
+  transition-delay: var(--fs-delay, 0ms);
+}
+html.js .fs-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+html.js .fs-reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .fs-reveal { opacity: 1; transform: none; }
+}
