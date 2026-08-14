@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Half an hour, no slides. A quick chat about where your week's time is leaking and whether AI can actually help.",
+    "Fifteen minutes, no slides. A straight chat about where your week's time is leaking and whether any of it is worth automating.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -29,7 +29,8 @@ export default function Contact() {
           <Reveal>
             <span className="fs-label">Contact</span>
             <h1 className="fs-display mt-7 text-[clamp(2.75rem,8vw,6rem)] text-ink">
-              Half an hour. <span className="text-atlantic">No slides.</span>
+              {site.callMinutes} minutes.{" "}
+              <span className="text-atlantic">No slides.</span>
             </h1>
           </Reveal>
         </div>
@@ -40,10 +41,11 @@ export default function Contact() {
           <Reveal>
             <span className="fs-label">What the call is</span>
             <p className="mt-5 max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink">
-              A quick chat — what your week looks like, where time&apos;s
-              leaking, whether AI can actually help. If there&apos;s a fit we
-              talk about a paid audit. If there isn&apos;t, you&apos;ve lost half
-              an hour.
+              You talk, I listen. How the work moves, what you&apos;re still
+              doing at nine at night, which rung you&apos;re on. Then I tell you
+              what I&apos;d fix first. If there&apos;s nothing there worth
+              fixing, I&apos;ll say so and you&apos;ve lost {site.callMinutes}{" "}
+              minutes.
             </p>
             <div className="mt-8">
               <CalendlyButton className="inline-flex items-center justify-center rounded-full bg-ember px-7 py-3.5 font-sans text-[0.9375rem] font-medium text-white transition-all duration-300 [transition-timing-function:var(--fs-ease)] hover:-translate-y-0.5 hover:bg-ember-deep">
@@ -54,7 +56,7 @@ export default function Contact() {
 
           <Reveal delay={140}>
             <div className="mt-14 border-t border-line pt-8">
-              <span className="fs-label">Or just reach us</span>
+              <span className="fs-label">Or just reach me</span>
               <ul className="mt-5 space-y-2.5 text-[1.0625rem]">
                 <li>
                   <a
@@ -74,7 +76,7 @@ export default function Contact() {
                 </li>
               </ul>
               <p className="mt-5 max-w-[42ch] text-[0.9375rem] leading-relaxed text-mute">
-                Auckland, New Zealand. We work with trade businesses across the
+                Auckland, New Zealand. I work with trade businesses across the
                 country — most of the build happens remotely.
               </p>
             </div>
@@ -85,7 +87,7 @@ export default function Contact() {
           <div className="rounded-2xl border border-line bg-paper p-7 md:p-9">
             <span className="fs-label">Or send a message</span>
             <h2 className="fs-display mt-4 text-[clamp(1.5rem,3vw,2rem)] text-ink">
-              Tell us what you need.
+              Tell me what you need.
             </h2>
 
             {/*
