@@ -1,5 +1,6 @@
 import { Btn } from "@/components/Button";
 import CalendlyButton from "@/components/CalendlyButton";
+import CountUp from "@/components/CountUp";
 import FlowField from "@/components/FlowField";
 import Reveal from "@/components/Reveal";
 
@@ -159,7 +160,7 @@ export default function Home() {
           <div className="mt-12 grid gap-14 md:grid-cols-2 md:gap-20">
             <Reveal delay={80}>
               <div className="fs-display text-[clamp(3.5rem,8vw,5.5rem)] leading-none text-atlantic">
-                478
+                <CountUp to={478} duration={2.2} />
               </div>
               <span className="fs-label mt-3 block">
                 five-star Google reviews
