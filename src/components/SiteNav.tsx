@@ -1,111 +1,56 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { nav, site } from "@/lib/site";
-import CalendlyButton from "./CalendlyButton";
+import CallButton from "./CallButton";
 
-export default function SiteNav() {
-  const path = usePathname();
-  const [stuck, setStuck] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setStuck(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Never leave the mobile sheet open across a navigation.
-  useEffect(() => setOpen(false), [path]);
+/**
+ * Two grounds, one component.
+ *
+ * `dark` is the home page, where the nav sits transparent over the full-bleed
+ * hero. `light` is every other page, where it sits on white with a hairline
+ * under it. The wordmark is set in type — there is no logo mark on the site
+ * (spec §4.6); the locked SVG is for merch.
+ */
+export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark" }) {
+  const dark = ground === "dark";
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 [transition-timing-function:var(--fs-ease)] ${
-        stuck
-          ? "border-b border-line bg-white/95 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      className={
+        dark
+          ? "relative z-20 on-dark"
+          : "relative z-20 border-b border-hair bg-white"
+      }
     >
-      <div className="fs-shell flex h-[72px] items-center justify-between">
+      <div className="shell flex items-center justify-between gap-6 py-[1.375rem]">
         <Link
           href="/"
-          className="fs-display text-[1.375rem] text-atlantic"
-          aria-label={`${site.name} — home`}
+          className={`text-[1.0625rem] font-[750] tracking-[-0.015em] ${
+            dark ? "text-white" : "text-ink"
+          }`}
         >
-          Flow<span className="text-ember">state</span>
+          {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
-          {nav.map((l) => {
-            const active = path === l.href;
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className={`fs-label transition-colors hover:text-atlantic ${
-                  active ? "text-atlantic" : ""
-                }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-          <CalendlyButton className="rounded-full bg-ember px-5 py-2.5 font-sans text-[0.875rem] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ember-deep">
-            Book a call
-          </CalendlyButton>
-        </nav>
-
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          className="-mr-2 p-2 md:hidden"
-        >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-          <span aria-hidden className="block h-4 w-6">
-            <span
-              className={`block h-px w-6 bg-ink transition-transform duration-300 ${
-                open ? "translate-y-[7px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`mt-[6px] block h-px w-6 bg-ink transition-opacity duration-200 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`mt-[6px] block h-px w-6 bg-ink transition-transform duration-300 ${
-                open ? "-translate-y-[7px] -rotate-45" : ""
-              }`}
-            />
-          </span>
-        </button>
-      </div>
-
-      <div
-        id="mobile-nav"
-        hidden={!open}
-        className="border-t border-line bg-white md:hidden"
-      >
-        <div className="fs-shell flex flex-col gap-1 py-4">
-          {nav.map((l) => (
+        <nav aria-label="Main" className="hidden gap-7 text-[0.89rem] md:flex">
+          {nav.map((item) => (
             <Link
-              key={l.href}
-              href={l.href}
-              className="fs-label py-3 hover:text-atlantic"
+              key={item.href}
+              href={item.href}
+              className={
+                dark
+                  ? "text-white/70 transition-colors duration-200 hover:text-white"
+                  : "text-mute transition-colors duration-200 hover:text-ink"
+              }
             >
-              {l.label}
+              {item.label}
             </Link>
           ))}
-          <CalendlyButton className="mt-3 inline-flex justify-center rounded-full bg-ember px-6 py-3 font-sans text-[0.9375rem] font-medium text-white">
-            Book a call
-          </CalendlyButton>
-        </div>
+        </nav>
+
+        <CallButton
+          tone={dark ? "sky" : "atlantic"}
+          className="!px-[1.375rem] !py-3 !text-[0.85rem]"
+        />
       </div>
     </header>
   );

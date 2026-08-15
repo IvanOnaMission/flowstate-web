@@ -3,65 +3,52 @@ import { nav, site } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-atlantic-deep text-sky">
-      <div className="fs-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="border-t border-hair bg-sky-50">
+      <div className="shell flex flex-col gap-8 py-14 md:flex-row md:items-start md:justify-between">
         <div>
-          <span className="fs-display text-[1.5rem] text-white">
-            Flow<span className="text-ember-lift">state</span>
-          </span>
-          <p className="mt-4 max-w-[36ch] text-[0.9375rem] leading-relaxed text-sky/70">
-            {site.tagline}. Built by someone who has stood at the switchboard as
-            well as the spreadsheet.
+          <p className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
+            {site.name}
+          </p>
+          <p className="mt-2 max-w-[34ch] text-[0.95rem] leading-relaxed text-mute">
+            {site.tagline}. Based in {site.city}, working with trade businesses
+            across New Zealand.
           </p>
         </div>
 
-        <nav aria-label="Footer">
-          <span className="fs-label text-sky/50">Pages</span>
-          <ul className="mt-4 space-y-2.5">
-            {nav.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="text-[0.9375rem] text-sky/80 transition-colors hover:text-white"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex flex-col gap-3 text-[0.95rem]">
+          <p className="eyebrow text-mute">Pages</p>
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-mute transition-colors duration-200 hover:text-ink"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
 
-        <div>
-          <span className="fs-label text-sky/50">Get in touch</span>
-          <ul className="mt-4 space-y-2.5 text-[0.9375rem]">
-            <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="text-sky/80 transition-colors hover:text-white"
-              >
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.phoneHref}
-                className="text-sky/80 transition-colors hover:text-white"
-              >
-                {site.phone}
-              </a>
-            </li>
-            <li className="text-sky/60">{site.city}, New Zealand</li>
-          </ul>
+        <div className="flex flex-col gap-3 text-[0.95rem]">
+          <p className="eyebrow text-mute">Get hold of me</p>
+          <a
+            href={`mailto:${site.email}`}
+            className="text-mute transition-colors duration-200 hover:text-ink"
+          >
+            {site.email}
+          </a>
+          <a
+            href={site.phoneHref}
+            className="text-mute transition-colors duration-200 hover:text-ink"
+          >
+            {site.phone}
+          </a>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="fs-shell flex flex-col gap-2 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <span className="fs-label text-sky/45">
-            {site.name} · {site.tagline}
-          </span>
-          <span className="fs-label text-sky/45">Auckland, Aotearoa</span>
-        </div>
+      <div className="shell border-t border-hair py-6">
+        <p className="text-[0.82rem] text-mute">
+          &copy; {new Date().getFullYear()} {site.name}. Built in {site.city}.
+        </p>
       </div>
     </footer>
   );

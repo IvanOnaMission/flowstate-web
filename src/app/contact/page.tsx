@@ -1,167 +1,121 @@
 import type { Metadata } from "next";
-import CalendlyButton from "@/components/CalendlyButton";
-import FlowField from "@/components/FlowField";
+import SiteNav from "@/components/SiteNav";
+import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
-import { site } from "@/lib/site";
+import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Fifteen minutes, no slides. A straight chat about where your week's time is leaking and whether any of it is worth automating.",
-  alternates: { canonical: "/contact/" },
+  description: `Book a free ${site.callMinutes}-minute call with Ivan, or email him directly. AI systems for New Zealand trade businesses.`,
 };
 
-const field =
-  "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 " +
-  "text-[1rem] text-ink transition-colors duration-200 placeholder:text-mute/60 " +
-  "focus:border-atlantic focus:outline-none";
-
+/**
+ * Deliberately not a form.
+ *
+ * The site has one conversion and it is the call. A contact form adds a step,
+ * needs a backend the static export doesn't have, and converts worse than a
+ * booking link. Email and phone are here for people who'd rather not book.
+ */
 export default function Contact() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper">
-        <FlowField
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-[60%] opacity-60"
-          maxAlpha={0.22}
-        />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,var(--fs-paper)_34%,transparent_78%)]" />
-        <div className="fs-shell relative pt-20 pb-24 md:pt-28 md:pb-28">
+      <SiteNav />
+
+      <main id="main">
+        <section className="shell pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(3rem,6vw,4.5rem)]">
           <Reveal>
-            <span className="fs-label">Contact</span>
-            <h1 className="fs-display mt-7 text-[clamp(2.75rem,8vw,6rem)] text-ink">
-              {site.callMinutes} minutes.{" "}
-              <span className="text-atlantic">No slides.</span>
+            <p className="eyebrow mb-5 text-atlantic">Contact</p>
+            <h1 className="h-hero max-w-[16ch] text-ink">
+              Book the call.{" "}
+              <span className="text-atlantic">
+                Worst case you learn something.
+              </span>
             </h1>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="fs-shell grid gap-14 border-t border-line py-20 md:grid-cols-[1fr_1.1fr] md:gap-24 md:py-24">
-        <div>
-          <Reveal>
-            <span className="fs-label">What the call is</span>
-            <p className="mt-5 max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink">
-              You talk, I listen. How the work moves, what you&apos;re still
-              doing at nine at night, which rung you&apos;re on. Then I tell you
-              what I&apos;d fix first. If there&apos;s nothing there worth
-              fixing, I&apos;ll say so and you&apos;ve lost {site.callMinutes}{" "}
-              minutes.
+          <Reveal delay={90}>
+            <p className="mt-7 max-w-[52ch] text-[1.1rem] leading-relaxed text-mute">
+              {site.callMinutes} minutes, no deck, no discovery process. You
+              talk about how the work moves, I tell you where your hours are
+              going and whether a machine could take any of them.
             </p>
-            <div className="mt-8">
-              <CalendlyButton className="inline-flex items-center justify-center rounded-full bg-ember px-7 py-3.5 font-sans text-[0.9375rem] font-medium text-white transition-all duration-300 [transition-timing-function:var(--fs-ease)] hover:-translate-y-0.5 hover:bg-ember-deep">
-                Book on Calendly
-              </CalendlyButton>
+          </Reveal>
+          <Reveal delay={160}>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <CallButton tone="atlantic" />
+              <span className="text-[0.85rem] text-mute">{callPromise}</span>
             </div>
           </Reveal>
+        </section>
 
-          <Reveal delay={140}>
-            <div className="mt-14 border-t border-line pt-8">
-              <span className="fs-label">Or just reach me</span>
-              <ul className="mt-5 space-y-2.5 text-[1.0625rem]">
-                <li>
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="text-atlantic underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-atlantic"
-                  >
-                    {site.email}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={site.phoneHref}
-                    className="text-atlantic underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-atlantic"
-                  >
-                    {site.phone}
-                  </a>
-                </li>
-              </ul>
-              <p className="mt-5 max-w-[42ch] text-[0.9375rem] leading-relaxed text-mute">
-                Auckland, New Zealand. I work with trade businesses across the
-                country — most of the build happens remotely.
-              </p>
+        <section className="border-t border-hair">
+          <div className="shell py-[clamp(3rem,6vw,4.5rem)]">
+            <Reveal>
+              <p className="eyebrow mb-6 text-mute">Or just get hold of me</p>
+            </Reveal>
+            <div className="grid gap-8 sm:grid-cols-3">
+              {[
+                { label: "Email", value: site.email, href: `mailto:${site.email}` },
+                { label: "Phone", value: site.phone, href: site.phoneHref },
+                { label: "Based in", value: site.city, href: null },
+              ].map((item, i) => (
+                <Reveal key={item.label} delay={i * 70}>
+                  <div className="border-t border-hair pt-5">
+                    <p className="eyebrow text-mute">{item.label}</p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="mt-2 inline-block text-[1.0625rem] font-semibold text-ink underline decoration-hair underline-offset-4 transition-colors duration-200 hover:decoration-atlantic"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="mt-2 text-[1.0625rem] font-semibold text-ink">
+                        {item.value}
+                      </p>
+                    )}
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          </Reveal>
-        </div>
-
-        <Reveal delay={100}>
-          <div className="rounded-2xl border border-line bg-paper p-7 md:p-9">
-            <span className="fs-label">Or send a message</span>
-            <h2 className="fs-display mt-4 text-[clamp(1.5rem,3vw,2rem)] text-ink">
-              Tell me what you need.
-            </h2>
-
-            {/*
-              Netlify picks the form up from the exported HTML at deploy time,
-              so the name / data-netlify / hidden form-name trio all have to be
-              in the markup — not added by JS.
-            */}
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              action="/contact/thanks/"
-              className="mt-7 space-y-5"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Leave this empty if you&apos;re human:{" "}
-                  <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                </label>
-              </p>
-
-              <div>
-                <label htmlFor="name" className="fs-label">
-                  Name
-                </label>
-                <input id="name" name="name" required className={field} />
-              </div>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="email" className="fs-label">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className={field}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="fs-label">
-                    Phone
-                  </label>
-                  <input id="phone" name="phone" type="tel" className={field} />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="fs-label">
-                  What&apos;s this about?
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className={`${field} resize-y`}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center rounded-full bg-ember px-8 py-4 font-sans text-[0.9375rem] font-medium text-white transition-all duration-300 [transition-timing-function:var(--fs-ease)] hover:-translate-y-0.5 hover:bg-ember-deep sm:w-auto"
-              >
-                Send message
-              </button>
-            </form>
           </div>
-        </Reveal>
-      </section>
+        </section>
+
+        <section className="border-t border-hair bg-sky-50">
+          <div className="shell py-[clamp(3rem,6vw,4.5rem)]">
+            <Reveal>
+              <p className="eyebrow mb-4 text-mute">Before you book</p>
+              <h2 className="h-sec max-w-[24ch] text-ink">
+                Two things worth knowing.
+              </h2>
+            </Reveal>
+            <div className="mt-8 grid max-w-[62rem] gap-8 md:grid-cols-2">
+              <Reveal>
+                <div className="max-w-[46ch] space-y-3 text-[1.0625rem] leading-relaxed text-mute">
+                  <p className="font-[750] text-ink">
+                    I&apos;ll tell you if it&apos;s not worth doing.
+                  </p>
+                  <p>
+                    Some businesses aren&apos;t ready and some problems
+                    aren&apos;t AI problems. You&apos;ll get that answer on the
+                    call, not after an invoice.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <div className="max-w-[46ch] space-y-3 text-[1.0625rem] leading-relaxed text-mute">
+                  <p className="font-[750] text-ink">
+                    I take a few businesses at a time.
+                  </p>
+                  <p>
+                    I build these myself, so if the calendar is full I&apos;ll
+                    say so rather than take your money and queue you.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }

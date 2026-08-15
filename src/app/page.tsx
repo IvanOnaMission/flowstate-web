@@ -1,96 +1,100 @@
-import { Btn } from "@/components/Button";
-import CalendlyButton from "@/components/CalendlyButton";
-import FlowField from "@/components/FlowField";
+import Image from "next/image";
+import SiteNav from "@/components/SiteNav";
+import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
-import { site } from "@/lib/site";
+import { callPromise, rungs, site } from "@/lib/site";
 
-// Set this to the file path once the founder video is filmed. Until then the
-// page renders the written version in its place — see THE VIDEO section.
-const FOUNDER_VIDEO: string | null = null;
-
-const RUNGS = [
-  {
-    n: "01",
-    rung: "Apprentice",
-    title: "You train it",
-    body: "Everything about how you work goes in. Your pricing, your process, the way you talk to a customer. It isn't useful yet. Neither was your first apprentice. This is the part everyone skips, and it's exactly why their AI gives them rubbish.",
-  },
-  {
-    n: "02",
-    rung: "Qualified",
-    title: "It starts pulling its weight",
-    body: "The day-to-day, done properly. It sorts what comes in, tells you what actually matters, and takes on the stuff you've been doing at nine at night. You still check its work. It's earning its keep.",
-  },
-  {
-    n: "03",
-    rung: "Foreman",
-    title: "It runs the day",
-    body: "Chases the quote that went quiet. Keeps jobs moving. Flags what needs you before it turns into a problem. You stop being the thing everything waits on.",
-  },
-];
-
-const FIFTEEN = [
-  ["You talk", "How the work moves. Job in, quote out, money in. I mostly listen."],
-  ["I point", "Where your hours are going, and which of them a machine could take."],
-  ["You decide", "Which rung you're on and whether the next one is worth it. If it isn't, I'll say so."],
-];
-
+/**
+ * The home page has one job: book the 15-minute call. Everything here either
+ * earns that click or gets cut.
+ */
 export default function Home() {
   return (
     <>
-      {/* ── The statement ───────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-paper">
-        <FlowField
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-[72%] opacity-70"
-          maxAlpha={0.26}
+      {/* ── The hero ──────────────────────────────────────────────────
+          Full bleed, capped at 74vh so the page visibly begins underneath.
+          The image is 16:9 and the viewport rarely is, so cropping is
+          unavoidable — focus sits at 62% across to keep the hi-vis in frame
+          and the dark side under the type. */}
+      <section className="relative isolate bg-night on-dark">
+        <Image
+          src="/assets/hero/workshop-hook.jpg"
+          alt="A workshop with the owner's hi-vis vest and hard hat hanging on a hook, the crew still working behind"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[62%_center]"
         />
-        {/* Fades the current out before it reaches the headline. */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,var(--fs-paper)_28%,transparent_72%)]" />
+        {/* Carries the headline. Must reach ~58% before fading or a full
+            line of type drifts onto the bright part of the workshop.
+            Desktop only — see the flat scrim below for why. */}
+        <div className="absolute inset-0 hidden md:block md:bg-[linear-gradient(96deg,rgba(3,16,26,.97)_0%,rgba(3,16,26,.92)_36%,rgba(3,16,26,.66)_58%,rgba(3,16,26,.2)_80%,rgba(3,16,26,.03)_94%)]" />
+        {/* On a phone the text column is full width, so a left-to-right
+            gradient would leave the headline sitting on the bright hi-vis.
+            A flat scrim keeps every line legible at 390px. */}
+        <div className="absolute inset-0 bg-[rgba(3,16,26,.84)] md:hidden" />
+        <div className="absolute inset-x-0 top-0 h-[150px] bg-[linear-gradient(rgba(3,16,26,.72),transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(transparent,rgba(3,16,26,.85))]" />
 
-        <div className="fs-shell relative pt-24 pb-28 md:pt-36 md:pb-36">
-          <Reveal>
-            <span className="fs-label">AI systems for NZ trade businesses</span>
-          </Reveal>
+        <div className="relative z-10 flex min-h-[clamp(520px,74vh,760px)] flex-col">
+          <SiteNav ground="dark" />
 
-          <Reveal delay={90}>
-            <h1 className="fs-display mt-8 max-w-[17ch] text-[clamp(2.75rem,8.2vw,6.25rem)] text-ink">
-              You can&apos;t hire your way out of this.{" "}
-              <span className="text-atlantic">
-                So train something that doesn&apos;t leave.
-              </span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={180}>
-            <div className="mt-12 flex flex-wrap items-center gap-4">
-              <CalendlyButton className="inline-flex items-center justify-center rounded-full bg-ember px-8 py-4 font-sans text-[0.9375rem] font-medium text-white shadow-[0_1px_2px_rgba(11,27,38,.16)] transition-all duration-300 [transition-timing-function:var(--fs-ease)] hover:-translate-y-0.5 hover:bg-ember-deep hover:shadow-[0_12px_28px_-10px_rgba(194,65,12,.6)]">
-                Book a call
-              </CalendlyButton>
-              <Btn href="#ladder" tone="quiet">
-                See how it works
-              </Btn>
-              <span className="fs-label ml-1">
-                Free · {site.callMinutes} min · no pitch deck
-              </span>
+          <div
+            id="main"
+            className="flex flex-1 items-center pb-[clamp(2.5rem,7vh,5.25rem)]"
+          >
+            <div className="shell">
+              <div className="flex max-w-[min(46rem,62%)] flex-col gap-[clamp(0.875rem,2vh,1.5rem)] max-md:max-w-none">
+                <Reveal>
+                  <p className="eyebrow text-sky/90">{site.tagline}</p>
+                </Reveal>
+                <Reveal delay={90}>
+                  <h1 className="h-hero text-white">
+                    You can&apos;t hire your way out of this.{" "}
+                    <span className="text-sky">
+                      So train something that doesn&apos;t leave.
+                    </span>
+                  </h1>
+                </Reveal>
+                <Reveal delay={170}>
+                  <p className="max-w-[50ch] text-[clamp(0.98rem,1.35vw,1.1rem)] leading-relaxed text-white/70">
+                    Your gear on the hook, and the place still running.
+                  </p>
+                </Reveal>
+                <Reveal delay={240}>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <CallButton tone="sky" />
+                    <a
+                      href="#ladder"
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/30 bg-white/[.08] px-[1.875rem] py-[1.0625rem] text-[0.95rem] font-semibold text-white backdrop-blur-[10px] transition-colors duration-200 hover:bg-white/[.17]"
+                    >
+                      See how it works
+                    </a>
+                  </div>
+                </Reveal>
+                <Reveal delay={310}>
+                  <p className="text-[0.8rem] text-white/65">{callPromise}</p>
+                </Reveal>
+              </div>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ── The argument. This is the whole pitch in six lines. ─ */}
-      <section className="fs-shell fs-prose border-t border-line py-20 md:py-24">
+      {/* ── The argument. The whole pitch in six lines. ────────────── */}
+      <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <span className="fs-label">Why this one is different</span>
+          <p className="eyebrow mb-4 text-mute">Why this one is different</p>
         </Reveal>
-        <Reveal delay={100}>
-          <div className="mt-8 max-w-[58ch] space-y-5 text-[1.125rem] leading-relaxed text-ink">
-            <p>
+        <Reveal delay={80}>
+          <div className="max-w-[60ch] space-y-4 text-[1.05rem] leading-relaxed text-mute">
+            <p className="text-[1.1rem] text-ink">
               Every good tradie you&apos;ve ever hired started out useless. You
-              showed them how you quote. How you talk to a customer. What good
+              showed them how you quote, how you talk to a customer, what good
               looks like on site. A year later they were worth every cent.
             </p>
             <p>Then they left, and you started again.</p>
-            <p className="font-medium">
+            <p>
               AI is the same deal with one difference. You train it once. It
               doesn&apos;t get poached, doesn&apos;t call in sick, and
               doesn&apos;t take everything it learned down the road to a
@@ -100,174 +104,156 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ── The ladder ──────────────────────────────────────── */}
-      <section id="ladder" className="fs-shell scroll-mt-24 py-20 md:py-28">
+      {/* ── The ladder ────────────────────────────────────────────────
+          Cards, not heroes. The hero is the emotional hit; this explains.
+          One statue across three frames — see spec §4.5 before regenerating
+          any of these images. */}
+      <section id="ladder" className="shell scroll-mt-8 pb-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <span className="fs-label">The ladder</span>
-          <h2 className="fs-display mt-6 max-w-[22ch] text-[clamp(2rem,4.6vw,3.25rem)] text-ink">
+          <p className="eyebrow mb-4 text-mute">The ladder</p>
+          <h2 className="h-sec max-w-[22ch] text-ink">
             It climbs the same ladder everyone in your business climbed.
           </h2>
         </Reveal>
 
-        <ol className="mt-14 space-y-px">
-          {RUNGS.map((r, i) => (
-            <Reveal as="li" key={r.n} delay={i * 110}>
-              <div className="group grid gap-6 border-t border-line py-10 transition-colors duration-500 md:grid-cols-[10rem_1fr] md:gap-14">
-                <div className="flex items-baseline gap-4 md:flex-col md:gap-2">
-                  <span className="fs-display text-[2.75rem] leading-none text-line-strong transition-colors duration-500 group-hover:text-atlantic">
-                    {r.n}
-                  </span>
-                  <span className="fs-label">{r.rung}</span>
+        <ol className="mt-[clamp(1.875rem,4vw,2.875rem)] grid gap-[clamp(1rem,2vw,1.625rem)] md:grid-cols-3">
+          {rungs.map((r, i) => (
+            <Reveal as="li" key={r.n} delay={i * 90}>
+              <article className="group flex h-full flex-col overflow-hidden border border-hair bg-white transition-[border-color,box-shadow,transform] duration-300 [transition-timing-function:var(--ease-out-soft)] hover:-translate-y-[3px] hover:border-[#bfd6e3] hover:shadow-[0_18px_40px_-24px_rgba(6,40,61,.42)]">
+                <div className="relative aspect-4/3 bg-night">
+                  <Image
+                    src={`${r.img}.jpg`}
+                    alt={r.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
+                  />
                 </div>
-                <div className="fs-prose">
-                  <h3 className="fs-display text-[clamp(1.5rem,2.6vw,2rem)] text-ink">
+                <div className="flex flex-1 flex-col gap-2.5 p-[clamp(1.125rem,2vw,1.625rem)]">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-[1.55rem] font-extrabold leading-none tracking-[-0.04em] text-atlantic">
+                      {r.n}
+                    </span>
+                    <span className="eyebrow text-mute">{r.rung}</span>
+                  </div>
+                  <h3 className="text-[1.18rem] font-[750] leading-tight tracking-[-0.02em] text-ink">
                     {r.title}
                   </h3>
-                  <p className="mt-4 text-[1.0625rem] text-mute">{r.body}</p>
+                  <p className="text-[0.95rem] leading-relaxed text-mute">
+                    {r.body}
+                  </p>
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </ol>
 
-        {/* Says out loud where the ladder actually stops today. Keeping this
-            honest is the point — rung 03 is the roadmap, not the promise. */}
-        <Reveal delay={340}>
-          <p className="mt-12 max-w-[58ch] border-l-2 border-line-strong pl-6 text-[1.0625rem] leading-relaxed text-mute">
-            Most shops start at 01 and get to 02 quickly. How far past that you
-            go depends on your business, and I&apos;d rather look at it than
-            guess.
+        {/* The pictures make the ladder look inevitable. The words must not.
+            Rung 01 is proven; 02 is hard; 03 is not proven at all. */}
+        <Reveal delay={120}>
+          <p className="mt-[clamp(1.5rem,3vw,2.25rem)] max-w-[60ch] border-l-2 border-hair pl-4 text-[0.93rem] text-mute">
+            Rung 01 is proven. Rung 02 is harder than it sounds. Rung 03 is
+            where this goes &mdash; not a three-week guarantee.
           </p>
         </Reveal>
       </section>
 
-      {/* ── The argument, on the deep field ─────────────────── */}
-      <section className="relative overflow-hidden bg-atlantic-deep text-sky">
-        <FlowField
-          className="pointer-events-none absolute inset-0 h-full w-full opacity-50"
-          stroke="196, 248, 255"
-          maxAlpha={0.16}
-          speed={0.004}
-        />
-        <div className="fs-shell relative py-24 md:py-32">
+      {/* ── The part everyone skips ──────────────────────────────────── */}
+      <section className="relative bg-atlantic on-dark">
+        <div className="shell py-[clamp(3.5rem,8vw,6.5rem)]">
           <Reveal>
-            <span className="fs-label text-sky/55">The part everyone skips</span>
-            <h2 className="fs-display mt-6 max-w-[20ch] text-[clamp(2rem,4.6vw,3.5rem)] text-white">
-              Nobody hands a first-year the keys to the van on day one.
+            <p className="eyebrow mb-4 text-sky/90">The part everyone skips</p>
+            <h2 className="h-sec max-w-[20ch] text-white">
+              Most AI gives you rubbish because nobody trained it.
             </h2>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="mt-10 max-w-[62ch] space-y-5 text-[1.0625rem] leading-relaxed text-sky/85">
+          <Reveal delay={90}>
+            <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-sky/85">
               <p>
-                But that&apos;s what people do with AI. They point it at a job
-                it knows nothing about and then decide the whole thing is
-                overhyped when the answers come back generic.
+                People buy a tool, type a question into it, get something
+                generic back, and decide AI doesn&apos;t work for their trade.
+                They were right about the answer and wrong about the reason.
               </p>
               <p>
-                So we do the training first. What you charge, how you quote, the
-                way you talk to customers — written down properly, in one place,
-                in a form a machine can actually read.
-              </p>
-              <p className="text-white">
-                That file is the thing you own at the end. Every automation
-                after it reads the same page.
+                The first stretch is unglamorous. It&apos;s sitting down and
+                getting your pricing, your process and the way you talk to a
+                customer out of your head and into something that can use it.
+                Skip that and you get a very confident stranger guessing.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ── THE VIDEO. Written fallback until it's filmed. ───── */}
-      <section className="bg-mist">
-        <div className="fs-shell py-24 md:py-28">
+      {/* ── Who you'd be working with ────────────────────────────────
+          The video slot degrades to written text so going live is not
+          blocked on filming. Swap the panel for the embed when it exists. */}
+      <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
+        <Reveal>
+          <p className="eyebrow mb-4 text-mute">Who you&apos;d be working with</p>
+        </Reveal>
+        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
           <Reveal>
-            <span className="fs-label">Who you&apos;d be working with</span>
+            <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
+              <p className="text-ink">
+                I&apos;m Ivan. I build these systems myself &mdash; there&apos;s
+                no account manager and no team you get handed to.
+              </p>
+              <p>
+                That means I can only take a few businesses at a time, and it
+                means the person who sat in your workshop is the person who
+                writes the thing. If I don&apos;t think AI will move the needle
+                for you, I&apos;ll say so on the call rather than sell you a
+                project.
+              </p>
+            </div>
           </Reveal>
-
-          {FOUNDER_VIDEO ? (
-            <Reveal delay={100}>
-              <video
-                className="mt-10 w-full max-w-[52rem] rounded-2xl border border-line"
-                src={FOUNDER_VIDEO}
-                controls
-                playsInline
-                preload="metadata"
-              />
-            </Reveal>
-          ) : (
-            <Reveal delay={100}>
-              <div className="mt-10 grid gap-12 md:grid-cols-[1.15fr_1fr] md:gap-20">
-                <div className="fs-prose max-w-[54ch] space-y-5 text-[1.0625rem] leading-relaxed text-ink">
-                  <p>
-                    Ivan Barnett. I spent four years in the trades in Auckland
-                    working out what I wanted to do, then found AI and it
-                    clicked. Trade owners have no time. This is the thing that
-                    gives it back.
-                  </p>
-                  <p>
-                    I&apos;m early and I&apos;m not going to pretend otherwise.
-                    The numbers that would prove this properly are a few weeks
-                    away, not a few years. So I&apos;m not going to show you a
-                    wall of logos I haven&apos;t earned.
-                  </p>
-                  <p className="font-medium">
-                    Here&apos;s what I&apos;ll do instead. Give me{" "}
-                    {site.callMinutes} minutes and I&apos;ll tell you where your
-                    week is going. If there&apos;s nothing there worth fixing,
-                    I&apos;ll tell you that too and we&apos;re done.
-                  </p>
-                </div>
-
-                <blockquote className="fs-display border-l-2 border-ember pl-6 text-[clamp(1.5rem,3vw,2.125rem)] leading-[1.2] text-ink">
-                  I&apos;d rather be the guy who says it&apos;s not worth it
-                  than the guy who sold you something.
-                </blockquote>
-              </div>
-            </Reveal>
-          )}
+          <Reveal delay={100}>
+            <blockquote className="border-l-2 border-atlantic-500 pl-6 text-[clamp(1.25rem,2.4vw,1.6rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
+              The goal isn&apos;t to add AI to your business. It&apos;s to stop
+              your business waiting on you.
+            </blockquote>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── The call. The only conversion on the page. ───────── */}
-      <section className="fs-shell scroll-mt-24 py-24 md:py-32">
-        <div className="grid gap-16 md:grid-cols-[1fr_1fr] md:gap-24">
-          <div>
-            <Reveal>
-              <span className="fs-label">The next step</span>
-              <h2 className="fs-display mt-6 max-w-[16ch] text-[clamp(2.25rem,5vw,3.75rem)] text-ink">
-                {site.callMinutes} minutes, and you&apos;ll know.
-              </h2>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="mt-8 max-w-[46ch] text-[1.0625rem] leading-relaxed text-mute">
-                No slides, no proposal to sit through. A straight conversation
-                about where your week is leaking and whether any of it is worth
-                automating.
-              </p>
-
-              <div className="mt-10">
-                <CalendlyButton className="inline-flex items-center justify-center rounded-full bg-ember px-8 py-4 font-sans text-[0.9375rem] font-medium text-white transition-all duration-300 [transition-timing-function:var(--fs-ease)] hover:-translate-y-0.5 hover:bg-ember-deep hover:shadow-[0_12px_28px_-10px_rgba(194,65,12,.6)]">
-                  Book a call
-                </CalendlyButton>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={140}>
-            <dl className="space-y-px">
-              {FIFTEEN.map(([k, v]) => (
-                <div
-                  key={k}
-                  className="grid gap-2 border-t border-line py-6 sm:grid-cols-[7rem_1fr] sm:gap-6"
-                >
-                  <dt className="fs-label text-atlantic">{k}</dt>
-                  <dd className="text-[1.0625rem] leading-relaxed text-mute">
-                    {v}
+      {/* ── What happens in the 15 minutes ───────────────────────────── */}
+      <section className="border-t border-hair bg-sky-50">
+        <div className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
+          <Reveal>
+            <p className="eyebrow mb-4 text-mute">
+              What happens in the {site.callMinutes} minutes
+            </p>
+            <h2 className="h-sec max-w-[18ch] text-ink">
+              No deck. No discovery process. One conversation.
+            </h2>
+          </Reveal>
+          <dl className="mt-10 max-w-[62rem]">
+            {[
+              ["You talk", "How the work moves. Job in, quote out, money in. I mostly listen."],
+              ["I point", "Where your hours are going, and which of them a machine could take."],
+              [
+                "You decide",
+                "Which rung you're on and whether the next one is worth it. If it isn't, I'll say so.",
+              ],
+            ].map(([term, def], i) => (
+              <Reveal key={term} delay={i * 80}>
+                <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[8rem_1fr] sm:gap-6">
+                  <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
+                    {term}
+                  </dt>
+                  <dd className="max-w-[56ch] text-[1.0625rem] leading-relaxed text-mute">
+                    {def}
                   </dd>
                 </div>
-              ))}
-            </dl>
+              </Reveal>
+            ))}
+          </dl>
+          <Reveal delay={240}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <CallButton tone="atlantic" />
+              <span className="text-[0.85rem] text-mute">{callPromise}</span>
+            </div>
           </Reveal>
         </div>
       </section>

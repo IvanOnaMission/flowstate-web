@@ -3,8 +3,15 @@
 import { useEffect, useRef, type ElementType, type ReactNode } from "react";
 
 /**
- * Fades a block up the first time it enters the viewport, then stops
- * observing. CSS does the animating; this only flips a data attribute.
+ * Fade-and-rise on scroll.
+ *
+ * The important property: THE CONTENT IS NEVER HIDDEN BY JAVASCRIPT.
+ * The hidden state lives in CSS behind a `.js` class that an inline script in
+ * <head> adds synchronously. So if the bundle fails, is slow, or is blocked,
+ * every word still renders — which matters on a page whose only job is a
+ * booking. Reduced-motion is handled in CSS for the same reason.
+ *
+ * This component only ever ADDS the `.in` class. It cannot make text vanish.
  */
 export default function Reveal({
   children,
@@ -23,23 +30,19 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    if (
-      typeof IntersectionObserver === "undefined" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      el.dataset.shown = "true";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("in");
       return;
     }
 
     const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue;
-          (e.target as HTMLElement).dataset.shown = "true";
-          io.unobserve(e.target);
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -48,8 +51,8 @@ export default function Reveal({
   return (
     <Tag
       ref={ref}
-      className={`fs-reveal ${className}`}
-      style={{ "--fs-delay": `${delay}ms` } as React.CSSProperties}
+      className={`reveal ${className}`}
+      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
     >
       {children}
     </Tag>

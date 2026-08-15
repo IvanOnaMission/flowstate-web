@@ -1,89 +1,64 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import SiteNav from "@/components/SiteNav";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import { site } from "@/lib/site";
 import SiteFooter from "@/components/SiteFooter";
+import "./globals.css";
 
-// Zodiak is the brand display face and is self-hosted — see the 2026-08-13
-// decision to stop pulling it from a CDN.
-const zodiak = localFont({
-  src: [
-    { path: "../../public/assets/fonts/zodiak-400.woff2", weight: "400", style: "normal" },
-    { path: "../../public/assets/fonts/zodiak-700.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-zodiak",
-  display: "swap",
-});
-
-const inter = Inter({
+/**
+ * next/font downloads and self-hosts at build time, so there is no request to
+ * Google at runtime and no flash of fallback text. Works with `output: export`.
+ */
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
-
-const jet = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-jet",
-  display: "swap",
-});
-
-const SITE = "https://flowstate.net.nz";
-const TITLE = "Flowstate — AI systems for NZ trade businesses";
-const DESC =
-  "The office side of the job should run without you in the room. Flowstate builds AI systems for New Zealand trade businesses — quotes, follow-ups, review chasing, the inbox.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE),
-  title: { default: TITLE, template: "%s — Flowstate" },
-  description: DESC,
-  authors: [{ name: "Ivan Barnett" }],
-  alternates: { canonical: "/" },
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s — ${site.name}`,
+  },
+  description:
+    "You can't hire your way out of this. Flowstate trains an AI system on how your trade business actually works — your pricing, your process, your customers — so it stops being the thing everything waits on.",
   openGraph: {
     type: "website",
-    url: SITE,
-    title: TITLE,
-    description: "The office side of the job should run without you in the room.",
-    siteName: "Flowstate",
     locale: "en_NZ",
+    url: site.url,
+    siteName: site.name,
+    images: ["/assets/hero/workshop-hook.jpg"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: "The office side of the job should run without you in the room.",
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en-NZ"
-      className={`${zodiak.variable} ${inter.variable} ${jet.variable} h-full`}
-    >
+    <html lang="en-NZ" className={jakarta.variable}>
       <head>
         {/*
-          Marks the document as JS-capable before first paint. The reveal
-          animation only arms itself behind this class, so with JS off (or
-          slow) the page renders fully visible instead of blank.
+          Runs before first paint and arms the scroll-reveal CSS. Without it
+          the reveal styles never apply, so the page renders fully visible.
+          That is the intended failure mode — never a blank hero.
         */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('js')`,
+            __html: "document.documentElement.classList.add('js')",
           }}
         />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body>
+        {/* Keyboard users land here first. Hidden until focused. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-atlantic focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-atlantic focus:px-5 focus:py-3 focus:text-white"
         >
           Skip to content
         </a>
-        <SiteNav />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
+        {children}
         <SiteFooter />
       </body>
     </html>
