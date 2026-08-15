@@ -21,37 +21,29 @@ export const metadata: Metadata = {
  */
 const detail = [
   {
-    lead:
-      "This is the foundation, and it's the stage that decides whether the rest works. I sit down with you and with everyone who touches the work, and pull out how the business actually runs — not how the manual says it runs.",
-    heading: "What that involves",
+    heading: "What happens",
     points: [
-      "Interviews with you and your team, one at a time",
-      "Everything you know about quoting, pricing, process and customers, extracted and written down",
-      "A pass over the tools you already use, so it works with your setup instead of replacing it",
-      "What each person is actually trying to get done, and what's in their way",
-      "All of it built into one place — the brain the system works from",
+      "Interviews with you and the team",
+      "Your pricing, process and customers, written down",
+      "A look at the tools you already use",
+      "All of it becomes the brain it works from",
     ],
   },
   {
-    lead:
-      "Now it gets put to work. Everyone gets set up on it and we build out the first skills — the specific jobs you want it doing. The hard part here isn't technical, it's getting it into people's day so it actually gets used.",
-    heading: "What that involves",
+    heading: "What happens",
     points: [
-      "Everyone set up and shown how to use it on their own work",
-      "The first handful of skills built for the jobs that cost you the most time",
-      "Working it into the daily routine rather than bolting it on beside it",
-      "Corrections from real use fed straight back into the brain",
+      "Everyone set up and shown how",
+      "First skills built for your biggest time-sinks",
+      "Worked into the daily routine, not bolted on beside it",
+      "Your corrections feed straight back in",
     ],
   },
   {
-    lead:
-      "This is the one worth aiming at, and it's built on the two underneath it — there's no shortcut straight to here. It's the point where nobody is thinking about the system any more, they're just using it.",
-    heading: "What that looks like",
+    heading: "What it looks like",
     points: [
-      "The skills are second nature — used without anyone stopping to work out how",
-      "The brain keeps getting sharper because people keep correcting it",
-      "The jobs that used to live in your head keep moving without you holding them",
-      "The business runs tighter, and you're in it because you want to be",
+      "Used without anyone thinking about it",
+      "Gets sharper every time it's corrected",
+      "Jobs keep moving without you holding them",
     ],
   },
 ] as const;
@@ -106,17 +98,14 @@ export default function Services() {
                     <h2 className="mt-3 text-[clamp(1.35rem,2.6vw,1.9rem)] font-[750] leading-tight tracking-[-0.025em] text-ink">
                       {r.title}
                     </h2>
-                    <p className="mt-4 max-w-[54ch] text-[1.0625rem] leading-relaxed text-mute">
+                    <p className="mt-4 max-w-[52ch] text-[1.0625rem] leading-relaxed text-mute">
                       {r.body}
                     </p>
-                    <p className="mt-4 max-w-[54ch] text-[1.0625rem] leading-relaxed text-mute">
-                      {detail[i].lead}
-                    </p>
 
-                    <p className="eyebrow mt-7 text-mute">
+                    <p className="eyebrow mt-6 text-mute">
                       {detail[i].heading}
                     </p>
-                    <ul className="mt-3 max-w-[54ch] space-y-2.5">
+                    <ul className="mt-3 max-w-[52ch] space-y-2">
                       {detail[i].points.map((point) => (
                         <li
                           key={point}
@@ -159,15 +148,15 @@ export default function Services() {
               {[
                 [
                   "Up front",
-                  "The interviews. A few sessions of an hour or so, with you and with whoever else touches the work. This is the biggest ask, and it's the one that pays for itself.",
+                  "The interviews. A few sessions of an hour or so. The biggest ask, and the one that pays for itself.",
                 ],
                 [
-                  "While it's being built",
-                  "Short bursts. You look at what it produces and tell me where it's wrong. You don't need to explain how to fix it — just that it's wrong, and why.",
+                  "While it's built",
+                  "Short bursts. You say where it's wrong — not how to fix it.",
                 ],
                 [
                   "Once it's running",
-                  "Minutes, not hours. You correct it when it gets something wrong, the same way you'd correct anyone new, and it stops getting that thing wrong.",
+                  "Minutes, not hours. Correct it like you'd correct anyone new.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>

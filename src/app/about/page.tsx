@@ -8,7 +8,7 @@ import { callPromise, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Out of the trades, not out of a software company. Four years on the tools and eight years running a systemised electrical business between us.",
+    "Who you'd be working with at Flowstate — Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",
 };
 
 /**
@@ -53,23 +53,17 @@ export default function About() {
       <SiteNav />
 
       <main id="main">
-        <section className="shell pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(3rem,6vw,4.5rem)]">
+        <section className="shell pb-[clamp(2rem,4vw,3rem)] pt-[clamp(3rem,6vw,4.5rem)]">
           <Reveal>
             <p className="eyebrow mb-5 text-atlantic">About</p>
-            <h1 className="h-hero max-w-[14ch] text-ink">
-              I was the <span className="text-atlantic">apprentice.</span>
+            <h1 className="h-hero max-w-[18ch] text-ink">
+              Who you&apos;d be{" "}
+              <span className="text-atlantic">working with.</span>
             </h1>
-          </Reveal>
-          <Reveal delay={90}>
-            <p className="mt-7 max-w-[56ch] text-[1.1rem] leading-relaxed text-mute">
-              Out of the trades, not out of a software company. Four years on
-              the tools and eight years running a systemised electrical
-              business between us.
-            </p>
           </Reveal>
         </section>
 
-        {/* ── Who you'd be working with ─────────────────────────────── */}
+        {/* ── Who you'd be working with ──────────────────────────── */}
         <section className="shell pb-[clamp(3rem,6vw,5rem)]">
           <ol className="space-y-[clamp(2.5rem,5vw,4rem)]">
             {people.map((p, i) => (
