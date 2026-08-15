@@ -8,7 +8,7 @@ import { callPromise, rungs, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "How it works",
   description:
-    "Three weeks, three rungs. What actually happens when Flowstate trains an AI system on how your trade business works — and what it costs you in time.",
+    "What actually happens when Flowstate trains an AI system on how your trade business works, what it asks of your time, and how long it takes for a business your size.",
 };
 
 /**
@@ -28,7 +28,7 @@ export default function Services() {
           <Reveal>
             <p className="eyebrow mb-5 text-atlantic">How it works</p>
             <h1 className="h-hero max-w-[18ch] text-ink">
-              Three weeks to get it off the ground.{" "}
+              Off the ground quickly.{" "}
               <span className="text-atlantic">
                 Then it keeps getting better.
               </span>
@@ -74,9 +74,9 @@ export default function Services() {
                     <p className="mt-4 max-w-[54ch] text-[1.0625rem] leading-relaxed text-mute">
                       {
                         [
-                          "Most of week one is you talking and me listening. Quotes you're proud of, jobs that went wrong, the customers you want more of. It feels like nothing is happening. That's the part that decides whether the rest works.",
-                          "This is where it earns its keep, and it's also where most people stop. Getting something to draft in your voice is harder than getting it to sort your inbox — I'd rather tell you that now than discover it together in week three.",
-                          "Honest answer: I've built the first two rungs and I'm building towards this one. If someone tells you they can hand you a business that runs itself in three weeks, they're selling you something.",
+                          "Most of this stage is you talking and me listening. Quotes you're proud of, jobs that went wrong, the customers you want more of. It feels like nothing is happening. That's the part that decides whether the rest works.",
+                          "This is where it earns its keep, and it's also where most people stop. Getting something to draft in your voice is harder than getting it to sort your inbox — I'd rather tell you that now than discover it halfway through.",
+                          "Honest answer: I've built the first two rungs and I'm building towards this one. If someone tells you they can hand you a business that runs itself in a few weeks, they're selling you something.",
                         ][i]
                       }
                     </p>
@@ -96,27 +96,36 @@ export default function Services() {
                 A few hours of your time, spent in the right place.
               </h2>
             </Reveal>
+            <Reveal delay={70}>
+              <p className="mt-5 max-w-[58ch] text-[1.0625rem] leading-relaxed text-mute">
+                The order never changes. How long each part takes does &mdash;
+                a two-van operation moves a lot faster than one with thirty
+                staff and ten years of habits. I&apos;ll give you a real
+                timeframe on the call once I know the size of what we&apos;re
+                working with.
+              </p>
+            </Reveal>
             <dl className="mt-9 max-w-[62rem]">
               {[
                 [
-                  "Week one",
-                  "Two or three sessions, an hour each. You talk about how the work moves and I take it away.",
+                  "First, you talk",
+                  "A few sessions, an hour or so each. How the work moves, what you're proud of, what goes wrong. I take it away.",
                 ],
                 [
-                  "Week two",
-                  "You look at what it produces and tell me where it's wrong. That correction is the training.",
+                  "Then you correct it",
+                  "You look at what it produces and tell me where it's wrong. That correction is the training — it's the bit that can't be skipped or rushed.",
                 ],
                 [
-                  "Week three",
-                  "It runs on real work while you watch it. We fix what breaks.",
+                  "Then it runs live",
+                  "It works on real jobs while you watch it. We fix what breaks.",
                 ],
                 [
-                  "After that",
+                  "From there",
                   "It keeps learning as you correct it. There's no finish line, which is the point.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>
-                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[9rem_1fr] sm:gap-6">
+                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[12rem_1fr] sm:gap-6">
                     <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
                       {term}
                     </dt>
