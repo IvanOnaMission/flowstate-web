@@ -225,22 +225,22 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p className="text-ink">
-                I&apos;m Ivan. I spent four years in the trades, most recently
-                as an electrical apprentice &mdash; so I&apos;ve seen up close
-                how much time a trade business loses to everything that
-                isn&apos;t the actual work.
+                I&apos;m Ivan. I build the systems myself.
               </p>
               <p>
-                I build these systems myself. The person who sat in your
-                workshop is the person who writes the thing, which is why I
-                only take a few businesses at a time. Jordan handles strategy
-                &mdash; eight years running his own electrical business, and
-                his actual thing is making trade businesses run without the
-                owner touching everything.
+                I grew up around technology and computers, so this stuff is
+                second nature &mdash; not something I crammed for a course last
+                year. I also like getting outside, exploring, and playing
+                sport. I&apos;m not a full tech nerd.
               </p>
               <p>
-                If I don&apos;t think AI will move the needle for you,
-                I&apos;ll say so on the call rather than sell you a project.
+                I started a business because I wanted what I get out of it to
+                match the work I put in. I&apos;m in it for the challenge.
+              </p>
+              <p>
+                Jordan handles strategy &mdash; eight years running his own
+                electrical business, and his actual thing is making trade
+                businesses run without the owner touching everything.
               </p>
               <blockquote className="mt-6 border-l-2 border-atlantic-500 pl-6 text-[clamp(1.15rem,2.1vw,1.45rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
                 The goal isn&apos;t to add AI to your business. It&apos;s to
@@ -266,21 +266,27 @@ export default function Home() {
             <p className="eyebrow mb-4 text-mute">
               What happens in the {site.callMinutes} minutes
             </p>
-            <h2 className="h-sec max-w-[18ch] text-ink">
-              No deck. No discovery process. One conversation.
+            <h2 className="h-sec max-w-[20ch] text-ink">
+              I ask questions. You get a straight answer.
             </h2>
           </Reveal>
           <dl className="mt-10 max-w-[62rem]">
             {[
-              ["You talk", "How the work moves. Job in, quote out, money in. I mostly listen."],
-              ["I point", "Where your hours are going, and which of them a machine could take."],
               [
-                "You decide",
-                "Which rung you're on and whether the next one is worth it. If it isn't, I'll say so.",
+                "I ask",
+                "How the work actually moves through your business. Job in, quote out, money in. Where it jams up, and what you're still doing at nine at night.",
+              ],
+              [
+                "We find the leaks",
+                "Which of your hours are going to things a machine could take, and which genuinely need you on them.",
+              ],
+              [
+                "You get a direction",
+                "Which rung you're on and what's worth doing first. If there's nothing there, I'll tell you straight — that's a better outcome than a project that doesn't pay for itself.",
               ],
             ].map(([term, def], i) => (
               <Reveal key={term} delay={i * 80}>
-                <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[8rem_1fr] sm:gap-6">
+                <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[11rem_1fr] sm:gap-6">
                   <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
                     {term}
                   </dt>

@@ -57,9 +57,9 @@ export const rungs = [
   {
     n: "03",
     rung: "Foreman",
-    title: "It runs ahead of you",
+    title: "It holds the whole thing together",
     body:
-      "Chases the quote that went quiet. Keeps jobs moving. Flags what needs you before it turns into a problem. You stop being the thing everything waits on.",
+      "By now it's in everything. Quotes, scheduling, follow-ups, and all the stuff that falls between people. It chases what went quiet, keeps jobs moving, and flags what needs you before it turns into a problem. The business runs tighter and earns better than it did when you were holding all of it yourself.",
     img: "/assets/ladder/03-foreman",
     alt: "The finished marble figure of a tradesman in overalls, tools set down, dust swept into a pile",
   },
