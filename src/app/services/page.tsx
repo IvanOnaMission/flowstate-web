@@ -12,12 +12,50 @@ export const metadata: Metadata = {
 };
 
 /**
- * The long version of the ladder. The home page sells it; this page explains
- * it honestly, including where it is hard and where it is unproven.
+ * The long version of the ladder. The home page sells the idea; this page
+ * says what actually happens at each rung — Ivan's own delivery process,
+ * given 2026-08-16.
  *
  * No pricing anywhere. That lives only on the private page sent after a call
  * so the offer can move without a rewrite (spec §7).
  */
+const detail = [
+  {
+    lead:
+      "This is the foundation, and it's the stage that decides whether the rest works. I sit down with you and with everyone who touches the work, and pull out how the business actually runs — not how the manual says it runs.",
+    heading: "What that involves",
+    points: [
+      "Interviews with you and your team, one at a time",
+      "Everything you know about quoting, pricing, process and customers, extracted and written down",
+      "A pass over the tools you already use, so it works with your setup instead of replacing it",
+      "What each person is actually trying to get done, and what's in their way",
+      "All of it built into one place — the brain the system works from",
+    ],
+  },
+  {
+    lead:
+      "Now it gets put to work. Everyone gets set up on it and we build out the first skills — the specific jobs you want it doing. The hard part here isn't technical, it's getting it into people's day so it actually gets used.",
+    heading: "What that involves",
+    points: [
+      "Everyone set up and shown how to use it on their own work",
+      "The first handful of skills built for the jobs that cost you the most time",
+      "Working it into the daily routine rather than bolting it on beside it",
+      "Corrections from real use fed straight back into the brain",
+    ],
+  },
+  {
+    lead:
+      "This is the one worth aiming at, and it's built on the two underneath it — there's no shortcut straight to here. It's the point where nobody is thinking about the system any more, they're just using it.",
+    heading: "What that looks like",
+    points: [
+      "The skills are second nature — used without anyone stopping to work out how",
+      "The brain keeps getting sharper because people keep correcting it",
+      "The jobs that used to live in your head keep moving without you holding them",
+      "The business runs tighter, and you're in it because you want to be",
+    ],
+  },
+] as const;
+
 export default function Services() {
   return (
     <>
@@ -48,7 +86,7 @@ export default function Services() {
           <ol className="space-y-[clamp(2rem,4vw,3.25rem)]">
             {rungs.map((r, i) => (
               <Reveal as="li" key={r.n} delay={i * 70}>
-                <div className="grid items-start gap-7 border-t border-hair pt-[clamp(1.5rem,3vw,2.25rem)] md:grid-cols-[1fr_1.15fr] md:gap-14">
+                <div className="grid items-start gap-7 border-t border-hair pt-[clamp(1.5rem,3vw,2.25rem)] md:grid-cols-[1fr_1.3fr] md:gap-14">
                   <div className="relative aspect-4/3 overflow-hidden bg-night">
                     <Image
                       src={`${r.img}.jpg`}
@@ -72,14 +110,26 @@ export default function Services() {
                       {r.body}
                     </p>
                     <p className="mt-4 max-w-[54ch] text-[1.0625rem] leading-relaxed text-mute">
-                      {
-                        [
-                          "Most of this stage is you talking and me listening. Quotes you're proud of, jobs that went wrong, the customers you want more of. It feels like nothing is happening. That's the part that decides whether the rest works.",
-                          "This is where it earns its keep, and it's also where most people stop. Getting something to draft in your voice is harder than getting it to sort your inbox — I'd rather tell you that now than discover it halfway through.",
-                          "This is the one worth aiming at, and it's built on the two underneath it — there's no shortcut straight to here. When it's working, the jobs that used to live in your head keep moving without you holding them, and the business is tighter for it.",
-                        ][i]
-                      }
+                      {detail[i].lead}
                     </p>
+
+                    <p className="eyebrow mt-7 text-mute">
+                      {detail[i].heading}
+                    </p>
+                    <ul className="mt-3 max-w-[54ch] space-y-2.5">
+                      {detail[i].points.map((point) => (
+                        <li
+                          key={point}
+                          className="grid grid-cols-[0.5rem_1fr] items-start gap-3 text-[1.0625rem] leading-relaxed text-mute"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="mt-[0.6875rem] block h-px w-2 bg-atlantic-500"
+                          />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </Reveal>
@@ -108,24 +158,20 @@ export default function Services() {
             <dl className="mt-9 max-w-[62rem]">
               {[
                 [
-                  "First, you talk",
-                  "A few sessions, an hour or so each. How the work moves, what you're proud of, what goes wrong. I take it away.",
+                  "Up front",
+                  "The interviews. A few sessions of an hour or so, with you and with whoever else touches the work. This is the biggest ask, and it's the one that pays for itself.",
                 ],
                 [
-                  "Then you correct it",
-                  "You look at what it produces and tell me where it's wrong. That correction is the training — it's the bit that can't be skipped or rushed.",
+                  "While it's being built",
+                  "Short bursts. You look at what it produces and tell me where it's wrong. You don't need to explain how to fix it — just that it's wrong, and why.",
                 ],
                 [
-                  "Then it runs live",
-                  "It works on real jobs while you watch it. We fix what breaks.",
-                ],
-                [
-                  "From there",
-                  "It keeps learning as you correct it. There's no finish line, which is the point.",
+                  "Once it's running",
+                  "Minutes, not hours. You correct it when it gets something wrong, the same way you'd correct anyone new, and it stops getting that thing wrong.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>
-                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[12rem_1fr] sm:gap-6">
+                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[13rem_1fr] sm:gap-6">
                     <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
                       {term}
                     </dt>
