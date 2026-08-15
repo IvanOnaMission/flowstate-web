@@ -171,8 +171,8 @@ export default function About() {
                   "We agree what it should be doing before I start. If it isn't doing that, I keep working until it is — you don't get another invoice for me finishing what I said I'd finish.",
                 ],
                 [
-                  "I've got everything to prove",
-                  "I'm 20 and this is my name on it. I haven't got twenty years of clients to coast on, so I'll work harder on your build than someone who has. That's the trade you're making, and I reckon it's a good one.",
+                  "My reputation is ahead of me, not behind me",
+                  "I can't coast on a client list from ten years ago, because I haven't got one. Your job gets everything I've got. And I'm not carrying twenty years of habits I'd have to unlearn first — I'm building what works now, not what worked back then.",
                 ],
                 [
                   "I train your team, not just the software",
