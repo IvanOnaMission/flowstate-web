@@ -113,6 +113,20 @@
   }
 }
 
+/* The hero scroll cue. Pure decoration — the reduced-motion block below
+   flattens it along with everything else. */
+@keyframes cue {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
 /* Every animation on the site is decoration. Under reduced-motion the page
    renders in its final state immediately — nothing is hidden behind a
    transition that never runs. */

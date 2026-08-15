@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <>
       {/* ── The hero ──────────────────────────────────────────────────
-          Full bleed, capped at 74vh so the page visibly begins underneath.
+          Full bleed, full viewport height.
           The image is 16:9 and the viewport rarely is, so cropping is
           unavoidable — focus sits at 62% across to keep the hi-vis in frame
           and the dark side under the type. */}
@@ -36,7 +37,12 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-[150px] bg-[linear-gradient(rgba(3,16,26,.72),transparent)]" />
         <div className="absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(transparent,rgba(3,16,26,.85))]" />
 
-        <div className="relative z-10 flex min-h-[clamp(520px,74vh,760px)] flex-col">
+        {/* Full viewport height. Ivan rejected a tall hero earlier in the
+            design round, but that was a cropped painting that made the page
+            feel endless — a photograph shot for this crop reads differently.
+            The scroll cue below is what stops full-height becoming a dead end:
+            it tells you there's a page under the fold. */}
+        <div className="relative z-10 flex min-h-svh flex-col">
           <SiteNav ground="dark" />
 
           <div
@@ -78,6 +84,18 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Tells a visitor on a full-height hero that the page continues.
+              Decorative, so it's hidden from screen readers, and it stops
+              animating under reduced-motion via the global rule. */}
+          <a
+            href="#ladder"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 md:block"
+          >
+            <span className="block h-9 w-px animate-[cue_2.6s_ease-in-out_infinite] bg-[linear-gradient(rgba(196,248,255,0),rgba(196,248,255,.85))]" />
+          </a>
         </div>
       </section>
 
@@ -192,27 +210,51 @@ export default function Home() {
         <Reveal>
           <p className="eyebrow mb-4 text-mute">Who you&apos;d be working with</p>
         </Reveal>
-        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
+        <div className="grid items-start gap-10 md:grid-cols-[16rem_1fr] md:gap-14">
           <Reveal>
-            <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
-              <p className="text-ink">
-                I&apos;m Ivan. I build these systems myself &mdash; there&apos;s
-                no account manager and no team you get handed to.
-              </p>
-              <p>
-                That means I can only take a few businesses at a time, and it
-                means the person who sat in your workshop is the person who
-                writes the thing. If I don&apos;t think AI will move the needle
-                for you, I&apos;ll say so on the call rather than sell you a
-                project.
-              </p>
+            <div className="relative aspect-4/5 overflow-hidden bg-atlantic">
+              <Image
+                src="/assets/team/ivan.jpg"
+                alt="Ivan Barnett, founder of Flowstate"
+                fill
+                sizes="(max-width: 768px) 100vw, 16rem"
+                className="object-cover"
+              />
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <blockquote className="border-l-2 border-atlantic-500 pl-6 text-[clamp(1.25rem,2.4vw,1.6rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
-              The goal isn&apos;t to add AI to your business. It&apos;s to stop
-              your business waiting on you.
-            </blockquote>
+          <Reveal delay={90}>
+            <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
+              <p className="text-ink">
+                I&apos;m Ivan. I spent four years in the trades, most recently
+                as an electrical apprentice &mdash; so I&apos;ve seen up close
+                how much time a trade business loses to everything that
+                isn&apos;t the actual work.
+              </p>
+              <p>
+                I build these systems myself. The person who sat in your
+                workshop is the person who writes the thing, which is why I
+                only take a few businesses at a time. Jordan handles strategy
+                &mdash; eight years running his own electrical business, and
+                his actual thing is making trade businesses run without the
+                owner touching everything.
+              </p>
+              <p>
+                If I don&apos;t think AI will move the needle for you,
+                I&apos;ll say so on the call rather than sell you a project.
+              </p>
+              <blockquote className="mt-6 border-l-2 border-atlantic-500 pl-6 text-[clamp(1.15rem,2.1vw,1.45rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
+                The goal isn&apos;t to add AI to your business. It&apos;s to
+                stop your business waiting on you.
+              </blockquote>
+              <p className="!mt-6">
+                <Link
+                  href="/about/"
+                  className="text-[1rem] font-semibold text-ink underline decoration-hair underline-offset-4 transition-colors duration-200 hover:decoration-atlantic"
+                >
+                  More about Ivan and Jordan
+                </Link>
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
