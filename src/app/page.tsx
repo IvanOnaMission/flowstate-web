@@ -238,9 +238,8 @@ export default function Home() {
                 match the work I put in. I&apos;m in it for the challenge.
               </p>
               <p>
-                Jordan handles strategy &mdash; eight years running his own
-                electrical business, and his actual thing is making trade
-                businesses run without the owner touching everything.
+                If I don&apos;t think this will move the needle for you,
+                I&apos;ll say so on the call rather than sell you a project.
               </p>
               <blockquote className="mt-6 border-l-2 border-atlantic-500 pl-6 text-[clamp(1.15rem,2.1vw,1.45rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
                 The goal isn&apos;t to add AI to your business. It&apos;s to
@@ -251,7 +250,7 @@ export default function Home() {
                   href="/about/"
                   className="text-[1rem] font-semibold text-ink underline decoration-hair underline-offset-4 transition-colors duration-200 hover:decoration-atlantic"
                 >
-                  More about Ivan and Jordan
+                  More about who you&apos;d be working with
                 </Link>
               </p>
             </div>
@@ -267,37 +266,24 @@ export default function Home() {
               What happens in the {site.callMinutes} minutes
             </p>
             <h2 className="h-sec max-w-[20ch] text-ink">
-              I ask questions. You get a straight answer.
+              A few questions about your business.
             </h2>
           </Reveal>
-          <dl className="mt-10 max-w-[62rem]">
-            {[
-              [
-                "I ask",
-                "How the work actually moves through your business. Job in, quote out, money in. Where it jams up, and what you're still doing at nine at night.",
-              ],
-              [
-                "We find the leaks",
-                "Which of your hours are going to things a machine could take, and which genuinely need you on them.",
-              ],
-              [
-                "You get a direction",
-                "Which rung you're on and what's worth doing first. If there's nothing there, I'll tell you straight — that's a better outcome than a project that doesn't pay for itself.",
-              ],
-            ].map(([term, def], i) => (
-              <Reveal key={term} delay={i * 80}>
-                <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[11rem_1fr] sm:gap-6">
-                  <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
-                    {term}
-                  </dt>
-                  <dd className="max-w-[56ch] text-[1.0625rem] leading-relaxed text-mute">
-                    {def}
-                  </dd>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
-          <Reveal delay={240}>
+          <Reveal delay={90}>
+            <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
+              <p>
+                No deck and no pitch. It&apos;s a quick run of questions so I
+                can understand a bit more about how your business runs and
+                where you&apos;re trying to take it.
+              </p>
+              <p>
+                Then I&apos;ll tell you whether there&apos;s something here
+                worth doing, and what I&apos;d start with. If there
+                isn&apos;t, I&apos;ll say that instead.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={180}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <CallButton tone="atlantic" />
               <span className="text-[0.85rem] text-mute">{callPromise}</span>

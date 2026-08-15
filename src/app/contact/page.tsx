@@ -34,11 +34,10 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={90}>
             <p className="mt-7 max-w-[52ch] text-[1.1rem] leading-relaxed text-mute">
-              {site.callMinutes} minutes and no deck. I ask questions about how
-              the work moves through your business, and you get a straight
-              answer on where your hours are going and whether a machine could
-              take any of them. If there&apos;s nothing there, I&apos;ll tell
-              you that.
+              {site.callMinutes} minutes and no deck. A quick run of questions
+              so I can understand a bit more about how your business runs and
+              where you&apos;re trying to take it &mdash; then a straight
+              answer on whether there&apos;s something here worth doing.
             </p>
           </Reveal>
           <Reveal delay={160}>

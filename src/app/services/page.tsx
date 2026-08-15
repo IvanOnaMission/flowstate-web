@@ -76,7 +76,7 @@ export default function Services() {
                         [
                           "Most of this stage is you talking and me listening. Quotes you're proud of, jobs that went wrong, the customers you want more of. It feels like nothing is happening. That's the part that decides whether the rest works.",
                           "This is where it earns its keep, and it's also where most people stop. Getting something to draft in your voice is harder than getting it to sort your inbox — I'd rather tell you that now than discover it halfway through.",
-                          "Honest answer: I've built the first two rungs and I'm building towards this one. If someone tells you they can hand you a business that runs itself in a few weeks, they're selling you something.",
+                          "This is the one worth aiming at, and it's built on the two underneath it — there's no shortcut straight to here. When it's working, the jobs that used to live in your head keep moving without you holding them, and the business is tighter for it.",
                         ][i]
                       }
                     </p>
