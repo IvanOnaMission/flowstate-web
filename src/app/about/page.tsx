@@ -106,6 +106,51 @@ export default function About() {
           </ol>
         </section>
 
+        {/* ── Why we joined forces ──────────────────────────────────
+            Carried over from the previous site. Same photo, same argument,
+            trimmed. Note it says "joined forces" and not "partners" — same
+            reason Jordan's label above is Strategy. */}
+        <section className="shell pb-[clamp(3rem,6vw,5rem)]">
+          <div className="grid items-center gap-10 border-t border-hair pt-[clamp(1.75rem,3vw,2.5rem)] md:grid-cols-[22rem_1fr] md:gap-16">
+            <Reveal>
+              <div className="relative aspect-3/4 overflow-hidden bg-atlantic">
+                <Image
+                  src="/assets/team/together.jpg"
+                  alt="Ivan and Jordan, the Flowstate team"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 22rem"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div>
+                <p className="eyebrow mb-4 text-mute">Why we joined forces</p>
+                <h2 className="h-sec max-w-[18ch] text-ink">
+                  Most owners <em className="not-italic text-atlantic">are</em>{" "}
+                  the business.
+                </h2>
+                <div className="mt-6 max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
+                  <p>
+                    If they stop, it stops. We joined forces on one thing:
+                    getting trade business owners out of being the bottleneck.
+                  </p>
+                  <p>
+                    We build the systems that let it run without them, so they
+                    get their time back and end up with something that&apos;s
+                    actually worth selling.
+                  </p>
+                </div>
+                <blockquote className="mt-8 border-l-2 border-atlantic-500 pl-6 text-[clamp(1.15rem,2.2vw,1.45rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
+                  You get the strategy and the build from people who&apos;ve
+                  actually done the work &mdash; not a consultant who never
+                  has.
+                </blockquote>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         {/* ── How I work ───────────────────────────────────────────── */}
         <section className="border-y border-hair bg-sky-50">
           <div className="shell py-[clamp(3rem,6vw,5rem)]">
@@ -122,20 +167,20 @@ export default function About() {
                   "Some businesses aren't ready, and some problems aren't AI problems. Saying so costs me a sale and saves you a project.",
                 ],
                 [
-                  "You own everything",
-                  "The system, the training, the accounts it runs on. If we stop working together you keep all of it.",
+                  "If it isn't doing the job, I keep going",
+                  "We agree what it should be doing before I start. If it isn't doing that, I keep working until it is — you don't get another invoice for me finishing what I said I'd finish.",
                 ],
                 [
-                  "It runs on your keys",
-                  "Your business connects to your own accounts, not mine. Nothing depends on me still being in the picture.",
+                  "I've got everything to prove",
+                  "I'm 20 and this is my name on it. I haven't got twenty years of clients to coast on, so I'll work harder on your build than someone who has. That's the trade you're making, and I reckon it's a good one.",
                 ],
                 [
-                  "No jargon",
-                  "If I can't explain what something does in a sentence you'd repeat to your foreman, I haven't understood it well enough yet.",
+                  "I train your team, not just the software",
+                  "Most of these projects die because nobody ends up using the thing. So it isn't finished when it's built. It's finished when your people are using it without being reminded to.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>
-                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[14rem_1fr] sm:gap-6">
+                  <div className="grid gap-1 border-t border-hair py-5 sm:grid-cols-[17rem_1fr] sm:gap-6">
                     <dt className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
                       {term}
                     </dt>
