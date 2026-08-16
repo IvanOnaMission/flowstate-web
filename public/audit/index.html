@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowstate — What's AI Worth to Your Trade Business?</title>
+  <meta name="description" content="Tick what's eating your time. See what AI could give back — in hours and dollars. Free, 2 minutes." />
+  <style>
+    :root {
+      --bd-bg: #0B0E14; --bd-bg-elev: #131418; --bd-bg-card: #15171D;
+      --bd-fg: #F4F4F2; --bd-fg-mute: #A1A2A8; --bd-fg-dim: #6E6F77;
+      --bd-accent: #0096FF; --bd-line: #1F2026; --bd-line-strong: #2A2C34;
+      --bd-font-body: "Geist","Helvetica Neue",system-ui,sans-serif;
+      --bd-font-editorial: "Instrument Serif","Times New Roman",serif;
+      --bd-font-mono: "Geist Mono",ui-monospace,monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { background: var(--bd-bg); color: var(--bd-fg); font-family: var(--bd-font-body); line-height: 1.5; min-height: 100vh; padding: 40px 24px 96px; }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    .head { display: flex; align-items: center; gap: 14px; padding-bottom: 22px; margin-bottom: 44px; border-bottom: 1px solid var(--bd-line); }
+    .head img { height: 46px; width: auto; display: block; }
+    .head .home-link { margin-left: auto; text-decoration: none; font-family: var(--bd-font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bd-fg-mute); border: 1px solid var(--bd-line-strong); border-radius: 999px; padding: 7px 14px; }
+    .eyebrow { font-family: var(--bd-font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bd-accent); margin-bottom: 18px; }
+    h1 { font-size: clamp(32px,6vw,50px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 20px; }
+    h1 em { font-family: var(--bd-font-editorial); font-style: italic; font-weight: 400; color: var(--bd-accent); }
+    .lede { font-size: 18px; color: var(--bd-fg-mute); max-width: 600px; margin-bottom: 36px; }
+    .inputs { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
+    .input-card { flex: 1 1 200px; background: var(--bd-bg-elev); border: 1px solid var(--bd-line); border-radius: 14px; padding: 16px 18px; }
+    .input-card label { display: block; font-size: 13px; color: var(--bd-fg-mute); margin-bottom: 10px; }
+    .input-card .row { display: flex; align-items: center; gap: 8px; }
+    .input-card .prefix { color: var(--bd-fg-dim); font-family: var(--bd-font-mono); }
+    .input-card input { width: 100%; background: transparent; border: none; color: var(--bd-fg); font-family: var(--bd-font-mono); font-size: 22px; font-weight: 500; outline: none; }
+    .input-card input::-webkit-outer-spin-button,.input-card input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .prompt { font-family: var(--bd-font-mono); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bd-fg-mute); margin: 30px 0 14px; }
+    .item { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border: 1px solid var(--bd-line); border-radius: 12px; margin-bottom: 9px; cursor: pointer; transition: border-color .12s ease, background .12s ease; user-select: none; }
+    .item:hover { border-color: var(--bd-line-strong); }
+    .item.have { border-color: rgba(0,150,255,0.45); background: rgba(0,150,255,0.07); }
+    .item .box { flex: 0 0 22px; height: 22px; border: 1.5px solid var(--bd-line-strong); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .item.have .box { background: var(--bd-accent); border-color: var(--bd-accent); }
+    .item .box svg { opacity: 0; }
+    .item.have .box svg { opacity: 1; }
+    .item .txt { flex: 1; }
+    .item .label { font-size: 16px; font-weight: 500; display: block; }
+    .item .ai { font-size: 13px; color: var(--bd-fg-dim); display: block; margin-top: 2px; }
+    .item.have .ai { color: var(--bd-accent); }
+    .item .hrs { font-family: var(--bd-font-mono); font-size: 12px; color: var(--bd-fg-dim); white-space: nowrap; }
+    .summary { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 32px; padding: 24px 26px; background: var(--bd-bg-elev); border: 1px solid var(--bd-line-strong); border-radius: 16px; }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat .k { font-size: 11px; font-family: var(--bd-font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--bd-fg-dim); }
+    .stat .v { font-size: 24px; font-weight: 600; font-family: var(--bd-font-mono); }
+    .stat .v.accent { color: var(--bd-accent); }
+    .stat .v.locked { color: var(--bd-fg-dim); font-size: 17px; }
+    .summary .btn { margin-left: auto; }
+    .btn { font-family: var(--bd-font-body); font-size: 15px; font-weight: 600; color: #04121f; background: var(--bd-accent); border: none; border-radius: 999px; padding: 13px 26px; cursor: pointer; text-decoration: none; display: inline-block; }
+    @media (max-width:560px){ .summary .btn { margin-left:0; width:100%; text-align:center; } }
+    .overlay { position: fixed; inset: 0; background: rgba(4,6,10,0.78); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 100; }
+    .overlay.open { display: flex; }
+    .modal { width: 100%; max-width: 460px; background: var(--bd-bg-card); border: 1px solid var(--bd-line-strong); border-radius: 18px; padding: 32px; }
+    .modal h2 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+    .modal p { color: var(--bd-fg-mute); font-size: 15px; margin-bottom: 22px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-family: var(--bd-font-mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--bd-fg-dim); margin-bottom: 6px; }
+    .field input { width: 100%; background: var(--bd-bg-elev); border: 1px solid var(--bd-line-strong); border-radius: 10px; padding: 12px 14px; color: var(--bd-fg); font-size: 15px; outline: none; }
+    .modal .btn { width: 100%; margin-top: 8px; text-align: center; }
+    .modal .err { color: #ff6b6b; font-size: 13px; min-height: 18px; margin-top: 4px; }
+    .result { display: none; margin-top: 40px; padding: 32px; background: var(--bd-bg-elev); border: 1px solid rgba(0,150,255,0.35); border-radius: 18px; }
+    .result.show { display: block; }
+    .result .split { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 10px; }
+    .result .hero { flex: 1 1 220px; background: var(--bd-bg-card); border: 1px solid var(--bd-line-strong); border-radius: 14px; padding: 22px 18px; text-align: center; }
+    .result .hnum { font-size: clamp(30px,6vw,42px); font-weight: 800; font-family: var(--bd-font-mono); color: var(--bd-accent); line-height: 1; margin: 10px 0; }
+    .result .hlbl { font-size: 13px; color: var(--bd-fg-mute); line-height: 1.5; }
+    .result h3 { font-size: 15px; margin: 22px 0 12px; }
+    .result .auto { font-size: 15px; padding: 9px 0; border-bottom: 1px solid var(--bd-line); color: var(--bd-fg-mute); }
+    .result .auto:last-child { border-bottom: none; }
+    .result .auto b { color: var(--bd-fg); }
+    .result .pick { margin: 30px 0 10px; padding: 28px 26px; background: var(--bd-bg-card); border: 1px solid rgba(0,150,255,0.35); border-radius: 16px; }
+    .result .pick-q { font-size: clamp(20px,4.5vw,26px); font-weight: 600; margin-bottom: 20px; line-height: 1.3; letter-spacing: -0.01em; }
+    .result .pick-q em { font-family: var(--bd-font-editorial); font-style: italic; color: var(--bd-accent); }
+    .result .pick-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .result .pick-opts { grid-template-columns: 1fr; } }
+    .result .pill { display: flex; align-items: center; min-height: 64px; text-align: left; font-family: var(--bd-font-body); font-size: 16px; font-weight: 500; color: var(--bd-fg); background: var(--bd-bg-elev); border: 1.5px solid var(--bd-line-strong); border-radius: 13px; padding: 16px 20px; cursor: pointer; transition: all .12s ease; }
+    .result .pill:hover { border-color: var(--bd-accent); transform: translateY(-2px); }
+    .result .pill.sel { background: var(--bd-accent); color: #04121f; border-color: var(--bd-accent); font-weight: 700; }
+    .result .pick-confirm { font-size: 16px; color: var(--bd-accent); margin-top: 18px; min-height: 22px; line-height: 1.5; }
+    .foot-note { color: var(--bd-fg-dim); font-size: 12px; margin-top: 30px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="head">
+      <a href="https://flowstate.net.nz">Flow<em style="font-style:normal;border-bottom:3px solid currentColor;padding-bottom:1px">state</em></a>
+      <a class="home-link" href="https://flowstate.net.nz">flowstate.net.nz</a>
+    </header>
+
+    <div class="eyebrow">Free · 2 minutes · for trades businesses</div>
+    <h1>What's AI actually <em>worth</em> to your business?</h1>
+    <p class="lede">Tick the jobs you (or your team) still do by hand. We'll show you what AI could take off your plate — in hours and dollars — and exactly what we'd automate first.</p>
+
+    <div class="inputs">
+      <div class="input-card"><label>An hour of your time is worth</label><div class="row"><span class="prefix">$</span><input type="number" id="rate" value="50" min="0" step="5" /><span class="prefix">/hr</span></div></div>
+      <div class="input-card"><label>People on your team</label><div class="row"><span class="prefix">#</span><input type="number" id="employees" value="5" min="1" step="1" /></div></div>
+      <div class="input-card"><label>Customers in your job system</label><div class="row"><span class="prefix">#</span><input type="number" id="dbSize" value="1000" min="0" step="50" /></div></div>
+      <div class="input-card"><label>Average job value</label><div class="row"><span class="prefix">$</span><input type="number" id="avgJob" value="700" min="0" step="50" /></div></div>
+    </div>
+
+    <div class="prompt">Tick what still eats your time →</div>
+    <div id="list"></div>
+
+    <div class="summary" id="summary">
+      <div class="stat"><span class="k">AI could give back</span><span class="v accent"><span id="barHrs">0</span> hrs/wk</span></div>
+      <div class="stat"><span class="k">That's worth</span><span class="v locked" id="barDollars">🔒 enter email</span></div>
+      <button class="btn" id="revealBtn">See what it's worth →</button>
+    </div>
+
+    <div class="result" id="result">
+      <div class="eyebrow">Your result</div>
+      <div class="sub" style="color:var(--bd-fg-mute);font-size:16px;">Here's what AI could give you back:</div>
+      <div class="split">
+        <div class="hero"><div>⏱️</div><div class="hnum" id="rTime">$0</div><div class="hlbl"><strong><span id="rHrs">0</span> hrs/week</strong> off your plate<br>— a year in time</div></div>
+        <div class="hero"><div>💰</div><div class="hnum" id="rRev">$0</div><div class="hlbl">sitting in your database<br>— revenue AI could recover</div></div>
+      </div>
+      <div class="pick" id="pickBlock">
+        <div class="pick-q">Last thing — if you could take just <em>one</em> of these off your plate tomorrow, which would it be?</div>
+        <div class="pick-opts" id="pickOpts"></div>
+        <div class="pick-confirm" id="pickConfirm"></div>
+      </div>
+      <h3>What we'd automate for you:</h3>
+      <div id="autoList"></div>
+      <div style="text-align:center;margin:28px 0 4px;">
+        <a class="btn" href="https://calendly.com/ivan-flowstate/30min" target="_blank" rel="noopener" style="font-size:16px;padding:16px 34px;">Book your 15-min call →</a>
+      </div>
+      <p style="text-align:center;font-family:var(--bd-font-editorial);font-style:italic;font-size:23px;color:var(--bd-accent);margin-top:26px;">Systems will set you free.</p>
+      <p class="foot-note">Your custom plan is on its way 📥 — real numbers nailed down on a quick call.</p>
+    </div>
+
+    <p class="foot-note">Flowstate builds the AI that does this for trades businesses. Free to find out — no catch.</p>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h2>Where should we send your plan?</h2>
+      <p>Your breakdown + what we'd build, straight to your inbox.</p>
+      <div class="field"><label>Name</label><input type="text" id="fName" placeholder="Jordan" /></div>
+      <div class="field"><label>Email</label><input type="email" id="fEmail" placeholder="you@business.co.nz" /></div>
+      <div class="field"><label>Phone</label><input type="tel" id="fPhone" placeholder="021 234 5678" /></div>
+      <div class="field"><label>Business name</label><input type="text" id="fBiz" placeholder="Jordan Electrical" /></div>
+      <div class="err" id="formErr"></div>
+      <button class="btn" id="submitBtn">Send me my plan →</button>
+    </div>
+  </div>
+
+  <script>
+    // tick = "this still eats my time" → AI takes it off your plate (ticked items ADD up).
+    var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxJyBLRD0UhYxqJP537IRSCRTsTy7Xdct-1Q_Uz5OEIS5N991q90pFzKCr6kLxQdb-ng/exec';
+    var BASELINE = 5, REACT = 0.01, UNLOCKED = false, leadSent = false, LEAD = {};
+    var ITEMS = [
+      {n:'Answering calls & missed calls', ai:'AI phone / voice receptionist answers + logs them', h:1},
+      {n:'Replying to emails & enquiries', ai:'AI sorts your inbox + drafts replies in your voice', h:2.5},
+      {n:'Answering the same questions on your site', ai:'AI chatbot handles FAQs + captures leads 24/7', h:1},
+      {n:'Writing up quotes', ai:'AI drafts the quote from a photo or voice note', h:1},
+      {n:'Following up on quotes you sent', ai:'Automatic follow-ups until they reply', h:1},
+      {n:'Chasing unpaid invoices', ai:'AI chases overdue invoices for you', h:1},
+      {n:'Writing job notes & paperwork', ai:'Speak it — AI turns it into a structured job', h:1, sc:1},
+      {n:'Getting repeat work from old customers', ai:'AI re-warms your database + dead quotes', h:0.5},
+      {n:'Posting on social / marketing', ai:'AI content engine drafts + schedules posts', h:1},
+      {n:'Replying to Google reviews', ai:'AI drafts every review reply', h:0.25},
+      {n:'Knowing your numbers / reporting', ai:'AI dashboards + flags jobs losing money', h:0.5},
+      {n:'Digging for info across your business', ai:'Ask your business anything, in plain English', h:0.5},
+      {n:'Booking & scheduling jobs', ai:'AI handles the back-and-forth and books it in', h:1, sc:1},
+      {n:'Keeping customers updated on jobs', ai:'Automatic on-my-way / job-done messages', h:0.5, sc:1}
+    ];
+
+    var listEl = document.getElementById('list');
+    ITEMS.forEach(function(it,i){
+      it.have = false;
+      var row = document.createElement('div'); row.className = 'item';
+      row.innerHTML = '<span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#04121f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="txt"><span class="label">' + it.n + '</span><span class="ai">→ ' + it.ai + '</span></span>' +
+        '<span class="hrs">' + it.h + ' h/wk</span>';
+      it.hrsEl = row.querySelector('.hrs');
+      row.addEventListener('click', function(){ it.have = !it.have; row.classList.toggle('have', it.have); recalc(); });
+      listEl.appendChild(row);
+    });
+
+    function nums(){
+      var rate = Math.max(0,+document.getElementById('rate').value||0);
+      var emp = Math.max(1,+document.getElementById('employees').value||BASELINE);
+      var db = Math.max(0,+document.getElementById('dbSize').value||0);
+      var avg = Math.max(0,+document.getElementById('avgJob').value||0);
+      var hrs = 0;
+      ITEMS.forEach(function(it){ if (it.have) hrs += it.sc ? it.h*(emp/BASELINE) : it.h; });
+      var timeYr = hrs*rate*52, revYr = db*REACT*avg*12;
+      return { hrs:hrs, timeYr:timeYr, revYr:revYr, emp:emp };
+    }
+    function fmt(n){ return '$'+Math.round(n).toLocaleString('en-NZ'); }
+    function recalc(){
+      var n = nums();
+      ITEMS.forEach(function(it){ if (it.sc&&it.hrsEl) it.hrsEl.textContent = (Math.round(it.h*(n.emp/BASELINE)*100)/100)+' h/wk'; });
+      document.getElementById('barHrs').textContent = (Math.round(n.hrs*10)/10);
+      if (UNLOCKED){
+        document.getElementById('rHrs').textContent = (Math.round(n.hrs*10)/10);
+        document.getElementById('rTime').textContent = fmt(n.timeYr);
+        document.getElementById('rRev').textContent = fmt(n.revYr);
+      }
+    }
+    ['rate','employees','dbSize','avgJob'].forEach(function(id){ document.getElementById(id).addEventListener('input', recalc); });
+
+    var overlay = document.getElementById('overlay');
+    document.getElementById('revealBtn').addEventListener('click', function(){ overlay.classList.add('open'); });
+    overlay.addEventListener('click', function(e){ if (e.target===overlay) overlay.classList.remove('open'); });
+    document.getElementById('submitBtn').addEventListener('click', function(){
+      var name=document.getElementById('fName').value.trim(), email=document.getElementById('fEmail').value.trim(), phone=document.getElementById('fPhone').value.trim(), biz=document.getElementById('fBiz').value.trim();
+      var err=document.getElementById('formErr');
+      if (!name||!email||!/.+@.+\..+/.test(email)||!phone){ err.textContent='Pop in your name, email and phone.'; return; }
+      LEAD = { name:name, email:email, phone:phone, business:biz };
+      sendLead();      // capture the lead immediately so it's never lost
+      unlock();
+    });
+
+    function encode(o){ return Object.keys(o).map(function(k){ return encodeURIComponent(k)+'='+encodeURIComponent(o[k]); }).join('&'); }
+    function post(payload){
+      if (!LEAD_ENDPOINT) return;
+      try { var fd=new FormData(); Object.keys(payload).forEach(function(k){ fd.append(k,payload[k]); }); navigator.sendBeacon(LEAD_ENDPOINT, fd); }
+      catch(e){ fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)}); }
+    }
+    function sendLead(){
+      if (leadSent || !LEAD.email) return; leadSent = true;
+      var n = nums();
+      var ticked = ITEMS.filter(function(it){ return it.have; });
+      post({
+        name:LEAD.name, email:LEAD.email, phone:LEAD.phone, business:LEAD.business,
+        employees:document.getElementById('employees').value, hourly_rate:document.getElementById('rate').value,
+        db_size:document.getElementById('dbSize').value, avg_job:document.getElementById('avgJob').value,
+        hrs_leaking:(Math.round(n.hrs*10)/10)+' hrs/wk',
+        time_leaking:fmt(n.timeYr)+'/yr', revenue_leaking:fmt(n.revYr)+'/yr',
+        dollars_leaking:fmt(n.timeYr+n.revYr)+'/yr', proposal:fmt((n.timeYr+n.revYr)*0.1)+'/yr',
+        ai_opportunities: ticked.map(function(it){return it.ai;}).join(' | '),
+        missing_systems: ticked.map(function(it){return it.n;}).join(' | '),
+        top_priority:''
+      });
+    }
+    function sendPriority(p){ post({ kind:'priority', email:LEAD.email, name:LEAD.name, top_priority:p }); }
+    window.addEventListener('beforeunload', function(){ if (!leadSent) sendLead(); });
+    function unlock(){
+      UNLOCKED = true; overlay.classList.remove('open');
+      document.getElementById('summary').style.display = 'none';
+      var auto = document.getElementById('autoList'); auto.innerHTML = '';
+      ITEMS.filter(function(it){ return it.have; }).forEach(function(it){
+        var d = document.createElement('div'); d.className='auto'; d.innerHTML = '<b>'+it.n+'</b> → '+it.ai; auto.appendChild(d);
+      });
+      if (!auto.innerHTML) auto.innerHTML = '<div class="auto">Tick a few above to see what we’d automate.</div>';
+      // "If one thing could come off your plate" — captures their #1 priority for the call.
+      // Show ALL the main automations as options, with their flagged ones floated to the top.
+      var picks = ITEMS.slice().sort(function(a,b){ return (b.have?1:0)-(a.have?1:0); });
+      var po = document.getElementById('pickOpts'); po.innerHTML = '';
+      document.getElementById('pickBlock').style.display = 'block';
+      document.getElementById('pickConfirm').textContent = '';
+      picks.forEach(function(it){
+        var b = document.createElement('button'); b.className = 'pill'; b.textContent = it.n;
+        b.addEventListener('click', function(){
+          for (var c = 0; c < po.children.length; c++) po.children[c].classList.remove('sel');
+          b.classList.add('sel');
+          window.topPriority = it.n;
+          sendPriority(it.n);  // → drops into your brief: "they want this first"
+          document.getElementById('pickConfirm').innerHTML = '🔥 Nice — we’d start with <b>' + it.n + '</b>. That’s the first thing I’ll show you how to kill on our call.';
+        });
+        po.appendChild(b);
+      });
+      document.getElementById('result').classList.add('show');
+      recalc();
+      document.getElementById('result').scrollIntoView({behavior:'smooth'});
+    }
+    recalc();
+  </script>
+</body>
+</html>

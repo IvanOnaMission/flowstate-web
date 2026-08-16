@@ -1,0 +1,31 @@
+# Netlify was publishing the repo root back when the site was hand-written
+# HTML. It's a Next.js static export now, so the build output is out/.
+# Settings here override whatever is set in the Netlify UI.
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Static export writes /about/index.html etc, so Netlify's default
+# pretty-URL handling is enough — no redirects needed for the app routes.
+# The hand-written pages under public/ (offer pages, audit tool) are copied
+# through untouched and keep their exact URLs.
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# The private offer pages are unlisted, not secret — keep them out of search.
+[[headers]]
+  for = "/private/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

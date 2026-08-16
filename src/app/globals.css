@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/*
+ * Tokens come from design-system/flowstate-bold/MASTER.md. If the code and
+ * that file disagree, the file wins or the file gets updated — never neither.
+ *
+ * Contrast ratios are recorded because §10.3 of the spec requires them to be
+ * checked against every pair actually used, not assumed.
+ */
+@theme {
+  --color-atlantic: #0f4b70; /* 9.29:1 on white */
+  --color-atlantic-500: #1a6fa3; /* 5.31:1 on white — large text and borders only */
+  --color-sky: #c4f8ff; /* CTA on dark. 8.05:1 with atlantic text */
+  --color-sky-50: #ebfdff;
+  --color-ink: #06283d; /* 14.9:1 on white */
+  --color-mute: #3f5f73; /* 6.85:1 on white */
+  --color-hair: #d6e4ec;
+  --color-night: #03101a; /* the hero ground */
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.16, 0.84, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /* Full-bleed hero sections must never make the page scroll sideways. */
+    overflow-x: hidden;
+  }
+
+  /* Never remove the focus ring — it is the only affordance a keyboard user
+     gets. Sky is used because it reads on both the dark hero and white body. */
+  :focus-visible {
+    outline: 3px solid var(--color-atlantic);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-sky);
+  }
+
+  ::selection {
+    background: var(--color-sky);
+    color: var(--color-atlantic);
+  }
+}
+
+@layer utilities {
+  /* One container definition. Every page uses it so the left edge lines up
+     from the nav all the way to the footer. */
+  .shell {
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: clamp(1.25rem, 4vw, 2.75rem);
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 650;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Display sizes. Tracking tightens as the size grows, which is why these
+     aren't a single Tailwind scale. */
+  .h-hero {
+    font-size: clamp(2rem, 4.4vw, 3.7rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .h-sec {
+    font-size: clamp(1.6rem, 3.1vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+}
+
+/*
+ * Scroll reveal.
+ *
+ * Default is VISIBLE. The hidden state only applies once the inline script in
+ * <head> has added `.js` to <html>, so a failed or blocked bundle degrades to
+ * a fully readable page rather than a blank one. Reduced-motion opts out here
+ * too, before any JS runs.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  html.js .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+/* The hero scroll cue. Pure decoration — the reduced-motion block below
+   flattens it along with everything else. */
+@keyframes cue {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Every animation on the site is decoration. Under reduced-motion the page
+   renders in its final state immediately — nothing is hidden behind a
+   transition that never runs. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

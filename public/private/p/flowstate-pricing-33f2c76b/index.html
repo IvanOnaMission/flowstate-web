@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRIVATE PAGE — do not index, do not link from anywhere -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Flowstate — Pricing</title>
+  <style>
+    :root {
+      --bd-bg: #0B0E14;
+      --bd-bg-elev: #131418;
+      --bd-fg: #F4F4F2;
+      --bd-fg-mute: #A1A2A8;
+      --bd-fg-dim: #6E6F77;
+      --bd-accent: #0096FF;
+      --bd-good: #0096FF;
+      --bd-line: #1F2026;
+      --bd-line-strong: #2A2C34;
+      --bd-font-body: "Geist", "Helvetica Neue", system-ui, sans-serif;
+      --bd-font-editorial: "Instrument Serif", "Times New Roman", serif;
+      --bd-font-mono: "Geist Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--bd-bg);
+      color: var(--bd-fg);
+      font-family: var(--bd-font-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 48px 24px 96px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+
+    /* Header */
+    .head {
+      display: flex; align-items: center; gap: 14px;
+      padding-bottom: 22px; margin-bottom: 52px;
+      border-bottom: 1px solid var(--bd-line);
+    }
+    .head .brand { display: inline-flex; line-height: 0; }
+    .head img { height: 52px; width: auto; display: block; }
+    .head .home-link {
+      margin-left: auto; text-decoration: none;
+      font-family: var(--bd-font-mono); font-size: 12px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--bd-fg-mute);
+      border: 1px solid var(--bd-line-strong); border-radius: 999px; padding: 7px 14px;
+      transition: color .12s ease, border-color .12s ease;
+    }
+    .head .home-link:hover { color: var(--bd-fg); border-color: var(--bd-fg-dim); }
+    .pill {
+      margin-left: auto;
+      font-family: var(--bd-font-mono);
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bd-fg-dim);
+      border: 1px solid var(--bd-line-strong);
+      border-radius: 999px; padding: 5px 12px;
+    }
+
+    /* Hero */
+    .eyebrow {
+      font-family: var(--bd-font-mono);
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--bd-accent); margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(34px, 6vw, 52px);
+      font-weight: 600; letter-spacing: -0.02em; line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    h1 em { font-family: var(--bd-font-editorial); font-style: italic; font-weight: 400; color: var(--bd-accent); }
+    .lede { font-size: 18px; color: var(--bd-fg-mute); max-width: 560px; }
+
+    /* What you get */
+    .section-label {
+      font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--bd-fg); margin: 60px 0 20px;
+    }
+    .section-intro { font-size: 15px; color: var(--bd-fg-mute); margin: -8px 0 22px; max-width: 620px; line-height: 1.5; }
+    .gets { list-style: none; display: grid; gap: 16px; }
+    .gets li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 18px 20px;
+      background: var(--bd-bg-elev);
+      border: 1px solid var(--bd-line);
+      border-radius: 14px;
+    }
+    .gets .tick {
+      flex: none; width: 22px; height: 22px; border-radius: 7px;
+      background: rgba(0,150,255,0.12); color: var(--bd-good);
+      display: grid; place-items: center; font-size: 13px; margin-top: 1px;
+    }
+    .gets h3 { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+    .gets p { font-size: 14px; color: var(--bd-fg-mute); }
+
+    /* Pricing card */
+    .price-card {
+      margin-top: 28px;
+      background: linear-gradient(180deg, rgba(0,150,255,0.06), rgba(0,150,255,0) 60%), var(--bd-bg-elev);
+      border: 1px solid var(--bd-line-strong);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+    .price-row { display: flex; flex-wrap: wrap; gap: 36px 56px; }
+    .price-block .k {
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--bd-fg-dim); margin-bottom: 8px;
+    }
+    .price-block .v { font-size: 40px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+    .price-block .v span { font-size: 16px; font-weight: 400; color: var(--bd-fg-mute); }
+    .price-block .v .was { font-size: 24px; font-weight: 400; color: var(--bd-fg-dim); text-decoration: line-through; margin-right: 12px; }
+    .price-block .v .from { font-size: 15px; font-weight: 400; color: var(--bd-fg-mute); margin-right: 7px; }
+
+    /* Pace tiers */
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .tiers { grid-template-columns: 1fr; } }
+    .tier {
+      padding: 22px 20px;
+      background: var(--bd-bg-elev);
+      border: 1px solid var(--bd-line);
+      border-radius: 14px;
+      display: flex; flex-direction: column;
+    }
+    .tier p { flex: 1; }
+    .tier-btn {
+      display: block; text-align: center; text-decoration: none;
+      margin-top: 18px; padding: 12px 16px; border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      background: var(--bd-accent); color: #fff;
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    .tier-btn:hover { transform: translateY(-1px); opacity: .92; }
+    .tier .name {
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--bd-fg-dim); margin-bottom: 12px;
+    }
+    .tier .price { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+    .tier .price span { font-size: 14px; font-weight: 400; color: var(--bd-fg-mute); }
+    .tier p { font-size: 13.5px; color: var(--bd-fg-mute); margin-top: 12px; line-height: 1.45; }
+    .save-badge {
+      display: inline-block; margin-top: 14px;
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bd-good); background: rgba(0,150,255,0.12); border-radius: 999px; padding: 5px 12px;
+    }
+    .price-block .sub { font-size: 13px; color: var(--bd-fg-mute); margin-top: 8px; max-width: 220px; }
+    .price-note {
+      margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--bd-line);
+      font-size: 13px; color: var(--bd-fg-dim);
+    }
+
+    /* Add-on card */
+    .addon-card {
+      margin-top: 28px;
+      background: var(--bd-bg-elev);
+      border: 1px dashed var(--bd-line-strong);
+      border-radius: 16px;
+      padding: 26px 28px;
+    }
+    .addon-card .tag {
+      display: inline-block; margin-bottom: 12px;
+      font-family: var(--bd-font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bd-accent);
+    }
+    .addon-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .addon-card p { font-size: 14px; color: var(--bd-fg-mute); max-width: 600px; }
+
+    /* CTAs */
+    .ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      padding: 15px 26px; border-radius: 12px; transition: transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--bd-accent); color: #fff; }
+    .btn-ghost { background: transparent; color: var(--bd-fg); border: 1px solid var(--bd-line-strong); }
+    .cta-sub { font-size: 17px; color: var(--bd-fg-mute); margin-top: 16px; max-width: 560px; line-height: 1.45; }
+
+    /* Process steps — three columns, left to right */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .steps { grid-template-columns: 1fr; } }
+    .step {
+      padding: 22px 20px;
+      background: var(--bd-bg-elev);
+      border: 1px solid var(--bd-line);
+      border-radius: 14px;
+    }
+    .step .num {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(0,150,255,0.12); color: var(--bd-accent);
+      display: grid; place-items: center;
+      font-family: var(--bd-font-mono); font-size: 15px; font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 11px; }
+    .step ul { list-style: none; display: grid; gap: 7px; }
+    .step ul li {
+      position: relative; padding-left: 16px;
+      font-size: 13.5px; color: var(--bd-fg-mute); line-height: 1.45;
+    }
+    .step ul li::before { content: "•"; position: absolute; left: 0; color: var(--bd-accent); }
+
+    /* Guarantee inside the price box */
+    .card-guarantee { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--bd-line); }
+    .card-guarantee h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .card-guarantee p { font-size: 15px; color: var(--bd-fg-mute); max-width: 520px; }
+
+    /* Footer */
+    footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--bd-line);
+      font-size: 13px; color: var(--bd-fg-dim); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+    footer a { color: var(--bd-fg-mute); text-decoration: none; }
+    footer a:hover { color: var(--bd-fg); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="head">
+      <a class="brand" href="https://flowstate.net.nz" aria-label="Flowstate — home">Flow<em style="font-style:normal;border-bottom:3px solid currentColor;padding-bottom:1px">state</em></a>
+      <a class="home-link" href="https://flowstate.net.nz">Home &rarr;</a>
+    </header>
+
+    <p class="eyebrow">What you're getting</p>
+    <h1>Efficient business systems<br />&amp; automations,<br /><em>built for your business.</em></h1>
+    <p class="lede">We find the repetitive work eating your week, then build the systems that do it for you — wired into the tools you already use, monitored, and maintained.</p>
+
+    <p class="section-label">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <h3>Discovery call</h3>
+        <ul>
+          <li>No obligation</li>
+          <li>We figure out where your leaks are</li>
+          <li>If it's not a fit, we'll say so</li>
+        </ul>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <h3>The audit</h3>
+        <ul>
+          <li>We map your business end to end</li>
+          <li>Pinpoint every bottleneck and time-sink</li>
+          <li>Decide what's actually worth automating</li>
+        </ul>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <h3>Build, optimise &amp; maintain</h3>
+        <ul>
+          <li>We build your automations on a monthly retainer</li>
+          <li>Keep optimising them over time</li>
+          <li>Monitored and maintained as you grow</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="section-label">Your investment</p>
+    <div class="price-card">
+      <div class="price-row">
+        <div class="price-block">
+          <div class="k">Setup &mdash; one-off</div>
+          <div class="v"><span class="was">$8,000</span>$5,000</div>
+          <div class="sub">Discovery, design and build of your automations.</div>
+          <span class="save-badge">Save $3,000</span>
+        </div>
+        <div class="price-block">
+          <div class="k">Monthly retainer</div>
+          <div class="v"><span class="from">from</span>$1,500<span>/mo</span></div>
+          <div class="sub">Keeps everything running, monitored and improving. Scales with your pace — see below.</div>
+        </div>
+      </div>
+      <div class="card-guarantee">
+        <h3>Our guarantee</h3>
+        <p>If it doesn't do what we said it would do, you can have your money back. Simple as that.</p>
+      </div>
+      <p class="price-note">All prices NZD, ex GST. No lock-in — month-to-month on the retainer.</p>
+    </div>
+
+    <p class="section-label">How fast do you want to move?</p>
+    <p class="section-intro">We can build your automations as fast as you want them. Pick the pace that suits — the monthly retainer scales with how quickly we work through your list.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="name">Standard</div>
+        <div class="price">$1,500<span>/mo</span></div>
+        <p>Our steady pace — we work through your list one piece at a time.</p>
+        <a class="tier-btn" href="https://buy.stripe.com/6oU00k07G5Ez4g63zudjO03?prefilled_promo_code=FOUNDING" target="_blank" rel="noopener">Choose Standard &rarr;</a>
+      </div>
+      <div class="tier">
+        <div class="name">Priority</div>
+        <div class="price">$2,750<span>/mo</span></div>
+        <p>We bump you up the queue and build noticeably faster each month.</p>
+        <a class="tier-btn" href="https://buy.stripe.com/eVq8wQ8Ec8QL4g6da4djO04?prefilled_promo_code=FOUNDING" target="_blank" rel="noopener">Choose Priority &rarr;</a>
+      </div>
+      <div class="tier">
+        <div class="name">Express</div>
+        <div class="price">$3,750<span>/mo</span></div>
+        <p>Top priority — we move at full speed, as fast as you can take them on.</p>
+        <a class="tier-btn" href="https://buy.stripe.com/7sYcN6aMkd719Aq8TOdjO05?prefilled_promo_code=FOUNDING" target="_blank" rel="noopener">Choose Express &rarr;</a>
+      </div>
+    </div>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://calendly.com/barnettdigital/discovery_call" target="_blank" rel="noopener">Book a call &rarr;</a>
+    </div>
+    <p class="cta-sub">No obligation — let's figure out where your systems are lacking, and we can help.</p>
+
+    <p class="section-label">What's included in the setup fee</p>
+    <ul class="gets">
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Discovery &amp; audit</h3>
+          <p>We map your day-to-day, sit with how you actually work, and pinpoint the repetitive tasks costing you the most time.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Custom build</h3>
+          <p>We design and build automations tailored to your business — not an off-the-shelf template forced to fit.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Wired into your stack</h3>
+          <p>Connected to the tools you already run — email, job management, accounting, your website. No rip-and-replace.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Tested &amp; handed over</h3>
+          <p>Proven live on your real work, with you walked through exactly how it runs before it goes hands-off.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="section-label">What happens each month</p>
+    <ul class="gets">
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Your automations run &amp; are watched</h3>
+          <p>Everything keeps working in the background, health-checked daily so it doesn't quietly fall over.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>We catch problems first</h3>
+          <p>If something breaks or an integration changes, we spot it and fix it — usually before you'd ever notice.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>It keeps getting better</h3>
+          <p>We refine what's there and add small improvements as your business shifts, so it never goes stale.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>You stay in the loop</h3>
+          <p>A regular check-in on how it's tracking and the time it's saving — no black box.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="section-label">What's included in the monthly retainer</p>
+    <ul class="gets">
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>One new automation a month</h3>
+          <p>A fresh automation designed and built for you every month — your system keeps growing, not just ticking over.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Hosting &amp; infrastructure</h3>
+          <p>All the running costs to keep your automations live — servers, connections, the lot — handled for you.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Daily monitoring &amp; fixes</h3>
+          <p>Proactive health checks plus the work to fix anything that breaks, at no extra charge.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Priority support</h3>
+          <p>A direct line when you need a change, have a question, or want to try something new.</p>
+        </div>
+      </li>
+      <li>
+        <span class="tick">&#10003;</span>
+        <div>
+          <h3>Ongoing improvements</h3>
+          <p>Continuous tweaks and small additions rolled in over time — your system grows with you.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="section-label">Optional add-on</p>
+    <div class="addon-card">
+      <span class="tag">Quoted separately</span>
+      <h3>Building the full system from scratch</h3>
+      <p>The above assumes the underlying systems are already in place. If they're not, we can sit down with you and build the full system out — then layer the automations on top. That's a separate piece of work, scoped and quoted to what you actually need. Just ask and we'll put a number to it.</p>
+    </div>
+
+    <footer>
+      <span>Flowstate</span>
+      <a href="mailto:office@flowstate.net.nz">office@flowstate.net.nz</a>
+      <a href="https://flowstate.net.nz" target="_blank" rel="noopener">flowstate.net.nz</a>
+    </footer>
+  </div>
+</body>
+</html>
