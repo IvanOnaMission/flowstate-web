@@ -1,3 +1,6 @@
+# Connected to IvanOnaMission/flowstate-web on 2026-08-17. Before that this
+# site was manual-deploy only, which is how both /private/p/* offer pages
+# ended up 404ing while sitting fine in the repo. Pushes to main now deploy.
 # Netlify was publishing the repo root back when the site was hand-written
 # HTML. It's a Next.js static export now, so the build output is out/.
 # Settings here override whatever is set in the Netlify UI.
