@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/ContactForm";
 import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,11 +11,12 @@ export const metadata: Metadata = {
 };
 
 /**
- * Deliberately not a form.
+ * Booking is the primary action; the form is the fallback.
  *
- * The site has one conversion and it is the call. A contact form adds a step,
- * needs a backend the static export doesn't have, and converts worse than a
- * booking link. Email and phone are here for people who'd rather not book.
+ * The form is carried over from the previous site rather than dropped. Some
+ * people won't book a slot but will leave a number, and removing a live lead
+ * path in a redesign is the kind of loss nobody notices until the enquiries
+ * stop. It posts to Netlify Forms exactly as it did before.
  */
 export default function Contact() {
   return (
@@ -46,6 +48,28 @@ export default function Contact() {
               <span className="text-[0.85rem] text-mute">{callPromise}</span>
             </div>
           </Reveal>
+        </section>
+
+        {/* ── Or leave your details ─────────────────────────────────
+            Kept from the previous site. Some people won't book a call but
+            will leave a number — losing that in the rebuild would have cost
+            a live lead path. Booking stays the primary action above. */}
+        <section className="border-t border-hair bg-sky-50">
+          <div className="shell py-[clamp(3rem,6vw,4.5rem)]">
+            <Reveal>
+              <p className="eyebrow mb-4 text-mute">
+                Rather not book a time?
+              </p>
+              <h2 className="h-sec max-w-[22ch] text-ink">
+                Leave your details and I&apos;ll call you.
+              </h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="mt-8">
+                <ContactForm />
+              </div>
+            </Reveal>
+          </div>
         </section>
 
         <section className="border-t border-hair">
