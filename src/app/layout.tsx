@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { site } from "@/lib/site";
 import SiteFooter from "@/components/SiteFooter";
+import WorkshopBar from "@/components/WorkshopBar";
 import "./globals.css";
 
 /**
@@ -58,6 +59,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <WorkshopBar />
         {children}
         <SiteFooter />
       </body>

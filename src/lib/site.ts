@@ -18,6 +18,25 @@ export const site = {
   url: "https://flowstate.net.nz",
 } as const;
 
+/**
+ * The 25 Aug workshop. A one-off, so this is deliberately a single switch:
+ * set `live: false` after it runs and the announcement bar disappears
+ * sitewide. Nothing else needs touching.
+ *
+ * `url` still points at the Netlify address because the custom domain
+ * (workshop.flowstate.net.nz) is waiting on a CNAME at GoDaddy. Swap it here
+ * once that resolves — it is quoted in exactly one place.
+ */
+export const workshop = {
+  live: true,
+  name: "Train your AI apprentice",
+  date: "Tue 25 Aug",
+  time: "5:30pm",
+  minutes: 90,
+  price: "$120",
+  url: "https://ai-for-sparkies-nz.netlify.app/",
+} as const;
+
 export const nav = [
   { href: "/services/", label: "How it works" },
   { href: "/about/", label: "About" },
