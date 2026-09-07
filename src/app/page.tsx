@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import { callPromise, rungs, site } from "@/lib/site";
 
 /**
- * The home page has one job: book the 15-minute call. Everything here either
+ * The home page has one job: book the discovery call. Everything here either
  * earns that click or gets cut.
  */
 export default function Home() {
@@ -64,7 +64,7 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={170}>
                   <p className="max-w-[50ch] text-[clamp(0.98rem,1.35vw,1.1rem)] leading-relaxed text-white/70">
-                    Your gear on the hook, and the place still running.
+                    AI implementation for New Zealand trade businesses, starting with electrical. We assess your quoting or sales process, work out what information and tools it needs, and scope the first useful AI workflow with you.
                   </p>
                 </Reveal>
                 <Reveal delay={240}>
@@ -80,6 +80,10 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={310}>
                   <p className="text-[0.8rem] text-white/65">{callPromise}</p>
+                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/90">
+                    <Link className="underline underline-offset-4" href="/ai-for-electricians/">AI for electrical businesses →</Link>
+                    <Link className="underline underline-offset-4" href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
+                  </div>
                 </Reveal>
               </div>
             </div>
@@ -258,12 +262,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── What happens in the 15 minutes ───────────────────────────── */}
+      {/* ── What happens on the call ───────────────────────────── */}
       <section className="border-t border-hair bg-sky-50">
         <div className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
           <Reveal>
             <p className="eyebrow mb-4 text-mute">
-              What happens in the {site.callMinutes} minutes
+              What happens on the call
             </p>
             <h2 className="h-sec max-w-[20ch] text-ink">
               A few questions about your business.
@@ -272,14 +276,10 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p>
-                No deck and no pitch. It&apos;s a quick run of questions so I
-                can understand a bit more about how your business runs and
-                where you&apos;re trying to take it.
+                {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                Then I&apos;ll tell you whether there&apos;s something here
-                worth doing, and what I&apos;d start with. If there
-                isn&apos;t, I&apos;ll say that instead.
+                {"The call is free and takes about 30 minutes. We'll work out whether a paid diagnostic of your quoting or sales process is a useful next step. The detailed investigation happens in the diagnostic."}
               </p>
             </div>
           </Reveal>

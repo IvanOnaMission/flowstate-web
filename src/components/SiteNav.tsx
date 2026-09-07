@@ -21,7 +21,7 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
           : "relative z-20 border-b border-hair bg-white"
       }
     >
-      <div className="shell flex items-center justify-between gap-6 pb-3 pt-[1.375rem] md:pb-[1.375rem]">
+      <div className="shell flex items-center justify-between gap-6 pb-3 pt-[1.375rem] lg:pb-[1.375rem]">
         <Link
           href="/"
           className={`text-[1.0625rem] font-[750] tracking-[-0.015em] ${
@@ -32,7 +32,7 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
         </Link>
 
         {/* Desktop: links sit between the wordmark and the button. */}
-        <nav aria-label="Main" className="hidden gap-7 text-[0.89rem] md:flex">
+        <nav aria-label="Main" className="hidden gap-7 text-[0.89rem] lg:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className={link(dark)}>
               {item.label}
@@ -49,14 +49,14 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
       {/*
         Mobile: the same links on their own row, always visible.
 
-        Deliberately not a hamburger. There are three links — hiding them
+        Deliberately not a hamburger. There are five links — hiding them
         behind a tap costs a discovery step and buys back a bit of tidiness,
         and it needs JS, focus management and a scroll lock to do properly.
         This works with JS off and nothing can get stuck open.
       */}
       <nav
         aria-label="Main"
-        className="shell flex gap-6 pb-3 text-[0.85rem] md:hidden"
+        className="shell flex flex-wrap gap-x-6 gap-y-3 pb-3 text-[0.85rem] lg:hidden"
       >
         {nav.map((item) => (
           <Link key={item.href} href={item.href} className={link(dark)}>

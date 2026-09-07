@@ -7,7 +7,7 @@ import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Book a free ${site.callMinutes}-minute call with Ivan, or email him directly. AI systems for New Zealand trade businesses.`,
+  description: "Book a free discovery call with Ivan at Flowstate. Discuss your electrical business and whether a paid quoting or sales workflow diagnostic would help.",
 };
 
 /**
@@ -36,10 +36,7 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={90}>
             <p className="mt-7 max-w-[52ch] text-[1.1rem] leading-relaxed text-mute">
-              {site.callMinutes} minutes and no deck. A quick run of questions
-              so I can understand a bit more about how your business runs and
-              where you&apos;re trying to take it &mdash; then a straight
-              answer on whether there&apos;s something here worth doing.
+              {"About 30 minutes, free, with no pitch deck. Tell me how your business runs and where work gets held up. We'll work out whether a paid diagnostic of your quoting or sales process would be useful, and agree on the next step."}
             </p>
           </Reveal>
           <Reveal delay={160}>

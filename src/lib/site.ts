@@ -1,11 +1,4 @@
-/**
- * Every fact the pages quote lives here once.
- *
- * The call length is the one that bites: the Calendly slug is still /30min
- * because changing the URL breaks links already sitting in inboxes. Ivan
- * changes the DURATION on the Calendly event instead. Flip callMinutes to 30
- * to revert the copy if that ever changes back.
- */
+/** Shared public business details and booking settings. */
 export const site = {
   name: "Flowstate",
   tagline: "AI systems for New Zealand trade businesses",
@@ -14,7 +7,7 @@ export const site = {
   phone: "027 200 6121",
   phoneHref: "tel:+64272006121",
   calendly: "https://calendly.com/ivan-flowstate/30min",
-  callMinutes: 15,
+  callMinutes: 30,
   url: "https://flowstate.net.nz",
 } as const;
 
@@ -28,7 +21,7 @@ export const site = {
  * once that resolves — it is quoted in exactly one place.
  */
 export const workshop = {
-  live: true,
+  live: false,
   name: "Train your AI apprentice",
   date: "Tue 25 Aug",
   time: "5:30pm",
@@ -38,13 +31,15 @@ export const workshop = {
 } as const;
 
 export const nav = [
+  { href: "/ai-for-electricians/", label: "AI for electricians" },
   { href: "/services/", label: "How it works" },
+  { href: "/guides/", label: "Guides" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ] as const;
 
 /** The proof line under the CTA. Kept in one place so it can't drift. */
-export const callPromise = `Free · ${site.callMinutes} min · no pitch deck`;
+export const callPromise = `Free · about ${site.callMinutes} minutes · no pitch deck`;
 
 /**
  * The ladder. Used on the home page and again on /services/.
