@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "You can't hire your way out of this. Flowstate trains an AI system on how your trade business actually works — your pricing, your process, your customers — so it stops being the thing everything waits on.",
+    "Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",
   openGraph: {
     type: "website",
     locale: "en_NZ",

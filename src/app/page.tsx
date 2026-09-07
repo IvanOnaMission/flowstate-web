@@ -59,15 +59,13 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="h-hero text-white">
-                    You can&apos;t hire your way out of this.{" "}
-                    <span className="text-sky">
-                      So train something that doesn&apos;t leave.
-                    </span>
+                    Your business shouldn&apos;t need you{" "}
+                    <span className="text-sky">to push every job along.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
                   <p className="max-w-[50ch] text-[clamp(0.98rem,1.35vw,1.1rem)] leading-relaxed text-white/70">
-                    AI implementation for New Zealand trade businesses, starting with electrical. We examine where AI could make the biggest difference in your business, prioritise opportunities by pain, potential return and practicality, and agree on a useful first implementation.
+                    Quotes waiting until tonight. Estimates limiting how much work you can price. Follow-ups you meant to send. Job notes scattered across phones and messages.
                   </p>
                 </Reveal>
                 <Reveal delay={240}>
@@ -106,26 +104,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── The argument. The whole pitch in six lines. ────────────── */}
       <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <p className="eyebrow mb-4 text-mute">Why this one is different</p>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="max-w-[60ch] space-y-4 text-[1.05rem] leading-relaxed text-mute">
-            <p className="text-[1.1rem] text-ink">
-              Every good tradie you&apos;ve ever hired started out useless. You
-              showed them how you quote, how you talk to a customer, what good
-              looks like on site. A year later they were worth every cent.
-            </p>
-            <p>Then they left, and you started again.</p>
-            <p>
-              AI is the same deal with one difference. You train it once. It
-              doesn&apos;t get poached, doesn&apos;t call in sick, and
-              doesn&apos;t take everything it learned down the road to a
-              competitor.
-            </p>
+          <div className="max-w-[60ch] space-y-5 text-[1.0625rem] leading-relaxed text-mute">
+            <p>{"These aren’t just admin tasks. They take time, attention and energy away from moving the business forward."}</p>
+            <p>{"Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters."}</p>
           </div>
+          <h2 className="h-sec mt-10 max-w-[24ch] text-ink">Start where the work hurts most.</h2>
+          <p className="mt-5 max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
+            We examine the bottlenecks across your business, prioritise opportunities by potential return and practicality, then build and test a useful first implementation.
+          </p>
+          <p className="mt-6"><Link href="/workflow-diagnostic/" className="font-semibold text-atlantic underline underline-offset-4">What a workflow diagnostic includes →</Link></p>
         </Reveal>
       </section>
 
