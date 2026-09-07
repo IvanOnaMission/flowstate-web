@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
 import { callPromise, rungs, site } from "@/lib/site";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 /**
  * The home page has one job: book the discovery call. Everything here either

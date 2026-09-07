@@ -4,6 +4,8 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ai-quoting-for-electricians/" },
+  openGraph: { url: "/ai-quoting-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI quote preparation for electrical businesses",
   description: "See the quoting workflow Flowstate is developing: owner-supplied job details, quantities and prices become a draft quote for the owner to review.",
 };

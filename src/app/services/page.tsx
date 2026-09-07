@@ -4,6 +4,8 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/" },
+  openGraph: { url: "/services/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI implementation: how it works",
   description: "Start with a paid quoting or sales workflow diagnostic. Then scope an AI foundation, a first useful workflow and practical training with Flowstate.",
 };

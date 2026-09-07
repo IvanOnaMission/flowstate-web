@@ -6,6 +6,8 @@ import ContactForm from "@/components/ContactForm";
 import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/" },
+  openGraph: { url: "/contact/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Contact",
   description: "Book a free discovery call with Ivan at Flowstate. Discuss your electrical business and whether a paid quoting or sales workflow diagnostic would help.",
 };

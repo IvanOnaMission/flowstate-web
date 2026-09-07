@@ -5,6 +5,8 @@ import CallButton from "@/components/CallButton";
 import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact/thanks/" },
+  openGraph: { url: "/contact/thanks/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Thanks",
   description: "Your message is through. Ivan will come back to you the same day.",
   robots: { index: false, follow: false },

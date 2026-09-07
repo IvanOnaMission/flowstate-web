@@ -6,6 +6,8 @@ import Reveal from "@/components/Reveal";
 import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about/" },
+  openGraph: { url: "/about/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "About",
   description:
     "Who you'd be working with at Flowstate — Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",

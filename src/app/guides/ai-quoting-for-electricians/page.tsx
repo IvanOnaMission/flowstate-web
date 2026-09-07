@@ -1,9 +1,12 @@
+import StructuredData from "@/components/StructuredData";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/guides/ai-quoting-for-electricians/" },
+  openGraph: { url: "/guides/ai-quoting-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI quoting for electricians: what you still check",
   description: "A practical scope for AI quote preparation: supply job details, quantities and prices, check missing information, then review the draft before sending.",
 };
@@ -12,6 +15,16 @@ export default function Page() {
   return (
     <>
       <SiteNav />
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://flowstate.net.nz/guides/ai-quoting-for-electricians/#article",
+        headline: "AI quoting for electricians: what it can prepare, what you still check",
+        datePublished: "2026-09-07",
+        author: { "@type": "Person", name: "Ivan Barnett", url: "https://flowstate.net.nz/about/" },
+        publisher: { "@id": "https://flowstate.net.nz/#organization" },
+        mainEntityOfPage: "https://flowstate.net.nz/guides/ai-quoting-for-electricians/",
+      }} />
       <main id="main" className="shell py-[clamp(3rem,6vw,5rem)]">
         <article className="max-w-[52rem]">
           <h1 className="h-hero max-w-[24ch] text-ink">{"AI quoting for electricians: what it can prepare, what you still check"}</h1>

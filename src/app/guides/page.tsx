@@ -4,6 +4,8 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/guides/" },
+  openGraph: { url: "/guides/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Practical AI guides for electrical businesses",
   description: "Plain-language guides to AI implementation for electrical businesses, starting with quote preparation, business information and owner review.",
 };

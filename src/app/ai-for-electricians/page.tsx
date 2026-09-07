@@ -4,6 +4,8 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ai-for-electricians/" },
+  openGraph: { url: "/ai-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI implementation for electricians in New Zealand",
   description: "Explore AI implementation for your electrical business. Flowstate starts with a quoting or sales diagnostic and scopes a practical first workflow.",
 };

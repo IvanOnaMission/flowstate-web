@@ -32,3 +32,14 @@
   for = "/private/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# Retired audit tools remain reachable through existing links, but unindexed.
+[[headers]]
+  for = "/audit/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/audit-full/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

@@ -3,6 +3,8 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/workflow-diagnostic/" },
+  openGraph: { url: "/workflow-diagnostic/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Quoting and sales workflow diagnostic",
   description: "A paid assessment of one business area: quoting and estimating, or sales. Get a workflow map, findings and a recommendation for your first AI implementation.",
 };

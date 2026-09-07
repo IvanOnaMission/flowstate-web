@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import SiteFooter from "@/components/SiteFooter";
 import WorkshopBar from "@/components/WorkshopBar";
 import "./globals.css";
+import StructuredData from "@/components/StructuredData";
 
 /**
  * next/font downloads and self-hosts at build time, so there is no request to
@@ -52,6 +53,15 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <StructuredData data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": `${site.url}/#organization`,
+          name: site.name,
+          url: site.url,
+          email: site.email,
+          telephone: site.phone,
+        }} />
         {/* Keyboard users land here first. Hidden until focused. */}
         <a
           href="#main"
