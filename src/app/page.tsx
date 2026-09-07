@@ -67,7 +67,7 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={170}>
                   <p className="max-w-[50ch] text-[clamp(0.98rem,1.35vw,1.1rem)] leading-relaxed text-white/70">
-                    AI implementation for New Zealand trade businesses, starting with electrical. We assess your quoting or sales process, work out what information and tools it needs, and scope the first useful AI workflow with you.
+                    AI implementation for New Zealand trade businesses, starting with electrical. We examine where AI could make the biggest difference in your business, prioritise opportunities by pain, potential return and practicality, and agree on a useful first implementation.
                   </p>
                 </Reveal>
                 <Reveal delay={240}>
@@ -282,7 +282,7 @@ export default function Home() {
                 {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The call is free and takes about 30 minutes. We'll work out whether a paid diagnostic of your quoting or sales process is a useful next step. The detailed investigation happens in the diagnostic."}
+                {"The call is free and takes about 30 minutes. We'll work out whether a paid diagnostic for your business is a useful next step. The detailed investigation happens in the diagnostic."}
               </p>
             </div>
           </Reveal>

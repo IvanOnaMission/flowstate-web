@@ -32,9 +32,9 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"The first scope is quote preparation"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Independent calculation of quantities and prices is outside the initial scope. You supply those inputs."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Automated quote follow-up is a possible later workflow with its own scope. Before it sends a reminder, it needs a reliable way to establish whether the quote still needs following up."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start by assessing your quoting process"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The paid diagnostic examines how you gather information, prepare estimates, draft and review quotes, follow up and hand accepted work over. It identifies the foundation and connections a first implementation would need."}</p>
-          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"What the quoting diagnostic includes →"}</Link></p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Find where to start"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The paid diagnostic examines where AI could make the biggest difference across your business. If quoting emerges as the best first opportunity, we investigate how it works today and what the implementation would need."}</p>
+          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"What the diagnostic includes →"}</Link></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Would this fit the way you quote?"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free discovery call. We'll discuss how you work today and whether a diagnostic is a sensible next step."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ai-for-electricians/" },
   openGraph: { url: "/ai-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI implementation for electricians in New Zealand",
-  description: "Explore AI implementation for your electrical business. Flowstate starts with a quoting or sales diagnostic and scopes a practical first workflow.",
+  description: "Explore AI implementation for your electrical business. Flowstate examines where AI could make the biggest difference and scopes a practical first workflow.",
 };
 
 export default function Page() {
@@ -22,8 +22,8 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate helps New Zealand electrical business owners assess where AI could fit into that work, then scope a practical first implementation around their information and existing software."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with quoting or sales"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A paid diagnostic looks at one agreed area: quoting and estimating, or sales. We map the workflow, examine the information it relies on and recommend a first implementation."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with the biggest opportunity"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We examine how your business runs, where work gets held up and what takes more time or effort than it should. The diagnostic identifies and prioritises opportunities based on the pain involved, potential return and how practical they are to implement."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"That might reveal a useful role for AI. It might also reveal missing information or a process problem that needs sorting first. The diagnostic makes those requirements visible before the build is scoped."}</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See what a diagnostic includes →"}</Link></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"A first application: job notes to a draft quote"}</h2>
