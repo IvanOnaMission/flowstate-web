@@ -143,3 +143,12 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Give the homepage's long sentence a deliberate rhythm at each breakpoint. */
+.home-hero-title {
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
+}

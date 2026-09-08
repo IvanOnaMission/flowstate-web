@@ -45,35 +45,36 @@ export default function Home() {
             feel endless — a photograph shot for this crop reads differently.
             The scroll cue below is what stops full-height becoming a dead end:
             it tells you there's a page under the fold. */}
-        <div className="relative z-10 flex min-h-svh flex-col">
+        <div className="relative z-10 flex min-h-[min(52rem,100svh)] flex-col">
           <SiteNav ground="dark" />
 
           <div
             id="main"
-            className="flex flex-1 items-center pb-[clamp(2.5rem,7vh,5.25rem)]"
+            className="flex flex-1 items-center py-[clamp(3.5rem,7vw,6rem)]"
           >
-            <div className="shell">
-              <div className="flex max-w-[min(46rem,62%)] flex-col gap-[clamp(0.875rem,2vh,1.5rem)] max-md:max-w-none">
+            <div className="shell w-full">
+              <div className="flex max-w-[44rem] flex-col gap-6 max-lg:max-w-[min(40rem,80%)] max-md:max-w-none">
                 <Reveal>
                   <p className="eyebrow text-sky/90">{site.tagline}</p>
                 </Reveal>
                 <Reveal delay={90}>
-                  <h1 className="h-hero text-white">
-                    Your business shouldn&apos;t need you{" "}
-                    <span className="text-sky">to push every job along.</span>
+                  <h1 className="home-hero-title text-white">
+                    <span className="sm:block">Your business shouldn&apos;t</span>{" "}
+                    <span className="sm:block">need you to push</span>{" "}
+                    <span className="block text-sky">every job along.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
-                  <p className="max-w-[50ch] text-[clamp(0.98rem,1.35vw,1.1rem)] leading-relaxed text-white/70">
+                  <p className="max-w-[49ch] text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.75] text-white/80">
                     Quotes waiting until tonight. Estimates limiting how much work you can price. Follow-ups you meant to send. Job notes scattered across phones and messages.
                   </p>
                 </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-3">
-                    <CallButton tone="sky" />
+                    <CallButton tone="sky" className="!px-6 !py-4" />
                     <a
                       href="#ladder"
-                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/30 bg-white/[.08] px-[1.875rem] py-[1.0625rem] text-[0.95rem] font-semibold text-white backdrop-blur-[10px] transition-colors duration-200 hover:bg-white/[.17]"
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/30 bg-white/[.08] px-6 py-4 text-[0.95rem] font-semibold text-white backdrop-blur-[10px] transition-colors duration-200 hover:bg-white/[.17]"
                     >
                       See how it works
                     </a>
@@ -81,9 +82,9 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={310}>
                   <p className="text-[0.8rem] text-white/65">{callPromise}</p>
-                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/90">
-                    <Link className="underline underline-offset-4" href="/ai-for-electricians/">AI for electrical businesses →</Link>
-                    <Link className="underline underline-offset-4" href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
+                  <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-[0.8rem] text-white/70">
+                    <Link className="transition-colors hover:text-white" href="/ai-for-electricians/">AI for electrical businesses →</Link>
+                    <Link className="transition-colors hover:text-white" href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
                   </div>
                 </Reveal>
               </div>
