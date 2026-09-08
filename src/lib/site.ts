@@ -41,39 +41,32 @@ export const nav = [
 /** The proof line under the CTA. Kept in one place so it can't drift. */
 export const callPromise = `Free · about ${site.callMinutes} minutes · no pitch deck`;
 
-/**
- * The ladder. Used on the home page and again on /services/.
- *
- * The honesty constraint is deliberate and load-bearing: rung 01 is proven
- * (Bryce, 3,623 emails classified), rung 02 is harder than it sounds (0 of 63
- * drafts adopted), rung 03 is not proven at all. The copy presents 02 and 03
- * as where this goes, never as a three-week guarantee.
- */
+/** The ladder describes gradual adoption, with expansion based on tested value. */
 export const rungs = [
   {
     n: "01",
     rung: "Apprentice",
-    title: "It learns how you work",
+    title: "It learns your business.",
     body:
-      "Everything about how you work goes in. Your pricing, your process, the way you talk to a customer. It isn't useful yet. Neither was your first apprentice.",
+      "We give the AI the relevant business knowledge and instructions: how your team works, where information lives and what a good result looks like. That gives it a foundation for the work you want it to help with.",
     img: "/assets/ladder/01-apprentice",
     alt: "A raw, uncarved block of marble on a workbench, chisel and mallet unused beside it",
   },
   {
     n: "02",
     rung: "Qualified",
-    title: "It starts pulling its weight",
+    title: "It takes on useful work.",
     body:
-      "The day-to-day, done properly. It sorts what comes in, tells you what actually matters, and takes on the stuff you've been doing at nine at night. You still check its work.",
+      "We build and test a first workflow around a real business need. The AI follows your process, works with the agreed tools and brings back anything that needs your judgement. Your team checks the results and helps refine how it works.",
     img: "/assets/ladder/02-qualified",
     alt: "The same block half carved — a figure's head and shoulders finished, the legs still trapped in rough stone",
   },
   {
     n: "03",
     rung: "Foreman",
-    title: "It holds the whole thing together",
+    title: "It supports the wider operation.",
     body:
-      "By now it's in everything. Quotes, scheduling, follow-ups, and all the stuff that falls between people. It chases what went quiet, keeps jobs moving, and flags what needs you before it turns into a problem. The business runs tighter and earns better than it did when you were holding all of it yourself.",
+      "As useful workflows prove themselves, we connect more of the work across your people, information and systems. The AI helps coordinate handovers, surface missing information and keep agreed processes moving—with clear responsibilities for what it handles and what stays with your team.",
     img: "/assets/ladder/03-foreman",
     alt: "The finished marble figure of a tradesman in overalls, tools set down, dust swept into a pile",
   },

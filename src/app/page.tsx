@@ -161,12 +161,10 @@ export default function Home() {
           ))}
         </ol>
 
-        {/* The pictures make the ladder look inevitable. The words must not.
-            Rung 01 is proven; 02 is hard; 03 is not proven at all. */}
+        {/* Expansion follows demonstrated value, not an automatic progression. */}
         <Reveal delay={120}>
           <p className="mt-[clamp(1.5rem,3vw,2.25rem)] max-w-[60ch] border-l-2 border-hair pl-4 text-[0.93rem] text-mute">
-            Rung 01 is proven. Rung 02 is harder than it sounds. Rung 03 is
-            where this goes &mdash; not a three-week guarantee.
+            Start with one useful implementation. Expand as it proves its value. How far we take it depends on your business, the connections available and what works in practice.
           </p>
         </Reveal>
       </section>
