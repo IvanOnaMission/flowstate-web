@@ -41,12 +41,9 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-[150px] bg-[linear-gradient(rgba(3,16,26,.72),transparent)]" />
         <div className="absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(transparent,rgba(3,16,26,.85))]" />
 
-        {/* Full viewport height. Ivan rejected a tall hero earlier in the
-            design round, but that was a cropped painting that made the page
-            feel endless — a photograph shot for this crop reads differently.
-            The scroll cue below is what stops full-height becoming a dead end:
-            it tells you there's a page under the fold. */}
-        <div className="relative z-10 flex min-h-[min(52rem,100svh)] flex-col">
+        {/* Fill the visible screen, allowing the content to grow on smaller
+            devices or when the visitor increases their text size. */}
+        <div className="relative z-10 flex min-h-dvh flex-col">
           <SiteNav ground="dark" />
 
           <div
@@ -109,11 +106,15 @@ export default function Home() {
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
           <SoftwareExplanation />
-          <h2 className="h-sec mt-10 max-w-[24ch] text-ink">Start where the work hurts most.</h2>
-          <p className="mt-5 max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-            We examine the bottlenecks across your business, prioritise opportunities by potential return and practicality, then build and test a useful first implementation.
-          </p>
-          <p className="mt-6"><Link href="/workflow-diagnostic/" className="font-semibold text-atlantic underline underline-offset-4">What a workflow diagnostic includes →</Link></p>
+          <section aria-labelledby="diagnostic-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">Start where the work hurts most.</h2>
+            <div>
+              <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
+                We examine the bottlenecks across your business, prioritise opportunities by potential return and practicality, then build and test a useful first implementation.
+              </p>
+              <Link href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">What a workflow diagnostic includes →</Link>
+            </div>
+          </section>
         </Reveal>
       </section>
 
