@@ -178,6 +178,7 @@ export default function Home() {
               Most AI gives you rubbish because nobody trained it.
             </h2>
           </Reveal>
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Reveal delay={90}>
             <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-sky/85">
               <p>
@@ -193,6 +194,17 @@ export default function Home() {
               </p>
             </div>
           </Reveal>
+          <Reveal delay={150}>
+            <Image
+              src="/assets/business-context.webp"
+              alt="Illustration of business documents and processes feeding into AI."
+              width={1200}
+              height={800}
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              className="h-auto w-full rounded-2xl lg:mt-8"
+            />
+          </Reveal>
+          </div>
         </div>
       </section>
 
