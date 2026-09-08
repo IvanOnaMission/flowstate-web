@@ -164,7 +164,7 @@ export default function Home() {
         {/* Expansion follows demonstrated value, not an automatic progression. */}
         <Reveal delay={120}>
           <p className="mt-[clamp(1.5rem,3vw,2.25rem)] max-w-[60ch] border-l-2 border-hair pl-4 text-[0.93rem] text-mute">
-            Start with one useful implementation. Expand as it proves its value. How far we take it depends on your business, the connections available and what works in practice.
+            Start with one useful workflow. Expand as it proves its value.
           </p>
         </Reveal>
       </section>

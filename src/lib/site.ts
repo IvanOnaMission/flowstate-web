@@ -46,27 +46,27 @@ export const rungs = [
   {
     n: "01",
     rung: "Apprentice",
-    title: "It learns your business.",
+    title: "Learns your business.",
     body:
-      "We give the AI the relevant business knowledge and instructions: how your team works, where information lives and what a good result looks like. That gives it a foundation for the work you want it to help with.",
+      "Your processes, knowledge and ways of working.",
     img: "/assets/ladder/01-apprentice",
     alt: "A raw, uncarved block of marble on a workbench, chisel and mallet unused beside it",
   },
   {
     n: "02",
     rung: "Qualified",
-    title: "It takes on useful work.",
+    title: "Takes on useful work.",
     body:
-      "We build and test a first workflow around a real business need. The AI follows your process, works with the agreed tools and brings back anything that needs your judgement. Your team checks the results and helps refine how it works.",
+      "Handles agreed tasks, with your team checking the results.",
     img: "/assets/ladder/02-qualified",
     alt: "The same block half carved — a figure's head and shoulders finished, the legs still trapped in rough stone",
   },
   {
     n: "03",
     rung: "Foreman",
-    title: "It supports the wider operation.",
+    title: "Connects the wider business.",
     body:
-      "As useful workflows prove themselves, we connect more of the work across your people, information and systems. The AI helps coordinate handovers, surface missing information and keep agreed processes moving—with clear responsibilities for what it handles and what stays with your team.",
+      "Helps work and information move between your people and systems.",
     img: "/assets/ladder/03-foreman",
     alt: "The finished marble figure of a tradesman in overalls, tools set down, dust swept into a pile",
   },

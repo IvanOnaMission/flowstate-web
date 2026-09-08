@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SoftwareExplanation from "@/components/SoftwareExplanation";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -36,9 +37,14 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Your pricing, processes and customer communication need to be understood before a workflow can use them well. The planned implementation combines that foundation with a first agreed AI skill or automation and practical education."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The software connections and delivery scope are checked and agreed for your business. A tool name on its own doesn't establish whether a particular workflow is possible."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Work directly with Ivan"}</h2>
+          <div className="mt-6 grid items-start gap-7 sm:grid-cols-[11rem_1fr]">
+            <Image src="/assets/team/ivan.jpg" alt="Ivan Barnett, founder of Flowstate" width={900} height={1200} sizes="(max-width: 639px) 240px, 176px" className="h-auto w-full max-w-[15rem] rounded-xl" />
+            <div>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate is based in Auckland. Ivan builds the systems himself and brings a background in trades, most recently as an electrical apprentice."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The work starts with the owner and can expand to the team as the implementation develops."}</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/about/">{"About Ivan and Flowstate →"}</Link></p>
+            </div>
+          </div>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Bring a recent example."}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A quote that took too long. An enquiry that slipped through. Something you keep having to chase yourself. We'll use it to work out whether a diagnostic would be useful."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
