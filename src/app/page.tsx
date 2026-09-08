@@ -1,3 +1,4 @@
+import SoftwareExplanation from "@/components/SoftwareExplanation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -53,27 +54,27 @@ export default function Home() {
             className="flex flex-1 items-center py-[clamp(3.5rem,7vw,6rem)]"
           >
             <div className="shell w-full">
-              <div className="flex max-w-[44rem] flex-col gap-6 max-lg:max-w-[min(40rem,80%)] max-md:max-w-none">
+              <div className="flex max-w-[70rem] flex-col gap-6">
                 <Reveal>
                   <p className="eyebrow text-sky/90">{site.tagline}</p>
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title text-white">
-                    <span className="sm:block">Your business shouldn&apos;t</span>{" "}
-                    <span className="sm:block">need you to push</span>{" "}
-                    <span className="block text-sky">every job along.</span>
+                    <span className="block">AI built around your business.</span>
+                    <span className="block text-sky">Working with the software you already use.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
-                  <p className="max-w-[49ch] text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.75] text-white/80">
-                    Quotes waiting until tonight. Estimates limiting how much work you can price. Follow-ups you meant to send. Job notes scattered across phones and messages.
-                  </p>
+                  <div className="max-w-[65ch] space-y-4 text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.75] text-white/80">
+                    <p>{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
+                    <p>{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
+                  </div>
                 </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-3">
                     <CallButton tone="sky" className="!px-6 !py-4" />
                     <a
-                      href="#ladder"
+                      href="#how-it-fits"
                       className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/30 bg-white/[.08] px-6 py-4 text-[0.95rem] font-semibold text-white backdrop-blur-[10px] transition-colors duration-200 hover:bg-white/[.17]"
                     >
                       See how it works
@@ -105,12 +106,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
+      <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <div className="max-w-[60ch] space-y-5 text-[1.0625rem] leading-relaxed text-mute">
-            <p>{"These aren’t just admin tasks. They take time, attention and energy away from moving the business forward."}</p>
-            <p>{"Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters."}</p>
-          </div>
+          <SoftwareExplanation />
           <h2 className="h-sec mt-10 max-w-[24ch] text-ink">Start where the work hurts most.</h2>
           <p className="mt-5 max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
             We examine the bottlenecks across your business, prioritise opportunities by potential return and practicality, then build and test a useful first implementation.

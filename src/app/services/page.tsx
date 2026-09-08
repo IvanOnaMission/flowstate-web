@@ -1,3 +1,4 @@
+import SoftwareExplanation from "@/components/SoftwareExplanation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
@@ -18,7 +19,9 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <p className="eyebrow mb-5 text-atlantic">{"How it works"}</p>
           <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We examine how your business runs, where work gets held up and what takes more time or effort than it should. The diagnostic identifies and prioritises opportunities based on the pain involved, potential return and how practical they are to implement."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
+          <SoftwareExplanation />
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. A free call to work out fit"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We'll talk about how your business runs, your current software and a recent example of work getting stuck. The call takes about 30 minutes and helps us decide whether a paid diagnostic is the right next step."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>

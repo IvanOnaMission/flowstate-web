@@ -1,3 +1,4 @@
+import SoftwareExplanation from "@/components/SoftwareExplanation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
@@ -18,8 +19,9 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <p className="eyebrow mb-5 text-atlantic">{"AI for electrical businesses"}</p>
           <h1 className="h-hero max-w-[24ch] text-ink">{"When the work comes back to you, start there."}</h1>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The job notes are on your phone. The pricing needs checking. The quote is waiting for you to sit down and pull it together."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate helps New Zealand electrical business owners assess where AI could fit into that work, then scope a practical first implementation around their information and existing software."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
+          <SoftwareExplanation />
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with the biggest opportunity"}</h2>
