@@ -18,6 +18,9 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <h1 className="h-hero max-w-[24ch] text-ink">{"Practical AI guides for electrical business owners"}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Understand where AI could fit into your business, what information it needs and what you should still check yourself."}</p>
+          <h2 className="mt-10 text-2xl font-bold text-ink">Your job management software runs the job. There’s still manual work around it.</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Entering information. Gathering photos and job notes. Preparing invoices. Updating records. Summarising what happened on site.</p>
+          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/guides/job-software-or-custom-ai/">Read the guide →</Link></p>
           <h2 className="mt-10 text-2xl font-bold text-ink">Where should an electrical business start with AI?</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Start by freeing up the owner’s time. Define a repetitive task, brief AI like an employee, then test and improve a reusable workflow.</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/guides/where-to-start-with-ai/">Read the guide →</Link></p>
