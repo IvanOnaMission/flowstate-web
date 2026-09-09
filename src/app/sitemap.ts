@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/services/", "/about/", "/contact/", "/ai-for-electricians/", "/workflow-diagnostic/", "/ai-quoting-for-electricians/", "/guides/", "/guides/ai-quoting-for-electricians/"];
+  const pages = ["", "/services/", "/about/", "/contact/", "/ai-for-electricians/", "/workflow-diagnostic/", "/ai-quoting-for-electricians/", "/guides/", "/guides/ai-quoting-for-electricians/", "/guides/where-to-start-with-ai/"];
   return pages.map((path) => ({
     url: `${site.url}${path || "/"}`,
     changeFrequency: "monthly",
