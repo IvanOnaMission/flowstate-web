@@ -5,7 +5,7 @@ import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
-import { callPromise, rungs, site } from "@/lib/site";
+import { callPromise, rungs } from "@/lib/site";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -53,13 +53,13 @@ export default function Home() {
             <div className="shell w-full">
               <div className="flex max-w-[70rem] flex-col gap-6">
                 <Reveal>
-                  <p className="eyebrow text-sky/90">{site.tagline}</p>
+                  <p className="eyebrow text-sky/90">AI help for New Zealand electrical businesses</p>
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title text-white">
-                    <span className="block">AI built around your business.</span>
-                    <span className="block text-sky">Working with the software you already use.</span>
+                    <span className="block">Build a business AI can help run.</span>
                   </h1>
+                  <p className="mt-5 text-[clamp(1.125rem,2vw,1.5rem)] font-semibold text-sky">Working with the software you already use.</p>
                 </Reveal>
                 <Reveal delay={170}>
                   <div className="max-w-[65ch] space-y-4 text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.75] text-white/80">

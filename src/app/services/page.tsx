@@ -25,7 +25,7 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. A free call to work out fit"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We'll talk about how your business runs, your current software and a recent example of work getting stuck. The call takes about 30 minutes and helps us decide whether a paid diagnostic is the right next step."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"2. A paid workflow diagnostic"}</h2>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"2. Understand the business"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We examine how your business runs, where work gets held up and what takes more time or effort than it should. The diagnostic identifies and prioritises opportunities based on the pain involved, potential return and how practical they are to implement."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You receive a workflow map, findings, the information and system requirements for an AI foundation, and a recommendation for what to implement first. We discuss the findings with you so the next decision is clear."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The diagnostic is a separate paid engagement. Its scope, fee and timing are agreed before it starts. Implementation is scoped separately."}</p>
