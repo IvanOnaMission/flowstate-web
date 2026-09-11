@@ -59,31 +59,16 @@ export default function Home() {
                   <h1 className="home-hero-title text-white">
                     <span className="block">Build a business AI can help run.</span>
                   </h1>
-                  <p className="mt-5 text-[clamp(1.125rem,2vw,1.5rem)] font-semibold text-sky">Working with the software you already use.</p>
                 </Reveal>
                 <Reveal delay={170}>
-                  <div className="max-w-[65ch] space-y-4 text-[clamp(1rem,1.35vw,1.125rem)] leading-[1.75] text-white/80">
-                    <p>{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
-                    <p>{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
+                  <div className="max-w-[48ch] space-y-4 text-[clamp(1.0625rem,1.5vw,1.25rem)] leading-relaxed text-white/90">
+                    <p>If it’s work you do on a computer, let’s explore how AI could take it off your hands.</p>
+                    <p>We build around your processes and the software you already use.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={240}>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <CallButton tone="sky" className="!px-6 !py-4" />
-                    <a
-                      href="#how-it-fits"
-                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/30 bg-white/[.08] px-6 py-4 text-[0.95rem] font-semibold text-white backdrop-blur-[10px] transition-colors duration-200 hover:bg-white/[.17]"
-                    >
-                      See how it works
-                    </a>
-                  </div>
-                </Reveal>
-                <Reveal delay={310}>
-                  <p className="text-[0.8rem] text-white/65">{callPromise}</p>
-                  <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-[0.8rem] text-white/70">
-                    <Link className="transition-colors hover:text-white" href="/ai-for-electricians/">AI for electrical businesses →</Link>
-                    <Link className="transition-colors hover:text-white" href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
-                  </div>
+                  <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
+                  <p className="mt-4 text-[0.8rem] text-white/65">{callPromise}</p>
                 </Reveal>
               </div>
             </div>
@@ -106,6 +91,10 @@ export default function Home() {
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
           <SoftwareExplanation />
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
+            <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
+            <Link href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
+          </div>
           <section aria-labelledby="diagnostic-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
             <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">Start where the work hurts most.</h2>
             <div>
