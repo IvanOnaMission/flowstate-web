@@ -23,8 +23,8 @@
         const referrer = document.referrer ? new URL(document.referrer) : null;
         const age = pending ? Date.now() - pending.at : -1;
         if (['flowstate.net.nz','www.flowstate.net.nz'].includes(location.hostname)
-            && (referrer?.origin === 'https://app.kit.com'
-                || (referrer?.origin === location.origin && referrer.pathname.replace(/\/$/, '') === '/quoting-workbook'))
+            // Kit 302s back; browsers then report only our origin as the referrer.
+            && [location.origin, 'https://app.kit.com'].includes(referrer?.origin)
             && pending?.id && age >= 0 && age < 15 * 60 * 1000
             && typeof window.fbq === 'function') {
           window.fbq('track', 'Lead', {content_name: 'Quoting workbook'}, {eventID: pending.id});
