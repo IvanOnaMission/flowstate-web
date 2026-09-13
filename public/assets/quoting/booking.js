@@ -1,0 +1,43 @@
+/* Inline Calendly booking. Meta Schedule fires only when Calendly confirms a booking,
+   never on a button click or calendar view. No contact details are passed to the pixel. */
+(() => {
+  const box = document.querySelector('.booking');
+  const link = box?.querySelector('a[href^="https://calendly.com/"]');
+  if (!link) return;
+  const route = location.pathname.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
+
+  // lead.js runs first and has already copied any ad UTMs onto the link.
+  const url = new URL(link.href);
+  url.searchParams.set('hide_gdpr_banner', '1');
+  url.searchParams.set('background_color', '192833');
+  url.searchParams.set('text_color', 'f1f4f7');
+  url.searchParams.set('primary_color', '0096ff');
+
+  box.id = 'book';
+  const widget = document.createElement('div');
+  widget.className = 'calendly-inline-widget';
+  widget.dataset.url = url.toString();
+  link.replaceWith(widget);
+  const fallback = document.createElement('p');
+  fallback.className = 'small';
+  fallback.innerHTML = `Calendar not loading? <a href="${link.href}" target="_blank" rel="noopener">Open it in a new tab</a>.`;
+  widget.after(fallback);
+  document.querySelectorAll('a[href^="https://calendly.com/"]').forEach(other => {
+    if (!box.contains(other)) other.href = '#book';
+  });
+
+  const script = document.createElement('script');
+  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  script.async = true;
+  document.head.appendChild(script);
+
+  let counted = false;
+  window.addEventListener('message', event => {
+    if (event.origin !== 'https://calendly.com' || event.data?.event !== 'calendly.event_scheduled' || counted) return;
+    counted = true;
+    const invitee = String(event.data.payload?.invitee?.uri || '').split('/').pop();
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Schedule', {content_name: route}, invitee ? {eventID: `booking-${invitee}`} : undefined);
+    }
+  });
+})();
