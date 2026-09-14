@@ -93,15 +93,15 @@ export default function Home() {
           <SoftwareExplanation />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
-            <Link href="/workflow-diagnostic/">What a workflow diagnostic includes →</Link>
+            <a href="/ai-makeover/">What the 2-Day AI Makeover includes →</a>
           </div>
-          <section aria-labelledby="diagnostic-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
-            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">Start where the work hurts most.</h2>
+          <section aria-labelledby="makeover-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h2 id="makeover-heading" className="h-sec max-w-[18ch] text-atlantic">AI set up properly. Your quoting handed over. 2 days.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                We examine the bottlenecks across your business, prioritise opportunities by potential return and practicality, then build and test a useful first implementation.
+                The 2-Day AI Makeover for NZ electrical businesses. Done with you, 1:1, over two days at your business.
               </p>
-              <Link href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">What a workflow diagnostic includes →</Link>
+              <a href="/ai-makeover/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">What the 2-Day AI Makeover includes →</a>
             </div>
           </section>
         </Reveal>
@@ -270,7 +270,7 @@ export default function Home() {
                 {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The call is free and takes about 30 minutes. We'll work out whether a paid diagnostic for your business is a useful next step. The detailed investigation happens in the diagnostic."}
+                {"The call is free and takes about 30 minutes. We'll check it works with your software and whether the 2-Day AI Makeover is right for your business, before you commit."}
               </p>
             </div>
           </Reveal>

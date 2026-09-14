@@ -1,6 +1,5 @@
 import StructuredData from "@/components/StructuredData";
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 
@@ -53,10 +52,10 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Before a pilot, record how long the existing preparation process takes and what causes rework. During the pilot, include the time spent supplying information, correcting the draft and reviewing it."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Compare similar jobs and keep a record of the problems the workflow encounters. That gives you a basis for deciding whether it is helping. Producing a draft quickly, on its own, doesn't establish the overall time saved."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We aren't quoting a measured customer saving for this workflow. It is in development, and results would need to be established in use."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Find the best first opportunity"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate's paid diagnostic examines where AI could make the biggest difference across your business. Quoting is one possible starting point. We prioritise opportunities by pain, potential return and practicality, then agree on a first implementation. The build is scoped separately."}</p>
-          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See what the workflow diagnostic includes →"}</Link></p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent quote to a free discovery call and we'll work out whether that assessment would be useful for your business."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Want your quoting handed over?"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate's 2-Day AI Makeover sets AI up properly in your business and hands your quoting over, built on your real jobs. AI prepares the drafts. You make the final call on pricing."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">{"See what the 2-Day AI Makeover includes →"}</a></p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. We'll check it works with your software before you commit."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

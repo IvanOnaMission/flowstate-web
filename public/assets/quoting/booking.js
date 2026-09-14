@@ -4,40 +4,51 @@
   const box = document.querySelector('.booking');
   const link = box?.querySelector('a[href^="https://calendly.com/"]');
   if (!link) return;
-  const route = location.pathname.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
+  const path = location.pathname;
+  const route = path.startsWith('/ai-makeover') ? 'AI Makeover'
+    : path.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
 
-  // lead.js runs first and has already copied any ad UTMs onto the link.
-  const url = new URL(link.href);
-  url.searchParams.set('hide_gdpr_banner', '1');
-  url.searchParams.set('background_color', '192833');
-  url.searchParams.set('text_color', 'f1f4f7');
-  url.searchParams.set('primary_color', '0096ff');
+  // A calendar marked data-after-lead stays unbuilt until its form is sent (makeover.js).
+  if (box.hasAttribute('data-after-lead')) {
+    document.addEventListener('flowstate:lead', build, {once: true});
+    return;
+  }
+  build();
 
-  box.id = 'book';
-  const widget = document.createElement('div');
-  widget.className = 'calendly-inline-widget';
-  widget.dataset.url = url.toString();
-  link.replaceWith(widget);
-  const fallback = document.createElement('p');
-  fallback.className = 'small';
-  fallback.innerHTML = `Calendar not loading? <a href="${link.href}" target="_blank" rel="noopener">Open it in a new tab</a>.`;
-  widget.after(fallback);
-  document.querySelectorAll('a[href^="https://calendly.com/"]').forEach(other => {
-    if (!box.contains(other)) other.href = '#book';
-  });
+  function build() {
+    // lead.js / makeover.js run first and have already copied any ad UTMs onto the link.
+    const url = new URL(link.href);
+    url.searchParams.set('hide_gdpr_banner', '1');
+    url.searchParams.set('background_color', '192833');
+    url.searchParams.set('text_color', 'f1f4f7');
+    url.searchParams.set('primary_color', '0096ff');
 
-  const script = document.createElement('script');
-  script.src = 'https://assets.calendly.com/assets/external/widget.js';
-  script.async = true;
-  document.head.appendChild(script);
+    box.id = 'book';
+    const widget = document.createElement('div');
+    widget.className = 'calendly-inline-widget';
+    widget.dataset.url = url.toString();
+    link.replaceWith(widget);
+    const fallback = document.createElement('p');
+    fallback.className = 'small';
+    fallback.innerHTML = `Calendar not loading? <a href="${link.href}" target="_blank" rel="noopener">Open it in a new tab</a>.`;
+    widget.after(fallback);
+    document.querySelectorAll('a[href^="https://calendly.com/"]').forEach(other => {
+      if (!box.contains(other)) other.href = '#book';
+    });
 
-  let counted = false;
-  window.addEventListener('message', event => {
-    if (event.origin !== 'https://calendly.com' || event.data?.event !== 'calendly.event_scheduled' || counted) return;
-    counted = true;
-    const invitee = String(event.data.payload?.invitee?.uri || '').split('/').pop();
-    if (typeof window.fbq === 'function') {
-      window.fbq('track', 'Schedule', {content_name: route}, invitee ? {eventID: `booking-${invitee}`} : undefined);
-    }
-  });
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    let counted = false;
+    window.addEventListener('message', event => {
+      if (event.origin !== 'https://calendly.com' || event.data?.event !== 'calendly.event_scheduled' || counted) return;
+      counted = true;
+      const invitee = String(event.data.payload?.invitee?.uri || '').split('/').pop();
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Schedule', {content_name: route}, invitee ? {eventID: `booking-${invitee}`} : undefined);
+      }
+    });
+  }
 })();

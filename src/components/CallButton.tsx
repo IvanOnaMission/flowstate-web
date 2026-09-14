@@ -1,12 +1,12 @@
 import { site } from "@/lib/site";
 
 /**
- * The only conversion on the public site. Every instance points at the same
- * Calendly URL, so there is one thing to change if it ever moves.
+ * The only conversion on the public site. Every instance points at the AI
+ * Makeover page, where a short form comes before the calendar, so there is one
+ * thing to change if it ever moves.
  *
- * Deliberately a plain link, not a JS popup widget: it works with JS off, it
- * survives the static export, and it doesn't drag a third-party script onto
- * every page for one button.
+ * Deliberately a plain <a>, not next/link: /ai-makeover/ is a static page in
+ * public/, not an app route, so it needs a normal full-page navigation.
  */
 export default function CallButton({
   tone = "sky",
@@ -32,9 +32,7 @@ export default function CallButton({
 
   return (
     <a
-      href={site.calendly}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={site.booking}
       className={`${base} ${tones[tone]} ${className}`}
     >
       {children}

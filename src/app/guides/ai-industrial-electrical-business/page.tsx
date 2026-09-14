@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
@@ -57,7 +56,7 @@ export default function Page() {
           <p className="mt-6 max-w-[65ch] text-xl leading-relaxed text-mute">{description}</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
-            <Link className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">See what the diagnostic includes</Link>
+            <a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">See what the 2-Day AI Makeover includes</a>
           </div>
         </article>
       </main>

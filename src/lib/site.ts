@@ -6,7 +6,9 @@ export const site = {
   email: "ivan@flowstate.net.nz",
   phone: "027 200 6121",
   phoneHref: "tel:+64272006121",
-  calendly: "https://calendly.com/ivan-flowstate/30min",
+  /** Every "Book a call" goes through the AI Makeover form first; the Calendly
+   *  link lives on that page (public/ai-makeover/index.html). */
+  booking: "/ai-makeover/",
   callMinutes: 30,
   url: "https://flowstate.net.nz",
 } as const;

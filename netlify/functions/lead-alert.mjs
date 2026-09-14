@@ -44,7 +44,7 @@ function kitMessage(body) {
   const s = kitSubscriber(body) || {};
   const f = s.fields || {};
   const name = f.full_name || s.first_name || 'Unknown';
-  return `New workbook signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
+  return `New signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
 }
 
 function calendlyMessage(body) {
