@@ -1,7 +1,9 @@
 // Texts Ivan the moment a quoting lead arrives, so he can call them straight away.
-//   Kit webhook      POST /.netlify/functions/lead-alert?source=kit&token=KIT_WEBHOOK_TOKEN
-//   Calendly webhook POST /.netlify/functions/lead-alert?source=calendly  (signed)
-// Env: CLICKSEND_USERNAME, CLICKSEND_API_KEY, ALERT_PHONE, KIT_WEBHOOK_TOKEN, CALENDLY_SIGNING_KEY
+//   Kit webhook      POST /.netlify/functions/lead-alert?source=kit
+//   Calendly webhook POST /.netlify/functions/lead-alert?source=calendly
+// Env: CLICKSEND_USERNAME, CLICKSEND_API_KEY, ALERT_PHONE
+// Optional hardening: KIT_WEBHOOK_TOKEN (then add &token=… to the Kit URL),
+//   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
 import crypto from 'node:crypto';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
@@ -63,11 +65,24 @@ export default async (req) => {
 
   let text;
   if (source === 'kit') {
-    if (!process.env.KIT_WEBHOOK_TOKEN || !safeEqual(url.searchParams.get('token') || '', process.env.KIT_WEBHOOK_TOKEN)) return json(401, {error: 'unauthorised'});
+    const token = process.env.KIT_WEBHOOK_TOKEN;
+    if (token && !safeEqual(url.searchParams.get('token') || '', token)) return json(401, {error: 'unauthorised'});
+    const s = body.subscriber;
+    if (!s?.id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email_address || '')) return json(400, {error: 'not a Kit subscriber payload'});
     text = kitMessage(body);
   } else if (source === 'calendly') {
-    const key = process.env.CALENDLY_SIGNING_KEY;
-    if (!key || !calendlySignatureValid(req.headers.get('calendly-webhook-signature'), raw, key)) return json(401, {error: 'unauthorised'});
+    const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN;
+    if (key) {
+      if (!calendlySignatureValid(req.headers.get('calendly-webhook-signature'), raw, key)) return json(401, {error: 'unauthorised'});
+    } else if (apiToken) {
+      // No shared secret: confirm the invitee really exists in Ivan's Calendly before texting.
+      const uri = body.payload?.uri || '';
+      if (!uri.startsWith('https://api.calendly.com/')) return json(400, {error: 'bad payload'});
+      const check = await fetch(uri, {headers: {authorization: `Bearer ${apiToken}`}});
+      if (!check.ok) return json(401, {error: 'unverified booking'});
+    } else {
+      return json(401, {error: 'calendly not configured'});
+    }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
     text = calendlyMessage(body);
   } else {
