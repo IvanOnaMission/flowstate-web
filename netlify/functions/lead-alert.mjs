@@ -87,7 +87,7 @@ export default async (req) => {
     }
     text = kitMessage(body);
   } else if (source === 'calendly') {
-    const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN;
+    const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN || process.env.Calendly_Token;
     if (key) {
       if (!calendlySignatureValid(req.headers.get('calendly-webhook-signature'), raw, key)) return json(401, {error: 'unauthorised'});
     } else if (apiToken) {
