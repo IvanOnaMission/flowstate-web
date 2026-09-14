@@ -26,8 +26,11 @@ const nzTime = iso => new Date(iso).toLocaleString('en-NZ', {
   timeZone: 'Pacific/Auckland', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit',
 });
 
+// Kit has sent both {subscriber: …} and {event, data: {subscriber: …}} shapes.
+const kitSubscriber = body => body.subscriber || body.data?.subscriber || body.data || {};
+
 function kitMessage(body) {
-  const s = body.subscriber || {};
+  const s = kitSubscriber(body);
   const f = s.fields || {};
   const name = f.full_name || s.first_name || 'Unknown';
   return `New workbook signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
@@ -66,8 +69,11 @@ export default async (req) => {
   if (source === 'kit') {
     const token = process.env.KIT_WEBHOOK_TOKEN;
     if (token && !safeEqual(url.searchParams.get('token') || '', token)) return json(401, {error: 'unauthorised'});
-    const s = body.subscriber;
-    if (!s?.id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email_address || '')) return json(400, {error: 'not a Kit subscriber payload'});
+    const s = kitSubscriber(body);
+    if (!s?.id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email_address || '')) {
+      console.error('lead-alert: unexpected Kit payload shape', JSON.stringify(Object.keys(body)), JSON.stringify(Object.keys(body.data || {})));
+      return json(400, {error: 'not a Kit subscriber payload'});
+    }
     text = kitMessage(body);
   } else if (source === 'calendly') {
     const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN;
