@@ -1,7 +1,7 @@
 // Texts Ivan the moment a quoting lead arrives, so he can call them straight away.
 //   Kit webhook      POST /.netlify/functions/lead-alert?source=kit
 //   Calendly webhook POST /.netlify/functions/lead-alert?source=calendly
-// Env: CLICKSEND_USERNAME, CLICKSEND_API_KEY, ALERT_PHONE
+// Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 // Optional hardening: KIT_WEBHOOK_TOKEN (then add &token=… to the Kit URL),
 //   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
 import crypto from 'node:crypto';
@@ -42,17 +42,16 @@ function calendlyMessage(body) {
   return `${verb}\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
 }
 
-async function sendSms(text) {
-  const {CLICKSEND_USERNAME: user, CLICKSEND_API_KEY: key, ALERT_PHONE: to} = process.env;
-  if (!user || !key || !to) throw new Error('SMS not configured');
-  const res = await fetch('https://rest.clicksend.com/v3/sms/send', {
+async function sendAlert(text) {
+  const {TELEGRAM_BOT_TOKEN: bot, TELEGRAM_CHAT_ID: chat} = process.env;
+  if (!bot || !chat) throw new Error('Telegram not configured');
+  const res = await fetch(`https://api.telegram.org/bot${bot}/sendMessage`, {
     method: 'POST',
-    headers: {'content-type': 'application/json', authorization: 'Basic ' + Buffer.from(`${user}:${key}`).toString('base64')},
-    body: JSON.stringify({messages: [{to, body: text.slice(0, 600), source: 'flowstate-lead-alert'}]}),
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify({chat_id: chat, text: text.slice(0, 4000), disable_web_page_preview: true}),
   });
   const out = await res.json().catch(() => ({}));
-  const status = out?.data?.messages?.[0]?.status;
-  if (!res.ok || (status && status !== 'SUCCESS')) throw new Error(`ClickSend ${res.status} ${status || out?.response_code || ''}`);
+  if (!res.ok || !out.ok) throw new Error(`Telegram ${res.status} ${out.description || ''}`);
 }
 
 export default async (req) => {
@@ -90,10 +89,10 @@ export default async (req) => {
   }
 
   try {
-    await sendSms(text);
+    await sendAlert(text);
     return json(200, {sent: true});
   } catch (err) {
     console.error('lead-alert failed:', err.message);
-    return json(502, {error: 'sms failed'});
+    return json(502, {error: 'alert failed'});
   }
 };
