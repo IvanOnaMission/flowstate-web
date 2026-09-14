@@ -26,11 +26,22 @@ const nzTime = iso => new Date(iso).toLocaleString('en-NZ', {
   timeZone: 'Pacific/Auckland', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit',
 });
 
-// Kit has sent both {subscriber: …} and {event, data: {subscriber: …}} shapes.
-const kitSubscriber = body => body.subscriber || body.data?.subscriber || body.data || {};
+// Kit payloads vary ({subscriber}, {data}, {delivery_id, events: [...]}): find the subscriber object.
+function kitSubscriber(node, depth = 0) {
+  if (!node || typeof node !== 'object' || depth > 6) return null;
+  if (typeof node.email_address === 'string') return node;
+  for (const value of Object.values(node)) {
+    const found = kitSubscriber(value, depth + 1);
+    if (found) return found;
+  }
+  return null;
+}
+const shape = (node, depth = 0) => node && typeof node === 'object' && depth < 4
+  ? Object.fromEntries(Object.entries(Array.isArray(node) ? {0: node[0]} : node).map(([k, v]) => [k, shape(v, depth + 1)]))
+  : typeof node;
 
 function kitMessage(body) {
-  const s = kitSubscriber(body);
+  const s = kitSubscriber(body) || {};
   const f = s.fields || {};
   const name = f.full_name || s.first_name || 'Unknown';
   return `New workbook signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
@@ -71,7 +82,7 @@ export default async (req) => {
     if (token && !safeEqual(url.searchParams.get('token') || '', token)) return json(401, {error: 'unauthorised'});
     const s = kitSubscriber(body);
     if (!s?.id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email_address || '')) {
-      console.error('lead-alert: unexpected Kit payload shape', JSON.stringify(Object.keys(body)), JSON.stringify(Object.keys(body.data || {})));
+      console.error('lead-alert: unexpected Kit payload shape', JSON.stringify(shape(body)));
       return json(400, {error: 'not a Kit subscriber payload'});
     }
     text = kitMessage(body);
