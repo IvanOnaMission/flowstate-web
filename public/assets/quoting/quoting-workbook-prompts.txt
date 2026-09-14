@@ -8,7 +8,7 @@ Read this entire workbook first. Tell me if any part is unreadable. Help me buil
 
 Turn the lessons into a short checklist. Work on one small step at a time, ask one clear question, and wait for my answer. Use my examples and confirmed answers before asking for more. Draft the documents for me; do not make me repeat interviews or fill blank worksheets.
 
-Check what files you can read, create and save. Choose one Quoting folder with me. Keep progress, file locations, approvals and gaps in Start here. Distinguish "saved" from "prepared for you to save". If needed, give me an updated file or text to save, and ask me to reattach it in a new chat.
+Check what files you can read, create and save. Choose one Quoting folder with me. Keep progress, file locations, approvals and gaps in the Progress section at the top of My Quoting Guide. Distinguish "saved" from "prepared for you to save". If needed, give me an updated file or text to save, and ask me to reattach it in a new chat.
 
 Follow every lesson, but skip optional pricing research unless I need it. Keep this focused on quoting. Do not invent job facts, costs, hours or rules. I approve labour, pricing and the finished quote; do not send quotes or order materials. Start with the first setup question.
 
@@ -18,11 +18,11 @@ Read any existing My Quoting Guide and my examples first. Confirm the job type a
 
 Draft from the records, then ask one question at a time about gaps and decisions: what I checked, what I chose, why and from which source. If I say "it depends" or "from experience", ask what changes my decision and for a contrasting job.
 
-Capture actual sources, product-selection rules, time allowances by role, charging rules and quote requirements. Ask for exact values or documents where needed. Separate what one example shows from a reusable rule; ask me to confirm when the rule applies and its exceptions. Never invent an answer or repeat a settled question.
+Capture actual sources, product-selection rules, time allowances by role, charging rules and quote requirements. Ask for exact values or documents where needed. If I have no supplier method, suggest one: compare the same product code across my trade accounts and two or three other NZ electrical wholesalers, and save it once I approve. Separate what one example shows from a reusable rule; ask me to confirm when the rule applies and its exceptions. Never invent an answer or repeat a settled question.
 
-Before finishing each area, explain how you would use my answers on another job. Let me correct you. Save approved instructions and linked examples in My Quoting Guide; list unresolved gaps and the next step in Start here. Confirm the saved location. Do not create or send a quote during this interview.
+Before finishing each area, explain how you would use my answers on another job. Let me correct you. Save approved instructions and linked examples in My Quoting Guide; list unresolved gaps and the next step in Progress. Confirm the saved location. Do not create or send a quote during this interview.
 
-Save these working instructions too: one step and question at a time; reuse answers; update progress and file locations. If direct saving is unavailable, provide a file or text for me to save. Distinguish "saved" from "prepared for you to save". In new chats, request the latest guide and needed files unless you can open them.
+Save these working instructions too: one step and question at a time; reuse answers; update Progress. If you cannot save directly, give me a file to save.
 
 ## 02 - Draft the reusable instructions
 
@@ -52,19 +52,19 @@ Work through the decisions with me without rushing. Save proposed rules separate
 
 ## 04 - Connect the tools we need
 
-Read My Quoting Guide. Help me connect the tools it needs, one at a time, using official instructions. Check existing connections and the actions supported for my account. Explain custom setup costs, permissions and maintenance before seeking approval; never ask for passwords or keys in chat.
+Read My Quoting Guide. Help me connect the tools it needs, one at a time, using official instructions. Check existing connections and the actions supported for my account. Explain custom setup costs, permissions and maintenance before seeking approval; never ask for passwords or keys in chat. Help me turn on browser access so you can check supplier websites and my trade accounts; I log in myself.
 
 Try each tool's quoting task as we connect it. Read first; use an approved safe draft for write tests. If unsupported, explain a simple upload, export or manual-entry option. Save results and manual steps in the guide. In a new chat, ask me to attach the latest guide unless you can open it. Do not change live jobs or send anything.
 
 ## 05 - Prepare the past-job brief
 
-Read My Quoting Guide at [location or attachment] and resume from its Start here section. Use the first past job, [job], and its original notes and files. Reuse anything already supplied. Prepare a brief with sources, confirmed facts, uncertainties and missing inputs.
+Read My Quoting Guide at [location or attachment] and resume from its Progress section. Use my past job, [job name], and its original notes and files. Reuse anything already supplied. Prepare a brief with sources, confirmed facts, uncertainties and missing inputs.
 
 Apply the required-information checklist by stage. Ask one question at a time for essentials needed before sourcing; do not demand supplier costs or approved hours yet. Do not infer measurements or installation requirements from photos. After I confirm the brief, save it in this job's folder and update the guide's progress and file locations. Do not alter the original job or send anything.
 
 ## 06 - Source materials and prepare labour allowances
 
-Read My Quoting Guide and the confirmed brief for [past job]. Source materials using the saved rules. Show products, codes, units/packs, quantities, purchase costs, tax, delivery, availability, price dates and expiry. Use authorised sources or request a supplier quote/export. Flag unknowns and alternatives; do not purchase.
+Read My Quoting Guide and the confirmed brief for [job name]. Source materials using the saved rules. Show products, codes, units/packs, quantities, purchase costs, tax, delivery, availability, price dates and expiry. Check my trade accounts through browser access and compare the same product across my saved suppliers; flag a cheaper option. If you cannot, request a supplier quote or export. Flag unknowns and alternatives; do not purchase.
 
 Break the work into tasks and roles. Show only time allowances supported by my guide or records, with their basis. Ask for missing hours and include preparation, travel and other charged time where required. I approve hours by role before pricing.
 
@@ -74,17 +74,17 @@ Use historical costs where available; label any current-price differences. After
 
 Read My Quoting Guide and the practice job's confirmed inputs. Apply approved hours, pricing and format rules. Pause for essential gaps. Show the quote and destination for my approval.
 
-Create a separate TEST - DO NOT SEND draft if supported, or a copyable draft for manual entry. Preserve originals. If you cannot read the saved draft, request its export or readable screenshots. Compare that actual result with our inputs and desired quote, including price changes. Update Start here with its location, review status, gaps and next action. I approve pricing and the final quote; do not send it.
+Create a separate TEST - DO NOT SEND draft if supported, or a copyable draft for manual entry. Preserve originals. If you cannot read the saved draft, request its export or readable screenshots. Compare that actual result with our inputs and desired quote, including price changes. Update Progress with its location, review status, gaps and next action. I approve pricing and the final quote; do not send it.
 
 ## 08 - Save corrections and test another job
 
 Read My Quoting Guide and the test files. Corrections: [error and correct approach, or "none"]. If needed, clarify, revise and recheck with me. Save approved reusable fixes in the guide and one-off answers with the job.
 
-Help me test [second past job] in a fresh chat. Give me a short handover prompt to use with the guide and an incomplete copy of its inputs. I will withhold one essential answer, including from attachments and linked records. Tell the new AI to use only those supplied files, identify what is missing and ask before continuing. Once asked, I will supply the answer to finish the test. Preserve originals; send nothing.
+Help me test another past job, [job name], in a fresh chat. Give me a short handover prompt to use with the guide and an incomplete copy of its inputs. I will withhold one essential answer, including from attachments and linked records. Tell the new AI to use only those supplied files, identify what is missing and ask before continuing. Once asked, I will supply the answer to finish the test. Preserve originals; send nothing.
 
-Include instructions to record both tests' acceptance, draft locations, gaps, manual steps and next action in Start here. Continue until I accept the results.
+Include instructions to record both tests' acceptance, draft locations, gaps, manual steps and next action in Progress. Continue until I accept the results.
 
 ## 09 - Start or resume my next quote
 
-Read My Quoting Guide at [location or attachment]; if you cannot open it or the job files, ask me to attach the latest copies. Resume from Start here for [job] using [notes/files]. Reuse answers and check inputs by stage. Follow saved supplier, labour, pricing and format rules. Confirm current costs and get my approval for hours and gaps. Save progress and the draft, or give me updated files to save. Stop for my final review; do not send.
+Read My Quoting Guide at [location or attachment]; if you cannot open it or the job files, ask me to attach the latest copies. Resume from Progress for [job] using [notes/files]. Reuse answers and check inputs by stage. Follow saved supplier, labour, pricing and format rules. Confirm current costs and get my approval for hours and gaps. Save progress and the draft, or give me updated files to save. Stop for my final review; do not send.
 
