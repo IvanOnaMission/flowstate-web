@@ -54,7 +54,32 @@ function calendlyMessage(body) {
   const phone = answers.find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || 'not given';
   const when = p.scheduled_event?.start_time ? nzTime(p.scheduled_event.start_time) : 'time unknown';
   const verb = body.event === 'invitee.canceled' ? 'Call CANCELLED' : 'New call booked';
-  return `${verb}\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
+  const basic = `${verb}\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
+  if (body.event === 'invitee.canceled') return basic;
+  const first = String(p.name || '').trim().split(/\s+/)[0] || 'there';
+  const start = p.scheduled_event?.start_time ? new Date(p.scheduled_event.start_time) : null;
+  const day = start ? start.toLocaleDateString('en-NZ', {timeZone: 'Pacific/Auckland', weekday: 'long'}) : '[day]';
+  const time = start ? start.toLocaleTimeString('en-NZ', {timeZone: 'Pacific/Auckland', hour: 'numeric', minute: '2-digit'}) : '[time]';
+  return [
+    basic,
+    'Call them now.',
+    '',
+    'CALL SCRIPT',
+    `"Hey ${first}, it's Ivan from Flowstate. You just booked a call about the 2-Day AI Makeover, so I wanted to say g'day and thanks.`,
+    'Quick one so I can make the most of our time: what made you book? [listen]',
+    'And if you could get one thing out of this call, what would it be? [listen]',
+    `Perfect. So on ${day} at ${time} we'll spend 30 minutes looking at how you quote and where the time goes, and I'll tell you honestly if the Makeover's a fit.`,
+    'If anything comes up before then, will you flick me a text so we can move it? [wait for yes]',
+    `Awesome. I'll send you a text now so you've got my number. Talk ${day}."`,
+    '',
+    'NO ANSWER: ring straight back once, then text:',
+    `"Hey ${first}, Ivan from Flowstate here. Just tried calling to say thanks for booking in for ${day} at ${time}. This is my number if you need to move it. Talk then!"`,
+    '',
+    'REMINDER TEXTS',
+    `Night before: "Hey ${first}, looking forward to our chat tomorrow at ${time}. Ivan"`,
+    `Morning of: "Morning ${first}! Still good for ${time} today?"`,
+    `1 hour before: "Talk in an hour, ${first}. I'll call you on this number."`,
+  ].join('\n');
 }
 
 async function sendAlert(text) {
