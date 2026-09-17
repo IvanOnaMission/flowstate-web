@@ -19,9 +19,11 @@
     // lead.js / makeover.js run first and have already copied any ad UTMs onto the link.
     const url = new URL(link.href);
     url.searchParams.set('hide_gdpr_banner', '1');
-    url.searchParams.set('background_color', '192833');
-    url.searchParams.set('text_color', 'f1f4f7');
-    url.searchParams.set('primary_color', '0096ff');
+    url.searchParams.set('hide_event_type_details', '1');
+    url.searchParams.set('hide_landing_page_details', '1');
+    url.searchParams.set('background_color', '121722');
+    url.searchParams.set('text_color', 'f4f4f2');
+    url.searchParams.set('primary_color', '0079cc');
 
     box.id = 'book';
     const widget = document.createElement('div');
