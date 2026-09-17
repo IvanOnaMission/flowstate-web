@@ -35,6 +35,8 @@
     const box = document.querySelector('.booking[data-after-lead]');
     if (!box) return;
     box.hidden = false;
+    box.classList.remove('locked');
+    box.querySelector('.lock-note')?.remove();
     if (!revealed) document.dispatchEvent(new CustomEvent('flowstate:lead'));
     revealed = true;
     const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;

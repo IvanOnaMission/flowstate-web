@@ -5,6 +5,7 @@
 // Optional hardening: KIT_WEBHOOK_TOKEN (then add &token=… to the Kit URL),
 //   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
 import crypto from 'node:crypto';
+import {addToKit, crmBooked, safely} from '../lib/crm.mjs';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
 
@@ -101,6 +102,15 @@ export default async (req) => {
     }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
     text = calendlyMessage(body);
+    if (body.event === 'invitee.created') {
+      const p = body.payload || {};
+      const phone = (p.questions_and_answers || []).find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || '';
+      const booked = {email: p.email, name: p.name, phone, start: p.scheduled_event?.start_time};
+      await Promise.all([
+        safely('kit booked', () => addToKit({...booked, tagId: process.env.KIT_TAG_MAKEOVER_BOOKED})),
+        safely('notion booked', () => crmBooked(booked)),
+      ]);
+    }
   } else {
     return json(400, {error: 'unknown source'});
   }

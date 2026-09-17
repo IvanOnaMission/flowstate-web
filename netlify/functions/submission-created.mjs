@@ -3,7 +3,8 @@
 // (event-triggered function: the filename is the event name, and Netlify signs
 // the call, so it can't be triggered from outside). Only the "ai-makeover" form
 // alerts; the contact form and anything else are ignored.
-// Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+// Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Notion keys in ../lib/crm.mjs)
+import {addToKit, crmLead, safely} from '../lib/crm.mjs';
 const FORM = 'ai-makeover';
 
 const clean = (value, max = 200) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -36,6 +37,12 @@ export default async (req) => {
   const data = payload?.data || {};
   const formName = payload?.form_name || data['form-name'];
   if (formName !== FORM) return new Response('ignored', {status: 200});
+
+  const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
+  await Promise.all([
+    safely('kit lead', () => addToKit({...lead, tagId: process.env.KIT_TAG_MAKEOVER_LEAD})),
+    safely('notion lead', () => crmLead({...lead, source: 'form'})),
+  ]);
 
   try {
     await sendAlert(makeoverMessage(data));

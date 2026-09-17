@@ -42,6 +42,8 @@ button:hover{background:#0a88e0}button:disabled{opacity:.6}
 .small{font-size:13px;color:var(--muted);margin:8px 0 0}
 .booking{margin:24px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center}
 .booking h2{margin:0 0 12px;font-size:24px}
+.booking.locked a{display:none}
+.lock-note{margin:0;padding:28px 16px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
 .booking a{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:8px}
 .promise{margin:28px 0 0;text-align:center}
 .promise strong{display:block;font-size:20px}
@@ -97,8 +99,9 @@ footer a{color:var(--muted)}
 <p class="small">Read our <a href="/quoting-privacy/">privacy notice</a>.</p>
 </form>
 
-<div class="booking" data-after-lead hidden>
+<div class="booking locked" data-after-lead>
 <h2>Pick a time that suits you.</h2>
+<p class="lock-note">Pop your details in above to unlock the calendar.</p>
 <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=ai-makeover">Pick a time</a>
 <p class="small">Free · about 30 minutes</p>
 </div>
