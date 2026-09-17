@@ -29,6 +29,7 @@
 .makeover .card button:disabled{opacity:.6}
 .makeover .card .small a{color:#185580}
 .makeover .booking{margin-top:28px}
+.makeover .vsl{display:block;width:100%;aspect-ratio:16/9;background:#0B0E14;border-radius:12px;margin:0 0 28px}
 @media(max-width:800px){.makeover section{padding:36px 0}.makeover h1{font-size:40px;letter-spacing:-1.5px}.makeover .button{display:block;text-align:center}}
 </style>
 <script src="/assets/quoting/analytics.js" defer></script>
@@ -44,6 +45,9 @@
 <section>
 <h1>AI set up properly.<br>Your quoting handed over.<br>2 days.</h1>
 <p class="sub">The 2-Day AI Makeover for NZ electrical businesses.</p>
+<video class="vsl" controls playsinline preload="metadata" poster="/assets/makeover/ai-makeover-vsl-poster.jpg">
+<source src="/assets/makeover/ai-makeover-vsl.mp4" type="video/mp4">
+</video>
 <a class="button" href="#form">Book your call</a>
 </section>
 
@@ -56,8 +60,8 @@
 
 <section>
 <p class="eyebrow">What it's costing you</p>
-<h2 class="big">Hours quoting a week × your hourly rate × 48 weeks.</h2>
-<p class="sum"><strong>5 hrs × $100 = $24,000 a year.</strong></p>
+<h2 class="big">Hours quoting a week × your hourly rate × 52 weeks.</h2>
+<p class="sum"><strong>5 hrs × $100 × 52 weeks = $26,000 a year.</strong></p>
 <p>Run your own numbers.</p>
 </section>
 
@@ -99,10 +103,6 @@
 <input id="mk-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required>
 <label for="mk-email">Email</label>
 <input id="mk-email" name="email" type="email" autocomplete="email" maxlength="200" required>
-<label for="mk-hours">Hours a week spent quoting</label>
-<input id="mk-hours" name="hours_quoting" type="text" maxlength="60">
-<label for="mk-software">Software you use</label>
-<input id="mk-software" name="software" type="text" maxlength="200">
 <button type="submit">Pick a time</button>
 <p id="feedback" role="status" aria-live="polite"></p>
 <p class="small">Read our <a href="/quoting-privacy/">privacy notice</a>.</p>

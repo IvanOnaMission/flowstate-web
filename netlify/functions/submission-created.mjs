@@ -14,8 +14,6 @@ function makeoverMessage(data) {
     clean(data.name) || 'Unknown',
     `Phone: ${clean(data.phone) || 'not given'}`,
     clean(data.email),
-    `Hours quoting a week: ${clean(data.hours_quoting) || 'not given'}`,
-    `Software: ${clean(data.software) || 'not given'}`,
     'Call them now.',
   ].join('\n');
 }
