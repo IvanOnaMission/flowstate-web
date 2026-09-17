@@ -24,7 +24,8 @@ header{padding:28px 0 8px}
 header img{display:block;height:44px;width:auto}
 .hero{padding:36px 0 28px;text-align:center}
 .eyebrow{margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
-h1{margin:0 auto;max-width:760px;font-size:clamp(32px,5vw,54px);line-height:1.08;letter-spacing:-.025em;font-weight:700;text-wrap:balance}
+h1{margin:0 auto;font-size:clamp(28px,4.2vw,46px);line-height:1.12;letter-spacing:-.025em;font-weight:700}
+h1 em{font-style:normal;color:var(--sky)}
 .lead{margin:16px auto 0;max-width:760px;color:var(--muted);font-size:clamp(17px,2vw,19px)}
 .vsl{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;border:1px solid var(--line)}
 .card{margin:24px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
@@ -47,6 +48,17 @@ button:hover{background:#0a88e0}button:disabled{opacity:.6}
 .promise span{color:var(--muted);font-size:15px}
 footer{margin:56px 0 0;padding:24px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 footer a{color:var(--muted)}
+.info{margin:56px 0 0}
+.info h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;margin:0 0 8px}
+.info>p{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.item strong{display:block;font-size:17px;margin:0 0 4px}
+.item span{color:var(--muted);font-size:15px}
+.item strong em{font-style:normal;color:var(--sky)}
+.cta{display:block;text-align:center;margin:28px auto 0;max-width:320px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:15px 22px;border-radius:8px}
+.promise .name{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin:0 0 6px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}h1 br{display:none}}
 [hidden]{display:none!important}
 @media(max-width:700px){.fields{grid-template-columns:1fr}.card{padding:22px}header img{height:36px}.hero{padding-top:24px}}
 </style>
@@ -62,7 +74,7 @@ footer a{color:var(--muted)}
 
 <section class="hero">
 <p class="eyebrow">The 2-Day AI Makeover · NZ electrical businesses</p>
-<h1>Win more work and keep more margin, without adding more people.</h1>
+<h1><em>Win</em> more work and <em>keep</em> more margin,<br><em>without</em> adding more people.</h1>
 <p class="lead">An AI assistant set up around your business: your software, your jobs, your pricing.<br>It prepares the quotes, invoices, replies and paperwork. You ask, it prepares, you approve.</p>
 </section>
 
@@ -91,9 +103,46 @@ footer a{color:var(--muted)}
 <p class="small">Free · about 30 minutes</p>
 </div>
 
+<section class="info">
+<h2>How it works</h2>
+<p>Think of it as an intelligence layer over your business. One assistant that knows how you work and can get things done in your tools.</p>
+<div class="grid">
+<div class="item"><strong>You talk to it</strong><span>On your phone or computer, in plain English. No tech speak.</span></div>
+<div class="item"><strong>It knows your business</strong><span>Set up with your pricing, job types, processes and know-how.</span></div>
+<div class="item"><strong>It's connected to your tools</strong><span>Your job software, email and calendar, so it can do the work, not just answer questions.</span></div>
+<div class="item"><strong>It prepares, you approve</strong><span>Quotes, invoices, replies, follow-ups and paperwork, ready for your OK. Nothing goes out without it.</span></div>
+</div>
+<p class="small">We check what your software connects to on the first call, before you commit.</p>
+</section>
+
+<section class="info">
+<h2>What you get out of it</h2>
+<div class="grid">
+<div class="item"><strong><em>Win</em> more work</strong><span>Quotes and follow-ups go out faster, so you're not losing jobs while they wait.</span></div>
+<div class="item"><strong><em>Keep</em> more margin</strong><span>Every quote priced to your rules, whoever does it, and variations captured so they get invoiced.</span></div>
+<div class="item"><strong>Free up your best people</strong><span>You and your team spend less time on admin and more on the work that pays.</span></div>
+<div class="item"><strong>Grow <em>without</em> the bottleneck</strong><span>Your know-how moves out of people's heads and into a system, so work keeps moving when someone's away.</span></div>
+</div>
+</section>
+
+<section class="info">
+<h2>What happens in the 2 days</h2>
+<p>I come to your business and we set it up together.</p>
+<div class="grid">
+<div class="item"><strong>Business Brain</strong><span>AI learns how your business works.</span></div>
+<div class="item"><strong>Tool connections</strong><span>The software you already use, connected.</span></div>
+<div class="item"><strong>AI Gap Check</strong><span>What AI does for you now, and what it could do.</span></div>
+<div class="item"><strong>Quoting handed over</strong><span>Built on your real jobs. You make the final call.</span></div>
+<div class="item"><strong>Roadmap</strong><span>What to hand over next.</span></div>
+<div class="item"><strong>Training</strong><span>Plain English, so you can run it yourself.</span></div>
+</div>
+</section>
+
 <section class="promise">
+<p class="name">The No-Regrets Guarantee</p>
 <strong>Not happy within 30 days? Full refund. You keep everything.</strong>
 <span>Only a few Makeovers a month, because I'm there in person.</span>
+<a class="cta" href="#form">Book my call</a>
 </section>
 
 </main>
