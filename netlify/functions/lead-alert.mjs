@@ -6,6 +6,8 @@
 //   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
 import crypto from 'node:crypto';
 import {addToKit, crmBooked, safely} from '../lib/crm.mjs';
+import {releaseLead} from '../lib/pending.mjs';
+import {sendAlert, sendContact} from '../lib/telegram.mjs';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
 
@@ -82,18 +84,6 @@ function calendlyMessage(body) {
   ].join('\n');
 }
 
-async function sendAlert(text) {
-  const {TELEGRAM_BOT_TOKEN: bot, TELEGRAM_CHAT_ID: chat} = process.env;
-  if (!bot || !chat) throw new Error('Telegram not configured');
-  const res = await fetch(`https://api.telegram.org/bot${bot}/sendMessage`, {
-    method: 'POST',
-    headers: {'content-type': 'application/json'},
-    body: JSON.stringify({chat_id: chat, text: text.slice(0, 4000), disable_web_page_preview: true}),
-  });
-  const out = await res.json().catch(() => ({}));
-  if (!res.ok || !out.ok) throw new Error(`Telegram ${res.status} ${out.description || ''}`);
-}
-
 export default async (req) => {
   if (req.method !== 'POST') return json(405, {error: 'POST only'});
   const url = new URL(req.url);
@@ -102,7 +92,7 @@ export default async (req) => {
   let body;
   try { body = JSON.parse(raw); } catch { return json(400, {error: 'bad json'}); }
 
-  let text;
+  let text, contact = null;
   if (source === 'kit') {
     const token = process.env.KIT_WEBHOOK_TOKEN;
     if (token && !safeEqual(url.searchParams.get('token') || '', token)) return json(401, {error: 'unauthorised'});
@@ -112,6 +102,7 @@ export default async (req) => {
       return json(400, {error: 'not a Kit subscriber payload'});
     }
     text = kitMessage(body);
+    contact = {name: s.fields?.full_name || s.first_name, phone: s.fields?.phone, email: s.email_address, label: 'Quoting lead'};
   } else if (source === 'calendly') {
     const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN || process.env.Calendly_Token;
     if (key) {
@@ -131,9 +122,12 @@ export default async (req) => {
       const p = body.payload || {};
       const phone = (p.questions_and_answers || []).find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || '';
       const booked = {email: p.email, name: p.name, phone, start: p.scheduled_event?.start_time};
+      contact = {...booked, label: 'AI Makeover booked'};
       await Promise.all([
         safely('kit booked', () => addToKit({...booked, tagId: process.env.KIT_TAG_MAKEOVER_BOOKED})),
         safely('notion booked', () => crmBooked(booked)),
+        // They filled the form minutes ago: drop the waiting "not booked yet" alert.
+        safely('release pending', () => releaseLead(booked)),
       ]);
     }
   } else {
@@ -142,6 +136,7 @@ export default async (req) => {
 
   try {
     await sendAlert(text);
+    if (contact) await sendContact(contact);
     return json(200, {sent: true});
   } catch (err) {
     console.error('lead-alert failed:', err.message);

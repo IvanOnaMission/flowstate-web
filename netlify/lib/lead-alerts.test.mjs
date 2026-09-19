@@ -1,0 +1,64 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {contactCard, dialable} from './telegram.mjs';
+import {dueLeads, holdLead, leadKey, releaseLead} from './pending.mjs';
+import {formLeadMessage} from './messages.mjs';
+
+function fakeStore() {
+  const map = new Map();
+  return {
+    map,
+    async setJSON(k, v) { map.set(k, JSON.stringify(v)); },
+    async get(k) { return map.has(k) ? JSON.parse(map.get(k)) : null; },
+    async delete(k) { map.delete(k); },
+    async list() { return {blobs: [...map.keys()].map(key => ({key}))}; },
+  };
+}
+
+test('dialable turns NZ local numbers into international ones', () => {
+  assert.equal(dialable('021 123 4567'), '+64211234567');
+  assert.equal(dialable('+61 400 000 000'), '+61400000000');
+  assert.equal(dialable('0064 21 123 4567'), '+64211234567');
+  assert.equal(dialable('not given'), '');
+});
+
+test('contact card carries the name, the lead label and the number', () => {
+  const card = contactCard({name: 'Jane Smith', phone: '021 123 4567', email: 'jane@example.com'});
+  assert.equal(card.first_name, 'Jane');
+  assert.equal(card.last_name, 'Smith (AI Makeover lead)');
+  assert.equal(card.phone_number, '+64211234567');
+  assert.match(card.vcard, /FN:Jane Smith/);
+  assert.match(card.vcard, /TEL;TYPE=CELL:\+64211234567/);
+  assert.match(card.vcard, /EMAIL:jane@example.com/);
+  assert.equal(contactCard({name: 'Jane', phone: ''}), null);
+});
+
+test('leadKey prefers email, falls back to phone', () => {
+  assert.equal(leadKey({email: ' Jane@Example.com '}), 'jane@example.com');
+  assert.equal(leadKey({email: '', phone: '021 123 4567'}), 'phone:0211234567');
+  assert.equal(leadKey({}), '');
+});
+
+test('a booking within the window cancels the waiting form alert', async () => {
+  const s = fakeStore();
+  await holdLead({name: 'Jane', email: 'jane@example.com', phone: '021'}, s);
+  assert.equal(await releaseLead({email: 'JANE@example.com'}, s), true);
+  assert.equal(await releaseLead({email: 'jane@example.com'}, s), false);
+  assert.equal(s.map.size, 0);
+});
+
+test('only leads older than the delay are due, oldest first', async () => {
+  const s = fakeStore();
+  const now = 1_000_000;
+  await s.setJSON('old@x.nz', {email: 'old@x.nz', heldAt: now - 200_000});
+  await s.setJSON('older@x.nz', {email: 'older@x.nz', heldAt: now - 300_000});
+  await s.setJSON('fresh@x.nz', {email: 'fresh@x.nz', heldAt: now - 30_000});
+  const due = await dueLeads(120_000, s, now);
+  assert.deepEqual(due.map(d => d.key), ['older@x.nz', 'old@x.nz']);
+});
+
+test('form message names the lead and the script', () => {
+  const text = formLeadMessage({name: 'Jane Smith', phone: '021', email: 'jane@example.com'});
+  assert.match(text, /^New AI Makeover lead \(form, not booked yet\)\nJane Smith\nPhone: 021\njane@example.com/);
+  assert.match(text, /Hey Jane, Ivan from Flowstate/);
+});
