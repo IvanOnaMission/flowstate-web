@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "deploy": "bash scripts/deploy.sh",
-    "test": "node --test netlify/lib/"
+    "test": "node --test netlify/lib/*.test.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^11.1.0",
