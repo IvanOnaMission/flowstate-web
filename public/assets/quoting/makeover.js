@@ -25,8 +25,9 @@
       vsl.play();
       sound.hidden = true;
     });
+    // Only the sound going on retires the tap target. A pause with the sound
+    // still off means they stopped a silent video — the prompt still applies.
     vsl.addEventListener('volumechange', () => { if (!vsl.muted) sound.hidden = true; });
-    vsl.addEventListener('pause', () => { if (vsl.muted) sound.hidden = true; });
   }
 
   const form = document.querySelector('form[name="ai-makeover"]');
