@@ -1,20 +1,33 @@
 #!/usr/bin/env bash
-# Build and push the site straight to Netlify.
+# Deploy flowstate.net.nz by asking Netlify to build the connected repo.
 #
-# WHY THIS EXISTS
-# The Netlify site serving flowstate.net.nz has no repository connected — no
-# repo, no branch, no build command. Pushing to GitHub does NOT deploy it.
-# That was discovered on 2026-08-16, after both /private/p/* offer pages had
-# silently gone missing from the live site while still sitting in the repo.
-#
-# Connecting the repo in the Netlify dashboard is the proper fix and makes
-# this script redundant. Until then, this is the deploy.
+# WHY THIS SHAPE
+# The site is connected to IvanOnaMission/flowstate-web (since 2026-08-17), so
+# every push to main deploys on its own. This script only exists for "deploy
+# what's on main right now" without waiting for a push, and it must go through
+# a Netlify build: an earlier version zipped out/ and uploaded it, which ships
+# the pages but silently drops netlify/functions (lead alerts, CRM sync). That
+# is how the Telegram lead alerts vanished on 2026-09-21 and two leads were
+# missed. Never upload a zip of out/ again.
 #
 # Usage:  npm run deploy
 set -euo pipefail
 
 SITE_ID="b6a7f614-3901-4f01-9080-c66ff07d1477"   # flowstate-nz
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+if [ -n "$(git status --porcelain)" ]; then
+  echo "✗ Uncommitted changes. Netlify builds from GitHub, so commit and push first:"
+  git status --short
+  exit 1
+fi
+git fetch -q origin main
+if [ -n "$(git log --oneline origin/main..HEAD)" ]; then
+  echo "✗ Local commits not on origin/main yet. Push first (pushing to main deploys by itself):"
+  git log --oneline origin/main..HEAD
+  exit 1
+fi
 
 TOKEN=$(python3 -c "
 import json, pathlib, sys
@@ -29,32 +42,31 @@ else:
     sys.exit('No Netlify auth token found.')
 ")
 
-echo "→ building"
-cd "$ROOT"
-npm run build >/dev/null
+echo "→ asking Netlify to build origin/main"
+DEPLOY=$(curl -sf -X POST "https://api.netlify.com/api/v1/sites/$SITE_ID/builds" \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{}' \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['deploy_id'])")
 
-# Guard: the parked pages are unlisted URLs sitting in prospects' inboxes.
-# If a build ever drops them, stop before it reaches production.
-for page in \
-  "out/private/p/21-day-head-start-8f3a1c92/index.html" \
-  "out/private/p/flowstate-pricing-33f2c76b/index.html" \
-  "out/audit/index.html" \
-  "out/audit-full/index.html"
-do
-  [ -f "$page" ] || { echo "✗ ABORT: $page missing from the build"; exit 1; }
+for _ in $(seq 1 60); do
+  sleep 10
+  STATE=$(curl -sf "https://api.netlify.com/api/v1/deploys/$DEPLOY" -H "Authorization: Bearer $TOKEN" \
+    | python3 -c "import json,sys; print(json.load(sys.stdin).get('state'))")
+  echo "  deploy $DEPLOY — $STATE"
+  case "$STATE" in
+    ready) break ;;
+    error|failed) echo "✗ build failed, see app.netlify.com"; exit 1 ;;
+  esac
 done
-echo "→ parked pages present"
+[ "$STATE" = "ready" ] || { echo "✗ timed out waiting for the build"; exit 1; }
 
-echo "→ zipping"
-ZIP=$(mktemp -t fs-deploy-XXXX).zip
-( cd out && zip -qr "$ZIP" . -x ".*" )
-
-echo "→ deploying to flowstate.net.nz"
-curl -sf -X POST "https://api.netlify.com/api/v1/sites/$SITE_ID/deploys" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/zip" \
-  --data-binary "@$ZIP" \
-  | python3 -c "import json,sys; d=json.load(sys.stdin); print('  deploy', d.get('id'), '—', d.get('state'))"
-
-rm -f "$ZIP"
+# Guard: the lead alerts and the parked offer pages must be on the live site.
+for path in \
+  "/.netlify/functions/lead-alert" \
+  "/private/p/21-day-head-start-8f3a1c92/" \
+  "/private/p/flowstate-pricing-33f2c76b/"
+do
+  CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://flowstate.net.nz$path")
+  [ "$CODE" != "404" ] || { echo "✗ $path is 404 on the live site"; exit 1; }
+done
+echo "→ functions and parked pages present"
 echo "✓ done — https://flowstate.net.nz"

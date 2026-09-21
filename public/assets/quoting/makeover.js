@@ -11,6 +11,22 @@
     link.href = url.toString();
   });
 
+  /* The VSL autoplays muted (browsers block sound until someone taps), captions are burned in.
+     The button unmutes and restarts from the top so nothing is missed. */
+  const vsl = document.querySelector('video.vsl');
+  const sound = document.querySelector('.vsl-sound');
+  if (vsl && sound) {
+    vsl.play().then(() => { sound.hidden = false; }).catch(() => { /* autoplay refused: controls remain */ });
+    sound.addEventListener('click', () => {
+      vsl.muted = false;
+      vsl.currentTime = 0;
+      vsl.play();
+      sound.hidden = true;
+    });
+    vsl.addEventListener('volumechange', () => { if (!vsl.muted) sound.hidden = true; });
+    vsl.addEventListener('pause', () => { if (vsl.muted) sound.hidden = true; });
+  }
+
   const form = document.querySelector('form[name="ai-makeover"]');
   if (!form) return;
   const feedback = form.querySelector('#feedback');
