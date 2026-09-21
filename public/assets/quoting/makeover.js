@@ -16,7 +16,9 @@
   const vsl = document.querySelector('video.vsl');
   const sound = document.querySelector('.vsl-sound');
   if (vsl && sound) {
-    vsl.play().then(() => { sound.hidden = false; }).catch(() => { /* autoplay refused: controls remain */ });
+    // Show the tap target either way: if autoplay is refused, the same tap starts it with sound.
+    sound.hidden = false;
+    vsl.play().catch(() => {});
     sound.addEventListener('click', () => {
       vsl.muted = false;
       vsl.currentTime = 0;

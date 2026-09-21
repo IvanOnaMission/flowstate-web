@@ -11,22 +11,26 @@
 <meta property="og:url" content="https://flowstate.net.nz/ai-makeover/">
 <meta property="og:image" content="https://flowstate.net.nz/assets/makeover/ai-makeover-vsl-poster.jpg?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
 <style>
-:root{--ink:#0B0E14;--panel:#121722;--line:#232b38;--white:#F4F4F2;--muted:#9aa4b2;--blue:#0079CC;--sky:#66C2FF}
+/* Palette and type match the main site (src/app/globals.css): white ground, ink text, atlantic actions. */
+:root{--ink:#ffffff;--panel:#ebfdff;--line:#d6e4ec;--white:#06283d;--muted:#3f5f73;--blue:#0f4b70;--sky:#1a6fa3;--night:#03101a}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--ink);color:var(--white);font:17px/1.55 "DM Sans",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ink);color:var(--white);font:17px/1.6 "Plus Jakarta Sans",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--sky)}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--white);color:var(--ink);padding:8px 12px;border-radius:6px}
 .wrap{max-width:880px;margin:0 auto;padding:0 20px}
-header{padding:28px 0 8px}
-header img{display:block;height:44px;width:auto}
-.hero{padding:36px 0 28px;text-align:center}
+header{padding:22px 0 10px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line)}
+.wordmark{font-size:17px;font-weight:800;letter-spacing:-.015em;color:var(--white);text-decoration:none}
+.nav-cta{background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px}
+.nav-cta:hover{background:#14608c}
+.hero{padding:40px 0 30px}
 .eyebrow{margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
-h1{margin:0 auto;font-size:clamp(28px,4.2vw,46px);line-height:1.12;letter-spacing:-.025em;font-weight:700}
+h1{margin:0;font-size:clamp(28px,4.2vw,46px);line-height:1.12;letter-spacing:-.025em;font-weight:700}
 h1 em{font-style:normal;color:var(--sky)}
-.lead{margin:16px auto 0;max-width:760px;color:var(--muted);font-size:clamp(17px,2vw,19px)}
+.lead{margin:16px 0 0;max-width:720px;color:var(--muted);font-size:clamp(17px,2vw,19px)}
 .vsl{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;border:1px solid var(--line)}
 .card{margin:24px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
 .card h2{margin:0 0 16px;font-size:26px;letter-spacing:-.01em}
@@ -34,9 +38,9 @@ h1 em{font-style:normal;color:var(--sky)}
 .fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin:0 0 6px}
 input{width:100%;padding:13px 14px;border-radius:8px;border:1px solid var(--line);background:var(--ink);color:var(--white);font:inherit;font-size:16px}
-input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
-button{display:block;width:100%;margin:16px 0 0;min-height:52px;border:0;border-radius:8px;background:var(--blue);color:#fff;font:700 17px "DM Sans",system-ui,sans-serif;cursor:pointer}
-button:hover{background:#0a88e0}button:disabled{opacity:.6}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+button{display:block;width:100%;margin:16px 0 0;min-height:52px;border:0;border-radius:8px;background:var(--blue);color:#fff;font:700 17px "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer}
+button:hover{background:#14608c}button:disabled{opacity:.6}
 #feedback{margin:10px 0 0;font-size:14px;color:var(--sky);min-height:1em}
 .honeypot{position:absolute;left:-9999px}
 .small{font-size:13px;color:var(--muted);margin:8px 0 0}
@@ -90,22 +94,24 @@ footer a{color:var(--muted)}
 .promise .name{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin:0 0 10px}
 .promise strong{display:block;margin:0 auto;max-width:620px;font-size:clamp(21px,2.8vw,27px);line-height:1.25;letter-spacing:-.02em}
 .promise p{margin:14px auto 0;max-width:520px;color:var(--muted);font-size:15px}
-.cta{display:block;text-align:center;margin:24px auto 0;max-width:320px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:15px 22px;border-radius:8px}
-.cta:hover{background:#0a88e0}
+.cta{display:inline-block;text-align:center;margin:24px 0 0;min-width:240px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:15px 22px;border-radius:8px}
+.cta:hover{background:#14608c}
 @media(max-width:700px){.vs,.steps,.days,.wins{grid-template-columns:1fr}.info{margin-top:48px}.promise{padding:26px 20px}h1 br{display:initial}}
 .calendly-inline-widget{min-width:320px;height:760px;margin:8px -8px 0;border-radius:10px;overflow:hidden}
 @media(max-width:700px){.calendly-inline-widget{height:1060px;margin:8px -12px 0}}
 [hidden]{display:none!important}
-@media(max-width:700px){.fields{grid-template-columns:1fr}.card{padding:22px}header img{height:36px}.hero{padding-top:24px}}
+@media(max-width:700px){.fields{grid-template-columns:1fr}.card{padding:22px}.hero{padding-top:24px}}
 
 .hero{padding:42px 0 34px}
 h1{max-width:800px;font-size:clamp(36px,5.5vw,58px);line-height:1.08;letter-spacing:-.035em;text-wrap:balance}
 .lead{max-width:650px;font-size:19px;line-height:1.6}
-.hero .cta{margin-top:24px}.hero .small{margin-top:10px}.hero .call-benefit{max-width:580px;margin-left:auto;margin-right:auto;font-size:14px}
+.hero .cta{margin:26px 0 0}.hero .small{margin-top:10px}.hero .call-benefit{max-width:580px;font-size:14px}
 .video-caption{margin:12px 0 0;text-align:center;color:var(--muted);font-size:14px}
 .vsl-wrap{position:relative}
-.vsl-sound{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);width:auto;background:var(--blue);color:#fff;border:0;border-radius:999px;padding:13px 22px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45)}
-.vsl-sound:hover{background:#0a88e0}
+/* Covers the whole video so the first tap anywhere turns the sound on instead of pausing. */
+.vsl-sound{position:absolute;inset:0;width:100%;display:flex;align-items:flex-end;justify-content:center;padding:0 0 54px;background:transparent;border:0;cursor:pointer}
+.vsl-sound span{background:var(--blue);color:#fff;border-radius:999px;padding:13px 22px;font-size:16px;font-weight:700;box-shadow:0 6px 20px rgba(3,16,26,.35)}
+.vsl-sound:hover span{background:#14608c}
 .info{margin-top:52px}.info>p{max-width:720px}
 .deliverables{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .deliverables article{padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
@@ -134,12 +140,15 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
-<header><img src="/assets/makeover/flowstate-logo.svg" alt="Flowstate" width="104" height="44"></header>
+<header>
+<a class="wordmark" href="/">Flowstate</a>
+<a class="nav-cta" href="#form">Book a call</a>
+</header>
 <main id="main">
 <section class="hero">
 <p class="eyebrow">The 2-Day AI Makeover · NZ electrical businesses</p>
 <h1>Less admin.<br><em>More time to run your business.</em></h1>
-<p class="lead">I spend two days at your business setting up AI around your tools and the way you work. We start with quoting: AI prepares the draft. You check it and make the final call.</p>
+<p class="lead">I spend two days at your business building the foundation: AI set up around your tools and the way you already work, and you and your team trained to use it. From there you keep taking admin off your plate, job after job.</p>
 <a class="cta" href="#form">Book a free call</a>
 <p class="small call-benefit">We’ll look at how you quote, what software you use and where AI could help.<br>30 minutes with Ivan · Nothing to prepare</p>
 </section>
@@ -147,7 +156,7 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 <video class="vsl" aria-label="Ivan explains the 2-Day AI Makeover" controls playsinline autoplay muted preload="auto" poster="/assets/makeover/ai-makeover-vsl-poster.jpg?v=5">
 <source src="/assets/makeover/ai-makeover-vsl.mp4" type="video/mp4">
 </video>
-<button type="button" class="vsl-sound" hidden>🔊 Tap for sound</button>
+<button type="button" class="vsl-sound" hidden aria-label="Tap for sound"><span>🔊 Tap for sound</span></button>
 </div>
 <p class="video-caption">See what the Makeover looks like with Ivan.</p>
 <form id="form" class="card" name="ai-makeover" method="POST" action="/ai-makeover/" data-netlify="true" netlify-honeypot="bot-field">
