@@ -58,12 +58,18 @@ function calendlyMessage(body) {
   const verb = body.event === 'invitee.canceled' ? 'Call CANCELLED' : 'New call booked';
   const basic = `${verb}\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
   if (body.event === 'invitee.canceled') return basic;
+  // Anything else they typed into the booking form (e.g. "what will help prepare for our meeting").
+  const notes = answers
+    .filter(a => !/phone/i.test(a.question) && String(a.answer || '').trim())
+    .map(a => `${String(a.question).trim()}\n${String(a.answer).trim()}`);
   const first = String(p.name || '').trim().split(/\s+/)[0] || 'there';
   const start = p.scheduled_event?.start_time ? new Date(p.scheduled_event.start_time) : null;
   const day = start ? start.toLocaleDateString('en-NZ', {timeZone: 'Pacific/Auckland', weekday: 'long'}) : '[day]';
   const time = start ? start.toLocaleTimeString('en-NZ', {timeZone: 'Pacific/Auckland', hour: 'numeric', minute: '2-digit'}) : '[time]';
   return [
     basic,
+    ...(notes.length ? ['', 'THEIR NOTES', ...notes] : []),
+    '',
     'Call them now.',
     '',
     'CALL SCRIPT',
