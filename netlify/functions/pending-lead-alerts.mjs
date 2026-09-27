@@ -2,6 +2,7 @@
 // who has been on the holding list longer than the delay and still hasn't booked.
 // See submission-created.mjs for why the alert waits. Each lead is removed from the
 // list only after Telegram accepts the message, so a failed send is retried next minute.
+import {aboutLead} from '../lib/about.mjs';
 import {formLeadMessage} from '../lib/messages.mjs';
 import {DELAY_MS, dueLeads, forgetLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
@@ -13,7 +14,7 @@ export default async () => {
   let sent = 0;
   for (const {key, lead} of due) {
     try {
-      await sendAlert(formLeadMessage(lead));
+      await sendAlert(formLeadMessage(lead, await aboutLead(lead).catch(() => [])));
       await sendContact(lead);
       await forgetLead(key);
       sent += 1;

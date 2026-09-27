@@ -2,7 +2,8 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {contactCard, dialable} from './telegram.mjs';
 import {dueLeads, holdLead, leadKey, releaseLead} from './pending.mjs';
-import {formLeadMessage} from './messages.mjs';
+import {bookedMessage, formLeadMessage} from './messages.mjs';
+import {pageSummary, workDomain} from './about.mjs';
 
 function fakeStore() {
   const map = new Map();
@@ -57,8 +58,32 @@ test('only leads older than the delay are due, oldest first', async () => {
   assert.deepEqual(due.map(d => d.key), ['older@x.nz', 'old@x.nz']);
 });
 
-test('form message names the lead and the script', () => {
-  const text = formLeadMessage({name: 'Jane Smith', phone: '021', email: 'jane@example.com'});
+test('form message names the lead, with no script', () => {
+  const text = formLeadMessage({name: 'Jane Smith', phone: '021', email: 'jane@example.com'}, ['Website: sparky.co.nz']);
   assert.match(text, /^New AI Makeover lead \(form, not booked yet\)\nJane Smith\nPhone: 021\njane@example.com/);
-  assert.match(text, /Hey Jane, Ivan from Flowstate/);
+  assert.match(text, /Extra details: none yet/);
+  assert.match(text, /ABOUT THEM\nWebsite: sparky.co.nz/);
+  assert.doesNotMatch(text, /SCRIPT|Call them now/);
+});
+
+test('booked message says whether the extra details were filled in', () => {
+  const base = {name: 'Jane Smith', phone: '021', email: 'jane@example.com', when: 'Wed 1 Oct, 10:00 am'};
+  const filled = bookedMessage({...base, answers: [{question: 'What will help prepare?', answer: 'Quotes take me 3 hours'}]});
+  assert.match(filled, /Extra details: FILLED IN\nWhat will help prepare\?\n"Quotes take me 3 hours"/);
+  const blank = bookedMessage({...base, answers: [{question: 'What will help prepare?', answer: '  '}]});
+  assert.match(blank, /Extra details: left blank/);
+  assert.doesNotMatch(blank, /SCRIPT|REMINDER|Call them now/);
+});
+
+test('only work email domains get a website lookup', () => {
+  assert.equal(workDomain('jane@sparky.co.nz'), 'sparky.co.nz');
+  assert.equal(workDomain('jane@gmail.com'), '');
+  assert.equal(workDomain('jane@xtra.co.nz'), '');
+  assert.equal(workDomain('jane@127.0.0.1'), '');
+  assert.equal(workDomain('nonsense'), '');
+});
+
+test('page summary pulls the title and description', () => {
+  const html = '<title>Sparky &amp; Co | Electricians</title><meta name="description" content="Residential electrical in Tauranga.">';
+  assert.deepEqual(pageSummary(html), {title: 'Sparky & Co | Electricians', description: 'Residential electrical in Tauranga.'});
 });

@@ -6,6 +6,8 @@
 //   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
 import crypto from 'node:crypto';
 import {addToKit, crmBooked, safely} from '../lib/crm.mjs';
+import {aboutLead} from '../lib/about.mjs';
+import {bookedMessage} from '../lib/messages.mjs';
 import {releaseLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 
@@ -50,44 +52,16 @@ function kitMessage(body) {
   return `New signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
 }
 
-function calendlyMessage(body) {
+function calendlyMessage(body, aboutLines = []) {
   const p = body.payload || {};
   const answers = p.questions_and_answers || [];
   const phone = answers.find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || 'not given';
   const when = p.scheduled_event?.start_time ? nzTime(p.scheduled_event.start_time) : 'time unknown';
-  const verb = body.event === 'invitee.canceled' ? 'Call CANCELLED' : 'New call booked';
-  const basic = `${verb}\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
-  if (body.event === 'invitee.canceled') return basic;
-  // Anything else they typed into the booking form (e.g. "what will help prepare for our meeting").
-  const notes = answers
-    .filter(a => !/phone/i.test(a.question) && String(a.answer || '').trim())
-    .map(a => `${String(a.question).trim()}\n${String(a.answer).trim()}`);
-  const first = String(p.name || '').trim().split(/\s+/)[0] || 'there';
-  const start = p.scheduled_event?.start_time ? new Date(p.scheduled_event.start_time) : null;
-  const day = start ? start.toLocaleDateString('en-NZ', {timeZone: 'Pacific/Auckland', weekday: 'long'}) : '[day]';
-  const time = start ? start.toLocaleTimeString('en-NZ', {timeZone: 'Pacific/Auckland', hour: 'numeric', minute: '2-digit'}) : '[time]';
-  return [
-    basic,
-    ...(notes.length ? ['', 'THEIR NOTES', ...notes] : []),
-    '',
-    'Call them now.',
-    '',
-    'CALL SCRIPT',
-    `"Hey ${first}, it's Ivan from Flowstate. You just booked a call about the 2-Day AI Makeover, so I wanted to say g'day and thanks.`,
-    'Quick one so I can make the most of our time: what made you book? [listen]',
-    'And if you could get one thing out of this call, what would it be? [listen]',
-    `Perfect. So on ${day} at ${time} we'll spend 30 minutes looking at how you quote and where the time goes, and I'll tell you honestly if the Makeover's a fit.`,
-    'If anything comes up before then, will you flick me a text so we can move it? [wait for yes]',
-    `Awesome. I'll send you a text now so you've got my number. Talk ${day}."`,
-    '',
-    'NO ANSWER: ring straight back once, then text:',
-    `"Hey ${first}, Ivan from Flowstate here. Just tried calling to say thanks for booking in for ${day} at ${time}. This is my number if you need to move it. Talk then!"`,
-    '',
-    'REMINDER TEXTS',
-    `Night before: "Hey ${first}, looking forward to our chat tomorrow at ${time}. Ivan"`,
-    `Morning of: "Morning ${first}! Still good for ${time} today?"`,
-    `1 hour before: "Talk in an hour, ${first}. I'll call you on this number."`,
-  ].join('\n');
+  if (body.event === 'invitee.canceled') return `Call CANCELLED\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
+  return bookedMessage({
+    name: p.name, phone, email: p.email, when,
+    answers: answers.filter(a => !/phone/i.test(a.question)),
+  }, aboutLines);
 }
 
 export default async (req) => {
@@ -123,19 +97,21 @@ export default async (req) => {
       return json(401, {error: 'calendly not configured'});
     }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
-    text = calendlyMessage(body);
+    let aboutLines = [];
     if (body.event === 'invitee.created') {
       const p = body.payload || {};
       const phone = (p.questions_and_answers || []).find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || '';
       const booked = {email: p.email, name: p.name, phone, start: p.scheduled_event?.start_time};
       contact = {...booked, label: 'AI Makeover booked'};
       await Promise.all([
+        aboutLead({email: p.email, tracking: p.tracking}).then(lines => { aboutLines = lines; }, () => {}),
         safely('kit booked', () => addToKit({...booked, tagId: process.env.KIT_TAG_MAKEOVER_BOOKED})),
         safely('notion booked', () => crmBooked(booked)),
         // They filled the form minutes ago: drop the waiting "not booked yet" alert.
         safely('release pending', () => releaseLead(booked)),
       ]);
     }
+    text = calendlyMessage(body, aboutLines);
   } else {
     return json(400, {error: 'unknown source'});
   }

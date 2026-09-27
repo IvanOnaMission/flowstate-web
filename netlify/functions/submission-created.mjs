@@ -10,6 +10,7 @@
 // If the holding list is unavailable the alert goes out immediately instead.
 // Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Notion keys in ../lib/crm.mjs)
 import {addToKit, crmLead, safely} from '../lib/crm.mjs';
+import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
 import {holdLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
@@ -35,7 +36,7 @@ export default async (req) => {
     console.error('submission-created: could not hold lead, alerting now:', err.message);
   }
   try {
-    await sendAlert(formLeadMessage(lead));
+    await sendAlert(formLeadMessage(lead, await aboutLead(lead).catch(() => [])));
     await sendContact(lead);
     return new Response('sent', {status: 200});
   } catch (err) {
