@@ -87,6 +87,7 @@ export default async (req) => {
     contact = {name: s.fields?.full_name || s.first_name, phone: s.fields?.phone, email: s.email_address, label: 'Quoting lead'};
   } else if (source === 'calendly') {
     const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN || process.env.Calendly_Token;
+    let trackingBooking=body;
     if (key) {
       if (!calendlySignatureValid(req.headers.get('calendly-webhook-signature'), raw, key)) return json(401, {error: 'unauthorised'});
     } else if (apiToken) {
@@ -95,11 +96,15 @@ export default async (req) => {
       if (!uri.startsWith('https://api.calendly.com/')) return json(400, {error: 'bad payload'});
       const check = await fetch(uri, {headers: {authorization: `Bearer ${apiToken}`}});
       if (!check.ok) return json(401, {error: 'unverified booking'});
+      // The API response is authoritative when there is no webhook signature.
+      const actual=(await check.json()).resource;
+      if(!actual?.uri||!actual.email)return json(401,{error:'unverified booking'});
+      trackingBooking={event:actual.status==='canceled'?'invitee.canceled':'invitee.created',payload:actual};
     } else {
       return json(401, {error: 'calendly not configured'});
     }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
-    await safely('marketing booking',async()=>{const db=trackingDatabase();if(db)await recordBooking(db,body);});
+    await safely('marketing booking',async()=>{const db=trackingDatabase();if(db)await recordBooking(db,trackingBooking);});
     let aboutLines = [];
     if (body.event === 'invitee.created') {
       const p = body.payload || {};

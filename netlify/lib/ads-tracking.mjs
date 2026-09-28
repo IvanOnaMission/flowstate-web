@@ -96,7 +96,8 @@ export async function recordBooking(db, payload) {
   const ev = p.scheduled_event || {};
   const canceled = payload.event === 'invitee.canceled' || p.status === 'canceled';
   await db.upsert('mkt_bookings', [{id:p.uri,lead_id:lead.id,event_uri:typeof p.event === 'string' ? p.event : ev.uri,
-    status:canceled?'canceled':'active', start_at:ev.start_time || null,end_at:ev.end_time || null,
+    status:canceled?'canceled':'active',
+    ...(ev.start_time?{start_at:ev.start_time}:{}),...(ev.end_time?{end_at:ev.end_time}:{}),
     canceled_at:p.cancellation?.created_at || null,synced_at:isoNow()}]);
 }
 
