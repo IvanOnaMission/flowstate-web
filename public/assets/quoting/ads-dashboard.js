@@ -35,6 +35,12 @@
   function dates(days){$('#until').value=nzDate(Date.now());$('#since').value=days==='all'?'2026-01-01':nzDate(Date.now()-(Number(days)-1)*86400000);}
   dates(30);
   $$('[data-days]').forEach(b=>b.onclick=()=>{dates(b.dataset.days);load();});
+  $('#sync-meta').onclick=async()=>{
+    const button=$('#sync-meta');button.disabled=true;button.textContent='Syncing Meta…';$('#error').hidden=true;
+    try{const result=await api('ads-sync',{method:'POST',body:'{}'});await load();if(result.status==='running'){$('#sync-status').textContent='Meta import is already running. Reload data shortly.';}}
+    catch(err){$('#error').textContent=err.message;$('#error').hidden=false;}
+    finally{button.disabled=false;button.textContent='Sync Meta now';}
+  };
   $('#refresh').onclick=load;$('#since').onchange=load;$('#until').onchange=load;
   $('#search').oninput=renderAds;$('#lead-filter').onchange=renderLeads;
   $$('[data-view]').forEach(b=>b.onclick=()=>{for(const x of $$('[data-view]'))x.removeAttribute('aria-current');b.setAttribute('aria-current','page');for(const name of ['ads','leads','audience'])$(`#${name}-view`).hidden=name!==b.dataset.view;});
@@ -59,18 +65,18 @@
   }
   function render(){
     const leads=cohort(),spend=total(report.daily,'spend')||0;
-    const cards=[['Ad spend',money(spend)],['Link CTR',pct(ratio(total(report.daily,'link_clicks'),total(report.daily,'impressions')))],['Form leads',number(leads.filter(l=>l.form_submitted_at).length)],['Electrical owners',number(leads.filter(l=>l.customer_type==='electrical_owner').length)],['Booked leads',number(leads.filter(l=>bookingsFor(l).length).length)],['Qualified leads',number(leads.filter(l=>l.qualification==='qualified').length)],['Confirmed clients',number(leads.filter(l=>l.sale_outcome==='won').length)],['Recorded sales',money(total(leads.filter(l=>l.sale_outcome==='won'),'sale_value'))]];
+    const cards=[['Ad spend',money(spend)],['Link CTR',pct(ratio(total(report.daily,'link_clicks'),total(report.daily,'impressions')))],['Meta leads',number(total(report.daily,'meta_leads'))],['Meta cost / lead',money(total(report.daily,'meta_leads')?spend/total(report.daily,'meta_leads'):null)],['Form contacts',number(leads.filter(l=>l.form_submitted_at).length)],['Electrical owners',number(leads.filter(l=>l.customer_type==='electrical_owner').length)],['Booked contacts',number(leads.filter(l=>bookingsFor(l).length).length)],['Qualified leads',number(leads.filter(l=>l.qualification==='qualified').length)],['Confirmed clients',number(leads.filter(l=>l.sale_outcome==='won').length)],['Recorded sales',money(total(leads.filter(l=>l.sale_outcome==='won'),'sale_value'))]];
     $('#stats').innerHTML=cards.map(([label,value])=>`<div class="stat"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('');
     const latest=new Map();for(const r of report.runs)if(!latest.has(r.source))latest.set(r.source,r);
     const issues=[...latest.values()].filter(r=>r.status==='failed'||r.status==='partial');
-    const meta=latest.get('meta');$('#sync-status').textContent=meta?.finished_at?`Meta synced ${new Date(meta.finished_at).toLocaleString('en-NZ',{timeZone:'Pacific/Auckland'})}`:'First Meta sync pending';
+    const meta=latest.get('meta');$('#sync-status').textContent=meta?.finished_at?`Meta synced ${new Date(meta.finished_at).toLocaleString('en-NZ',{timeZone:'Pacific/Auckland'})} · Auto-sync every 2 hours`:'First Meta sync pending';
     if(issues.length){$('#error').textContent=`Import needs attention: ${issues.map(r=>r.source).join(', ')}. Last saved data is still shown.`;$('#error').hidden=false;}
     renderAds();renderLeads();renderAudience();
   }
   function renderAds(){
     if(!report)return;const search=$('#search').value.toLowerCase();
     const ads=report.ads.filter(a=>[a.name,a.topic,a.campaign_name].join(' ').toLowerCase().includes(search)).map(a=>({a,s:summary(a)})).sort((x,y)=>(y.s.spend||0)-(x.s.spend||0));
-    $('#ad-rows').innerHTML=ads.map(({a,s})=>`<tr><td><button class="ad-name" data-ad="${esc(a.id)}">${esc(a.name)}</button><small>${esc(a.campaign_name||'Historical ad')} · ${esc(a.status||'Unknown status')}${a.topic?`<br>${esc(a.topic)}`:''}</small></td><td>${money(s.spend)}</td><td>${pct(s.ctr)}</td><td>${pct(s.hook)}</td><td>${s.average_watch_seconds==null?'—':s.average_watch_seconds.toFixed(1)+'s'}</td><td>${s.leads}</td><td>${s.owners}</td><td>${s.booked}</td><td>${s.attended}</td><td>${s.won}</td></tr>`).join('')||'<tr><td colspan="10" class="empty">No matching ads.</td></tr>';
+    $('#ad-rows').innerHTML=ads.map(({a,s})=>`<tr><td><button class="ad-name" data-ad="${esc(a.id)}">${esc(a.name)}</button><small>${esc(a.campaign_name||'Historical ad')} · ${esc(a.status||'Unknown status')}${a.topic?`<br>${esc(a.topic)}`:''}</small></td><td>${money(s.spend)}</td><td>${pct(s.ctr)}</td><td>${pct(s.hook)}</td><td>${s.average_watch_seconds==null?'—':s.average_watch_seconds.toFixed(1)+'s'}</td><td>${number(s.meta_leads)}</td><td>${s.meta_leads?money((s.spend||0)/s.meta_leads):'—'}</td><td>${s.leads}</td><td>${s.owners}</td><td>${s.booked}</td><td>${s.attended}</td><td>${s.won}</td></tr>`).join('')||'<tr><td colspan="12" class="empty">No matching ads.</td></tr>';
     $$('[data-ad]').forEach(b=>b.onclick=()=>detail(b.dataset.ad));
   }
   function renderLeads(){

@@ -35,6 +35,12 @@ later imports do not replace it. Browser campaign storage lasts only the session
 
 Ad results use delivery dates in the ad account timezone (Pacific/Auckland).
 Lead counts use first-captured cohorts, with later bookings and sales attached.
+The table shows Meta leads and Meta cost per lead alongside matched form contacts.
+Meta cost per lead = spend / Meta-reported website Lead events. These event totals
+can differ from unique matched form contacts and are not added together.
+Use **Sync Meta now** to run an authenticated import immediately; **Reload data**
+only reloads the saved report. Scheduled imports continue every two hours.
+
 CTR = link clicks / impressions. Video milestones are aggregate counts at
 25/50/75/95/100%, not second-by-second individual drop-off. Average watch time is
 combined across daily records using video plays. Link-click / video-play ratios
