@@ -1,6 +1,11 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {resolveAd,dailyMetric,saveLead,customerType,recordBooking} from './ads-tracking.mjs';
+import {resolveAd,dailyMetric,saveLead,customerType,recordBooking,calendarDate} from './ads-tracking.mjs';
+test('the Meta date range includes today in the ad account timezone',()=>{
+  const now='2026-09-28T21:00:00Z';
+  assert.equal(calendarDate(now,'Pacific/Auckland'),'2026-09-29');
+  assert.equal(calendarDate(now,'UTC'),'2026-09-28');
+});
 test('attribution identifies only known IDs or an unambiguous legacy ad name',()=>{
   const ads=[{id:'123456789',name:'Quote faster'},{id:'987654321',name:'Quote faster'}];
   assert.deepEqual(resolveAd({ad_id:'123456789'},ads),{id:'123456789',evidence:'captured_ad_id'});
