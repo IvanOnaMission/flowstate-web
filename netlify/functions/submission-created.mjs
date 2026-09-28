@@ -14,6 +14,8 @@ import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
 import {holdLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
+import {recordFormLead} from '../lib/ads-tracking.mjs';
+import {trackingDatabase} from '../lib/tracking-server.mjs';
 const FORM = 'ai-makeover';
 
 export default async (req) => {
@@ -26,7 +28,8 @@ export default async (req) => {
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
   await Promise.all([
     safely('kit lead', () => addToKit({...lead, tagId: process.env.KIT_TAG_MAKEOVER_LEAD})),
-    safely('notion lead', () => crmLead({...lead, source: 'form'})),
+    safely('notion lead', () => crmLead({...lead, source: 'form', customerType: data.customer_type, adId: data.ad_id})),
+    safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,data,payload.created_at || new Date().toISOString()); }),
   ]);
 
   try {
