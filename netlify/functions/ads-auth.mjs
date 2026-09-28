@@ -3,7 +3,15 @@ export default async req=>{
   if(req.method==='GET')return trackingJson(200,{url:process.env.MKT_SUPABASE_URL,key:process.env.MKT_SUPABASE_ANON_KEY});
   if(req.method!=='POST')return trackingJson(405,{error:'POST only'});
   const origin=req.headers.get('origin');
-  if(origin&&!['https://flowstate.net.nz','https://www.flowstate.net.nz'].includes(origin))return trackingJson(403,{error:'Invalid origin.'});
+  if(origin){
+    let allowed=false;
+    try{
+      const u=new URL(origin);
+      allowed=u.protocol==='https:'&&(u.host==='flowstate.net.nz'||u.host==='www.flowstate.net.nz'||u.host==='flowstate-nz.netlify.app'
+        || /^(?:deploy-preview-\d+|[a-f0-9]{24})--flowstate-nz\.netlify\.app$/.test(u.host));
+    }catch{}
+    if(!allowed)return trackingJson(403,{error:'Invalid origin.'});
+  }
   try{
     const body=await req.json();
     if(body.action!=='password')return trackingJson(400,{error:'Unknown sign-in method.'});
