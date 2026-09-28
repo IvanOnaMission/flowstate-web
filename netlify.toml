@@ -12,6 +12,15 @@
 [build.environment]
   NODE_VERSION = "22"
 
+[functions]
+  directory = "netlify/functions"
+
+[[headers]]
+  for = "/ads/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
 # Static export writes /about/index.html etc, so Netlify's default
 # pretty-URL handling is enough — no redirects needed for the app routes.
 # The hand-written pages under public/ (offer pages, audit tool) are copied

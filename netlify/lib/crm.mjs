@@ -3,6 +3,7 @@
 // so a lead alert to Ivan is never blocked by the CRM.
 // Env: KIT_API_KEY, KIT_TAG_MAKEOVER_LEAD, KIT_TAG_MAKEOVER_BOOKED, NOTION_TOKEN, NOTION_CRM_DATABASE_ID
 const today = () => new Date().toLocaleDateString('en-CA', {timeZone: 'Pacific/Auckland'});
+import {CUSTOMER_LABELS,customerType as normaliseCustomerType} from './ads-tracking.mjs';
 
 async function kit(path, body) {
   const res = await fetch(`https://api.kit.com/v4${path}`, {
@@ -51,13 +52,16 @@ const text = value => ({rich_text: [{text: {content: String(value).slice(0, 1900
 const date = start => ({date: {start}});
 
 // A form lead: create the CRM row, or refresh it if they've been here before.
-export async function crmLead({email, name, phone, source}) {
+export async function crmLead({email, name, phone, source, customerType, adId}) {
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
   const props = {
     'Next action': text('Call within 5 minutes'),
     'Next action date': date(today()),
     'Last touch': date(today()),
   };
+  const kind=normaliseCustomerType(customerType);
+  if(kind!=='unknown')props['Customer type']={select:{name:CUSTOMER_LABELS[kind]}};
+  if(/^\d{8,30}$/.test(adId||''))props['Source ad ID']=text(adId);
   const existing = await findByEmail(email);
   if (existing) return notion(`/pages/${existing.id}`, 'PATCH', {properties: props});
   return notion('/pages', 'POST', {
@@ -68,7 +72,7 @@ export async function crmLead({email, name, phone, source}) {
       Phone: {phone_number: phone || null},
       Stage: {select: {name: 'Lead'}},
       Type: {select: {name: 'Warm'}},
-      Trade: text('Electrical'),
+      ...(kind==='electrical_owner'?{Trade:text('Electrical')}:{}),
       'Plan / value': text('2-Day AI Makeover'),
       'Wiki / notes': text(`Came in through the AI Makeover page${source ? ` (${source})` : ''}.`),
       ...props,
@@ -94,7 +98,6 @@ export async function crmBooked({email, name, phone, start}) {
       Email: {email},
       Phone: {phone_number: phone || null},
       Type: {select: {name: 'Warm'}},
-      Trade: text('Electrical'),
       'Plan / value': text('2-Day AI Makeover'),
       ...props,
     },

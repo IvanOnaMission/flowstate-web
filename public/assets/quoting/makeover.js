@@ -4,10 +4,17 @@
   const production = ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
   const params = new URLSearchParams(location.search);
   const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  // Store campaign fields only; never store form contact details in the browser.
+  const captured={};keys.concat('ad_id').forEach(key=>{if(params.has(key))captured[key]=params.get(key).slice(0,200);});
+  let previous={};try{previous=JSON.parse(sessionStorage.getItem('flowstate-ad-source')||'{}');}catch{}
+  const tracking=Object.keys(captured).length?captured:previous;
+  if(!tracking.ad_id&&/^\d{8,30}$/.test(tracking.utm_content||''))tracking.ad_id=tracking.utm_content;
+  if(Object.keys(captured).length){try{sessionStorage.setItem('flowstate-ad-source',JSON.stringify(captured));}catch{}}
+  if(/^\d{8,30}$/.test(tracking.ad_id||''))tracking.utm_content=tracking.ad_id;
   // Ad UTMs override the page defaults on the booking link (booking.js reads it later).
   document.querySelectorAll('a[href^="https://calendly.com/"]').forEach(link => {
     const url = new URL(link.href);
-    keys.forEach(key => { if (params.has(key)) url.searchParams.set(key, params.get(key).slice(0, 200)); });
+    keys.forEach(key => { if (tracking[key]) url.searchParams.set(key, tracking[key]); });
     link.href = url.toString();
   });
 
@@ -32,6 +39,8 @@
 
   const form = document.querySelector('form[name="ai-makeover"]');
   if (!form) return;
+  keys.concat('ad_id').forEach(key=>{const field=form.elements.namedItem(key);if(field)field.value=tracking[key]||'';});
+  form.elements.namedItem('landing_path').value=location.pathname;
   const feedback = form.querySelector('#feedback');
   const submit = form.querySelector('button[type=submit]');
   const name = form.elements.namedItem('name');
@@ -84,7 +93,7 @@
       });
       if (!res.ok) throw new Error(String(res.status));
       sent = true;
-      form.querySelectorAll('input, button').forEach(el => { el.disabled = true; });
+      form.querySelectorAll('input, select, button').forEach(el => { el.disabled = true; });
       if (typeof window.fbq === 'function') {
         const id = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
         window.fbq('track', 'Lead', {content_name: 'AI Makeover'}, {eventID: `lead-${id}`});

@@ -10,6 +10,8 @@ import {aboutLead} from '../lib/about.mjs';
 import {bookedMessage} from '../lib/messages.mjs';
 import {releaseLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
+import {recordBooking} from '../lib/ads-tracking.mjs';
+import {trackingDatabase} from '../lib/tracking-server.mjs';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
 
@@ -97,6 +99,7 @@ export default async (req) => {
       return json(401, {error: 'calendly not configured'});
     }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
+    await safely('marketing booking',async()=>{const db=trackingDatabase();if(db)await recordBooking(db,body);});
     let aboutLines = [];
     if (body.event === 'invitee.created') {
       const p = body.payload || {};
