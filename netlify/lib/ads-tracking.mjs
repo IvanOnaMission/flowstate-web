@@ -14,6 +14,8 @@ export const actionValue = (list, type = 'video_view') => numeric(list?.find(x =
 const richText = p => (p?.rich_text || p?.title || []).map(x => x.plain_text || x.text?.content || '').join('');
 const selected = p => p?.select?.name || p?.status?.name || '';
 const daysAgo = n => new Date(Date.now() - n * 86400000).toISOString();
+export const calendarDate = (value,timezone='Pacific/Auckland') =>
+  new Intl.DateTimeFormat('en-CA',{timeZone:timezone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));
 
 export function database(url, key) {
   async function request(path, method = 'GET', body, headers = {}) {
@@ -166,7 +168,8 @@ async function syncMeta(db,c,backfill) {
   const fields=['ad_id','ad_name','date_start','date_stop','spend','impressions','inline_link_clicks','outbound_clicks','actions','conversions',
     'video_play_actions','video_thruplay_watched_actions','video_avg_time_watched_actions','video_p25_watched_actions',
     'video_p50_watched_actions','video_p75_watched_actions','video_p95_watched_actions','video_p100_watched_actions'];
-  const range=backfill?{date_preset:'maximum'}:{time_range:{since:daysAgo(35).slice(0,10),until:isoNow().slice(0,10)}};
+  const timezone=account.timezone_name||'Pacific/Auckland';
+  const range=backfill?{date_preset:'maximum'}:{time_range:{since:calendarDate(daysAgo(35),timezone),until:calendarDate(isoNow(),timezone)}};
   const rows=await api.all(`${act}/insights`,{level:'ad',time_increment:1,fields:fields.join(','),use_unified_attribution_setting:'true',limit:500,...range});
   const known=new Set(mapped.map(a=>a.id));
   const missing=[...new Map(rows.filter(r=>!known.has(r.ad_id)).map(r=>[r.ad_id,{id:r.ad_id,account_id:account.id,name:r.ad_name||r.ad_id,status:'historical',synced_at:isoNow()}])).values()];
