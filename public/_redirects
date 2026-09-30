@@ -1,10 +1,24 @@
-# Retired offers and funnel pages all point at the one offer: the 2-Day AI Makeover.
-# Netlify keeps the query string (ad UTMs) on these redirects by default.
-/workflow-diagnostic/       /ai-makeover/  301
-/workflow-diagnostic        /ai-makeover/  301
-/quoting-help/              /ai-makeover/  301
-/quoting-help               /ai-makeover/  301
-/quoting-workbook/start/    /ai-makeover/  301
-/quoting-workbook/start     /ai-makeover/  301
-/quoting-workbook/          /ai-makeover/  301
-/quoting-workbook           /ai-makeover/  301
+# Retired offers point to the paid diagnostic and ongoing AI partnership.
+# Netlify preserves campaign query strings. Forced rules cover historical static files.
+# Private offer originals stay intact in source; these rules change current marketing only.
+/ai-makeover/               /workflow-diagnostic/  301!
+/ai-makeover                /workflow-diagnostic/  301!
+/ai-makeover/index.html     /workflow-diagnostic/  301!
+/private/p/21-day-head-start-8f3a1c92/ /workflow-diagnostic/ 301!
+/private/p/21-day-head-start-8f3a1c92  /workflow-diagnostic/ 301!
+/private/p/21-day-head-start-8f3a1c92/index.html /workflow-diagnostic/ 301!
+/private/p/flowstate-pricing-33f2c76b/ /workflow-diagnostic/ 301!
+/private/p/flowstate-pricing-33f2c76b  /workflow-diagnostic/ 301!
+/private/p/flowstate-pricing-33f2c76b/index.html /workflow-diagnostic/ 301!
+/quoting-help/              /workflow-diagnostic/  301
+/quoting-help               /workflow-diagnostic/  301
+/quoting-workbook/start/    /workflow-diagnostic/  301
+/quoting-workbook/start     /workflow-diagnostic/  301
+/quoting-workbook/          /workflow-diagnostic/  301
+/quoting-workbook           /workflow-diagnostic/  301
+/audit/                    /workflow-diagnostic/  301!
+/audit                     /workflow-diagnostic/  301!
+/audit/index.html          /workflow-diagnostic/  301!
+/audit-full/               /workflow-diagnostic/  301!
+/audit-full                /workflow-diagnostic/  301!
+/audit-full/index.html     /workflow-diagnostic/  301!

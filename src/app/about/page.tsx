@@ -163,8 +163,8 @@ export default function About() {
                   "Some businesses aren't ready, and some problems aren't AI problems. Saying so costs me a sale and saves you a project.",
                 ],
                 [
-                  "If it isn't doing the job, I keep going",
-                  "We agree what it should be doing before I start. If it isn't doing that, I keep working until it is — you don't get another invoice for me finishing what I said I'd finish.",
+                  "We agree the work before I start",
+                  "The diagnostic gives us a roadmap. After it, we agree the ongoing AI partner scope and rate, including how we will test the work and what support is included. Changes to the plan are agreed together.",
                 ],
                 [
                   "My entire reputation is ahead of me, not behind me",
@@ -172,7 +172,7 @@ export default function About() {
                 ],
                 [
                   "I train your team, not just the software",
-                  "Most of these projects die because nobody ends up using the thing. So it isn't finished when it's built. It's finished when your people are using it without being reminded to.",
+                  "Training is part of the AI partnership we scope together. We help your team practise on real work, check the results and understand when a decision needs to come back to a person.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>

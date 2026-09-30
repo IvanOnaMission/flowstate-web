@@ -57,13 +57,13 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title text-white">
-                    <span className="block">Build a business AI can help run.</span>
+                    <span className="block">Your AI partner. Starting with a diagnostic.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
                   <div className="max-w-[48ch] space-y-4 text-[clamp(1.0625rem,1.5vw,1.25rem)] leading-relaxed text-white/90">
-                    <p>If it’s work you do on a computer, let’s explore how AI could take it off your hands.</p>
-                    <p>We build around your processes and the software you already use.</p>
+                    <p>Find where AI can help your electrical business, then work with me to put the right changes in place.</p>
+                    <p>Start with a paid diagnostic: a review of your workflows and a prioritised roadmap. After that, we agree the scope and rate for an ongoing AI partnership.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={240}>
@@ -93,15 +93,15 @@ export default function Home() {
           <SoftwareExplanation />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
-            <a href="/ai-makeover/">What the 2-Day AI Makeover includes →</a>
+            <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
           </div>
-          <section aria-labelledby="makeover-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
-            <h2 id="makeover-heading" className="h-sec max-w-[18ch] text-atlantic">AI set up properly. Your quoting handed over. 2 days.</h2>
+          <section aria-labelledby="diagnostic-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                The 2-Day AI Makeover for NZ electrical businesses. Done with you, 1:1, over two days at your business.
+                The paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
               </p>
-              <a href="/ai-makeover/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">What the 2-Day AI Makeover includes →</a>
+              <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
             </div>
           </section>
         </Reveal>
@@ -270,7 +270,7 @@ export default function Home() {
                 {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The call is free and takes about 30 minutes. We'll check it works with your software and whether the 2-Day AI Makeover is right for your business, before you commit."}
+                {"The introductory call is free and takes about 30 minutes. We'll discuss whether a paid diagnostic is a useful next step. Its scope and fee are agreed before you commit; the ongoing AI partner scope and rate are agreed after the diagnostic."}
               </p>
             </div>
           </Reveal>

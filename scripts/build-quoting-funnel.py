@@ -1,7 +1,7 @@
 # RETIRED: the quoting funnel pages (/quoting-workbook/, /quoting-workbook/start/,
-# /quoting-help/) were retired in favour of /ai-makeover/ and now 301 there
+# /quoting-help/) were retired in favour of /workflow-diagnostic/ and now 301 there
 # (public/_redirects). Do not rerun this script: it would recreate stale pages
-# and overwrite public/assets/quoting/funnel.css, which /ai-makeover/ uses.
+# and overwrite public/assets/quoting/funnel.css used by the privacy notice.
 """Port the approved campaign design into this site's static export.
 
 Run only when updating the campaign from its reviewed source. The generated

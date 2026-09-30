@@ -52,10 +52,10 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Before a pilot, record how long the existing preparation process takes and what causes rework. During the pilot, include the time spent supplying information, correcting the draft and reviewing it."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Compare similar jobs and keep a record of the problems the workflow encounters. That gives you a basis for deciding whether it is helping. Producing a draft quickly, on its own, doesn't establish the overall time saved."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We aren't quoting a measured customer saving for this workflow. It is in development, and results would need to be established in use."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Want your quoting handed over?"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate's 2-Day AI Makeover sets AI up properly in your business and hands your quoting over, built on your real jobs. AI prepares the drafts. You make the final call on pricing."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">{"See what the 2-Day AI Makeover includes →"}</a></p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. We'll check it works with your software before you commit."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Want to assess where AI could help your quoting?"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate starts with a paid diagnostic of your workflows and a prioritised roadmap. Quoting is one possible area to assess. After the diagnostic, we agree the scope and rate for an ongoing AI partnership covering implementation, training and support. You keep approval of quotes and pricing."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free introductory call to discuss the paid diagnostic. We assess software access and constraints before agreeing any implementation."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

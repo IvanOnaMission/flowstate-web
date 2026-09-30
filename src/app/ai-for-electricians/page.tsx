@@ -24,11 +24,11 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
           <SoftwareExplanation />
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with the 2-Day AI Makeover"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"AI set up properly. Your quoting handed over. Done with you, 1:1, over two days at your business."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"AI learns how your business works, your software gets connected and your quoting is built on your real jobs. You also get an AI Gap Check, a roadmap for what to hand over next, and training in plain English."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">{"See what the 2-Day AI Makeover includes →"}</a></p>
+          <p className="mt-3 text-sm text-mute">{"Introductory call: free · about 30 minutes · diagnostic quoted separately"}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with a paid diagnostic"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We review your workflows, software and business information to see where AI could make a useful difference."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You get a prioritised roadmap, including the requirements and constraints for the work worth tackling first. After the diagnostic, we agree the scope and rate for an ongoing AI partnership covering implementation, training and support."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"A first application: job notes to a draft quote"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We're developing a quoting workflow that starts with job information, quantities and prices supplied by the owner. It checks for missing details and prepares a draft in the job-management system for review, subject to the software access and connections available."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You check the scope, quantities, prices and wording before sending. Independent calculation of quantities and prices is outside this initial workflow."}</p>
@@ -46,7 +46,7 @@ export default function Page() {
             </div>
           </div>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Bring a recent example."}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A quote that took too long. An enquiry that slipped through. Something you keep having to chase yourself. We'll use it to work out whether the 2-Day AI Makeover is right for your business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A quote that took too long. An enquiry that slipped through. Something you keep having to chase yourself. We'll use it to discuss whether a paid diagnostic would help you decide where to start."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

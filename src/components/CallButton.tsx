@@ -1,11 +1,11 @@
 import { site } from "@/lib/site";
 
 /**
- * The only conversion on the public site. Every instance points at the AI
- * Makeover page, where a short form comes before the calendar, so there is one
+ * The only conversion on the public site. Every instance points at the diagnostic
+ * enquiry page, where a short form comes before the calendar, so there is one
  * thing to change if it ever moves.
  *
- * Deliberately a plain <a>, not next/link: /ai-makeover/ is a static page in
+ * Deliberately a plain <a>, not next/link: /workflow-diagnostic/ is a static page in
  * public/, not an app route, so it needs a normal full-page navigation.
  */
 export default function CallButton({

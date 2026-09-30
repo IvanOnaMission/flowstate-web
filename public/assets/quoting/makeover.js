@@ -1,4 +1,4 @@
-/* AI Makeover form: sends to Netlify Forms without leaving the page, then reveals the calendar.
+/* Diagnostic enquiry form (legacy ai-makeover backend identity): sends to Netlify Forms without leaving the page, then reveals the calendar.
    No contact details enter browser storage, analytics or booking URLs. */
 (() => {
   const production = ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
@@ -96,7 +96,7 @@
       form.querySelectorAll('input, select, button').forEach(el => { el.disabled = true; });
       if (typeof window.fbq === 'function') {
         const id = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
-        window.fbq('track', 'Lead', {content_name: 'AI Makeover'}, {eventID: `lead-${id}`});
+        window.fbq('track', 'Lead', {content_name: 'Workflow diagnostic'}, {eventID: `lead-${id}`});
       }
       reveal('Thanks. Pick a time below.');
     } catch {

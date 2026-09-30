@@ -5,7 +5,7 @@
   const link = box?.querySelector('a[href^="https://calendly.com/"]');
   if (!link) return;
   const path = location.pathname;
-  const route = path.startsWith('/ai-makeover') ? 'AI Makeover'
+  const route = path.startsWith('/workflow-diagnostic') ? 'Workflow diagnostic'
     : path.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
 
   // A calendar marked data-after-lead stays unbuilt until its form is sent (makeover.js).

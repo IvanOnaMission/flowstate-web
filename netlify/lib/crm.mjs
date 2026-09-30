@@ -73,8 +73,8 @@ export async function crmLead({email, name, phone, source, customerType, adId}) 
       Stage: {select: {name: 'Lead'}},
       Type: {select: {name: 'Warm'}},
       ...(kind==='electrical_owner'?{Trade:text('Electrical')}:{}),
-      'Plan / value': text('2-Day AI Makeover'),
-      'Wiki / notes': text(`Came in through the AI Makeover page${source ? ` (${source})` : ''}.`),
+      'Plan / value': text('Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)'),
+      'Wiki / notes': text(`Came in through the workflow diagnostic page${source ? ` (${source})` : ''}.`),
       ...props,
     },
   });
@@ -98,7 +98,7 @@ export async function crmBooked({email, name, phone, start}) {
       Email: {email},
       Phone: {phone_number: phone || null},
       Type: {select: {name: 'Warm'}},
-      'Plan / value': text('2-Day AI Makeover'),
+      'Plan / value': text('Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)'),
       ...props,
     },
   });

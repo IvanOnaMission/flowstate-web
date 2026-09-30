@@ -46,7 +46,7 @@ export default function Page() {
           <p className="mt-9 max-w-[65ch] text-xl leading-relaxed text-mute">{description}</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
-            <a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">See what the 2-Day AI Makeover includes</a>
+            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a>
           </div>
         </article>
       </main>

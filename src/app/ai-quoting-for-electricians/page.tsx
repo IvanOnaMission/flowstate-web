@@ -31,13 +31,13 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"The first scope is quote preparation"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Independent calculation of quantities and prices is outside the initial scope. You supply those inputs."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Automated quote follow-up is a possible later workflow with its own scope. Before it sends a reminder, it needs a reliable way to establish whether the quote still needs following up."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Hand your quoting over in 2 days"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The 2-Day AI Makeover sets AI up properly in your business and hands your quoting over, built on your real jobs. AI prepares the drafts. You make the final call on pricing."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/ai-makeover/">{"What the 2-Day AI Makeover includes →"}</a></p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Assess quoting in your diagnostic"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The paid diagnostic can review how your quotes are prepared and where work gets held up. If quoting becomes a priority on your roadmap, we can agree an implementation as part of the ongoing AI partnership. AI prepares drafts; you approve the scope, quantities, pricing and final quote."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Would this fit the way you quote?"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free discovery call. We'll discuss how you work today and whether the 2-Day AI Makeover is right for your business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free introductory call. We'll discuss whether a paid diagnostic would help. The ongoing AI partner scope and rate are agreed after the diagnostic."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
+          <p className="mt-3 text-sm text-mute">{"Introductory call: free · about 30 minutes · diagnostic quoted separately"}</p>
         </article>
       </main>
     </>
