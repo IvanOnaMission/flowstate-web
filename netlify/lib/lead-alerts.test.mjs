@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {contactCard, dialable} from './telegram.mjs';
 import {dueLeads, holdLead, leadKey, releaseLead} from './pending.mjs';
-import {bookedMessage, formLeadMessage} from './messages.mjs';
+import {bookedMessage, formLeadMessage, quietCalendlyEvent} from './messages.mjs';
 import {pageSummary, workDomain} from './about.mjs';
 
 function fakeStore() {
@@ -86,4 +86,13 @@ test('only work email domains get a website lookup', () => {
 test('page summary pulls the title and description', () => {
   const html = '<title>Sparky &amp; Co | Electricians</title><meta name="description" content="Residential electrical in Tauranga.">';
   assert.deepEqual(pageSummary(html), {title: 'Sparky & Co | Electricians', description: 'Residential electrical in Tauranga.'});
+});
+
+test("reschedules and Ivan's own cancellations send no alert", () => {
+  const uri = 'https://api.calendly.com/scheduled_events/x/invitees/y';
+  assert.equal(quietCalendlyEvent({event: 'invitee.created', payload: {old_invitee: null}}), '');
+  assert.equal(quietCalendlyEvent({event: 'invitee.created', payload: {old_invitee: uri}}), 'rescheduled');
+  assert.equal(quietCalendlyEvent({event: 'invitee.canceled', payload: {rescheduled: true, new_invitee: uri}}), 'rescheduled');
+  assert.equal(quietCalendlyEvent({event: 'invitee.canceled', payload: {rescheduled: false, cancellation: {canceler_type: 'host'}}}), 'cancelled by Ivan');
+  assert.equal(quietCalendlyEvent({event: 'invitee.canceled', payload: {rescheduled: false, cancellation: {canceler_type: 'invitee'}}}), '');
 });
