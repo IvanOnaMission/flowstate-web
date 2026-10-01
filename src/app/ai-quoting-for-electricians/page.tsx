@@ -37,7 +37,7 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Would this fit the way you quote?"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free introductory call. We'll discuss whether a paid diagnostic would help. The ongoing AI partner scope and rate are agreed after the diagnostic."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <p className="mt-3 text-sm text-mute">{"Introductory call: free · about 30 minutes · diagnostic quoted separately"}</p>
+          <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
         </article>
       </main>
     </>

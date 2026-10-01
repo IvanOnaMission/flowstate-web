@@ -38,7 +38,7 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={90}>
             <p className="mt-7 max-w-[52ch] text-[1.1rem] leading-relaxed text-mute">
-              {"Start with a free introductory call, about 30 minutes. Tell me how your electrical business runs and where work gets held up. We'll discuss the paid diagnostic and agree its scope and fee before starting. The ongoing AI partner scope and rate are agreed after the diagnostic."}
+              {"About 30 minutes, free, with no pitch deck. Tell me how your business runs and where work gets held up. We'll work out whether the paid diagnostic is right for your business, before you commit. The ongoing AI partner scope and rate are agreed after the diagnostic."}
             </p>
           </Reveal>
           <Reveal delay={160}>

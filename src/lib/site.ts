@@ -1,7 +1,7 @@
 /** Shared public business details and booking settings. */
 export const site = {
   name: "Flowstate",
-  tagline: "Workflow diagnostic and AI partner for NZ electrical businesses",
+  tagline: "AI systems for New Zealand trade businesses",
   city: "Auckland",
   email: "ivan@flowstate.net.nz",
   phone: "027 200 6121",
@@ -34,14 +34,14 @@ export const workshop = {
 
 export const nav = [
   { href: "/ai-for-electricians/", label: "AI for electricians" },
-  { href: "/services/", label: "Diagnostic & AI partner" },
+  { href: "/services/", label: "How it works" },
   { href: "/guides/", label: "Guides" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ] as const;
 
 /** The proof line under the CTA. Kept in one place so it can't drift. */
-export const callPromise = `Introductory call: free · about ${site.callMinutes} minutes · diagnostic quoted separately`;
+export const callPromise = `Free · about ${site.callMinutes} minutes · no pitch deck`;
 
 /** The ladder describes gradual adoption, with expansion based on tested value. */
 export const rungs = [

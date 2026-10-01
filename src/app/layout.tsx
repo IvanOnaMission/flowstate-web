@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "Start with a paid workflow diagnostic and prioritised roadmap for your NZ electrical business. Then agree the scope and rate for an ongoing AI partnership: implementation, training and support.",
+    "Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",
   openGraph: {
     type: "website",
     locale: "en_NZ",

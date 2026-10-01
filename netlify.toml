@@ -42,7 +42,7 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# Historical audit source is retained; public/_redirects routes visitors to the diagnostic.
+# Retired audit tools remain reachable through existing links, but unindexed.
 [[headers]]
   for = "/audit/*"
   [headers.values]

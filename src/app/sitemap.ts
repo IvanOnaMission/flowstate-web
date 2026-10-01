@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
  *
  * /workflow-diagnostic/ is a hand-written page under public/ but it explains the current offer, so
  * it is listed. The other parked pages under public/ are deliberately absent: /private/p/* are
- * retired offer links that redirect to the diagnostic, and /audit* is parked
+ * unlisted offer links that exist to be emailed, and /audit* is parked
  * pending a rewrite. Listing either would advertise pages we don't want found.
  */
 export const dynamic = "force-static";

@@ -24,7 +24,7 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
           <SoftwareExplanation />
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <p className="mt-3 text-sm text-mute">{"Introductory call: free · about 30 minutes · diagnostic quoted separately"}</p>
+          <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with a paid diagnostic"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We review your workflows, software and business information to see where AI could make a useful difference."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You get a prioritised roadmap, including the requirements and constraints for the work worth tackling first. After the diagnostic, we agree the scope and rate for an ongoing AI partnership covering implementation, training and support."}</p>

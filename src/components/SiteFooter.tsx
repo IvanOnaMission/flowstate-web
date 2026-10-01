@@ -29,7 +29,7 @@ export default function SiteFooter() {
             {site.name}
           </p>
           <p className="mt-2 max-w-[34ch] text-[0.95rem] leading-relaxed text-mute">
-            {site.tagline}. Based in {site.city}, working with electrical businesses
+            {site.tagline}. Based in {site.city}, working with trade businesses
             across New Zealand.
           </p>
         </div>

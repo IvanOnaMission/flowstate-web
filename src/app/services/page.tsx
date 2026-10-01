@@ -3,17 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
-import { callPromise } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/services/" },
   openGraph: { url: "/services/", images: ["/assets/hero/workshop-hook.jpg"] },
-  title: "Workflow diagnostic and ongoing AI partner",
-  description: "Start with a paid workflow diagnostic and prioritised roadmap. After the diagnostic, agree the scope and rate for an ongoing AI partnership: implementation, training and support.",
+  title: "How the diagnostic and AI partnership work",
+  description: "Book a call, then a paid workflow diagnostic and prioritised roadmap. Agree the ongoing AI partner scope and rate after the diagnostic.",
 };
-
-const paragraph = "mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute";
-const heading = "h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink";
 
 export default function Page() {
   return (
@@ -21,33 +17,32 @@ export default function Page() {
       <SiteNav />
       <main id="main" className="shell py-[clamp(3rem,6vw,5rem)]">
         <article className="max-w-[52rem]">
-          <p className="eyebrow mb-5 text-atlantic">Diagnostic &amp; AI partner</p>
-          <h1 className="h-hero max-w-[24ch] text-ink">Start with a diagnostic. Then work with your AI partner.</h1>
-          <p className={paragraph}>Flowstate helps New Zealand electrical businesses find where AI could make a useful difference, then put the agreed changes into practice. The paid diagnostic comes first. The ongoing AI partner scope and rate are agreed after the diagnostic.</p>
+          <p className="eyebrow mb-5 text-atlantic">{"How it works"}</p>
+          <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
           <SoftwareExplanation />
-          <h2 className={heading}>1. A free introductory call</h2>
-          <p className={paragraph}>About 30 minutes with Ivan to discuss how your business runs, the software you use and where work gets held up. We decide whether a paid diagnostic is a useful next step and agree its scope and fee before starting.</p>
-          <div className="mt-7"><CallButton tone="atlantic">Discuss your diagnostic</CallButton></div>
-          <h2 className={heading}>2. The paid diagnostic</h2>
-          <p className={paragraph}>We review your workflows with you, using real examples to understand where time goes, what information the work needs and what your existing software supports.</p>
-          <ul className="mt-5 max-w-[65ch] list-disc space-y-3 pl-6 text-[1.0625rem] leading-relaxed text-mute">
-            <li><strong className="text-ink">Workflow review</strong> – trace the repeated work, handovers and bottlenecks.</li>
-            <li><strong className="text-ink">AI opportunities</strong> – assess what could help, the requirements and the constraints.</li>
-            <li><strong className="text-ink">Prioritised roadmap</strong> – decide what is worth tackling first and what needs to be in place.</li>
-          </ul>
-          <p className={paragraph}>The diagnostic gives you a basis for deciding what to do next. Any implementation is agreed afterwards.</p>
-          <h2 className={heading}>3. Agree the AI partnership</h2>
-          <p className={paragraph}>After the diagnostic, we review the roadmap together and agree the scope and rate for the ongoing AI partnership. That includes the implementation priorities, delivery plan, training and support. Any software subscriptions or other third-party costs are discussed as part of the scope.</p>
-          <h2 className={heading}>4. Implementation, training and support</h2>
-          <p className={paragraph}>I work with you on the agreed priorities: build and test workflows, help your team use them on real work, and support and improve them within our agreed scope. We review how they are working before deciding what to tackle next.</p>
-          <p className={paragraph}>Your team keeps control of important decisions. For a quoting workflow, you supply the job information, quantities and prices, then review and approve the draft before it is sent.</p>
-          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-quoting-for-electricians/">Explore quoting as one possible workflow →</Link></p>
-          <h2 className={heading}>What to bring</h2>
-          <p className={paragraph}>Start with a recent example of work that gets held up. Before the diagnostic, we agree which workflows, records and people to include. You do not need to be technical.</p>
-          <h2 className={heading}>Tell me where work is getting stuck.</h2>
-          <p className={paragraph}>Book a free introductory call to discuss the paid diagnostic and whether it is right for your business.</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. Book a call"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Fill in a short form and pick a time that suits you."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
-          <p className="mt-3 text-sm text-mute">{callPromise}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"2. A 30-minute discovery call"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We talk about your business, how you quote and the software you use. We discuss whether a paid diagnostic is the right next step."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"3. The paid diagnostic"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree the diagnostic scope and fee before starting. Then we review your workflows, business information and existing software to identify where AI could help. You get a prioritised roadmap for what to tackle first."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"4. Your ongoing AI partner"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"After the diagnostic, we agree the scope and rate for an ongoing AI partnership. I work with you on the priorities from your roadmap, with implementation, training and support agreed for your business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Implementation can include building and testing workflows around your existing tools, helping your team use them on real work, and improving them within the agreed scope."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"AI prepares the drafts. You make the final call on pricing."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
+          <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-quoting-for-electricians/">{"Explore the quoting workflow →"}</Link></p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"5. Ongoing support"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree what support is included in the AI partnership. We review how the work is going and decide together what to tackle next from your roadmap."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"What you'll need to bring"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Have a few recent examples ready. Before the diagnostic, we agree which workflows, records and people to include. You don't need to be technical. If you can send a text, you can use it."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Tell me where work is getting stuck."}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. We'll discuss whether the paid diagnostic is right for your business before you commit."}</p>
+          <div className="mt-7"><CallButton tone="atlantic" /></div>
+          <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
         </article>
       </main>
     </>

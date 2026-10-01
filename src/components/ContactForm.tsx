@@ -97,7 +97,7 @@ export default function ContactForm() {
         Send it
       </button>
       <p className="mt-4 text-[0.85rem] text-mute">
-        Goes straight to {site.email}. I&apos;ll contact you about the diagnostic.
+        Goes straight to {site.email}. I&apos;ll come back to you the same day.
       </p>
     </form>
   );

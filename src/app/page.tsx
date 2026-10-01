@@ -57,13 +57,13 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title text-white">
-                    <span className="block">Your AI partner. Starting with a diagnostic.</span>
+                    <span className="block">Build a business AI can help run.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
                   <div className="max-w-[48ch] space-y-4 text-[clamp(1.0625rem,1.5vw,1.25rem)] leading-relaxed text-white/90">
-                    <p>Find where AI can help your electrical business, then work with me to put the right changes in place.</p>
-                    <p>Start with a paid diagnostic: a review of your workflows and a prioritised roadmap. After that, we agree the scope and rate for an ongoing AI partnership.</p>
+                    <p>If it’s work you do on a computer, let’s explore how AI could take it off your hands.</p>
+                    <p>We build around your processes and the software you already use.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={240}>
