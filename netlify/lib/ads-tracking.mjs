@@ -56,7 +56,17 @@ export async function saveLead(db, data, ads = []) {
   const email = emailKey(data.email);
   if (!validEmail(email)) return null;
   const rows = await db.request(`mkt_leads?email=eq.${encodeURIComponent(email)}&limit=1`);
-  const existing = rows[0] || {};
+  const emailMatch = rows[0];
+  let pageMatch;
+  if (data.notion_page_id && emailMatch?.notion_page_id !== data.notion_page_id) {
+    const matches = await db.request(`mkt_leads?notion_page_id=eq.${encodeURIComponent(data.notion_page_id)}&limit=1`);
+    pageMatch = matches[0];
+  }
+  if (pageMatch && emailMatch && pageMatch.id !== emailMatch.id) throw new Error('CRM identity conflict requires review');
+  if (emailMatch?.notion_page_id && emailMatch.notion_page_id !== data.notion_page_id && !pageMatch && data.notion_page_id) {
+    throw new Error('CRM email is linked to another page');
+  }
+  const existing = pageMatch || emailMatch || {};
   const tracking = data.tracking || {};
   const attributed = resolveAd(tracking, ads);
   const row = {
@@ -75,7 +85,9 @@ export async function saveLead(db, data, ads = []) {
   }
   for (const k of ['qualification','call_outcome','sale_outcome','sale_value']) if (data[k] !== undefined) row[k] = data[k];
   if (existing.id) row.id = existing.id;
-  const result = await db.request('mkt_leads?on_conflict=email', 'POST', row, {Prefer: 'resolution=merge-duplicates,return=representation'});
+  const result = pageMatch && pageMatch.email !== email
+    ? await db.request(`mkt_leads?id=eq.${encodeURIComponent(pageMatch.id)}`, 'PATCH', (({id,...rest})=>rest)(row), {Prefer: 'return=representation'})
+    : await db.request('mkt_leads?on_conflict=email', 'POST', row, {Prefer: 'resolution=merge-duplicates,return=representation'});
   return result[0];
 }
 

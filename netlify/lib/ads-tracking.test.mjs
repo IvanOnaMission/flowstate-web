@@ -35,3 +35,18 @@ test('a returning lead keeps their first source and known customer type',async()
   assert.equal(Object.hasOwn(posted,'source_ad_id'),false);assert.equal(Object.hasOwn(posted,'customer_type'),false);
   assert.equal(customerType('electrician'),'unknown');
 });
+test('a changed CRM email updates the same lead and keeps linked bookings intact',async()=>{
+  let updated;
+  const db={request:async(path,method,body)=>{
+    if(path.startsWith('mkt_leads?email='))return [];
+    if(path.startsWith('mkt_leads?notion_page_id='))return [{id:'lead-1',email:'old@example.nz',notion_page_id:'page-1',first_seen_at:'2026-09-01T00:00:00Z',source_ad_id:'123456789',tracking:{ad_id:'123456789'}}];
+    if(method==='PATCH'){updated={path,body};return [{id:'lead-1',...body}];}
+    throw new Error('Unexpected database operation');
+  }};
+  const result=await saveLead(db,{email:'new@example.nz',notion_page_id:'page-1',first_seen_at:'2026-10-03T00:00:00Z'},[]);
+  assert.equal(updated.path,'mkt_leads?id=eq.lead-1');
+  assert.equal(updated.body.email,'new@example.nz');
+  assert.equal(updated.body.first_seen_at,'2026-09-01T00:00:00Z');
+  assert.equal(Object.hasOwn(updated.body,'source_ad_id'),false);
+  assert.equal(result.id,'lead-1');
+});

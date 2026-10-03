@@ -16,6 +16,17 @@ export function formLeadMessage(lead, aboutLines = []) {
   ].join('\n');
 }
 
+// Calendly sends a cancel plus a fresh booking for every reschedule, so moving a call used to
+// re-send the whole lead alert. Ivan doesn't need texting about calls he moved or cancelled himself.
+// Returns why the event stays quiet, or '' when it should alert.
+export function quietCalendlyEvent(body) {
+  const p = body?.payload || {};
+  if (body?.event === 'invitee.created' && p.old_invitee) return 'rescheduled';
+  if (body?.event === 'invitee.canceled' && p.rescheduled) return 'rescheduled';
+  if (body?.event === 'invitee.canceled' && p.cancellation?.canceler_type === 'host') return 'cancelled by Ivan';
+  return '';
+}
+
 // answers: Calendly's questions_and_answers minus the phone question.
 export function bookedMessage({name, phone, email, when, answers = []}, aboutLines = []) {
   const filled = answers.filter(a => clean(a.answer));
