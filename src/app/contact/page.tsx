@@ -30,10 +30,8 @@ export default function Contact() {
           <Reveal>
             <p className="eyebrow mb-5 text-atlantic">Contact</p>
             <h1 className="h-hero max-w-[16ch] text-ink">
-              Book the call.{" "}
-              <span className="text-atlantic">
-                Worst case you learn something.
-              </span>
+              Let&apos;s find where{" "}
+              <span className="text-atlantic">AI could help.</span>
             </h1>
           </Reveal>
           <Reveal delay={90}>

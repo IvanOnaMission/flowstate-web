@@ -7,7 +7,11 @@ import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
 import { callPromise, rungs } from "@/lib/site";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  title: "AI partner for NZ electrical businesses",
+  description: "Less admin. More time to run your electrical business. Start with a paid workflow diagnostic and prioritised roadmap, then agree your ongoing AI partner scope and rate.",
+};
 
 /**
  * The home page has one job: book the discovery call. Everything here either
@@ -56,19 +60,23 @@ export default function Home() {
                   <p className="eyebrow text-sky/90">AI help for New Zealand electrical businesses</p>
                 </Reveal>
                 <Reveal delay={90}>
-                  <h1 className="home-hero-title text-white">
-                    <span className="block">Build a business AI can help run.</span>
+                  <h1 className="home-hero-title max-w-[21ch] text-white">
+                    <span className="block">Less admin.</span>
+                    <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={170}>
                   <div className="max-w-[48ch] space-y-4 text-[clamp(1.0625rem,1.5vw,1.25rem)] leading-relaxed text-white/90">
-                    <p>If it’s work you do on a computer, let’s explore how AI could take it off your hands.</p>
-                    <p>We build around your processes and the software you already use.</p>
+                    <p>Quotes, job notes and follow-ups can spill into your evenings. I help electrical businesses put AI to work around the software they already use.</p>
+                    <p>Start with a paid diagnostic and a prioritised roadmap. Then we agree the scope and rate for an ongoing AI partnership.</p>
                   </div>
                 </Reveal>
                 <Reveal delay={240}>
-                  <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
-                  <p className="mt-4 text-[0.8rem] text-white/65">{callPromise}</p>
+                  <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
+                    <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
+                    <Link href="/services/" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">See how it works →</Link>
+                  </div>
+                  <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · diagnostic quoted separately</p>
                 </Reveal>
               </div>
             </div>
@@ -78,7 +86,7 @@ export default function Home() {
               Decorative, so it's hidden from screen readers, and it stops
               animating under reduced-motion via the global rule. */}
           <a
-            href="#ladder"
+            href="#how-it-fits"
             aria-hidden="true"
             tabIndex={-1}
             className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 md:block"
@@ -90,12 +98,7 @@ export default function Home() {
 
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <SoftwareExplanation />
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
-            <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
-            <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
-          </div>
-          <section aria-labelledby="diagnostic-heading" className="mt-[clamp(3rem,6vw,5rem)] grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+          <section aria-labelledby="diagnostic-heading" className="grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
             <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
@@ -104,6 +107,11 @@ export default function Home() {
               <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
             </div>
           </section>
+          <SoftwareExplanation />
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
+            <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
+            <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
+          </div>
         </Reveal>
       </section>
 
@@ -165,22 +173,22 @@ export default function Home() {
           <Reveal>
             <p className="eyebrow mb-4 text-sky/90">The part everyone skips</p>
             <h2 className="h-sec max-w-[20ch] text-white">
-              Most AI gives you rubbish because nobody trained it.
+              AI needs to know how your business works.
             </h2>
           </Reveal>
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Reveal delay={90}>
             <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-sky/85">
               <p>
-                People buy a tool, type a question into it, get something
-                generic back, and decide AI doesn&apos;t work for their trade.
-                They were right about the answer and wrong about the reason.
+                A useful workflow needs your business information and clear
+                instructions: how a job moves through your team, where the
+                details live and what a good result looks like.
               </p>
               <p>
-                The first stretch is unglamorous. It&apos;s sitting down and
-                getting your pricing, your process and the way you talk to a
-                customer out of your head and into something that can use it.
-                Skip that and you get a very confident stranger guessing.
+                That&apos;s where the diagnostic starts. We review the work,
+                identify what AI would need and decide which tasks are worth
+                tackling. Your team keeps control of pricing, technical
+                decisions and final approval.
               </p>
             </div>
           </Reveal>

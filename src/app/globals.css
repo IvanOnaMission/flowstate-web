@@ -144,11 +144,11 @@
   }
 }
 
-/* Give the homepage's long sentence a deliberate rhythm at each breakpoint. */
+/* A short opening statement, with room for the offer and CTA at small widths. */
 .home-hero-title {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: 1.12;
+  font-size: clamp(2.375rem, 5vw, 4.25rem);
+  line-height: 1.06;
   letter-spacing: -0.035em;
-  font-weight: 700;
+  font-weight: 800;
   text-wrap: balance;
 }

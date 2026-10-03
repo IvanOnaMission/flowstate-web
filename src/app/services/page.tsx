@@ -32,7 +32,7 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"4. Your ongoing AI partner"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"After the diagnostic, we agree the scope and rate for an ongoing AI partnership. I work with you on the priorities from your roadmap, with implementation, training and support agreed for your business."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Implementation can include building and testing workflows around your existing tools, helping your team use them on real work, and improving them within the agreed scope."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"AI prepares the drafts. You make the final call on pricing."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"For a quoting workflow, AI helps prepare the drafts. You check the scope, quantities and prices, and approve the final quote before it is sent."}</p>
           <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-quoting-for-electricians/">{"Explore the quoting workflow →"}</Link></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"5. Ongoing support"}</h2>
