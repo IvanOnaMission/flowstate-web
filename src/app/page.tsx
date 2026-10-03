@@ -65,12 +65,6 @@ export default function Home() {
                     <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>
-                <Reveal delay={170}>
-                  <div className="max-w-[48ch] space-y-4 text-[clamp(1.0625rem,1.5vw,1.25rem)] leading-relaxed text-white/90">
-                    <p>Quotes, job notes and follow-ups can spill into your evenings. I help electrical businesses put AI to work around the software they already use.</p>
-                    <p>Start with a paid diagnostic and a prioritised roadmap. Then we agree the scope and rate for an ongoing AI partnership.</p>
-                  </div>
-                </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
                     <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
