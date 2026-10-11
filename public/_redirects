@@ -1,8 +1,5 @@
-# Retired public offer links point to the diagnostic and AI partnership.
+# Retired quoting offers point to the diagnostic. The AI Makeover VSL remains at its original URL.
 # Netlify preserves campaign query strings. Historical private offers and audits remain intact.
-/ai-makeover/                  /workflow-diagnostic/  301!
-/ai-makeover                   /workflow-diagnostic/  301!
-/ai-makeover/index.html        /workflow-diagnostic/  301!
 /quoting-help/                 /workflow-diagnostic/  301
 /quoting-help                  /workflow-diagnostic/  301
 /quoting-workbook/start/       /workflow-diagnostic/  301
