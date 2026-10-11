@@ -1,4 +1,8 @@
-# Retired quoting offers point to the diagnostic. The AI Makeover VSL remains at its original URL.
+# Existing VSL links point to the transformation partner page, which keeps the video.
+/ai-makeover/                  /transformation-partner/  302!
+/ai-makeover                   /transformation-partner/  302!
+/ai-makeover/index.html        /transformation-partner/  302!
+# Retired quoting offers point to the diagnostic.
 # Netlify preserves campaign query strings. Historical private offers and audits remain intact.
 /quoting-help/                 /workflow-diagnostic/  301
 /quoting-help                  /workflow-diagnostic/  301

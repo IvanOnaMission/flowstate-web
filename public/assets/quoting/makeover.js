@@ -96,7 +96,7 @@
       form.querySelectorAll('input, select, button').forEach(el => { el.disabled = true; });
       if (typeof window.fbq === 'function') {
         const id = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
-        window.fbq('track', 'Lead', {content_name: location.pathname.startsWith('/ai-makeover') ? 'AI Makeover' : 'Workflow diagnostic'}, {eventID: `lead-${id}`});
+        window.fbq('track', 'Lead', {content_name: form.dataset.offer || (location.pathname.startsWith('/ai-makeover') ? 'AI Makeover' : 'Workflow diagnostic')}, {eventID: `lead-${id}`});
       }
       reveal('Thanks. Pick a time below.');
     } catch {
