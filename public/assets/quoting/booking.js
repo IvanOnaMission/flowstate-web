@@ -8,16 +8,7 @@
   const route = path.startsWith('/workflow-diagnostic') ? 'Workflow diagnostic'
     : path.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
 
-  // The VSL calendar opens after the business quiz; other pages keep their lead gate.
-  if (box.hasAttribute('data-after-quiz')) {
-    document.addEventListener('flowstate:quiz-complete', () => {
-      box.hidden = false;
-      box.classList.remove('locked');
-      build();
-      box.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
-    }, {once: true});
-    return;
-  }
+  // The calendar opens after contact details; the quiz waits for a confirmed booking.
   if (box.hasAttribute('data-after-lead')) {
     document.addEventListener('flowstate:lead', build, {once: true});
     return;

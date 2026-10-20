@@ -47,20 +47,47 @@ test('pre-booking quiz requires valid contact details without a booking referenc
   }
 });
 
-test('the VSL calendar waits for quiz completion, while other pages keep their lead gate', () => {
+test('contact details unlock the calendar without waiting for the quiz', () => {
   const listeners = new Map();
   let built = 0;
-  const box = {hasAttribute: key => key === 'data-after-quiz', querySelector: () => ({href: 'https://calendly.com/ivan-flowstate/30min'}), classList: {remove() {}}, scrollIntoView() {}};
+  const link = {href: 'https://calendly.com/ivan-flowstate/30min', replaceWith() {built++;}};
+  const box = {hasAttribute: key => key === 'data-after-lead', querySelector: () => link, contains: () => true};
   vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/booking.js', import.meta.url), 'utf8'), {
     URL, location: {pathname: '/transformation-partner/'},
-    document: {querySelector: () => box, addEventListener: (type, handler) => listeners.set(type, handler), createElement: () => { built++; throw new Error('calendar-build-reached'); }},
+    document: {querySelector: () => box, querySelectorAll: () => [], addEventListener: (type, handler) => listeners.set(type, handler), createElement: () => ({dataset: {}, after() {}}), head: {appendChild() {}}},
+    window: {addEventListener() {}},
   });
   assert.equal(built, 0);
-  assert.equal(listeners.has('flowstate:lead'), false);
-  assert.equal(listeners.has('flowstate:quiz-complete'), true);
-  assert.throws(() => listeners.get('flowstate:quiz-complete')(), /calendar-build-reached/);
+  assert.equal(listeners.has('flowstate:lead'), true);
+  assert.equal(listeners.has('flowstate:quiz-complete'), false);
+  listeners.get('flowstate:lead')();
   assert.equal(built, 1);
-  assert.equal(box.hidden, false);
+});
+
+test('the quiz stays locked until a confirmed booking and keeps its booking reference', () => {
+  const listeners = new Map(), fields = new Map();
+  const node = () => ({focus() {}, addEventListener() {}});
+  const controls = new Map();
+  const form = {
+    elements: {namedItem: key => {if (!fields.has(key)) fields.set(key, {value: ''}); return fields.get(key);}},
+    querySelectorAll: () => [{hidden: true, querySelector: () => null}],
+    querySelector: key => {if (!controls.has(key)) controls.set(key, node()); return controls.get(key);},
+    addEventListener() {},
+  };
+  const section = {hidden: true, scrollIntoView() {}, querySelector: key => key === 'form' ? form : node()};
+  vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/business-quiz.js', import.meta.url), 'utf8'), {
+    URLSearchParams, location: {search: '', hostname: 'flowstate.net.nz'},
+    matchMedia: () => ({matches: true}),
+    document: {querySelector: key => key === '#business-quiz' ? section : null, addEventListener: (type, handler) => listeners.set(type, handler)},
+  });
+  assert.equal(section.hidden, true);
+  assert.equal(listeners.has('flowstate:lead'), false);
+  const booked = listeners.get('flowstate:booked');
+  booked({detail: {}});
+  assert.equal(section.hidden, true);
+  booked({detail: {invitee: {uri}}});
+  assert.equal(section.hidden, false);
+  assert.equal(fields.get('booking_invitee').value, uri);
 });
 
 test('booking lookup rejects arbitrary URLs before sending an API credential', async () => {

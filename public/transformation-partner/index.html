@@ -136,10 +136,10 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 .hero h1{font-family:"Archivo","Plus Jakarta Sans",sans-serif;font-weight:900;letter-spacing:-.03em}
 </style>
 <script src="/assets/quoting/analytics.js?v=2" defer></script>
-<script src="/assets/quoting/makeover.js?v=7" defer></script>
+<script src="/assets/quoting/makeover.js?v=8" defer></script>
 <link rel="stylesheet" href="/assets/quoting/business-quiz.css?v=1">
-<script src="/assets/quoting/booking.js?v=4" defer></script>
-<script src="/assets/quoting/business-quiz.js?v=3" defer></script>
+<script src="/assets/quoting/booking.js?v=5" defer></script>
+<script src="/assets/quoting/business-quiz.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -174,14 +174,20 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 <div><label for="mk-phone">Phone</label><input id="mk-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required></div>
 <div><label for="mk-email">Email</label><input id="mk-email" name="email" type="email" autocomplete="email" maxlength="200" required></div>
 </div>
-<button type="submit">Continue to business quiz</button>
+<button type="submit">Continue to choose a time</button>
 <p id="feedback" role="status" aria-live="polite"></p>
-<p class="small">Next: six quick questions about your business, then choose a time. I’ll use your details to contact you about the call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
+<p class="small">Next: choose a time for your call. After booking, answer six quick questions about your business. I’ll use your details to contact you about the call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
 </form>
-<section id="business-quiz" data-after-lead class="card business-quiz" aria-labelledby="quiz-title" hidden>
-<p class="step-label">Step 2 of 3 · Your business</p>
+<div class="booking locked" data-after-lead hidden>
+<p class="step-label">Step 2 of 3 · Your call</p>
+<h2>Choose a time that suits you.</h2>
+<a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=transformation-partner">Choose a time</a>
+<p class="small">Free · 30 minutes with Ivan</p>
+</div>
+<section id="business-quiz" class="card business-quiz" aria-labelledby="quiz-title" hidden>
+<p class="step-label">Step 3 of 3 · Your business</p>
 <h2 id="quiz-title" tabindex="-1">Let’s make your call more useful.</h2>
-<p>Six quick questions about your business so Ivan can focus on what matters to you. Then choose a time for your call.</p>
+<p>Your call is booked. Six quick questions about your business will help Ivan prepare for your conversation.</p>
 <form name="business-quiz" method="POST" action="/transformation-partner/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
 <input type="hidden" name="form-name" value="business-quiz">
 <input type="hidden" name="booking_invitee"><input type="hidden" name="booking_event">
@@ -241,14 +247,8 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 <p id="quiz-status" role="status" aria-live="polite"></p>
 <p class="small">We’ll use your answers to prepare for your call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
 </form>
-<div id="quiz-complete" hidden><h3 tabindex="-1">You’re all set.</h3><p>Thanks — your answers are saved. Choose a time for your call below.</p></div>
+<div id="quiz-complete" hidden><h3 tabindex="-1">You’re all set.</h3><p>Thanks — your answers are saved. We look forward to talking through your business on the call.</p></div>
 </section>
-<div class="booking locked" data-after-quiz hidden>
-<p class="step-label">Step 3 of 3 · Your call</p>
-<h2>Choose a time that suits you.</h2>
-<a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=transformation-partner">Choose a time</a>
-<p class="small">Free · 30 minutes with Ivan</p>
-</div>
 <noscript><p class="noscript-note">You can also <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=transformation-partner">book your free call directly</a>.</p></noscript>
 <section class="info">
 <h2>The foundation: your company brain.</h2>
