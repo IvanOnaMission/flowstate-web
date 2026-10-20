@@ -1,9 +1,12 @@
-// Puts AI Makeover leads into Kit (email list) and the Notion CRM.
+// Puts leads into Kit and the selected CRM. CRM_BACKEND=twenty routes leads,
+// bookings and quiz notes to TWENTY_API_URL using the server-only TWENTY_API_KEY.
+// The Notion path remains available for rollback while its source records are retained.
 // Each step is optional and independent: a missing key or a failed call is logged and skipped,
 // so a lead alert to Ivan is never blocked by the CRM.
 // Env: KIT_API_KEY, KIT_TAG_MAKEOVER_LEAD, KIT_TAG_MAKEOVER_BOOKED, NOTION_TOKEN, NOTION_CRM_DATABASE_ID
 const today = () => new Date().toLocaleDateString('en-CA', {timeZone: 'Pacific/Auckland'});
 import {CUSTOMER_LABELS,customerType as normaliseCustomerType} from './ads-tracking.mjs';
+import {twentyLead,twentyBooked,twentyQuiz} from './twenty-crm.mjs';
 
 async function kit(path, body) {
   const res = await fetch(`https://api.kit.com/v4${path}`, {
@@ -53,6 +56,7 @@ const date = start => ({date: {start}});
 
 // A form lead: create the CRM row, or refresh it if they've been here before.
 export async function crmLead({email, name, phone, source, customerType, adId}) {
+  if(process.env.CRM_BACKEND==='twenty')return twentyLead({email,name,phone,source,customerType,adId});
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
   const props = {
     'Next action': text('Call within 5 minutes'),
@@ -82,6 +86,7 @@ export async function crmLead({email, name, phone, source, customerType, adId}) 
 
 // A booked discovery call: move the row to Discovery with the call time.
 export async function crmBooked({email, name, phone, start}) {
+  if(process.env.CRM_BACKEND==='twenty')return twentyBooked({email,name,phone,start});
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
   const props = {
     Stage: {select: {name: 'Discovery'}},
@@ -107,6 +112,7 @@ export async function crmBooked({email, name, phone, start}) {
 // Append preparation notes without changing the booking stage, next action or
 // existing notes. The verified Calendly email may differ from the lead form email.
 export async function crmQuiz({email, uri, answers, submissionId}) {
+  if(process.env.CRM_BACKEND==='twenty')return twentyQuiz({email,uri,answers,submissionId});
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return false;
   const existing = await findByEmail(email);
   if (!existing) return false; // The original answers remain in Netlify Forms.
