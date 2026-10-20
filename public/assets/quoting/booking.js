@@ -45,8 +45,9 @@
 
     let counted = false;
     window.addEventListener('message', event => {
-      if (event.origin !== 'https://calendly.com' || event.data?.event !== 'calendly.event_scheduled' || counted) return;
+      if (event.origin !== 'https://calendly.com' || event.source !== widget.querySelector('iframe')?.contentWindow || event.data?.event !== 'calendly.event_scheduled' || counted) return;
       counted = true;
+      document.dispatchEvent(new CustomEvent('flowstate:booked', {detail: event.data.payload}));
       const invitee = String(event.data.payload?.invitee?.uri || '').split('/').pop();
       if (typeof window.fbq === 'function') {
         window.fbq('track', 'Schedule', {content_name: route}, invitee ? {eventID: `booking-${invitee}`} : undefined);

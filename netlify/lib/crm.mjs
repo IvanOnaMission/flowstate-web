@@ -104,6 +104,29 @@ export async function crmBooked({email, name, phone, start}) {
   });
 }
 
+// Append preparation notes without changing the booking stage, next action or
+// existing notes. The verified Calendly email may differ from the lead form email.
+export async function crmQuiz({email, uri, answers, submissionId}) {
+  if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return false;
+  const existing = await findByEmail(email);
+  if (!existing) return false; // The original answers remain in Netlify Forms.
+  const marker = `Business quiz submission: ${submissionId || uri}`;
+  let cursor;
+  do {
+    const page = await notion(`/blocks/${existing.id}/children?page_size=100${cursor ? `&start_cursor=${encodeURIComponent(cursor)}` : ''}`, 'GET');
+    if (page.results?.some(block => block.paragraph?.rich_text?.some(part => part.plain_text === marker || part.text?.content === marker))) return true;
+    cursor = page.has_more ? page.next_cursor : null;
+  } while (cursor);
+  const paragraph = content => ({object: 'block', type: 'paragraph', paragraph: text(content)});
+  await notion(`/blocks/${existing.id}/children`, 'PATCH', {children: [
+    {object: 'block', type: 'heading_2', heading_2: text('Pre-call business quiz')},
+    paragraph(marker),
+    paragraph(`Booking: ${uri}`),
+    ...answers.map(({question, answer}) => paragraph(`${question}: ${answer}`)),
+  ]});
+  return true;
+}
+
 export async function safely(label, fn) {
   try { await fn(); } catch (err) { console.error(`${label} failed:`, err.message); }
 }
