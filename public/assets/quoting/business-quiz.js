@@ -25,7 +25,7 @@
   }
 
   function open(booking) {
-    if (opened) return;
+    if (opened || !booking?.invitee?.uri) return;
     opened = true;
     form.elements.namedItem('booking_invitee').value = booking?.invitee?.uri || '';
     form.elements.namedItem('booking_event').value = booking?.event?.uri || '';
@@ -35,12 +35,12 @@
     });
     section.hidden = false;
     showStep(false);
-    // Move into the quiz while keeping their contact details above it.
+    // Continue into the quiz after the calendar confirms their booking.
     section.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
     section.querySelector('#quiz-title').focus({preventScroll: true});
     document.querySelector('video.vsl')?.pause();
   }
-  document.addEventListener(section.hasAttribute('data-after-lead') ? 'flowstate:lead' : 'flowstate:booked', event => open(event.detail));
+  document.addEventListener('flowstate:booked', event => open(event.detail));
 
   function choose(event) {
     if (event.target.type !== 'radio' || sending || form.hidden) return;
@@ -109,14 +109,13 @@
       const complete = section.querySelector('#quiz-complete');
       complete.hidden = false;
       complete.querySelector('h3').focus();
-      document.dispatchEvent(new CustomEvent('flowstate:quiz-complete'));
     } catch {
       sending = false;
       enabled.forEach(el => { el.disabled = false; });
       status.textContent = '';
       next.hidden = false;
       next.textContent = 'Try saving again';
-      error.textContent = 'Your answers haven’t saved yet. Please try again.';
+      error.textContent = 'Your answers haven’t saved yet. Please try again. Your call is still booked.';
     }
   });
 
