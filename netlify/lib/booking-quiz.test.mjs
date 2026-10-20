@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {quizAnswers, verifiedQuizBooking} from './booking-quiz.mjs';
+import {quizAnswers, quizContact, verifiedQuizBooking} from './booking-quiz.mjs';
 import {crmQuiz} from './crm.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
@@ -38,6 +38,29 @@ test('Other uses the written answer and rejects blank or oversized text', () => 
   assert.throws(() => quizAnswers({...data, investment_other: '  '}), /investment/);
   assert.throws(() => quizAnswers({...data, investment_other: 'a'.repeat(501)}), /investment/);
   assert.throws(() => quizAnswers({...data, goal: ''}), /goal/);
+});
+
+test('pre-booking quiz requires valid contact details without a booking reference', () => {
+  assert.deepEqual(quizContact({name: ' Jane Smith ', email: 'jane@example.test', phone: '021 123 4567'}), {name: 'Jane Smith', email: 'jane@example.test', phone: '021 123 4567', uri: ''});
+  for (const bad of [{name: '', email: 'jane@example.test', phone: '0211234567'}, {name: 'Jane', email: 'invalid', phone: '0211234567'}, {name: 'Jane', email: 'jane@example.test', phone: 'abc1234567'}]) {
+    assert.throws(() => quizContact(bad), /contact details/);
+  }
+});
+
+test('the VSL calendar waits for quiz completion, while other pages keep their lead gate', () => {
+  const listeners = new Map();
+  let built = 0;
+  const box = {hasAttribute: key => key === 'data-after-quiz', querySelector: () => ({href: 'https://calendly.com/ivan-flowstate/30min'}), classList: {remove() {}}, scrollIntoView() {}};
+  vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/booking.js', import.meta.url), 'utf8'), {
+    URL, location: {pathname: '/transformation-partner/'},
+    document: {querySelector: () => box, addEventListener: (type, handler) => listeners.set(type, handler), createElement: () => { built++; throw new Error('calendar-build-reached'); }},
+  });
+  assert.equal(built, 0);
+  assert.equal(listeners.has('flowstate:lead'), false);
+  assert.equal(listeners.has('flowstate:quiz-complete'), true);
+  assert.throws(() => listeners.get('flowstate:quiz-complete')(), /calendar-build-reached/);
+  assert.equal(built, 1);
+  assert.equal(box.hidden, false);
 });
 
 test('booking lookup rejects arbitrary URLs before sending an API credential', async () => {

@@ -11,7 +11,7 @@
   const status = form.querySelector('#quiz-status');
   const preview = new URLSearchParams(location.search).get('quiz-preview') === '1';
   const production = !preview && ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
-  let position = 0, opened = false, sending = false;
+  let position = 0, opened = false, sending = false, advanceTimer;
 
   function showStep(focus = true) {
     steps.forEach((step, index) => { step.hidden = index !== position; });
@@ -19,40 +19,50 @@
     form.querySelector('#quiz-progress').value = position + 1;
     back.hidden = position === 0;
     next.textContent = position === steps.length - 1 ? 'Save my answers' : 'Continue';
+    next.hidden = steps[position].querySelector('input[type="radio"]:checked')?.value !== 'Other';
     error.textContent = '';
     if (focus) steps[position].querySelector('legend').focus();
   }
 
   function open(booking) {
-    if (opened || !booking?.invitee?.uri) return;
+    if (opened) return;
     opened = true;
-    form.elements.namedItem('booking_invitee').value = booking.invitee.uri;
-    form.elements.namedItem('booking_event').value = booking.event?.uri || '';
+    form.elements.namedItem('booking_invitee').value = booking?.invitee?.uri || '';
+    form.elements.namedItem('booking_event').value = booking?.event?.uri || '';
     const lead = document.querySelector('form[name="ai-makeover"]');
     ['name', 'email', 'phone'].forEach(key => {
       form.elements.namedItem(key).value = lead?.elements.namedItem(key)?.value || '';
     });
     section.hidden = false;
     showStep(false);
-    // Keep the booking confirmation visible above the quiz.
+    // Move into the quiz while keeping their contact details above it.
     section.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
     section.querySelector('#quiz-title').focus({preventScroll: true});
     document.querySelector('video.vsl')?.pause();
   }
-  document.addEventListener('flowstate:booked', event => open(event.detail));
+  document.addEventListener(section.hasAttribute('data-after-lead') ? 'flowstate:lead' : 'flowstate:booked', event => open(event.detail));
 
-  form.addEventListener('change', event => {
-    if (event.target.type !== 'radio') return;
+  function choose(event) {
+    if (event.target.type !== 'radio' || sending || form.hidden) return;
     const step = event.target.closest('.quiz-step');
+    if (step !== steps[position]) return;
+    clearTimeout(advanceTimer);
     const other = step.querySelector('.quiz-other');
     const field = other.querySelector('textarea');
     const selected = event.target.value === 'Other';
     other.hidden = !selected;
     field.disabled = !selected;
     error.textContent = '';
+    next.hidden = !selected;
     if (selected) field.focus();
-  });
-  back.addEventListener('click', () => { if (position > 0 && !sending) { position--; showStep(); } });
+    else advanceTimer = setTimeout(() => {
+      if (step === steps[position] && !sending && !form.hidden) form.requestSubmit();
+    }, 180);
+  }
+  // Click also handles choosing the same answer again after going Back.
+  form.addEventListener('click', choose);
+  form.addEventListener('change', choose);
+  back.addEventListener('click', () => { if (position > 0 && !sending) { clearTimeout(advanceTimer); position--; showStep(); } });
 
   function valid(step) {
     const choice = step.querySelector('input[type="radio"]:checked');
@@ -71,6 +81,7 @@
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
+    clearTimeout(advanceTimer);
     if (sending || !valid(steps[position])) return;
     if (position < steps.length - 1) { position++; showStep(); return; }
     const invalid = steps.findIndex(step => !valid(step));
@@ -98,11 +109,14 @@
       const complete = section.querySelector('#quiz-complete');
       complete.hidden = false;
       complete.querySelector('h3').focus();
+      document.dispatchEvent(new CustomEvent('flowstate:quiz-complete'));
     } catch {
       sending = false;
       enabled.forEach(el => { el.disabled = false; });
       status.textContent = '';
-      error.textContent = 'Your answers haven’t saved yet. Please try again. Your call is still booked.';
+      next.hidden = false;
+      next.textContent = 'Try saving again';
+      error.textContent = 'Your answers haven’t saved yet. Please try again.';
     }
   });
 

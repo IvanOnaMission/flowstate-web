@@ -16,6 +16,19 @@ export function quizAnswers(data) {
   });
 }
 
+// Before booking, quiz submissions use the same self-reported contact details
+// as the enquiry form. A Calendly identity is only available after booking.
+export function quizContact(data) {
+  const name = String(data.name || '').trim();
+  const email = String(data.email || '').trim();
+  const phone = String(data.phone || '').trim();
+  const digits = phone.replace(/\D/g, '');
+  if (!name || name.length > 120 || email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || phone.length > 40 || !/^\+?[\d\s().-]+$/.test(phone) || digits.length < 7 || digits.length > 15) {
+    throw new Error('Invalid quiz contact details');
+  }
+  return {name, email, phone, uri: ''};
+}
+
 // Resolve the identity from Calendly, rather than trusting a submitted email or URL.
 export async function verifiedQuizBooking(uri, token, fetcher = fetch) {
   const uuid = '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';

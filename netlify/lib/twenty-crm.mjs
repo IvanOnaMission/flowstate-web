@@ -70,7 +70,7 @@ export async function twentyQuiz({email,uri,answers,submissionId}){
  const op=await findOpportunity(email);if(!op)return false;
  const marker=`Business quiz submission: ${submissionId||uri}`,id=uuid('website-quiz:'+marker);
  const existing=await findOne('/notes/'+id);
- if(!existing)await createOrGet('notes',id,{title:'Pre-call business quiz — '+op.name,bodyV2:body(`${marker}\n\nBooking: ${uri}\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)});
+ if(!existing)await createOrGet('notes',id,{title:'Pre-call business quiz — '+op.name,bodyV2:body(`${marker}\n\nBooking: ${uri||'Not booked yet'}\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)});
  await createOrGet('noteTargets',uuid(id+'targetOpportunityId'+op.id),{noteId:id,targetOpportunityId:op.id});
  if(op.pointOfContactId)await createOrGet('noteTargets',uuid(id+'targetPersonId'+op.pointOfContactId),{noteId:id,targetPersonId:op.pointOfContactId});
  return true;

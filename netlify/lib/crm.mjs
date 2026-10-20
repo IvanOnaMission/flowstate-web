@@ -127,7 +127,7 @@ export async function crmQuiz({email, uri, answers, submissionId}) {
   await notion(`/blocks/${existing.id}/children`, 'PATCH', {children: [
     {object: 'block', type: 'heading_2', heading_2: text('Pre-call business quiz')},
     paragraph(marker),
-    paragraph(`Booking: ${uri}`),
+    paragraph(`Booking: ${uri || 'Not booked yet'}`),
     ...answers.map(({question, answer}) => paragraph(`${question}: ${answer}`)),
   ]});
   return true;

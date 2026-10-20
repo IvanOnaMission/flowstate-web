@@ -2,6 +2,7 @@ import {test,afterEach,beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {twentyLead,twentyBooked,twentyQuiz} from './twenty-crm.mjs';
 import {crmLead} from './crm.mjs';
+import submissionCreated from '../functions/submission-created.mjs';
 
 const originalFetch=globalThis.fetch,originalEnv={...process.env};
 let rows,calls,failure;
@@ -50,6 +51,12 @@ test('quiz retries append one linked note without overwriting the deal or follow
  rows.opportunities.set('contact-1',contact({nextAction:'Existing action'}));const quiz={email:'shannon@example.com',uri:'https://calendly.com/invitee/123',submissionId:'submission-123',answers:[{question:'Main problem',answer:'Unsent invoices'}]};
  assert.equal(await twentyQuiz(quiz),true);assert.equal(await twentyQuiz(quiz),true);
  assert.equal(rows.notes.size,1);assert.equal(rows.noteTargets.size,2);assert.equal(rows.opportunities.get('contact-1').nextAction,'Existing action');assert.equal(rows.opportunities.get('contact-1').stage,'SCREENING');assert.match([...rows.notes.values()][0].bodyV2.markdown,/Unsent invoices/);
+});
+test('a quiz completed before booking saves to the contact without a Calendly call',async()=>{
+ process.env.CRM_BACKEND='twenty';rows.opportunities.set('contact-1',contact({nextAction:'Existing action'}));
+ const data={name:'Shannon Christie',email:'shannon@example.com',phone:'021 123 4567',office_staff:'2–3',challenge:'Too much admin',goal:'Free up time',ai_experience:'Basic',timing:'Just exploring',investment:'Other',investment_other:'Need guidance'};
+ const response=await submissionCreated(new Request('https://site.example/.netlify/functions/submission-created',{method:'POST',body:JSON.stringify({payload:{id:'pre-booking-quiz',form_name:'business-quiz',data}})}));
+ assert.equal(response.status,200);assert.equal(await response.text(),'quiz linked');assert.equal(rows.notes.size,1);assert.match([...rows.notes.values()][0].bodyV2.markdown,/Booking: Not booked yet/);assert.equal(rows.opportunities.get('contact-1').nextAction,'Existing action');assert.ok(calls.every(c=>c.url.startsWith('https://crm.example/')));
 });
 test('an unknown quiz contact does not invent a deal',async()=>{assert.equal(await twentyQuiz({email:'unknown@example.com'}),false);assert.equal(rows.notes.size,0);assert.equal(rows.opportunities.size,0);});
 test('intake errors remain visible and never fall through to the retired Notion backend',async()=>{
