@@ -1,8 +1,8 @@
-/* AI Makeover and diagnostic enquiry forms (shared ai-makeover backend identity): sends to Netlify Forms without leaving the page, then reveals the calendar.
+/* Enquiry forms send to Netlify Forms without leaving the page, then reveal the quiz or calendar.
    No contact details enter browser storage, analytics or booking URLs. */
 (() => {
-  const production = ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
   const params = new URLSearchParams(location.search);
+  const production = params.get('quiz-preview') !== '1' && ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
   const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   // Store campaign fields only; never store form contact details in the browser.
   const captured={};keys.concat('ad_id').forEach(key=>{if(params.has(key))captured[key]=params.get(key).slice(0,200);});
@@ -46,6 +46,7 @@
   const name = form.elements.namedItem('name');
   const email = form.elements.namedItem('email');
   const phone = form.elements.namedItem('phone');
+  const quiz = document.querySelector('#business-quiz[data-after-lead]');
 
   function validate() {
     name.setCustomValidity(name.value.trim() ? '' : 'Please enter your name.');
@@ -60,6 +61,11 @@
   let revealed = false;
   function reveal(message) {
     feedback.textContent = message;
+    if (quiz) {
+      if (!revealed) document.dispatchEvent(new CustomEvent('flowstate:lead'));
+      revealed = true;
+      return;
+    }
     const box = document.querySelector('.booking[data-after-lead]');
     if (!box) return;
     box.hidden = false;
@@ -98,9 +104,13 @@
         const id = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
         window.fbq('track', 'Lead', {content_name: form.dataset.offer || (location.pathname.startsWith('/ai-makeover') ? 'AI Makeover' : 'Workflow diagnostic')}, {eventID: `lead-${id}`});
       }
-      reveal('Thanks. Pick a time below.');
+      reveal(quiz ? 'Thanks. Tell us a little about your business below.' : 'Thanks. Pick a time below.');
     } catch {
       submit.disabled = false;
+      if (quiz) {
+        feedback.textContent = 'Your details haven’t sent yet. Please try again.';
+        return;
+      }
       reveal("That didn't send. Pick a time below, or call Ivan on 027 200 6121.");
     }
   });

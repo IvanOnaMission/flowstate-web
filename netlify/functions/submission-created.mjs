@@ -11,7 +11,7 @@
 // If the holding list is unavailable the alert goes out immediately instead.
 // Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Notion keys in ../lib/crm.mjs)
 import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
-import {quizAnswers, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
+import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
 import {holdLead} from '../lib/pending.mjs';
@@ -28,8 +28,15 @@ export default async (req) => {
   if (formName === 'business-quiz') {
     try {
       const answers = quizAnswers(data);
-      const booking = await verifiedQuizBooking(data.booking_invitee, process.env.CALENDLY_TOKEN || process.env.Calendly_Token);
-      const linked = booking && await crmQuiz({...booking, answers, submissionId: payload.id});
+      const contact = data.booking_invitee
+        ? await verifiedQuizBooking(data.booking_invitee, process.env.CALENDLY_TOKEN || process.env.Calendly_Token)
+        : quizContact(data);
+      let linked = contact && await crmQuiz({...contact, answers, submissionId: payload.id});
+      if (!linked && contact && !data.booking_invitee) {
+        // The enquiry event may still be creating this contact when the quiz arrives.
+        await crmLead({...contact, source: 'business quiz'});
+        linked = await crmQuiz({...contact, answers, submissionId: payload.id});
+      }
       if (!linked) console.warn('business-quiz: saved in Netlify Forms; CRM match unavailable');
       return new Response(linked ? 'quiz linked' : 'quiz saved in Netlify Forms', {status: 200});
     } catch (err) {
