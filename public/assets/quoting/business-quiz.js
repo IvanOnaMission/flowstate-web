@@ -9,7 +9,8 @@
   const next = form.querySelector('#quiz-next');
   const error = form.querySelector('#quiz-error');
   const status = form.querySelector('#quiz-status');
-  const production = ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
+  const preview = new URLSearchParams(location.search).get('quiz-preview') === '1';
+  const production = !preview && ['flowstate.net.nz', 'www.flowstate.net.nz'].includes(location.hostname);
   let position = 0, opened = false, sending = false;
 
   function showStep(focus = true) {
@@ -75,7 +76,12 @@
     const invalid = steps.findIndex(step => !valid(step));
     if (invalid !== -1) { position = invalid; showStep(); valid(steps[position]); return; }
     if (!production) {
-      status.textContent = 'Preview complete — no answers have been sent.';
+      form.hidden = true;
+      const complete = section.querySelector('#quiz-complete');
+      complete.hidden = false;
+      complete.querySelector('h3').textContent = 'Preview complete.';
+      complete.querySelector('p').textContent = 'You’ve reached the end of the quiz. No call has been booked and no answers have been sent.';
+      complete.querySelector('h3').focus();
       return;
     }
     sending = true;
@@ -100,8 +106,11 @@
     }
   });
 
-  // Local review only; cannot reveal or submit a fake booking on production.
-  if (['localhost', '127.0.0.1'].includes(location.hostname) && new URLSearchParams(location.search).has('quiz-preview')) {
-    open({invitee: {uri: 'local-preview'}});
+  // The shareable preview uses the same questions, but never submits a form.
+  if (preview) {
+    section.querySelector('.step-label').textContent = 'Quiz preview';
+    section.querySelector('#quiz-title + p').textContent = 'Try all six questions. This preview won’t book a call or save your answers.';
+    form.querySelector('.small').textContent = 'Preview only — your answers won’t be sent.';
+    open({invitee: {uri: 'preview'}});
   }
 })();
