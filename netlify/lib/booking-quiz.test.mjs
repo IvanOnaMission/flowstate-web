@@ -1,0 +1,92 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {quizAnswers, verifiedQuizBooking} from './booking-quiz.mjs';
+import {crmQuiz} from './crm.mjs';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+
+const uri = 'https://api.calendly.com/scheduled_events/11111111-1111-1111-1111-111111111111/invitees/22222222-2222-2222-2222-222222222222';
+const data = {office_staff: '1', challenge: 'Too much admin', goal: 'Free up time', ai_experience: 'Basic', timing: 'Just exploring', investment: 'Other', investment_other: '  Need to discuss with my partner  '};
+
+test('only the actual Calendly frame can open the quiz, once per booking', () => {
+  let receive;
+  const opened = [], tracked = [], frame = {};
+  const link = {href: 'https://calendly.com/ivan-flowstate/30min', replaceWith() {}};
+  const box = {querySelector: () => link, hasAttribute: () => false, contains: () => true};
+  const widget = {dataset: {}, querySelector: () => ({contentWindow: frame}), after() {}};
+  vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/booking.js', import.meta.url), 'utf8'), {
+    URL, location: {pathname: '/transformation-partner/'},
+    CustomEvent: class {constructor(type, options) {this.type = type; this.detail = options.detail;}},
+    document: {querySelector: () => box, querySelectorAll: () => [], createElement: tag => tag === 'div' ? widget : {}, head: {appendChild() {}}, dispatchEvent: event => opened.push(event)},
+    window: {addEventListener: (type, handler) => {receive = handler;}, fbq: (...args) => tracked.push(args)},
+  });
+  const message = {origin: 'https://calendly.com', source: frame, data: {event: 'calendly.event_scheduled', payload: {invitee: {uri}}}};
+  receive({...message, origin: 'https://evil.test'});
+  receive({...message, source: {}});
+  receive({...message, data: {event: 'calendly.profile_page_viewed'}});
+  assert.equal(opened.length, 0);
+  receive(message);
+  receive(message);
+  assert.equal(opened.length, 1);
+  assert.equal(opened[0].type, 'flowstate:booked');
+  assert.equal(opened[0].detail.invitee.uri, uri);
+  assert.equal(tracked.length, 1);
+});
+
+test('Other uses the written answer and rejects blank or oversized text', () => {
+  assert.equal(quizAnswers(data).at(-1).answer, 'Need to discuss with my partner');
+  assert.throws(() => quizAnswers({...data, investment_other: '  '}), /investment/);
+  assert.throws(() => quizAnswers({...data, investment_other: 'a'.repeat(501)}), /investment/);
+  assert.throws(() => quizAnswers({...data, goal: ''}), /goal/);
+});
+
+test('booking lookup rejects arbitrary URLs before sending an API credential', async () => {
+  let called = false;
+  const fetcher = async () => { called = true; };
+  for (const value of ['https://evil.test/', uri + '?redirect=1', uri.replace('api.calendly.com', 'api.calendly.com.evil.test'), uri + '/../../users/me']) {
+    await assert.rejects(verifiedQuizBooking(value, 'secret', fetcher), /Invalid booking/);
+  }
+  assert.equal(called, false);
+});
+
+test('CRM identity comes from the active Calendly invitee', async () => {
+  const booking = await verifiedQuizBooking(uri, 'test-token', async (url, options) => {
+    assert.equal(url, uri);
+    assert.equal(options.redirect, 'error');
+    return Response.json({resource: {uri, email: 'booked@example.test', name: 'Booked person', status: 'active'}});
+  });
+  assert.equal(booking.email, 'booked@example.test');
+  await assert.rejects(verifiedQuizBooking(uri, 'test-token', async () => Response.json({resource: {uri, email: 'x@test.nz', status: 'canceled'}})), /confirmed/);
+  assert.equal(await verifiedQuizBooking(uri, ''), null);
+});
+
+test('CRM quiz notes preserve stage and existing notes, and deduplicate event retries', async () => {
+  const oldFetch = globalThis.fetch;
+  const oldToken = process.env.NOTION_TOKEN;
+  const oldDb = process.env.NOTION_CRM_DATABASE_ID;
+  process.env.NOTION_TOKEN = 'test';
+  process.env.NOTION_CRM_DATABASE_ID = 'test-db';
+  const calls = [];
+  let saved = false;
+  globalThis.fetch = async (url, options) => {
+    calls.push({url, ...options});
+    if (url.endsWith('/query')) return Response.json({results: [{id: 'crm-page'}]});
+    if (options.method === 'GET') return Response.json({results: saved ? [{paragraph: {rich_text: [{plain_text: 'Business quiz submission: test-submission'}]}}] : [], has_more: false});
+    saved = true;
+    const body = JSON.parse(options.body);
+    assert.equal(body.properties, undefined);
+    assert.equal(body.children.length, 9);
+    assert.match(body.children.at(-1).paragraph.rich_text[0].text.content, /Need to discuss/);
+    return Response.json({results: []});
+  };
+  try {
+    const quiz = {email: 'booked@example.test', uri, answers: quizAnswers(data), submissionId: 'test-submission'};
+    assert.equal(await crmQuiz(quiz), true);
+    assert.equal(await crmQuiz(quiz), true);
+    assert.equal(calls.filter(call => call.method === 'PATCH').length, 1);
+  } finally {
+    globalThis.fetch = oldFetch;
+    if (oldToken === undefined) delete process.env.NOTION_TOKEN; else process.env.NOTION_TOKEN = oldToken;
+    if (oldDb === undefined) delete process.env.NOTION_CRM_DATABASE_ID; else process.env.NOTION_CRM_DATABASE_ID = oldDb;
+  }
+});

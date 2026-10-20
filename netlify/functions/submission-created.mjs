@@ -1,7 +1,8 @@
 // Handles every AI Makeover form submission. Netlify runs this automatically for
 // each verified Netlify Forms submission (event-triggered function: the filename is
 // the event name, and Netlify signs the call, so it can't be triggered from outside).
-// Only the "ai-makeover" form counts; the contact form and anything else are ignored.
+// The business quiz is saved as preparation notes; it never creates another lead
+// or sends another booking notification. Other forms are ignored.
 //
 // The lead goes to Kit and the Notion CRM straight away, but the Telegram alert is
 // held for LEAD_ALERT_DELAY_SECONDS (default 120) so they can pick a Calendly time
@@ -9,7 +10,8 @@
 // only gets the "New call booked" message. pending-lead-alerts.mjs sends the rest.
 // If the holding list is unavailable the alert goes out immediately instead.
 // Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Notion keys in ../lib/crm.mjs)
-import {addToKit, crmLead, safely} from '../lib/crm.mjs';
+import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
+import {quizAnswers, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
 import {holdLead} from '../lib/pending.mjs';
@@ -23,6 +25,18 @@ export default async (req) => {
   try { ({payload} = await req.json()); } catch { return new Response('bad json', {status: 400}); }
   const data = payload?.data || {};
   const formName = payload?.form_name || data['form-name'];
+  if (formName === 'business-quiz') {
+    try {
+      const answers = quizAnswers(data);
+      const booking = await verifiedQuizBooking(data.booking_invitee, process.env.CALENDLY_TOKEN || process.env.Calendly_Token);
+      const linked = booking && await crmQuiz({...booking, answers, submissionId: payload.id});
+      if (!linked) console.warn('business-quiz: saved in Netlify Forms; CRM match unavailable');
+      return new Response(linked ? 'quiz linked' : 'quiz saved in Netlify Forms', {status: 200});
+    } catch (err) {
+      console.error('business-quiz CRM sync failed:', err.message);
+      return new Response('quiz saved in Netlify Forms; CRM sync failed', {status: 502});
+    }
+  }
   if (formName !== FORM) return new Response('ignored', {status: 200});
 
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};

@@ -137,7 +137,9 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 </style>
 <script src="/assets/quoting/analytics.js?v=2" defer></script>
 <script src="/assets/quoting/makeover.js?v=6" defer></script>
-<script src="/assets/quoting/booking.js?v=2" defer></script>
+<link rel="stylesheet" href="/assets/quoting/business-quiz.css?v=1">
+<script src="/assets/quoting/booking.js?v=3" defer></script>
+<script src="/assets/quoting/business-quiz.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -183,6 +185,71 @@ details p{color:var(--muted);max-width:740px;margin:12px 0 0;font-size:16px}
 <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=transformation-partner">Choose a time</a>
 <p class="small">Free · 30 minutes with Ivan</p>
 </div>
+<section id="business-quiz" class="card business-quiz" aria-labelledby="quiz-title" hidden>
+<p class="step-label">Your call is booked</p>
+<h2 id="quiz-title" tabindex="-1">Let’s make your call more useful.</h2>
+<p>Six quick questions about your business so Ivan can focus on what matters to you. Your booking is already confirmed.</p>
+<form name="business-quiz" method="POST" action="/transformation-partner/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+<input type="hidden" name="form-name" value="business-quiz">
+<input type="hidden" name="booking_invitee"><input type="hidden" name="booking_event">
+<input type="hidden" name="name"><input type="hidden" name="email"><input type="hidden" name="phone">
+<p class="honeypot" aria-hidden="true"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<p class="quiz-progress-label" aria-live="polite">Question <span id="quiz-position">1</span> of 6</p>
+<progress id="quiz-progress" max="6" value="1" aria-label="Quiz progress"></progress>
+<fieldset class="quiz-step" data-question="office_staff" hidden><legend tabindex="-1">How many office or admin staff do you have?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="office_staff" value="None"><span>None</span></label>
+<label class="quiz-option"><input type="radio" name="office_staff" value="1"><span>1</span></label>
+<label class="quiz-option"><input type="radio" name="office_staff" value="2–3"><span>2–3</span></label>
+<label class="quiz-option"><input type="radio" name="office_staff" value="4–7"><span>4–7</span></label>
+<label class="quiz-option"><input type="radio" name="office_staff" value="8+"><span>8+</span></label>
+<label class="quiz-option"><input type="radio" name="office_staff" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-office_staff-other">Your answer</label><textarea id="quiz-office_staff-other" name="office_staff_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<fieldset class="quiz-step" data-question="challenge" hidden><legend tabindex="-1">What’s your biggest business challenge right now?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="challenge" value="Getting leads"><span>Getting leads</span></label>
+<label class="quiz-option"><input type="radio" name="challenge" value="Converting leads"><span>Converting leads</span></label>
+<label class="quiz-option"><input type="radio" name="challenge" value="Too much admin"><span>Too much admin</span></label>
+<label class="quiz-option"><input type="radio" name="challenge" value="Inconsistent systems"><span>Inconsistent systems</span></label>
+<label class="quiz-option"><input type="radio" name="challenge" value="Too much depends on me"><span>Too much depends on me</span></label>
+<label class="quiz-option"><input type="radio" name="challenge" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-challenge-other">Your answer</label><textarea id="quiz-challenge-other" name="challenge_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<fieldset class="quiz-step" data-question="goal" hidden><legend tabindex="-1">What would you most like AI to help you achieve?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="goal" value="Free up time"><span>Free up time</span></label>
+<label class="quiz-option"><input type="radio" name="goal" value="Grow without adding staff"><span>Grow without adding staff</span></label>
+<label class="quiz-option"><input type="radio" name="goal" value="Convert more enquiries"><span>Convert more enquiries</span></label>
+<label class="quiz-option"><input type="radio" name="goal" value="Improve customer service"><span>Improve customer service</span></label>
+<label class="quiz-option"><input type="radio" name="goal" value="Reduce mistakes"><span>Reduce mistakes</span></label>
+<label class="quiz-option"><input type="radio" name="goal" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-goal-other">Your answer</label><textarea id="quiz-goal-other" name="goal_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<fieldset class="quiz-step" data-question="ai_experience" hidden><legend tabindex="-1">What’s your experience currently with AI?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="ai_experience" value="Complete beginner"><span>Complete beginner</span></label>
+<label class="quiz-option"><input type="radio" name="ai_experience" value="Basic — I’ve tried a few tools"><span>Basic — I’ve tried a few tools</span></label>
+<label class="quiz-option"><input type="radio" name="ai_experience" value="Intermediate — I use AI regularly"><span>Intermediate — I use AI regularly</span></label>
+<label class="quiz-option"><input type="radio" name="ai_experience" value="Advanced — I’m up to date and use it extensively"><span>Advanced — I’m up to date and use it extensively</span></label>
+<label class="quiz-option"><input type="radio" name="ai_experience" value="AI wizard — I’m building automations and custom solutions"><span>AI wizard — I’m building automations and custom solutions</span></label>
+<label class="quiz-option"><input type="radio" name="ai_experience" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-ai_experience-other">Your answer</label><textarea id="quiz-ai_experience-other" name="ai_experience_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<fieldset class="quiz-step" data-question="timing" hidden><legend tabindex="-1">When would you like to start making changes?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="timing" value="As soon as possible"><span>As soon as possible</span></label>
+<label class="quiz-option"><input type="radio" name="timing" value="Within 1–3 months"><span>Within 1–3 months</span></label>
+<label class="quiz-option"><input type="radio" name="timing" value="Within 3–6 months"><span>Within 3–6 months</span></label>
+<label class="quiz-option"><input type="radio" name="timing" value="Just exploring"><span>Just exploring</span></label>
+<label class="quiz-option"><input type="radio" name="timing" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-timing-other">Your answer</label><textarea id="quiz-timing-other" name="timing_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<fieldset class="quiz-step" data-question="investment" hidden><legend tabindex="-1">If there’s a clear business case, what investment would feel realistic?</legend><div class="quiz-options">
+<label class="quiz-option"><input type="radio" name="investment" value="Under NZ$5,000"><span>Under NZ$5,000</span></label>
+<label class="quiz-option"><input type="radio" name="investment" value="NZ$5,000–$10,000"><span>NZ$5,000–$10,000</span></label>
+<label class="quiz-option"><input type="radio" name="investment" value="NZ$10,000–$20,000"><span>NZ$10,000–$20,000</span></label>
+<label class="quiz-option"><input type="radio" name="investment" value="NZ$20,000+"><span>NZ$20,000+</span></label>
+<label class="quiz-option"><input type="radio" name="investment" value="I’d need guidance"><span>I’d need guidance</span></label>
+<label class="quiz-option"><input type="radio" name="investment" value="Other"><span>Other — tell us more</span></label>
+</div><div class="quiz-other" hidden><label for="quiz-investment-other">Your answer</label><textarea id="quiz-investment-other" name="investment_other" rows="3" maxlength="500" disabled></textarea></div></fieldset>
+<p id="quiz-error" role="alert"></p>
+<div class="quiz-actions"><button type="button" id="quiz-back">Back</button><button type="submit" id="quiz-next">Continue</button></div>
+<p id="quiz-status" role="status" aria-live="polite"></p>
+<p class="small">We’ll use your answers to prepare for your call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
+</form>
+<div id="quiz-complete" hidden><h3 tabindex="-1">You’re all set.</h3><p>Thanks — your answers are saved. We look forward to talking through your business on the call.</p></div>
+</section>
 <noscript><p class="noscript-note">You can also <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=transformation-partner">book your free call directly</a>.</p></noscript>
 <section class="info">
 <h2>The foundation: your company brain.</h2>
