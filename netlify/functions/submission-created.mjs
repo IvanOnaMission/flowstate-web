@@ -1,4 +1,4 @@
-// Handles every AI Makeover form submission. Netlify runs this automatically for
+// Handles every AI Makeover and Quote Machine form submission. Netlify runs this automatically for
 // each verified Netlify Forms submission (event-triggered function: the filename is
 // the event name, and Netlify signs the call, so it can't be triggered from outside).
 // The business quiz is saved as preparation notes; it never creates another lead
@@ -15,10 +15,11 @@ import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz
 import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
 import {holdLead} from '../lib/pending.mjs';
+import {OFFER as QUOTE_MACHINE, sourceLine} from '../lib/quote-machine.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordFormLead} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
-const FORM = 'ai-makeover';
+const FORMS = ['ai-makeover', 'quote-machine'];
 
 export default async (req) => {
   let payload;
@@ -44,12 +45,16 @@ export default async (req) => {
       return new Response('quiz saved in Netlify Forms; CRM sync failed', {status: 502});
     }
   }
-  if (formName !== FORM) return new Response('ignored', {status: 200});
+  if (!FORMS.includes(formName)) return new Response('ignored', {status: 200});
 
-  const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
+  const quoteMachine = formName === 'quote-machine';
+  const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
+    ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {})};
+  const contact = {email: lead.email, name: lead.name, phone: lead.phone};
+  const kitTag = quoteMachine ? process.env.KIT_TAG_QUOTE_MACHINE_LEAD || process.env.KIT_TAG_MAKEOVER_LEAD : process.env.KIT_TAG_MAKEOVER_LEAD;
   await Promise.all([
-    safely('kit lead', () => addToKit({...lead, tagId: process.env.KIT_TAG_MAKEOVER_LEAD})),
-    safely('notion lead', () => crmLead({...lead, source: 'form', customerType: data.customer_type, adId: data.ad_id})),
+    safely('kit lead', () => addToKit({...contact, tagId: kitTag})),
+    safely('notion lead', () => crmLead({...contact, source: quoteMachine ? 'Quote Machine page' : 'form', customerType: data.customer_type, adId: data.ad_id})),
     safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,data,payload.created_at || new Date().toISOString()); }),
   ]);
 
@@ -61,7 +66,7 @@ export default async (req) => {
   }
   try {
     await sendAlert(formLeadMessage(lead, await aboutLead(lead).catch(() => [])));
-    await sendContact(lead);
+    await sendContact({...contact, label: `${lead.offer || 'AI Makeover'} lead`});
     return new Response('sent', {status: 200});
   } catch (err) {
     console.error('submission-created alert failed:', err.message);

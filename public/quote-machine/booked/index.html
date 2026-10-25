@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your call is booked | Flowstate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+:root{--ink:#ffffff;--panel:#ebfdff;--line:#d6e4ec;--white:#06283d;--muted:#3f5f73;--blue:#0f4b70;--sky:#1a6fa3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--white);font:17px/1.6 "Plus Jakarta Sans",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--sky)}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+header{padding:18px 0 12px;border-bottom:1px solid var(--line)}
+.wordmark{font-size:17px;font-weight:800;letter-spacing:-.015em}
+main{padding:32px 0 0}
+.eyebrow{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+h1{margin:0;font-size:clamp(32px,7vw,46px);line-height:1.1;letter-spacing:-.03em}
+.when{margin:22px 0 0;background:var(--panel);border:1px solid var(--blue);border-radius:14px;padding:22px 20px}
+.when .label{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.when strong{display:block;font-size:clamp(21px,5vw,26px);line-height:1.3;letter-spacing:-.015em}
+.when p{margin:8px 0 0;color:var(--muted);font-size:15px}
+.actions{display:grid;gap:10px;margin:16px 0 0}
+.actions a{display:block;text-align:center;padding:15px 18px;border-radius:8px;font-weight:700;text-decoration:none;font-size:16px}
+.actions .primary{background:var(--blue);color:#fff}
+.actions .primary:hover{background:#14608c}
+.actions .secondary{border:1px solid var(--line);color:var(--white);background:var(--ink)}
+.note{color:var(--muted);font-size:14px;margin:14px 0 0}
+.covers{margin:36px 0 0}
+.covers h2{font-size:24px;letter-spacing:-.015em;margin:0 0 8px}
+.covers p{color:var(--muted);margin:0 0 12px}
+footer{margin:56px 0 0;padding:22px 0 32px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+[hidden]{display:none!important}
+@media(min-width:700px){.actions{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding-top:48px}}
+</style>
+<script src="/assets/quoting/analytics.js?v=3" defer></script>
+<script src="/assets/quoting/quote-machine-booked.js?v=1" defer></script>
+</head>
+<body>
+<div class="wrap">
+<header><span class="wordmark">Flowstate</span></header>
+<main>
+<p class="eyebrow">Quote Machine · Free 30-minute call</p>
+<h1>Your call is booked<span data-first-name></span>.</h1>
+<section class="when" aria-live="polite">
+<span class="label">Your call with Ivan</span>
+<strong data-when>Your confirmation email has the time and the call link.</strong>
+<p data-where hidden></p>
+</section>
+<div class="actions">
+<a class="primary" data-calendar href="#" hidden>Add to calendar</a>
+<a class="secondary" data-ics href="#" hidden>Download for Apple or Outlook</a>
+<a class="secondary" data-reschedule href="#" hidden>Reschedule</a>
+</div>
+<p class="note" data-fallback>Need to move it? Use the reschedule link in your confirmation email, or call Ivan on 027 200 6121.</p>
+<section class="covers">
+<h2>What the call covers.</h2>
+<p>We’ll go through how you quote now, where your prices live, and whether the Quote Machine fits your business.</p>
+<p>There’s nothing to prepare.</p>
+</section>
+</main>
+<footer>Flowstate · New Zealand · <a href="/quoting-privacy/">Privacy</a></footer>
+</div>
+</body>
+</html>

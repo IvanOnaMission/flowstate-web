@@ -15,7 +15,7 @@ export default async () => {
   for (const {key, lead} of due) {
     try {
       await sendAlert(formLeadMessage(lead, await aboutLead(lead).catch(() => [])));
-      await sendContact(lead);
+      await sendContact({...lead, label: `${lead.offer || 'AI Makeover'} lead`});
       await forgetLead(key);
       sent += 1;
     } catch (err) {

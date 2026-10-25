@@ -3,15 +3,18 @@
 export const clean = (value, max = 200) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 
 const about = lines => (lines?.length ? ['', 'ABOUT THEM', ...lines] : []);
+// Quote Machine leads carry the ad they came from.
+const quoteMachine = lead => (lead?.source ? ['', clean(lead.source, 300)] : []);
 
 export function formLeadMessage(lead, aboutLines = []) {
   return [
-    'New AI Makeover lead (form, not booked yet)',
+    `New ${clean(lead.offer) || 'AI Makeover'} lead (form, not booked yet)`,
     clean(lead.name) || 'Unknown',
     `Phone: ${clean(lead.phone) || 'not given'}`,
     clean(lead.email),
     '',
     'Extra details: none yet (they only fill those in when they book)',
+    ...quoteMachine(lead),
     ...about(aboutLines),
   ].join('\n');
 }
@@ -28,19 +31,21 @@ export function quietCalendlyEvent(body) {
 }
 
 // answers: Calendly's questions_and_answers minus the phone question.
-export function bookedMessage({name, phone, email, when, answers = []}, aboutLines = []) {
+// held: the form lead still waiting when they booked, which names the offer and source ad.
+export function bookedMessage({name, phone, email, when, answers = [], held = null}, aboutLines = []) {
   const filled = answers.filter(a => clean(a.answer));
   const extra = filled.length
     ? ['Extra details: FILLED IN', ...filled.map(a => `${clean(a.question)}\n"${clean(a.answer, 1000)}"`)]
     : ['Extra details: left blank'];
   return [
-    'New call booked',
+    held?.offer ? `New ${clean(held.offer)} call booked` : 'New call booked',
     clean(name) || 'Unknown',
     `Phone: ${clean(phone) || 'not given'}`,
     clean(email),
     when,
     '',
     ...extra,
+    ...quoteMachine(held),
     ...about(aboutLines),
   ].join('\n');
 }

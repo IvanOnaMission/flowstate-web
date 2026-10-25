@@ -21,15 +21,18 @@ export async function holdLead(lead, s = store()) {
   return key;
 }
 
-// Returns true when a waiting form alert was cancelled by this booking.
-export async function releaseLead(lead, s = store()) {
+// Removes a waiting form alert and returns it (or null), so a booking can reuse what it held.
+export async function takeLead(lead, s = store()) {
   const key = leadKey(lead);
-  if (!key) return false;
+  if (!key) return null;
   const waiting = await s.get(key, {type: 'json'});
-  if (!waiting) return false;
+  if (!waiting) return null;
   await s.delete(key);
-  return true;
+  return waiting;
 }
+
+// Returns true when a waiting form alert was cancelled by this booking.
+export const releaseLead = async (lead, s = store()) => Boolean(await takeLead(lead, s));
 
 // Leads that have waited at least minAgeMs, oldest first.
 export async function dueLeads(minAgeMs = DELAY_MS, s = store(), now = Date.now()) {

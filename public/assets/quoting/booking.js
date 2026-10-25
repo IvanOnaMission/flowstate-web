@@ -5,7 +5,8 @@
   const link = box?.querySelector('a[href^="https://calendly.com/"]');
   if (!link) return;
   const path = location.pathname;
-  const route = path.startsWith('/workflow-diagnostic') ? 'Workflow diagnostic'
+  const route = path.startsWith('/quote-machine') ? 'Quote Machine'
+    : path.startsWith('/workflow-diagnostic') ? 'Workflow diagnostic'
     : path.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
 
   // The calendar opens after contact details; the quiz waits for a confirmed booking.
