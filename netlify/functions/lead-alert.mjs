@@ -57,7 +57,7 @@ function kitMessage(body) {
 function calendlyMessage(body, aboutLines = [], held = null) {
   const p = body.payload || {};
   const answers = p.questions_and_answers || [];
-  const phone = answers.find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || 'not given';
+  const phone = answers.find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || held?.phone || 'not given';
   const when = p.scheduled_event?.start_time ? nzTime(p.scheduled_event.start_time) : 'time unknown';
   if (body.event === 'invitee.canceled') return `Call CANCELLED\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
   return bookedMessage({
