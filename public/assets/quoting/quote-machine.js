@@ -74,8 +74,18 @@
     opened = true;
     form.hidden = true;
     const url = new URL(calendly.href);
+    // The event asks first and last name separately, then the phone as its first question (a1).
+    const [first, ...rest] = name.value.trim().split(/\s+/);
     url.searchParams.set('name', name.value.trim());
+    url.searchParams.set('first_name', first);
+    if (rest.length) url.searchParams.set('last_name', rest.join(' '));
     url.searchParams.set('email', email.value.trim());
+    // Calendly's phone field wants an international number: 021 123 4567 becomes +64211234567.
+    let digits = phone.value.trim().replace(/[^\d+]/g, '');
+    if (digits.startsWith('00')) digits = `+${digits.slice(2)}`;
+    if (/^0\d{7,}$/.test(digits)) digits = `+64${digits.slice(1)}`;
+    if (/^\d{8,15}$/.test(digits)) digits = `+${digits}`;
+    url.searchParams.set('a1', digits);
     calendly.href = url.toString();
     booking.hidden = false;
     document.dispatchEvent(new CustomEvent('flowstate:lead'));
