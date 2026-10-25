@@ -1,7 +1,6 @@
-/* /quote-machine/: video, then three booking steps in one card.
+/* /quote-machine/: video, then two booking steps in one card.
    1. Contact details post to the "quote-machine" Netlify form (lead saved, alert held, Meta Lead).
-   2. Four taps post to "quote-machine-answers", which joins the held alert.
-   3. Calendly opens prefilled with their name and email; a booking goes to /quote-machine/booked/.
+   2. Calendly opens prefilled with their name and email; a booking goes to /quote-machine/booked/.
    Contact details never enter browser storage or analytics. They go to Calendly only to prefill it. */
 (() => {
   const params = new URLSearchParams(location.search);
@@ -41,9 +40,8 @@
   }
 
   const form = document.querySelector('form[name="quote-machine"]');
-  const answers = document.querySelector('form[name="quote-machine-answers"]');
   const booking = document.querySelector('.booking[data-after-lead]');
-  if (!form || !answers || !booking) return;
+  if (!form || !booking) return;
   keys.concat('ad_id').forEach(key => { const field = form.elements.namedItem(key); if (field) field.value = tracking[key] || ''; });
   form.elements.namedItem('landing_path').value = location.pathname;
   const feedback = form.querySelector('.feedback');
@@ -52,7 +50,6 @@
   const email = form.elements.namedItem('email');
   const phone = form.elements.namedItem('phone');
   const smooth = () => (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
-  const card = document.getElementById('book-call');
 
   function validate() {
     name.setCustomValidity(name.value.trim() ? '' : 'Please enter your name.');
@@ -70,41 +67,12 @@
     body: new URLSearchParams(new FormData(target)).toString(),
   });
 
-  // Step 2: one question at a time, each tap moves on.
-  const questions = [...answers.querySelectorAll('.question')];
-  const back = answers.querySelector('.back');
-  let current = 0;
-  function show(index) {
-    current = index;
-    questions.forEach((q, i) => { q.hidden = i !== index; });
-    back.hidden = index === 0;
-    questions[index].querySelector('button')?.focus({preventScroll: true});
-  }
-  function toAnswers() {
-    form.hidden = true;
-    answers.hidden = false;
-    answers.elements.namedItem('name').value = name.value.trim();
-    answers.elements.namedItem('email').value = email.value.trim();
-    show(0);
-    card.scrollIntoView({behavior: smooth(), block: 'start'});
-  }
-  back.addEventListener('click', () => show(Math.max(0, current - 1)));
-  questions.forEach((question, index) => {
-    question.querySelectorAll('.taps button').forEach(button => button.addEventListener('click', () => {
-      question.querySelectorAll('.taps button').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-      answers.elements.namedItem(question.dataset.field).value = button.value;
-      if (index < questions.length - 1) show(index + 1);
-      else toCalendar();
-    }));
-  });
-
-  // Step 3: Calendly, prefilled. booking.js builds the widget when it hears flowstate:lead.
+  // Step 2: Calendly, prefilled. booking.js builds the widget when it hears flowstate:lead.
   let opened = false;
   function toCalendar() {
     if (opened) return;
     opened = true;
-    if (production) post(answers).catch(() => {});
-    answers.hidden = true;
+    form.hidden = true;
     const url = new URL(calendly.href);
     url.searchParams.set('name', name.value.trim());
     url.searchParams.set('email', email.value.trim());
@@ -130,7 +98,7 @@
     if (!production) {
       sent = true;
       feedback.textContent = 'Preview only: your details have not been sent.';
-      setTimeout(toAnswers, 700);
+      setTimeout(toCalendar, 700);
       return;
     }
     submit.disabled = true;
@@ -143,12 +111,12 @@
         const id = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
         window.fbq('track', 'Lead', {content_name: 'Quote Machine'}, {eventID: `lead-${id}`});
       }
-      toAnswers();
+      toCalendar();
     } catch {
       // Don't lose the booking over a failed save: carry on, and give them Ivan's number.
       sent = true;
       feedback.textContent = "That didn't send, but you can still pick a time. Or call Ivan on 027 200 6121.";
-      setTimeout(toAnswers, 1500);
+      setTimeout(toCalendar, 1500);
     }
   });
 })();

@@ -97,21 +97,17 @@ test("reschedules and Ivan's own cancellations send no alert", () => {
   assert.equal(quietCalendlyEvent({event: 'invitee.canceled', payload: {rescheduled: false, cancellation: {canceler_type: 'invitee'}}}), '');
 });
 
-test('Quote Machine answers ride along with the waiting alert and the booking', async () => {
-  const {addToHeldLead, takeLead} = await import('./pending.mjs');
-  const {quoteAnswers} = await import('./quote-machine.mjs');
+test('Quote Machine leads name the offer and source ad in both alerts', async () => {
+  const {takeLead} = await import('./pending.mjs');
+  const {sourceLine} = await import('./quote-machine.mjs');
   const s = fakeStore();
-  await holdLead({name: 'Jane', email: 'jane@example.com', phone: '021', offer: 'Quote Machine', source: 'Came from: ad 1234567890'}, s);
-  const answers = quoteAnswers({trade: 'other', work_type: 'tender_commercial', quoters: 'just_me', prices: 'made_up'});
-  assert.deepEqual(answers, {trade: 'Other', work_type: 'Tender-heavy commercial', quoters: 'Just me'});
-  assert.equal(await addToHeldLead({email: 'jane@example.com'}, {answers}, s), true);
-  assert.equal(await addToHeldLead({email: 'nobody@example.com'}, {answers}, s), false);
-  const held = (await dueLeads(0, s))[0].lead;
-  const text = formLeadMessage(held);
+  const source = sourceLine({ad_id: '1234567890', utm_source: 'facebook', utm_campaign: 'quote-machine'});
+  await holdLead({name: 'Jane', email: 'jane@example.com', phone: '021', offer: 'Quote Machine', source}, s);
+  const text = formLeadMessage((await dueLeads(0, s))[0].lead);
   assert.match(text, /^New Quote Machine lead \(form, not booked yet\)/);
-  assert.match(text, /QUOTE MACHINE ANSWERS\nTrade: Other\nMostly quotes: Tender-heavy commercial\nPeople quoting: Just me\nPOSSIBLE NON-FIT: trade is not electrical or plumbing; mostly tender-heavy commercial work\nCame from: ad 1234567890/);
+  assert.match(text, /Came from: ad 1234567890 · facebook \/ quote-machine/);
   const booked = bookedMessage({name: 'Jane', phone: '021', email: 'jane@example.com', when: 'Wed', held: await takeLead({email: 'jane@example.com'}, s)});
   assert.match(booked, /^New Quote Machine call booked/);
-  assert.match(booked, /QUOTE MACHINE ANSWERS/);
+  assert.match(booked, /Came from: ad 1234567890/);
   assert.equal(s.map.size, 0);
 });

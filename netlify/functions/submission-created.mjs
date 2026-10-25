@@ -2,8 +2,7 @@
 // each verified Netlify Forms submission (event-triggered function: the filename is
 // the event name, and Netlify signs the call, so it can't be triggered from outside).
 // The business quiz is saved as preparation notes; it never creates another lead
-// or sends another booking notification. The Quote Machine's four tap answers arrive as
-// their own small form and are added to the waiting alert. Other forms are ignored.
+// or sends another booking notification. Other forms are ignored.
 //
 // The lead goes to Kit and the Notion CRM straight away, but the Telegram alert is
 // held for LEAD_ALERT_DELAY_SECONDS (default 120) so they can pick a Calendly time
@@ -14,9 +13,9 @@
 import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
 import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
-import {answersMessage, clean, formLeadMessage} from '../lib/messages.mjs';
-import {addToHeldLead, holdLead} from '../lib/pending.mjs';
-import {OFFER as QUOTE_MACHINE, quoteAnswers, sourceLine} from '../lib/quote-machine.mjs';
+import {clean, formLeadMessage} from '../lib/messages.mjs';
+import {holdLead} from '../lib/pending.mjs';
+import {OFFER as QUOTE_MACHINE, sourceLine} from '../lib/quote-machine.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordFormLead} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
@@ -44,23 +43,6 @@ export default async (req) => {
     } catch (err) {
       console.error('business-quiz CRM sync failed:', err.message);
       return new Response('quiz saved in Netlify Forms; CRM sync failed', {status: 502});
-    }
-  }
-  if (formName === 'quote-machine-answers') {
-    const lead = {email: clean(data.email), name: clean(data.name), offer: QUOTE_MACHINE, answers: quoteAnswers(data)};
-    if (!lead.email || !Object.keys(lead.answers).length) return new Response('ignored', {status: 200});
-    try {
-      // The contact-details event can still be saving the lead when the answers land, so wait briefly.
-      for (let tries = 0; tries < 3; tries++) {
-        if (await addToHeldLead(lead, {answers: lead.answers})) return new Response('added to held lead', {status: 200});
-        await new Promise(done => setTimeout(done, 2500));
-      }
-      // The form alert already went out (or the holding list is down): send the answers on their own.
-      await sendAlert(answersMessage(lead));
-      return new Response('answers sent', {status: 200});
-    } catch (err) {
-      console.error('quote-machine-answers alert failed:', err.message);
-      return new Response('answers saved in Netlify Forms; alert failed', {status: 502});
     }
   }
   if (!FORMS.includes(formName)) return new Response('ignored', {status: 200});

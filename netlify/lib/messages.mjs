@@ -1,15 +1,10 @@
 // The Telegram text for AI Makeover leads: who they are, whether they filled in the
 // optional booking question, and a bit about them. The contact card follows separately.
-import {answerLines} from './quote-machine.mjs';
-
 export const clean = (value, max = 200) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 
 const about = lines => (lines?.length ? ['', 'ABOUT THEM', ...lines] : []);
-// Quote Machine leads carry their four tap answers and the ad they came from.
-const quoteMachine = lead => {
-  const lines = [...answerLines(lead?.answers), ...(lead?.source ? [clean(lead.source, 300)] : [])];
-  return lines.length ? ['', ...lines] : [];
-};
+// Quote Machine leads carry the ad they came from.
+const quoteMachine = lead => (lead?.source ? ['', clean(lead.source, 300)] : []);
 
 export function formLeadMessage(lead, aboutLines = []) {
   return [
@@ -24,11 +19,6 @@ export function formLeadMessage(lead, aboutLines = []) {
   ].join('\n');
 }
 
-// Sent when the four answers arrive after the form alert already went out.
-export function answersMessage(lead) {
-  return [`${clean(lead.offer) || 'Quote Machine'} answers`, clean(lead.name) || 'Unknown', clean(lead.email), ...quoteMachine(lead)].join('\n');
-}
-
 // Calendly sends a cancel plus a fresh booking for every reschedule, so moving a call used to
 // re-send the whole lead alert. Ivan doesn't need texting about calls he moved or cancelled himself.
 // Returns why the event stays quiet, or '' when it should alert.
@@ -41,7 +31,7 @@ export function quietCalendlyEvent(body) {
 }
 
 // answers: Calendly's questions_and_answers minus the phone question.
-// held: the form lead still waiting when they booked, which may carry Quote Machine answers.
+// held: the form lead still waiting when they booked, which names the offer and source ad.
 export function bookedMessage({name, phone, email, when, answers = [], held = null}, aboutLines = []) {
   const filled = answers.filter(a => clean(a.answer));
   const extra = filled.length
