@@ -21,8 +21,11 @@
   /* How far people get through the video on this page. Custom events only: no contact details. */
   const video = document.querySelector('video.vsl');
   if (!video) return;
-  const name = document.title.includes('AI Makeover') ? 'AI Makeover' : location.pathname;
-  const marks = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  // A page can set its own name and marks, e.g. data-name="Quote Machine" data-marks="25,50,75,100".
+  const name = video.dataset.name || (document.title.includes('AI Makeover') ? 'AI Makeover' : location.pathname);
+  const marks = video.dataset.marks ? video.dataset.marks.split(',').map(Number) : [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  // data-progress="sound-on": a muted preview playing in the background is not watching, so don't count it.
+  const counting = () => video.dataset.progress !== 'sound-on' || !video.muted;
   const sent = new Set();
   function send(event, extra) {
     if (sent.has(event)) return;
@@ -36,9 +39,9 @@
   video.addEventListener('play', started, {once: true});
   video.addEventListener('volumechange', () => { if (!video.muted) send('VideoSoundOn'); });
   video.addEventListener('timeupdate', () => {
-    if (!video.duration) return;
+    if (!video.duration || !counting()) return;
     const percent = (video.currentTime / video.duration) * 100;
     marks.forEach(mark => { if (percent >= mark) send(`VideoProgress${mark}`, {percent: mark}); });
   });
-  video.addEventListener('ended', () => { send('VideoProgress100', {percent: 100}); send('VideoComplete'); });
+  video.addEventListener('ended', () => { if (!counting()) return; send('VideoProgress100', {percent: 100}); send('VideoComplete'); });
 })();

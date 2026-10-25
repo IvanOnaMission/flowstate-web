@@ -201,7 +201,7 @@ async function syncForms(db,c) {
   const headers={authorization:`Bearer ${c.netlify_token}`};
   const res=await fetch(`https://api.netlify.com/api/v1/sites/${c.netlify_site_id}/forms`,{headers,signal:AbortSignal.timeout(20000)});
   if (!res.ok) throw new Error(`Forms list: ${res.status}`);
-  const forms=(await res.json()).filter(f=>f.name==='ai-makeover'); let count=0;
+  const forms=(await res.json()).filter(f=>['ai-makeover','quote-machine'].includes(f.name)); let count=0;
   const ads=await db.all('mkt_ads','select=id,name');
   for (const f of forms) for (let page=1;;page++) {
     const res=await fetch(`https://api.netlify.com/api/v1/forms/${f.id}/submissions?per_page=100&page=${page}`,{headers,signal:AbortSignal.timeout(20000)});

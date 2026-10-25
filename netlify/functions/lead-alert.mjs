@@ -8,7 +8,7 @@ import crypto from 'node:crypto';
 import {addToKit, crmBooked, safely} from '../lib/crm.mjs';
 import {aboutLead} from '../lib/about.mjs';
 import {bookedMessage, quietCalendlyEvent} from '../lib/messages.mjs';
-import {releaseLead} from '../lib/pending.mjs';
+import {takeLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordBooking} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
@@ -54,7 +54,7 @@ function kitMessage(body) {
   return `New signup\n${name}\nPhone: ${f.phone || 'not given'}\n${s.email_address || ''}\nCall them now.`;
 }
 
-function calendlyMessage(body, aboutLines = []) {
+function calendlyMessage(body, aboutLines = [], held = null) {
   const p = body.payload || {};
   const answers = p.questions_and_answers || [];
   const phone = answers.find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || 'not given';
@@ -62,7 +62,7 @@ function calendlyMessage(body, aboutLines = []) {
   if (body.event === 'invitee.canceled') return `Call CANCELLED\n${p.name || 'Unknown'}\nPhone: ${phone}\n${p.email || ''}\n${when}`;
   return bookedMessage({
     name: p.name, phone, email: p.email, when,
-    answers: answers.filter(a => !/phone/i.test(a.question)),
+    answers: answers.filter(a => !/phone/i.test(a.question)), held,
   }, aboutLines);
 }
 
@@ -105,24 +105,25 @@ export default async (req) => {
     }
     if (!['invitee.created', 'invitee.canceled'].includes(body.event)) return json(200, {ignored: body.event});
     await safely('marketing booking',async()=>{const db=trackingDatabase();if(db)await recordBooking(db,trackingBooking);});
-    let aboutLines = [];
+    let aboutLines = [], held = null;
     const quiet = quietCalendlyEvent(body);
     if (body.event === 'invitee.created') {
       const p = body.payload || {};
       const phone = (p.questions_and_answers || []).find(a => /phone/i.test(a.question))?.answer || p.text_reminder_number || '';
       const booked = {email: p.email, name: p.name, phone, start: p.scheduled_event?.start_time};
-      contact = {...booked, label: 'AI Makeover booked'};
+      contact = {...booked, label: p.tracking?.utm_campaign === 'quote-machine' ? 'Quote Machine booked' : 'AI Makeover booked'};
       await Promise.all([
         quiet ? null : aboutLead({email: p.email, tracking: p.tracking}).then(lines => { aboutLines = lines; }, () => {}),
         safely('kit booked', () => addToKit({...booked, tagId: process.env.KIT_TAG_MAKEOVER_BOOKED})),
         safely('notion booked', () => crmBooked(booked)),
-        // They filled the form minutes ago: drop the waiting "not booked yet" alert.
-        safely('release pending', () => releaseLead(booked)),
+        // They filled the form minutes ago: drop the waiting "not booked yet" alert, keeping its answers.
+        safely('release pending', async () => { held = await takeLead(booked); }),
       ]);
     }
     // The CRM still gets the new call time above; only the Telegram text is skipped.
     if (quiet) return json(200, {sent: false, quiet});
-    text = calendlyMessage(body, aboutLines);
+    if (held?.offer) contact.label = `${held.offer} booked`;
+    text = calendlyMessage(body, aboutLines, held);
   } else {
     return json(400, {error: 'unknown source'});
   }

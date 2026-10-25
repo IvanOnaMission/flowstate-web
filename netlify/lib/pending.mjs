@@ -21,13 +21,26 @@ export async function holdLead(lead, s = store()) {
   return key;
 }
 
+// Removes a waiting form alert and returns it (or null), so a booking can reuse what it held.
+export async function takeLead(lead, s = store()) {
+  const key = leadKey(lead);
+  if (!key) return null;
+  const waiting = await s.get(key, {type: 'json'});
+  if (!waiting) return null;
+  await s.delete(key);
+  return waiting;
+}
+
 // Returns true when a waiting form alert was cancelled by this booking.
-export async function releaseLead(lead, s = store()) {
+export const releaseLead = async (lead, s = store()) => Boolean(await takeLead(lead, s));
+
+// Adds fields (the Quote Machine answers) to a lead still waiting. False when it isn't waiting.
+export async function addToHeldLead(lead, extra, s = store()) {
   const key = leadKey(lead);
   if (!key) return false;
   const waiting = await s.get(key, {type: 'json'});
   if (!waiting) return false;
-  await s.delete(key);
+  await s.setJSON(key, {...waiting, ...extra});
   return true;
 }
 
