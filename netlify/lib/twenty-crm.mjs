@@ -91,14 +91,16 @@ export async function twentyMetaLead(input){
  if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
  return op;
 }
-export async function twentyMetaAnswers({email,id,answers=[],at,ad_id}){
+export async function twentyMetaAnswers({email,id,answers=[],at,ad_id,progress=false}){
  if(!email)return false;
  const op=await findOpportunity(email);if(!op)return false;
  const noteId=uuid('meta-audit-lead:'+id);
  const count=answers.filter(a=>a.answer!=='Not answered').length;
  const data={title:'Facebook audit enquiry — '+op.name,bodyV2:body(`Facebook lead: ${id}\nSubmitted: ${at||'Unknown'}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of 10 optional questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
  await createOrGet('notes',noteId,data);
+  if(progress)await request('/notes/'+noteId,'PATCH',data);
  await createOrGet('noteTargets',uuid(noteId+'targetOpportunityId'+op.id),{noteId,targetOpportunityId:op.id});
  if(op.pointOfContactId)await createOrGet('noteTargets',uuid(noteId+'targetPersonId'+op.pointOfContactId),{noteId,targetPersonId:op.pointOfContactId});
  return true;
 }
+export const twentyMetaProgress=input=>twentyMetaAnswers({...input,progress:true});

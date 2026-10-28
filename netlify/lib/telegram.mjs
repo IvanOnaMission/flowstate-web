@@ -10,9 +10,11 @@ async function call(method, body) {
   });
   const out = await res.json().catch(() => ({}));
   if (!res.ok || !out.ok) throw new Error(`Telegram ${method} ${res.status} ${out.description || ''}`);
+  return out.result;
 }
 
 export const sendAlert = text => call('sendMessage', {text: String(text).slice(0, 4000), disable_web_page_preview: true});
+export const editAlert = (messageId, text) => call('editMessageText', {message_id: messageId, text: String(text).slice(0, 4000), disable_web_page_preview: true});
 
 // NZ numbers typed as 021 123 4567 become +64211234567 so the card dials from anywhere.
 export function dialable(phone) {
