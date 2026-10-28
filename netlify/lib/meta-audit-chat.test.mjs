@@ -156,7 +156,14 @@ test('webhook signatures reject tampering and the endpoint fails closed without 
 
 test('every question offers valid choices, a skip and a real booking URL',()=>{
   for(let i=0;i<10;i++) {
-    const messages=auditQuestionMessages({lead:lead(),index:i});assert.equal(messages[0].quick_replies.length,META_AUDIT_QUESTIONS[i].options.length+1);
-    assert.ok(messages[0].quick_replies.every(q=>q.title.length<=20));assert.match(messages[1].attachment.payload.buttons[0].url,/^https:\/\/calendly.com\/ivan-flowstate\/30min/);
+    const messages=auditQuestionMessages({lead:lead(),index:i}),last=messages.at(-1);
+    assert.equal(last.quick_replies?.length,META_AUDIT_QUESTIONS[i].options.length+1,'Quick replies must remain on the final message');
+    assert.ok(last.quick_replies.every(q=>q.title.length<=20));assert.match(last.attachment.payload.buttons[0].url,/^https:\/\/calendly.com\/ivan-flowstate\/30min/);
+    assert.match(last.attachment.payload.text,new RegExp(META_AUDIT_QUESTIONS[i].label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
   }
+});
+
+test('email confirmation keeps its native email reply and booking button in the same final message',async()=>{
+  const messages=[];await processAuditEvent(start('5555555555'),{store:memory(),send:async(p,m)=>messages.push(m)});
+  const last=messages.at(-1);assert.equal(last.quick_replies?.[0]?.content_type,'user_email');assert.ok(last.attachment.payload.buttons[0].url.includes('calendly.com'));
 });

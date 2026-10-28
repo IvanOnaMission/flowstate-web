@@ -70,12 +70,12 @@ export async function enqueueAuditEvents(body,{store=auditChatStore(),queue=audi
   return count;
 }
 
-const bookingMessage = () => ({attachment:{type:'template',payload:{template_type:'button',text:'You can book your free 30-minute audit at any point.',buttons:[{type:'web_url',title:'Book my 30-min audit',url:AUDIT_BOOKING_URL}]}}});
+const bookingMessage = (text='You can book your free 30-minute audit at any point.',quickReplies) => ({attachment:{type:'template',payload:{template_type:'button',text,buttons:[{type:'web_url',title:'Book my 30-min audit',url:AUDIT_BOOKING_URL}]}},...(quickReplies?{quick_replies:quickReplies}:{})});
 const shortTitle = option => ({'Already have some automations':'Have automations','Keeping up with enquiries':'Keeping up with leads','We follow up when we remember':'When we remember','Over the next few months':'Next few months','We have automatic follow-up':'Automatic follow-up','We wait for the customer':'Wait for customer','Once a quote is sent':'After sending'}[option]||option).slice(0,20);
 export function auditQuestionMessages(state) {
   const q=META_AUDIT_QUESTIONS[state.index];
   if (!q) return [{text:'Thanks, that gives me a useful picture of your business. Your answers are saved with your enquiry. — Ivan'},bookingMessage()];
-  return [{text:`${state.index+1} of 10 · Optional\n${q.label}`,quick_replies:[...q.options.map((option,index)=>({content_type:'text',title:shortTitle(option),payload:`FSA:${state.lead.id}:${state.index}:${index}`})),{content_type:'text',title:'Skip this question',payload:`FSA:${state.lead.id}:${state.index}:skip`}]},bookingMessage()];
+  return [bookingMessage(`${state.index+1} of 10 · Optional\n${q.label}`,[...q.options.map((option,index)=>({content_type:'text',title:shortTitle(option),payload:`FSA:${state.lead.id}:${state.index}:${index}`})),{content_type:'text',title:'Skip this question',payload:`FSA:${state.lead.id}:${state.index}:skip`}])];
 }
 
 export async function sendMessenger(psid,message,{token=process.env.META_MESSENGER_TOKEN,pageId=process.env.META_PAGE_ID,fetcher=fetch}={}) {
@@ -105,8 +105,7 @@ export async function processAuditEvent(event,{store=auditChatStore(),send=sendM
       for (const message of auditQuestionMessages(state)) await send(psid,message);
       return;
     }
-    await send(psid,{text:'Your enquiry is in. Tap your email below so I can add these optional answers to the same record. If it differs from the form, type the email you used there.',quick_replies:[{content_type:'user_email'}]});
-    await send(psid,bookingMessage());
+    await send(psid,bookingMessage('Your enquiry is in. Tap your email below so I can add these optional answers to the same record. If it differs from the form, type the email you used there.',[{content_type:'user_email'}]));
     return;
   }
   const handled=await leased(store,leadKey(previous.leadId),now,async()=>{
