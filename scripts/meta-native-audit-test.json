@@ -1,6 +1,6 @@
 {
   "prepared_at": "2026-10-29",
-  "status": "PREPARED_PAUSED_AWAITING_PAGE_LEAD_ACCESS",
+  "status": "CRM_CONNECTED_TESTED_ADS_PAUSED",
   "account_id": "act_1630869461967772",
   "page_id": "1095779013619484",
   "campaign_id": "120250452722590753",
@@ -70,9 +70,23 @@
   ],
   "new_adset_id": "120250507913820753",
   "lead_ad_terms": "ACCEPTED_IN_META_UI",
-  "crm_delivery": "DEPLOYED_BUT_DISABLED_UNTIL_META_LEADS_TOKEN_IS_CONFIGURED",
+  "crm_delivery": "LIVE_SCHEDULED_IMPORT_TO_TWENTY_VERIFIED",
   "meta_connection_app": "Flowstate Ads",
   "meta_connection_app_id": "4854641474862084",
   "meta_system_user": "adsops",
-  "production_pr": "https://github.com/IvanOnaMission/flowstate-web/pull/14"
+  "production_pr": "https://github.com/IvanOnaMission/flowstate-web/pull/14",
+  "crm_connection_deploy_id": "6ae2495725099139f42365c0",
+  "lead_token_expires_at": "2026-12-27T19:12:11Z",
+  "lead_token_expires_nz": "2026-12-28T08:12:11+13:00",
+  "page_system_user_tasks": ["CREATE_CONTENT", "ADVERTISE", "ANALYZE", "MANAGE_LEADS"],
+  "connection_test": {
+    "meta_test_lead_id": "1135595305639949",
+    "twenty_opportunity_id": "ed40b017-5781-5971-8b23-ac5e05c15fb7",
+    "twenty_note_id": "3746b0e5-189f-5734-97ef-f6d22b5eb2a7",
+    "answers_verified": 10,
+    "delivery": "PRODUCTION_SCHEDULED_FUNCTION",
+    "crm_record_kind": "TEST",
+    "follow_up_task_status": "DONE",
+    "test_only_stages_suppressed": ["tracking", "kit", "alert"]
+  }
 }
