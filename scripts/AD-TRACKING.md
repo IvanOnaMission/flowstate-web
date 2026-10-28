@@ -74,7 +74,7 @@ other enquiries; unknown-source records are not assigned to an ad.
 
 ## Quote Machine booking funnel (28 October 2026)
 
-The existing two-step contact form remains in place. Its Meta `Lead` event means
+An audit booking button first reveals the two-step contact form. Its Meta `Lead` event means
 the details were saved successfully, not that a call was booked. Meta `Schedule`
 still fires only on a confirmed booking from the embedded Calendly frame.
 The confirmed booking also reaches the existing server webhook and dashboard.
@@ -82,6 +82,7 @@ The confirmed booking also reaches the existing server webhook and dashboard.
 New anonymous custom events in Meta Events Manager:
 
 - `QuoteMachineLandingView`: the landing page loaded.
+- `QuoteMachineAuditStarted`: a visitor opened the audit details form (once per visit).
 - `QuoteMachineCalendarOpened`: step two opened after the contact form.
 - `QuoteMachineCalendarLoaded`: the embedded Calendly event type loaded.
 - `QuoteMachineTimeSelected`: Calendly reported that a date and time were selected.
@@ -101,6 +102,7 @@ or `quoting:call-booked`. The existing verified booking webhook applies
 `makeover:call-booked` (23507362). No historical contacts were enrolled.
 
 The public Calendly URL remains `/ivan-flowstate/30min`; its display name is now
-`Quote Machine — Quoting Review`. Availability, reminders and the existing
+`Free 30-minute audit`. The page, thank-you page and Kit reminder use the same audit wording.
+Availability, reminders and the existing
 post-booking welcome video are preserved. A calendar-first variant remains a
 later experiment, after enough confirmed booking data is collected.
