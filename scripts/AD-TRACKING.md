@@ -129,9 +129,10 @@ Software is a single choice for the main tool, as offered by this native builder
 `audit-lead-sync` checks the single configured form every minute. Required private
 production variables: `META_AUDIT_FORM_ID` and `META_LEADS_TOKEN`. The token needs
 Page lead access, including `leads_retrieval`; form management also requires
-`pages_manage_ads`. The existing ads-management connection lacks both permissions.
-Do not activate the test until a real permissioned connection and a Meta test lead
-have verified the whole delivery path. Never put access tokens in git or URLs.
+`pages_manage_ads`. A separate production lead-access token now grants both
+permissions; the original ads-management token is unchanged. The live scheduled
+importer has delivered a synthetic Meta lead to Twenty, including all ten answers.
+Never put access tokens in git or URLs.
 
 Each submitted lead has independently retried CRM, answers, tracking, Kit and
 Telegram steps in private Netlify Blobs. Twenty reuses the contact/opportunity by
@@ -150,8 +151,10 @@ booking; a form submission alone is not a booked call.
 
 Current setup: native form `1116182244474862` is created and active. Meta's UI
 confirms the approved Lead Ads Terms were accepted for the Ivan Barnett Page.
-The existing API connection still rejects form management/lead retrieval, so
 Ads Manager was used to create and publish the test setup with delivery off.
+The Flowstate Ads app now includes the Capture & manage ad leads use case, and
+adsops has Page Content, Ads, Insights and Leads access. Its original three Page
+permissions were preserved alongside the new Leads permission.
 
 - New ad set `120250507913820753`: PAUSED, NZ$30/day, Instant Forms only.
 - Power-tools ad `120250507913830753`: PAUSED.
@@ -162,11 +165,21 @@ Ads Manager was used to create and publish the test setup with delivery off.
   OPT_OUT; related media and automatic translation are off.
 - The website ad set stays ACTIVE at NZ$60/day. No split has been applied yet.
 - The CRM importer and revised privacy notice are deployed through PR #14.
-  The production form-ID variable is configured. `META_LEADS_TOKEN` is still
-  missing: the existing Flowstate Ads app / adsops system-user token does not
-  include `leads_retrieval` or `pages_manage_ads`. No native lead has been imported
-  or enrolled as a test. Grant appropriate Page access, supply the token privately
-  to Netlify, redeploy, then verify a Meta test lead reaches the CRM before launch.
+  Both private production variables are configured. Production deploy
+  `6ae2495725099139f42365c0` activated the connection. The live scheduled function
+  imported Meta test lead `1135595305639949` into one Twenty opportunity
+  (`ed40b017-5781-5971-8b23-ac5e05c15fb7`) and one note
+  (`3746b0e5-189f-5734-97ef-f6d22b5eb2a7`) linked to the person and opportunity.
+  All ten answers were checked against the Meta submission. The opportunity is
+  marked TEST and its follow-up task is DONE. Before enabling the importer, the
+  test's tracking, Kit and alert stages were marked complete in its private outbox
+  so the synthetic submission would not trigger marketing emails/alerts or count
+  as a real marketing lead. These three integrations were deliberately not
+  exercised by this connection test.
+- The separate lead token has Meta's default 60-day expiry: **28 December 2026,
+  08:12 NZDT** (`2026-12-27T19:12:11Z`). Replace it privately in Netlify and
+  redeploy before that deadline to keep importing leads. This does not affect
+  the existing ads-management token.
 
 The separate website questionnaire was removed after the owner confirmed every
 question must be inside Facebook. Meta controls ordering and Continue/Submit;
