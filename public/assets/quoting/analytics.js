@@ -17,6 +17,9 @@
   }
   window.fbq('init', '3159317364459626');
   window.fbq('track', 'PageView');
+  if (location.pathname === '/quote-machine/' || location.pathname === '/quote-machine') {
+    window.fbq('trackCustom', 'QuoteMachineLandingView', {content_name: 'Quote Machine'});
+  }
 
   /* How far people get through the video on this page. Custom events only: no contact details. */
   const video = document.querySelector('video.vsl');

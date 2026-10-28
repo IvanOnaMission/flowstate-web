@@ -44,9 +44,21 @@
     script.async = true;
     document.head.appendChild(script);
 
+    // Anonymous funnel steps help distinguish opening the calendar from completing a booking.
+    // Accept Calendly messages only from this widget; never forward its contact payload to Meta.
+    const stages = new Set();
+    const stage = name => {
+      if (route !== 'Quote Machine' || stages.has(name) || typeof window.fbq !== 'function') return;
+      stages.add(name);
+      window.fbq('trackCustom', name, {content_name: route});
+    };
+    stage('QuoteMachineCalendarOpened');
     let counted = false;
     window.addEventListener('message', event => {
-      if (event.origin !== 'https://calendly.com' || event.source !== widget.querySelector('iframe')?.contentWindow || event.data?.event !== 'calendly.event_scheduled' || counted) return;
+      if (event.origin !== 'https://calendly.com' || event.source !== widget.querySelector('iframe')?.contentWindow) return;
+      if (event.data?.event === 'calendly.event_type_viewed') stage('QuoteMachineCalendarLoaded');
+      if (event.data?.event === 'calendly.date_and_time_selected') stage('QuoteMachineTimeSelected');
+      if (event.data?.event !== 'calendly.event_scheduled' || counted) return;
       counted = true;
       document.dispatchEvent(new CustomEvent('flowstate:booked', {detail: event.data.payload}));
       const invitee = String(event.data.payload?.invitee?.uri || '').split('/').pop();

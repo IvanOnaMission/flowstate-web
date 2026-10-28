@@ -111,3 +111,27 @@ test('Quote Machine leads name the offer and source ad in both alerts', async ()
   assert.match(booked, /Came from: ad 1234567890/);
   assert.equal(s.map.size, 0);
 });
+
+test('Kit keeps the existing lead tag while adding the separate booking-reminder tag once', async () => {
+  const {addToKit} = await import('./crm.mjs');
+  const oldFetch = globalThis.fetch, oldKey = process.env.KIT_API_KEY;
+  const calls = [];
+  process.env.KIT_API_KEY = 'test-only';
+  globalThis.fetch = async (url, options) => {
+    calls.push({url, body: JSON.parse(options.body)});
+    return Response.json({});
+  };
+  try {
+    await addToKit({email: 'jane@example.test', name: 'Jane Smith', phone: '021 123 4567', tagId: 'existing-lead', tagIds: ['reminder', 'existing-lead', undefined]});
+    assert.deepEqual(calls.map(call => call.url), [
+      'https://api.kit.com/v4/subscribers',
+      'https://api.kit.com/v4/tags/existing-lead/subscribers',
+      'https://api.kit.com/v4/tags/reminder/subscribers',
+    ]);
+    assert.equal(calls[0].body.first_name, 'Jane');
+    assert.equal(calls[1].body.email_address, 'jane@example.test');
+  } finally {
+    globalThis.fetch = oldFetch;
+    if (oldKey === undefined) delete process.env.KIT_API_KEY; else process.env.KIT_API_KEY = oldKey;
+  }
+});

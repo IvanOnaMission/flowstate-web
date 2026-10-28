@@ -17,7 +17,7 @@ async function kit(path, body) {
   if (!res.ok) throw new Error(`Kit ${path} ${res.status} ${(await res.text()).slice(0, 200)}`);
 }
 
-export async function addToKit({email, name, phone, tagId}) {
+export async function addToKit({email, name, phone, tagId, tagIds = []}) {
   if (!process.env.KIT_API_KEY || !email) return;
   const first = String(name || '').trim().split(/\s+/)[0] || undefined;
   try {
@@ -27,7 +27,9 @@ export async function addToKit({email, name, phone, tagId}) {
     console.error('kit subscriber with fields failed, retrying:', err.message);
     await kit('/subscribers', {email_address: email, first_name: first});
   }
-  if (tagId) await kit(`/tags/${tagId}/subscribers`, {email_address: email});
+  for (const id of new Set([tagId, ...tagIds].filter(Boolean))) {
+    await kit(`/tags/${id}/subscribers`, {email_address: email});
+  }
 }
 
 async function notion(path, method, body) {

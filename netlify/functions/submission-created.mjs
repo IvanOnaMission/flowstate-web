@@ -51,9 +51,10 @@ export default async (req) => {
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
     ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {})};
   const contact = {email: lead.email, name: lead.name, phone: lead.phone};
-  const kitTag = quoteMachine ? process.env.KIT_TAG_QUOTE_MACHINE_LEAD || process.env.KIT_TAG_MAKEOVER_LEAD : process.env.KIT_TAG_MAKEOVER_LEAD;
+  // Keep the existing lead tag and automations; the separate Quote Machine tag starts its booking reminder.
+  const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
   await Promise.all([
-    safely('kit lead', () => addToKit({...contact, tagId: kitTag})),
+    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : []})),
     safely('notion lead', () => crmLead({...contact, source: quoteMachine ? 'Quote Machine page' : 'form', customerType: data.customer_type, adId: data.ad_id})),
     safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,data,payload.created_at || new Date().toISOString()); }),
   ]);

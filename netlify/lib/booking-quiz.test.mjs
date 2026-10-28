@@ -40,6 +40,38 @@ test('Other uses the written answer and rejects blank or oversized text', () => 
   assert.throws(() => quizAnswers({...data, goal: ''}), /goal/);
 });
 
+test('Quote Machine calendar stages are counted once, without contact details or false bookings', () => {
+  let receive;
+  const tracked = [], opened = [], frame = {};
+  const link = {href: 'https://calendly.com/ivan-flowstate/30min?email=private%40example.test', replaceWith() {}};
+  const box = {querySelector: () => link, hasAttribute: () => false, contains: () => true};
+  const widget = {dataset: {}, querySelector: () => ({contentWindow: frame}), after() {}};
+  vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/booking.js', import.meta.url), 'utf8'), {
+    URL, location: {pathname: '/quote-machine/'},
+    CustomEvent: class {constructor(type, options) {this.type = type; this.detail = options.detail;}},
+    document: {querySelector: () => box, querySelectorAll: () => [], createElement: tag => tag === 'div' ? widget : {}, head: {appendChild() {}}, dispatchEvent: event => opened.push(event)},
+    window: {addEventListener: (type, handler) => {receive = handler;}, fbq: (...args) => tracked.push(args)},
+  });
+  const message = name => ({origin: 'https://calendly.com', source: frame, data: {event: name, payload: {email: 'private@example.test', invitee: {uri}}}});
+  receive({...message('calendly.date_and_time_selected'), origin: 'https://evil.test'});
+  receive({...message('calendly.date_and_time_selected'), source: {}});
+  receive(message('calendly.event_type_viewed'));
+  receive(message('calendly.event_type_viewed'));
+  receive(message('calendly.date_and_time_selected'));
+  receive(message('calendly.date_and_time_selected'));
+  assert.deepEqual(tracked.map(args => args.slice(0, 2)), [
+    ['trackCustom', 'QuoteMachineCalendarOpened'],
+    ['trackCustom', 'QuoteMachineCalendarLoaded'],
+    ['trackCustom', 'QuoteMachineTimeSelected'],
+  ]);
+  assert.equal(opened.length, 0);
+  assert.doesNotMatch(JSON.stringify(tracked), /private|invitee|email/);
+  receive(message('calendly.event_scheduled'));
+  receive(message('calendly.event_scheduled'));
+  assert.equal(tracked.filter(args => args[1] === 'Schedule').length, 1);
+  assert.equal(opened.length, 1);
+});
+
 test('pre-booking quiz requires valid contact details without a booking reference', () => {
   assert.deepEqual(quizContact({name: ' Jane Smith ', email: 'jane@example.test', phone: '021 123 4567'}), {name: 'Jane Smith', email: 'jane@example.test', phone: '021 123 4567', uri: ''});
   for (const bad of [{name: '', email: 'jane@example.test', phone: '0211234567'}, {name: 'Jane', email: 'invalid', phone: '0211234567'}, {name: 'Jane', email: 'jane@example.test', phone: 'abc1234567'}]) {

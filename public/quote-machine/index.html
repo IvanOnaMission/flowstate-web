@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Quote Machine for electrical and plumbing businesses | Flowstate</title>
-<meta name="description" content="Spend half the time you currently spend on quoting. Quote drafting built around your prices and your software in 30 days, and you approve every quote.">
+<meta name="description" content="Get your quotes out faster—and get your evenings back. The Quote Machine helps residential electrical and plumbing businesses prepare quotes for approval. Book a free quoting review with Ivan.">
 <link rel="canonical" href="https://flowstate.net.nz/quote-machine/">
 <meta property="og:title" content="The Quote Machine for electrical and plumbing businesses">
-<meta property="og:description" content="Spend half the time you currently spend on quoting. Watch the 4-minute video to see how it works.">
+<meta property="og:description" content="Get your quotes out faster—and get your evenings back. Watch the 4-minute video, then book your free quoting review with Ivan.">
 <meta property="og:url" content="https://flowstate.net.nz/quote-machine/">
 <meta property="og:image" content="https://flowstate.net.nz/assets/quoting/quote-machine-vsl-poster.jpg?v=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,10 @@ body{margin:0;background:var(--ink);color:var(--white);font:17px/1.6 "Plus Jakar
 a{color:var(--sky)}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--white);color:var(--ink);padding:8px 12px;border-radius:6px}
 .wrap{max-width:880px;margin:0 auto;padding:0 16px}
-header{padding:18px 0 12px;border-bottom:1px solid var(--line)}
+header{padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 14px;background:var(--blue);border-radius:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+.header-cta:hover{background:#14608c}
+.eyebrow{margin:0 0 12px;color:var(--sky);font-size:12px;font-weight:700;letter-spacing:.04em}
 .wordmark{font-size:17px;font-weight:800;letter-spacing:-.015em;color:var(--white)}
 .hero{padding:24px 0 18px;text-align:center}
 /* Highlighter-pen stroke behind a word: slightly tilted, ragged ends, sits low on the text. */
@@ -75,6 +78,11 @@ details p{color:var(--muted);max-width:740px;margin:10px 0 0;font-size:16px}
 .step-label{color:var(--sky);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px}
 .card h2{margin:0 0 8px;font-size:clamp(23px,4vw,28px);line-height:1.2;letter-spacing:-.015em}
 .card .intro{margin:0 0 18px;color:var(--muted);font-size:16px}
+.call-note{margin:-8px 0 18px;color:var(--muted);font-size:14px}
+.proof{margin:20px 0 0;padding:20px;border-left:3px solid var(--sky);background:var(--panel);border-radius:0 10px 10px 0}
+.proof blockquote{margin:0 0 10px;font-size:clamp(18px,3vw,22px);line-height:1.45;letter-spacing:-.01em;font-weight:500}
+.proof figcaption{font-size:14px;color:var(--muted)}
+.proof .context{margin:6px 0 0;font-size:13px;color:var(--muted)}
 .fields{display:grid;gap:12px}
 label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin:0 0 6px}
 input{width:100%;padding:13px 14px;border-radius:8px;border:1px solid var(--line);background:var(--ink);color:var(--white);font:inherit;font-size:16px}
@@ -110,18 +118,20 @@ footer a{color:var(--muted)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<script src="/assets/quoting/analytics.js?v=3" defer></script>
-<script src="/assets/quoting/quote-machine.js?v=2" defer></script>
-<script src="/assets/quoting/booking.js?v=3" defer></script>
+<script src="/assets/quoting/analytics.js?v=4" defer></script>
+<script src="/assets/quoting/quote-machine.js?v=3" defer></script>
+<script src="/assets/quoting/booking.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
-<header><span class="wordmark">Flowstate</span></header>
+<header><span class="wordmark">Flowstate</span><a class="header-cta" href="#book-call">Choose a time</a></header>
 <main id="main">
 <section class="hero">
-<h1>Spend <mark>half</mark> the time you currently spend on quoting.</h1>
-<p class="lead">Watch the 4-minute video to see how the Quote Machine works.</p>
+<p class="eyebrow">For NZ residential electrical and plumbing businesses</p>
+<h1>Get your quotes out faster—and get your <mark>evenings back.</mark></h1>
+<p class="lead">The Quote Machine helps you prepare and follow up quotes faster, so customers hear back sooner and you spend less time at your desk.</p>
+<p class="small">Watch the 4-minute video to see how it works.</p>
 </section>
 <div class="vsl-wrap">
 <video class="vsl" aria-label="Ivan explains the Quote Machine" playsinline muted preload="metadata" poster="/assets/quoting/quote-machine-vsl-poster.jpg?v=1" data-name="Quote Machine" data-marks="25,50,75,100" data-progress="sound-on">
@@ -129,20 +139,27 @@ footer a{color:var(--muted)}
 </video>
 <button type="button" class="vsl-play" aria-label="Play the video with sound"><span class="pill"><span class="ring" aria-hidden="true"></span>Tap for sound</span></button>
 </div>
+<figure class="proof">
+<blockquote>“I sit down at the office and the quote’s 95% built. I just need to cast my eye over it and change and tweak a couple things and then off it goes.”</blockquote>
+<figcaption><strong>Jordan · The Conduction Company</strong></figcaption>
+<p class="context">An electrical business owner Ivan collaborates with on AI, describing his own quoting workflow. Jordan checks and tweaks the draft before sending it.</p>
+</figure>
 <section class="card" id="book-call" aria-labelledby="book-title">
 <form id="form" name="quote-machine" method="POST" action="/quote-machine/" data-netlify="true" netlify-honeypot="bot-field" data-step="details">
 <input type="hidden" name="form-name" value="quote-machine">
 <input type="hidden" name="ad_id"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="landing_path">
 <p class="honeypot" aria-hidden="true"><label>Leave this empty if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 <p class="step-label">Step 1 of 2 · Your details</p>
-<h2 id="book-title">Book a free 30-minute call.</h2>
-<p class="intro">A call with Ivan about how you quote now and whether this fits your business. Nothing to prepare. Leave your details and the calendar opens.</p>
+<h2 id="book-title">Find out what’s slowing your quotes down.</h2>
+<p class="intro">We’ll look at how you quote now, where the manual work builds up, and whether The Quote Machine could help. You’ll leave knowing what I’d tackle first.</p>
+<p class="call-note">Free 30-minute call with Ivan. Nothing to prepare.</p>
 <div class="fields">
 <div><label for="qm-name">Name</label><input id="qm-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
 <div><label for="qm-phone">Mobile</label><input id="qm-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required></div>
 <div><label for="qm-email">Email</label><input id="qm-email" name="email" type="email" autocomplete="email" maxlength="200" required></div>
 </div>
-<button class="primary" type="submit">Continue to choose a time</button>
+<button class="primary" type="submit">Choose a time</button>
+<p class="small">Your calendar opens next. Your call is confirmed once you’ve picked a time and completed the booking.</p>
 <p class="feedback" role="status" aria-live="polite"></p>
 <p class="small">I’ll use your details to contact you about the call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
 </form>
@@ -150,9 +167,11 @@ footer a{color:var(--muted)}
 
 <div class="booking" data-after-lead hidden>
 <p class="step-label">Step 2 of 2 · Pick a time</p>
-<h2>Choose a time that suits you.</h2>
+<h2 id="calendar-title" tabindex="-1">One last step: choose your time.</h2>
+<p class="intro">Your call isn’t booked yet. Choose a time below and confirm your details to finish booking.</p>
+<p class="small booking-notice" role="status" aria-live="polite" hidden></p>
 <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=quote-machine">Choose a time</a>
-<p class="small">Free · 30 minutes with Ivan</p>
+<p class="small">Quote Machine · Free quoting review · 30 minutes with Ivan</p>
 </div>
 <noscript><p class="noscript-note">You can also <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=quote-machine">book your free call directly</a>.</p></noscript>
 </section>
@@ -205,7 +224,7 @@ footer a{color:var(--muted)}
 <details><summary>Will it work with my software?</summary><p>It connects to Fergus, Tradify, Xero or Groundplan where the software allows it, and works from an export where it doesn’t. We check your setup on the call, before you commit to anything.</p></details>
 <details><summary>How long before it pays off?</summary><p>The first piece of work in week one is drafting follow-ups for every unaccepted quote from the last 90 days, so you have something to send before the build is finished.</p></details>
 <details><summary>My team doesn’t use AI. Will they use this?</summary><p>Everyone is set up and taught the basics in the first week, and the people who quote are trained on the system before it’s handed over.</p></details>
-<details><summary>Is halving my quoting time guaranteed?</summary><p>No. Halving the time is the goal the build works towards, and we measure it against how long your quotes take in week one. What’s guaranteed is the handover within 30 days.</p></details>
+<details><summary>How much quoting time could I save?</summary><p>It depends on how you quote now and which parts we can take off your hands. We record how long your quotes take in week one and compare that with the system working on your real jobs. What’s guaranteed is the handover within 30 days.</p></details>
 <details><summary>What does the guarantee need from me?</summary><p>Your price list and five past approved quotes in week one, your attendance at the setup sessions, and using the drafts for every standard quote.</p></details>
 <details><summary>What does it cost?</summary><p>It depends on how many people quote and where your prices live now. Those are the two things the call works out, and I’ll give you a price once I know them.</p></details>
 </section>
@@ -213,9 +232,9 @@ footer a{color:var(--muted)}
 
 
 <section class="closing">
-<h2>Find out whether the Quote Machine fits your business.</h2>
-<p>A free 30-minute call with Ivan. Nothing to prepare.</p>
-<a class="cta" href="#book-call">Book a free 30-minute call</a>
+<h2>Find out what I’d tackle first.</h2>
+<p>Let’s look at what’s slowing your quoting down and whether The Quote Machine could help. Free 30-minute call. Nothing to prepare.</p>
+<a class="cta" href="#book-call">Choose a time</a>
 </section>
 </main>
 <footer><span>Flowstate · New Zealand</span><span><a href="/quoting-privacy/">Privacy</a> · <a href="mailto:ivan@flowstate.net.nz">Contact</a></span></footer>
