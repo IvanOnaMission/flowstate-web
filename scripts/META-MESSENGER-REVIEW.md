@@ -1,3 +1,9 @@
+> RETIRED ROUTE — The user chose the native questionnaire on 29 October 2026.
+> The current ads collect all questions and contacts inside Facebook/Instagram,
+> then offer Calendly. This custom Messenger review is not a launch dependency
+> for that route. Do not continue this checklist without a new request to use
+> the custom bot. See AD-TRACKING.md for the current configuration.
+
 # Flowstate Messenger review preparation — 29 October 2026
 
 **Draft only. Public Messenger access is blocked.** The admin-account end-to-end
