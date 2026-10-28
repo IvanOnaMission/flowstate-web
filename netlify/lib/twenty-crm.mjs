@@ -36,7 +36,7 @@ async function ensureOpportunity({email,name,phone,source}){
  const person=(await request('/people?filter='+filter('emails.primaryEmail',emailKey(email))+'&limit=1')).people[0];
  if(!person)await createOrGet('people',personId,{name:{firstName:String(name||email).trim(),lastName:''},emails:{primaryEmail:emailKey(email),additionalEmails:[]}});
  const id=uuid('website-opportunity:'+emailKey(email));
- await createOrGet('opportunities',id,{name:name||email,stage:'NEW',pointOfContactId:person?.id||personId,emailLookup:emailKey(email),sourceEmail:email,sourcePhone:phone||'',sourceRecordKind:'CONTACT',relationshipType:'WARM',planValue:'Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)',wikiNotes:`Came in through the workflow diagnostic page${source?` (${source})`:''}.`});
+ await createOrGet('opportunities',id,{name:name||email,stage:'NEW',pointOfContactId:person?.id||personId,emailLookup:emailKey(email),sourceEmail:email,sourcePhone:phone||'',sourceRecordKind:'CONTACT',relationshipType:'WARM',planValue:'Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)',wikiNotes:source?.startsWith('Facebook Instant Form')?`Enquired through ${source}.`:`Came in through the workflow diagnostic page${source?` (${source})`:''}.`});
  return (await findOpportunity(email))||{id,name:name||email,pointOfContactId:person?.id||personId};
 }
 async function followUp(op,title,due){
@@ -73,5 +73,32 @@ export async function twentyQuiz({email,uri,answers,submissionId}){
  if(!existing)await createOrGet('notes',id,{title:'Pre-call business quiz — '+op.name,bodyV2:body(`${marker}\n\nBooking: ${uri||'Not booked yet'}\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)});
  await createOrGet('noteTargets',uuid(id+'targetOpportunityId'+op.id),{noteId:id,targetOpportunityId:op.id});
  if(op.pointOfContactId)await createOrGet('noteTargets',uuid(id+'targetPersonId'+op.pointOfContactId),{noteId:id,targetPersonId:op.pointOfContactId});
+ return true;
+}
+
+// Native Meta submissions keep booked calls and existing follow-up actions intact.
+export async function twentyMetaLead(input){
+ const op=await ensureOpportunity(input),date=today();
+ const update={};
+ if(!op.sourceAdId&&/^\d{8,30}$/.test(input.adId||''))update.sourceAdId=input.adId;
+ const industry=input.answers?.find(a=>a.id==='industry')?.answer;
+ if(!op.trade&&industry&&industry!=='Not answered')update.trade=industry;
+ if(op.stage==='NEW'&&!op.nextAction){
+  // Write the deterministic task first, so a failed request retries without losing it.
+  await followUp(op,'Call within 5 minutes',date);
+  Object.assign(update,{nextAction:'Call within 5 minutes',nextActionDate:date+'T00:00:00Z',lastTouch:date});
+ }
+ if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
+ return op;
+}
+export async function twentyMetaAnswers({email,id,answers=[],at,ad_id}){
+ if(!email)return false;
+ const op=await findOpportunity(email);if(!op)return false;
+ const noteId=uuid('meta-audit-lead:'+id);
+ const count=answers.filter(a=>a.answer!=='Not answered').length;
+ const data={title:'Facebook audit enquiry — '+op.name,bodyV2:body(`Facebook lead: ${id}\nSubmitted: ${at||'Unknown'}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of 10 optional questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
+ await createOrGet('notes',noteId,data);
+ await createOrGet('noteTargets',uuid(noteId+'targetOpportunityId'+op.id),{noteId,targetOpportunityId:op.id});
+ if(op.pointOfContactId)await createOrGet('noteTargets',uuid(noteId+'targetPersonId'+op.pointOfContactId),{noteId,targetPersonId:op.pointOfContactId});
  return true;
 }
