@@ -126,6 +126,11 @@ they cannot recreate removed data. No deletion was performed during preparation.
   as a purported Flowstate terms or deletion policy.
 - Complete app icon, category and domain requirements, based on the actual app.
   Do not invent legal terms to fill an optional placeholder.
+  A 1024 × 1024 PNG rendered from the existing Flowstate vector logo is prepared
+  at `/Users/ivanbarnett/flowstate-output/marketing/flowstate-meta-app-icon-1024.png`.
+  The extension blocked file upload because file-URL access is disabled; the
+  icon has not been uploaded. Ivan can use **App settings → Basic → App icon**
+  to upload that file directly. No extension permission was changed.
 - Finalize a fresh reviewer fixture and real screen recording, replace the draft
   preparation notes with reproducible final instructions and upload the recording.
 - The permission dialog currently reports **0 of 1 API calls** and says test data
