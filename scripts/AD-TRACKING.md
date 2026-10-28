@@ -108,121 +108,103 @@ post-booking welcome video are preserved. A calendar-first variant remains a
 later experiment, after enough confirmed booking data is collected.
 
 
-## Native Facebook audit form test (29 October 2026)
+## Contact-first Facebook audit funnel (29 October 2026)
 
-The ten optional questions are inside Meta's Instant Form. There is no separate
-website questionnaire. All answers arrive only when the prospect presses Submit.
-Meta's fixed standard form places custom questions before the contact block.
-Flexible form delivery is enabled in Manual mode for just question/contact
-reordering and moving/skipping optional questions. This lets Meta show contact
-first but does not force that order for every visitor. There is no booking link
-on every question.
-The final screen links to the existing free 30-minute Calendly audit. Skipping
-optional questions does not prevent a contact-only submission. No abandoned
-contact details or unfinished answers can be imported.
+Status: **ADMIN_END_TO_END_VERIFIED_PUBLIC_BLOCKED_BUSINESS_VERIFICATION_AND_APP_REVIEW**.
+The actual admin-account flow works. Public prospects have not been verified and
+Messenger access remains blocked by the unverified business and App Review.
+The review is a draft, not a submitted or approved request.
 
-The draft uses More volume, no greeting, no role question, and required name,
-email and mobile. Meta may skip optional questions; the completion/booking screen is preserved.
-Question export field names match `netlify/lib/meta-audit-questions.mjs`.
-Software is a single choice for the main tool, as offered by this native builder.
+Native form `1091630220564926` collects required full name, email and phone only
+(More volume, no greeting). Contacts are submitted before any optional questions.
+Its ending opens `https://m.me/1095779013619484?ref=fs_audit_v1`. Messenger asks for
+the same email to match the saved enquiry, then offers ten optional questions,
+one at a time. Each question has quick replies, a skip choice and the free audit
+booking button. The booking destination is Calendly with Messenger campaign UTMs;
+booking is separate from enquiry submission. No website questionnaire is used.
 
-`audit-lead-sync` checks the single configured form every minute. Required private
-production variables: `META_AUDIT_FORM_ID` and `META_LEADS_TOKEN`. The token needs
-Page lead access, including `leads_retrieval`; form management also requires
-`pages_manage_ads`. A separate production lead-access token now grants both
-permissions; the original ads-management token is unchanged. The live scheduled
-importer has delivered a synthetic Meta lead to Twenty, including all ten answers.
-Never put access tokens in git or URLs.
+Every reply is saved durably to Netlify Blobs before updating the same Twenty
+note, linked to the person and opportunity. Skips say **Not answered**. A partial
+conversation preserves contacts and supplied answers. Native abandoned or
+unsubmitted fields are unavailable. Unrelated Page conversations are ignored.
 
-Each submitted lead has independently retried CRM, answers, tracking, Kit and
-Telegram steps in private Netlify Blobs. Twenty reuses the contact/opportunity by
-email, preserves a booked call and existing follow-up, and attaches one note per
-Meta submission, titled **Facebook audit enquiry — [name]**, to both the person and
-opportunity. The note contains all ten questions; skipped answers say Not answered.
-This does not assert that the prospect owns a business. Existing Kit reminder and
-confirmed Calendly booking processing remain separate from form submissions.
+`audit-lead-sync` imports the configured native form every minute and retries
+outbox stages. Production uses `META_AUDIT_FORM_ID=1091630220564926` and
+`META_AUDIT_CONTACT_FIRST=true`. Required private variables are `META_LEADS_TOKEN`,
+`META_PAGE_ID`, `META_MESSENGER_TOKEN`, `META_APP_SECRET` and
+`META_MESSENGER_VERIFY_TOKEN`. Never copy masked Netlify values back into secrets.
+Setup-only temporary secret files were removed; runtime values remain private.
 
-Proposed launch allocation: NZ$30/day existing website ad set + NZ$30/day native
-forms, within the existing NZ$60/day total. Preparation leaves the website at
-NZ$60/day and all new ads/ad set paused. Apply both budget changes together only
-at launch. Compare confirmed bookings, qualified calls and cost per qualified
-booking; a form submission alone is not a booked call.
+The Page webhook at
+`https://flowstate.net.nz/.netlify/functions/meta-audit-messenger` verifies
+HMAC-SHA256 and Page ID, queues events durably, and uses leases and retries.
+It is subscribed to `messages`, `messaging_postbacks` and `messaging_referrals`
+(v26.0). There is **no leadgen webhook subscription**; the minute importer handles
+native leads. Page Get Started payload is `FS_AUDIT_START`.
 
+Telegram sends **New lead form**, contact details and supplied answers after
+120 seconds without another answer. The minute worker usually makes delivery
+2–3 minutes after activity; initial maximum wait is 10 minutes. Contact-only
+leads still produce a summary. Later answers edit the original message;
+unchanged-text edits are suppressed. No summary implies a confirmed booking.
 
-Current setup: native form `1116182244474862` is created and active. Meta's UI
-confirms the approved Lead Ads Terms were accepted for the Ivan Barnett Page.
-Ads Manager was used to create and publish the test setup with delivery off.
-The Flowstate Ads app now includes the Capture & manage ad leads use case, and
-adsops has Page Content, Ads, Insights and Leads access. Its original three Page
-permissions were preserved alongside the new Leads permission.
+### Paused ads and budget
 
-- New ad set `120250507913820753`: PAUSED, NZ$30/day, Instant Forms only.
-- Power-tools ad `120250507913830753`: PAUSED.
-- Fast-response ad `120250507984940753`: PAUSED.
-- Unbillable-time ad `120250507984950753`: PAUSED.
-- All three use the native form, approved existing footage and the exact copy in
-  `scripts/meta-native-audit-test.json`. All returned creative enhancements are
-  OPT_OUT; related media and automatic translation are off.
-- The website ad set stays ACTIVE at NZ$60/day. No split has been applied yet.
-- The CRM importer and revised privacy notice are deployed through PR #14.
-  Both private production variables are configured. Production deploy
-  `6ae2495725099139f42365c0` activated the connection. The live scheduled function
-  imported Meta test lead `1135595305639949` into one Twenty opportunity
-  (`ed40b017-5781-5971-8b23-ac5e05c15fb7`) and one note
-  (`3746b0e5-189f-5734-97ef-f6d22b5eb2a7`) linked to the person and opportunity.
-  All ten answers were checked against the Meta submission. The opportunity is
-  marked TEST and its follow-up task is DONE. Before enabling the importer, the
-  test's tracking, Kit and alert stages were marked complete in its private outbox
-  so the synthetic submission would not trigger marketing emails/alerts or count
-  as a real marketing lead. These three integrations were deliberately not
-  exercised by this connection test.
-- The separate lead token has Meta's default 60-day expiry: **28 December 2026,
-  08:12 NZDT** (`2026-12-27T19:12:11Z`). Replace it privately in Netlify and
-  redeploy before that deadline to keep importing leads. This does not affect
-  the existing ads-management token.
+Campaign `120250452722590753` remains active. Website ad set
+`120250452722710753` remains **ACTIVE at NZ$60/day**. Form ad set
+`120250507913820753` remains **PAUSED at NZ$30/day**. All three form ads remain
+**PAUSED** and now use contact-only form `1091630220564926`:
 
-The separate website questionnaire was removed after the owner confirmed every
-question must be inside Facebook. Meta controls ordering and Continue/Submit;
-flexible delivery allows reordering but does not guarantee contact-first or
-capture unsubmitted/abandoned answers. The booking link is on the final screen.
+| Ad | Ad ID | New creative ID | Original video ID |
+| --- | --- | --- | --- |
+| Power tools | 120250507913830753 | 2558406464669334 | 3218930068497999 |
+| Replies on site | 120250507984940753 | 1126186896465440 | 1643887403786056 |
+| Unbillable time | 120250507984950753 | 2340525160043210 | 1454905336568454 |
 
-### Contact-first replacement — prepared, pending live Messenger verification
+Readback verified exact original copy, footage, thumbnail hashes and CTA type,
+with only the form destination changed. All returned enhancement features are
+`OPT_OUT`. Meta v26 rejects the old `standard_enhancements` write field, so clones
+use individual feature settings. Creative changes can temporarily show
+`IN_PROCESS`; configured ad status and parent ad set remain paused.
 
-An API ordering experiment (`2230455587511903`, no attached ads) put contact fields
-first in the API response, but Meta's native preview still displayed the custom
-question first. Array order therefore does not meet the contact-first requirement.
+The old long form `1116182244474862` and unused ordering experiment
+`2230455587511903` remain active but are not used by these ads or the importer.
+The ordering experiment proved that contact-first API array order did not change
+the native custom-question-first preview. Do not revert to it as a workaround.
 
-Replacement native form `1091630220564926` contains only full name, email and
-phone. Its completion screen links to
-`https://m.me/1095779013619484?ref=fs_audit_v1`. The contact is submitted before
-the optional Messenger questions. No additional website questionnaire is used.
-The initial one-tap email confirmation matches the chat to the submitted enquiry.
-The bot does not create a new lead from an unmatched email or respond to unrelated
-Page conversations. All ten questions are optional; every step includes a skip
-option and a Calendly booking button.
+The NZ$30 website / NZ$30 form split is an **unapproved, unapplied proposal**.
+Do not activate these ads or change either budget without a later launch
+instruction after the access blockers and a public non-role test are cleared.
 
-`meta-audit-messenger` verifies Meta's HMAC-SHA256 signature before accepting an
-event, restricts events to the configured Page and form, and durably queues the
-audit's message events. Each answer updates the same Twenty note linked to the
-person and opportunity. Persisted replies survive CRM errors; scheduled recovery
-retries them. Event IDs and per-person leases protect retries and concurrent
-workers. The existing booked-call stage and follow-up remain intact.
+### Verified admin-account evidence
 
-For this replacement flow, `META_AUDIT_CONTACT_FIRST=true` routes the native
-lead's alert into the audit summary instead of the old booking-cancellable alert.
-Telegram receives **New lead form**, name, email, phone and all supplied answers
-after two minutes without a new answer, with a maximum ten-minute wait for the
-initial summary. No answers still produces a contact-only alert. Late replies
-update the same Telegram message after the quiet period.
+The real contact-first test used synthetic native lead `2255373378659141`.
+All ten Messenger steps completed with nine supplied answers and question 8
+skipped. Exactly one Twenty note `f0c6c0e5-8eef-5cb9-91ac-2fa60eda6446` contains
+the nine answers, correct full option text and **Not answered** for the skip.
+It is linked to person `c314ffa2-ebe0-5ec2-afe6-78187f81b816` and opportunity
+`2546e0e5-e099-536c-a80d-26ff00c5ff28`. The opportunity is restored to **TEST**;
+follow-up task `982d674c-7f0a-5067-aa39-9628baeea892` is **DONE**. Tracking and Kit
+were suppressed for this synthetic record; no fake conversion or email was sent.
 
-Additional private production variables: `META_PAGE_ID`, `META_MESSENGER_TOKEN`
-(Page messaging access), `META_APP_SECRET` (webhook signature verification) and
-`META_MESSENGER_VERIFY_TOKEN` (random callback verification token). The Meta app
-needs Messenger capability and Page messaging access; subscribe its Page webhook
-to `leadgen`, `messages`, `messaging_postbacks` and `messaging_referrals` using
-`https://flowstate.net.nz/.netlify/functions/meta-audit-messenger`.
+Production Telegram updated the **same message 117** at 3, 7 and finally 9 answers.
+Final durable state: `index=10`, `revision=21`, `notifiedRevision=21`,
+`crmDirty=false`, summary count 9. Booking opened the correct live **Free
+30-minute audit** page with Auckland timezone and campaign UTMs; no booking was
+created. Fresh readback confirms the final CRM and digest state. Automated suite:
+60 tests. This admin test does not establish public permission access.
 
-Do not point the paused ads/importer at the replacement form until the real
-Meta-to-Messenger-to-Twenty-to-Telegram flow, partial abandonment, timing and
-booking button have been verified. The existing form and paused ads remain the
-current configuration until that verification is recorded.
+Runtime implementation is in merged PRs #17, #18 and #19. Verified runtime deploy:
+`6ae257f4e6798584f3d57154`, commit `684bedbb22743b2a3cad750c89fd07d6f3ce0d31`.
+Evidence images are in `/Users/ivanbarnett/flowstate-output/marketing/`:
+`contact-first-native-form-2026-10-29.jpg`,
+`meta-messenger-live-complete-2026-10-29.png`, and
+`meta-messenger-business-verification-required-2026-10-29.jpg`.
+
+The separate lead token expires **28 December 2026, 08:12 NZDT**
+(`2026-12-27T19:12:11Z`). Rotate privately before expiry. A Page token lacking
+`pages_read_engagement` or `pages_manage_metadata` can deny subscription reads
+without being invalid; do not replace runtime secrets based on that read error.
+
+See [META-MESSENGER-REVIEW.md](META-MESSENGER-REVIEW.md) for the exact review
+blockers, prepared wording, data flow and owner verification steps.
