@@ -96,6 +96,54 @@ test('contact details unlock the calendar without waiting for the quiz', () => {
   assert.equal(built, 1);
 });
 
+test('audit buttons reveal the details without creating a lead, and keep the calendar after submission', async () => {
+  const formListeners = new Map(), events = [], tracked = [];
+  const element = () => ({hidden: false, attributes: {}, setAttribute(key, value) {this.attributes[key] = value;}, focus() {}, scrollIntoView() {}});
+  const card = element(), title = element(), calendarTitle = element(), invitation = element(), booking = element();
+  const buttons = Array.from({length: 3}, () => ({...element(), addEventListener(type, fn) {this.click = fn;}}));
+  const fields = new Map(['name', 'email', 'phone', 'landing_path', 'ad_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].map(key => [key, {value: '', setCustomValidity() {}}]));
+  const feedback = {}, submit = {};
+  const form = {...element(), elements: {namedItem: key => fields.get(key)},
+    querySelector: selector => selector === '.feedback' ? feedback : submit,
+    addEventListener: (type, fn) => formListeners.set(type, fn), checkValidity: () => true};
+  const link = {href: 'https://calendly.com/ivan-flowstate/30min'};
+  const selectors = new Map([
+    ['.booking a[href^="https://calendly.com/"]', link], ['form[name="quote-machine"]', form],
+    ['.booking[data-after-lead]', booking], ['.audit-invite', invitation],
+  ]);
+  const ids = new Map([['book-call', card], ['book-title', title], ['calendar-title', calendarTitle]]);
+  vm.runInNewContext(readFileSync(new URL('../../public/assets/quoting/quote-machine.js', import.meta.url), 'utf8'), {
+    URL, URLSearchParams, location: {search: '', hash: '', pathname: '/quote-machine/', hostname: 'localhost'},
+    sessionStorage: {getItem: () => null}, matchMedia: () => ({matches: true}),
+    setTimeout: fn => fn(), CustomEvent: class {constructor(type) {this.type = type;}},
+    document: {querySelector: key => selectors.get(key) || null, querySelectorAll: () => buttons,
+      getElementById: key => ids.get(key), addEventListener() {}, dispatchEvent: event => events.push(event.type)},
+    window: {fbq: (...args) => tracked.push(args)},
+  });
+  assert.equal(form.hidden, true);
+  assert.equal(invitation.hidden, false);
+  buttons[0].click({preventDefault() {}});
+  assert.equal(form.hidden, false);
+  assert.equal(invitation.hidden, true);
+  assert.equal(card.attributes['aria-labelledby'], 'book-title');
+  fields.get('name').value = 'Jane Smith';
+  fields.get('email').value = 'jane@example.test';
+  fields.get('phone').value = '021 123 4567';
+  buttons[1].click({preventDefault() {}});
+  assert.equal(fields.get('email').value, 'jane@example.test');
+  assert.equal(tracked.filter(args => args[1] === 'QuoteMachineAuditStarted').length, 1);
+  assert.equal(events.length, 0);
+  assert.equal(tracked.filter(args => args[1] === 'Lead').length, 0);
+  await formListeners.get('submit')({preventDefault() {}});
+  assert.equal(form.hidden, true);
+  assert.equal(booking.hidden, false);
+  assert.deepEqual(events, ['flowstate:lead']);
+  buttons[2].click({preventDefault() {}});
+  assert.equal(form.hidden, true);
+  assert.equal(card.attributes['aria-labelledby'], 'calendar-title');
+  assert.equal(new URL(link.href).searchParams.get('a1'), '+64211234567');
+});
+
 test('the quiz stays locked until a confirmed booking and keeps its booking reference', () => {
   const listeners = new Map(), fields = new Map();
   const node = () => ({focus() {}, addEventListener() {}});

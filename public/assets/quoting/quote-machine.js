@@ -1,4 +1,4 @@
-/* /quote-machine/: video, then two booking steps in one card.
+/* /quote-machine/: audit button reveals the details, then two booking steps in one card.
    1. Contact details post to the "quote-machine" Netlify form (lead saved, alert held, Meta Lead).
    2. Calendly opens prefilled with their name and email; a booking goes to /quote-machine/booked/.
    Contact details never enter browser storage or analytics. They go to Calendly only to prefill it. */
@@ -69,6 +69,35 @@
 
   // Step 2: Calendly, prefilled. booking.js builds the widget when it hears flowstate:lead.
   let opened = false;
+  const invitation = document.querySelector('.audit-invite');
+  const card = document.getElementById('book-call');
+  const auditButtons = document.querySelectorAll('[data-open-audit]');
+  // Progressive enhancement: without JavaScript the form stays visible and the links still reach it.
+  if (invitation && card) {
+    form.hidden = true;
+    invitation.hidden = false;
+    card.setAttribute('aria-labelledby', 'audit-title');
+    let started = false;
+    function revealAudit() {
+      invitation.hidden = true;
+      if (!opened) form.hidden = false;
+      const title = opened ? 'calendar-title' : 'book-title';
+      card.setAttribute('aria-labelledby', title);
+      auditButtons.forEach(button => button.setAttribute('aria-expanded', 'true'));
+      card.scrollIntoView({behavior: smooth(), block: 'start'});
+      document.getElementById(title)?.focus({preventScroll: true});
+      if (!started && typeof window.fbq === 'function') {
+        started = true;
+        window.fbq('trackCustom', 'QuoteMachineAuditStarted', {content_name: 'Quote Machine'});
+      }
+    }
+    auditButtons.forEach(button => {
+      button.setAttribute('aria-controls', 'form');
+      button.setAttribute('aria-expanded', 'false');
+      button.addEventListener('click', event => { event.preventDefault(); revealAudit(); });
+    });
+    if (['#book-call', '#form'].includes(location.hash)) revealAudit();
+  }
   function toCalendar() {
     if (opened) return;
     opened = true;
@@ -90,6 +119,7 @@
     booking.hidden = false;
     document.getElementById('book-call')?.setAttribute('aria-labelledby', 'calendar-title');
     document.dispatchEvent(new CustomEvent('flowstate:lead'));
+    auditButtons.forEach(button => button.setAttribute('aria-controls', 'book'));
     booking.scrollIntoView({behavior: smooth(), block: 'start'});
     document.getElementById('calendar-title')?.focus({preventScroll: true});
   }

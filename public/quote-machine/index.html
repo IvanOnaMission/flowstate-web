@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Quote Machine for electrical and plumbing businesses | Flowstate</title>
-<meta name="description" content="Get your quotes out faster—and get your evenings back. The Quote Machine helps residential electrical and plumbing businesses prepare quotes for approval. Book a free quoting review with Ivan.">
+<meta name="description" content="Get your quotes out faster—and get your evenings back. The Quote Machine helps residential electrical and plumbing businesses prepare quotes for approval. Book your free 30-minute audit with Ivan.">
 <link rel="canonical" href="https://flowstate.net.nz/quote-machine/">
 <meta property="og:title" content="The Quote Machine for electrical and plumbing businesses">
-<meta property="og:description" content="Get your quotes out faster—and get your evenings back. Watch the 4-minute video, then book your free quoting review with Ivan.">
+<meta property="og:description" content="Get your quotes out faster—and get your evenings back. Watch the 4-minute video, then book your free 30-minute audit with Ivan.">
 <meta property="og:url" content="https://flowstate.net.nz/quote-machine/">
 <meta property="og:image" content="https://flowstate.net.nz/assets/quoting/quote-machine-vsl-poster.jpg?v=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
 <style>
-/* Same palette and type as /ai-makeover/: white ground, ink text, atlantic actions. Mobile first. */
-:root{--ink:#ffffff;--panel:#ebfdff;--line:#d6e4ec;--white:#06283d;--muted:#3f5f73;--blue:#0f4b70;--sky:#1a6fa3;--night:#03101a}
+/* Warm neutrals for the page, ink for the testimonial and gold for booking actions. Mobile first. */
+:root{--ink:#faf9f6;--panel:#f1f2ef;--line:#dce0df;--white:#06283d;--muted:#53646d;--blue:#0f4b70;--sky:#1a6fa3;--night:#071f30;--gold:#f5cc47;--gold-hover:#e9bb2f}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--white);font:17px/1.6 "Plus Jakarta Sans",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
@@ -23,8 +23,8 @@ a{color:var(--sky)}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--white);color:var(--ink);padding:8px 12px;border-radius:6px}
 .wrap{max-width:880px;margin:0 auto;padding:0 16px}
 header{padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 14px;background:var(--blue);border-radius:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
-.header-cta:hover{background:#14608c}
+.header-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:210px;padding:10px 14px;background:var(--gold);border-radius:8px;color:var(--night);text-decoration:none;text-align:center;font-size:13px;line-height:1.3;font-weight:800}
+.header-cta:hover{background:var(--gold-hover)}
 .eyebrow{margin:0 0 12px;color:var(--sky);font-size:12px;font-weight:700;letter-spacing:.04em}
 .wordmark{font-size:17px;font-weight:800;letter-spacing:-.015em;color:var(--white)}
 .hero{padding:24px 0 18px;text-align:center}
@@ -41,8 +41,8 @@ h1{margin:0 auto;max-width:760px;font-size:clamp(32px,6vw,54px);line-height:1.08
 .vsl-play .ring{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .vsl-play .ring::after{content:"";margin-left:4px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--blue)}
 .vsl-play:hover .pill{background:#14608c}
-.cta{display:block;text-align:center;margin:20px auto 0;max-width:360px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:16px 22px;border-radius:8px}
-.cta:hover{background:#14608c}
+.cta{display:block;text-align:center;margin:20px auto 0;max-width:400px;background:var(--gold);color:var(--night);text-decoration:none;font-weight:800;font-size:17px;padding:16px 22px;border-radius:8px}
+.cta:hover{background:var(--gold-hover)}
 .info{margin:48px 0 0}
 .info h2{font-size:clamp(25px,4vw,34px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
 .info>p{color:var(--muted);margin:0 0 20px;max-width:700px}
@@ -62,7 +62,7 @@ h1{margin:0 auto;max-width:760px;font-size:clamp(32px,6vw,54px);line-height:1.08
 .fit .yes h3{color:var(--sky)}
 .fit p{margin:0;font-size:16px}
 .fit .no p{color:var(--muted)}
-.promise{margin:48px 0 0;background:var(--panel);border:1px solid var(--blue);border-radius:14px;padding:26px 20px;text-align:center}
+.promise{margin:48px 0 0;background:#fff5d9;border:1px solid #e7d69d;border-radius:14px;padding:26px 20px;text-align:center}
 .promise .name{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin:0 0 10px}
 .promise strong{display:block;margin:0 auto;max-width:620px;font-size:clamp(21px,3.4vw,26px);line-height:1.3;letter-spacing:-.02em}
 .promise p{margin:12px auto 0;max-width:560px;color:var(--muted);font-size:15px}
@@ -74,21 +74,25 @@ details{border-top:1px solid var(--line);padding:16px 0}details:last-of-type{bor
 summary{font-weight:700;cursor:pointer;padding-right:8px}
 details p{color:var(--muted);max-width:740px;margin:10px 0 0;font-size:16px}
 /* Booking: details, then the calendar, in one card. */
-.card{margin:20px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 18px;scroll-margin-top:16px}
+.card{margin:20px 0 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 20px;scroll-margin-top:16px;box-shadow:0 8px 30px rgba(7,31,48,.04)}
+.audit-invite{text-align:center}
+.audit-invite .intro{max-width:620px;margin-left:auto;margin-right:auto}
 .step-label{color:var(--sky);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px}
 .card h2{margin:0 0 8px;font-size:clamp(23px,4vw,28px);line-height:1.2;letter-spacing:-.015em}
 .card .intro{margin:0 0 18px;color:var(--muted);font-size:16px}
 .call-note{margin:-8px 0 18px;color:var(--muted);font-size:14px}
-.proof{margin:20px 0 0;padding:20px;border-left:3px solid var(--sky);background:var(--panel);border-radius:0 10px 10px 0}
-.proof blockquote{margin:0 0 10px;font-size:clamp(18px,3vw,22px);line-height:1.45;letter-spacing:-.01em;font-weight:500}
-.proof figcaption{font-size:14px;color:var(--muted)}
-.proof .context{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.proof{margin:24px 0 0;padding:28px 24px;background:var(--night);color:#fff;border-radius:14px;border-top:4px solid var(--gold)}
+.proof .proof-label{margin:0 0 16px;color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.proof blockquote{margin:0 0 22px;font-size:clamp(22px,3.5vw,29px);line-height:1.4;letter-spacing:-.02em;font-weight:500}
+.proof mark{background:none;color:var(--gold);font-weight:800}
+.proof figcaption{font-size:15px;color:#fff}
+.proof .context{margin:8px 0 0;font-size:13px;line-height:1.6;color:#bfcfd8;max-width:680px}
 .fields{display:grid;gap:12px}
 label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin:0 0 6px}
 input{width:100%;padding:13px 14px;border-radius:8px;border:1px solid var(--line);background:var(--ink);color:var(--white);font:inherit;font-size:16px}
 input:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
-.primary{display:block;width:100%;margin:16px 0 0;min-height:54px;border:0;border-radius:8px;background:var(--blue);color:#fff;font:700 17px "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer}
-.primary:hover{background:#14608c}.primary:disabled{opacity:.6}
+.primary{display:block;width:100%;margin:16px 0 0;min-height:54px;border:0;border-radius:8px;background:var(--gold);color:var(--night);font:800 17px "Plus Jakarta Sans",system-ui,sans-serif;cursor:pointer}
+.primary:hover{background:var(--gold-hover)}.primary:disabled{opacity:.6}
 .feedback{margin:10px 0 0;font-size:14px;color:var(--sky);min-height:1em}
 .small{font-size:13px;color:var(--muted);margin:8px 0 0}
 .honeypot{position:absolute;left:-9999px;visibility:hidden}
@@ -119,13 +123,13 @@ footer a{color:var(--muted)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 <script src="/assets/quoting/analytics.js?v=4" defer></script>
-<script src="/assets/quoting/quote-machine.js?v=3" defer></script>
+<script src="/assets/quoting/quote-machine.js?v=4" defer></script>
 <script src="/assets/quoting/booking.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
-<header><span class="wordmark">Flowstate</span><a class="header-cta" href="#book-call">Choose a time</a></header>
+<header><span class="wordmark">Flowstate</span><a class="header-cta" href="#book-call" data-open-audit>Book my free 30-minute audit</a></header>
 <main id="main">
 <section class="hero">
 <p class="eyebrow">For NZ residential electrical and plumbing businesses</p>
@@ -140,25 +144,32 @@ footer a{color:var(--muted)}
 <button type="button" class="vsl-play" aria-label="Play the video with sound"><span class="pill"><span class="ring" aria-hidden="true"></span>Tap for sound</span></button>
 </div>
 <figure class="proof">
-<blockquote>“I sit down at the office and the quote’s 95% built. I just need to cast my eye over it and change and tweak a couple things and then off it goes.”</blockquote>
+<p class="proof-label">From an electrical business owner</p>
+<blockquote>“I sit down at the office and the quote’s <mark>95% built.</mark> I just need to cast my eye over it and change and tweak a couple things and then off it goes.”</blockquote>
 <figcaption><strong>Jordan · The Conduction Company</strong></figcaption>
 <p class="context">An electrical business owner Ivan collaborates with on AI, describing his own quoting workflow. Jordan checks and tweaks the draft before sending it.</p>
 </figure>
 <section class="card" id="book-call" aria-labelledby="book-title">
+<div class="audit-invite" hidden>
+<h2 id="audit-title">Find out what I’d tackle first.</h2>
+<p class="intro">We’ll look at how you handle enquiries and quotes, where the manual work builds up, and where AI could help.</p>
+<a class="cta" href="#book-call" data-open-audit>Book my free 30-minute audit</a>
+<p class="small">With Ivan · Nothing to prepare</p>
+</div>
 <form id="form" name="quote-machine" method="POST" action="/quote-machine/" data-netlify="true" netlify-honeypot="bot-field" data-step="details">
 <input type="hidden" name="form-name" value="quote-machine">
 <input type="hidden" name="ad_id"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term"><input type="hidden" name="landing_path">
 <p class="honeypot" aria-hidden="true"><label>Leave this empty if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 <p class="step-label">Step 1 of 2 · Your details</p>
-<h2 id="book-title">Find out what’s slowing your quotes down.</h2>
-<p class="intro">We’ll look at how you quote now, where the manual work builds up, and whether The Quote Machine could help. You’ll leave knowing what I’d tackle first.</p>
-<p class="call-note">Free 30-minute call with Ivan. Nothing to prepare.</p>
+<h2 id="book-title" tabindex="-1">Book your free 30-minute audit.</h2>
+<p class="intro">Leave your details, then choose a time. We’ll look at where the manual work builds up and you’ll leave knowing what I’d tackle first.</p>
+<p class="call-note">With Ivan · Nothing to prepare</p>
 <div class="fields">
 <div><label for="qm-name">Name</label><input id="qm-name" name="name" type="text" autocomplete="name" maxlength="120" required></div>
 <div><label for="qm-phone">Mobile</label><input id="qm-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required></div>
 <div><label for="qm-email">Email</label><input id="qm-email" name="email" type="email" autocomplete="email" maxlength="200" required></div>
 </div>
-<button class="primary" type="submit">Choose a time</button>
+<button class="primary" type="submit">Choose my time</button>
 <p class="small">Your calendar opens next. Your call is confirmed once you’ve picked a time and completed the booking.</p>
 <p class="feedback" role="status" aria-live="polite"></p>
 <p class="small">I’ll use your details to contact you about the call. <a href="/quoting-privacy/">Privacy notice</a>.</p>
@@ -171,9 +182,9 @@ footer a{color:var(--muted)}
 <p class="intro">Your call isn’t booked yet. Choose a time below and confirm your details to finish booking.</p>
 <p class="small booking-notice" role="status" aria-live="polite" hidden></p>
 <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=quote-machine">Choose a time</a>
-<p class="small">Quote Machine · Free quoting review · 30 minutes with Ivan</p>
+<p class="small">Your free 30-minute audit with Ivan</p>
 </div>
-<noscript><p class="noscript-note">You can also <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=quote-machine">book your free call directly</a>.</p></noscript>
+<noscript><p class="noscript-note">You can also <a href="https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&amp;utm_medium=direct-booking&amp;utm_campaign=quote-machine">book your free 30-minute audit directly</a>.</p></noscript>
 </section>
 
 <section class="info">
@@ -233,8 +244,8 @@ footer a{color:var(--muted)}
 
 <section class="closing">
 <h2>Find out what I’d tackle first.</h2>
-<p>Let’s look at what’s slowing your quoting down and whether The Quote Machine could help. Free 30-minute call. Nothing to prepare.</p>
-<a class="cta" href="#book-call">Choose a time</a>
+<p>Let’s look at where the manual work builds up and where AI could help. Nothing to prepare.</p>
+<a class="cta" href="#book-call" data-open-audit>Book my free 30-minute audit</a>
 </section>
 </main>
 <footer><span>Flowstate · New Zealand</span><span><a href="/quoting-privacy/">Privacy</a> · <a href="mailto:ivan@flowstate.net.nz">Contact</a></span></footer>
