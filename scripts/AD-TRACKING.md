@@ -148,11 +148,27 @@ at launch. Compare confirmed bookings, qualified calls and cost per qualified
 booking; a form submission alone is not a booked call.
 
 
-Current build blockers: Meta rejects even validate-only native ad-set creation
-with code 100 / subcode 1815089: the Page has not accepted Lead Generation Terms
-of Service. Acceptance needs the owner's explicit confirmation. The form remains
-a saved draft and native ad-set/ads have not been created. Exact proposed copy,
-verified footage IDs, unchanged budget and planned paused status are recorded in
-`scripts/meta-native-audit-test.json`. Do not describe those records as ads already
-created. The separate website questionnaire was removed after the owner confirmed
-that every question must be inside Facebook.
+Current setup: native form `1116182244474862` is created and active. Meta's UI
+confirms the approved Lead Ads Terms were accepted for the Ivan Barnett Page.
+The existing API connection still rejects form management/lead retrieval, so
+Ads Manager was used to create and publish the test setup with delivery off.
+
+- New ad set `120250507913820753`: PAUSED, NZ$30/day, Instant Forms only.
+- Power-tools ad `120250507913830753`: PAUSED.
+- Fast-response ad `120250507984940753`: PAUSED.
+- Unbillable-time ad `120250507984950753`: PAUSED.
+- All three use the native form, approved existing footage and the exact copy in
+  `scripts/meta-native-audit-test.json`. All returned creative enhancements are
+  OPT_OUT; related media and automatic translation are off.
+- The website ad set stays ACTIVE at NZ$60/day. No split has been applied yet.
+- The CRM importer and revised privacy notice are deployed through PR #14.
+  The production form-ID variable is configured. `META_LEADS_TOKEN` is still
+  missing: the existing Flowstate Ads app / adsops system-user token does not
+  include `leads_retrieval` or `pages_manage_ads`. No native lead has been imported
+  or enrolled as a test. Grant appropriate Page access, supply the token privately
+  to Netlify, redeploy, then verify a Meta test lead reaches the CRM before launch.
+
+The separate website questionnaire was removed after the owner confirmed every
+question must be inside Facebook. Meta controls ordering and Continue/Submit;
+flexible delivery allows reordering but does not guarantee contact-first or
+capture unsubmitted/abandoned answers. The booking link is on the final screen.

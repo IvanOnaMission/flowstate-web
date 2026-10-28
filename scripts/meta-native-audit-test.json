@@ -1,18 +1,22 @@
 {
   "prepared_at": "2026-10-29",
-  "status": "BLOCKED_PAGE_LEAD_GENERATION_TERMS_AND_LEAD_ACCESS",
+  "status": "PREPARED_PAUSED_AWAITING_PAGE_LEAD_ACCESS",
   "account_id": "act_1630869461967772",
   "page_id": "1095779013619484",
   "campaign_id": "120250452722590753",
   "website_adset_id": "120250452722710753",
   "existing_website_daily_budget_nzd": 60,
-  "proposed_launch_budget_nzd": {"website": 30, "instant_form": 30, "total": 60},
-  "new_adset_status": "NOT_CREATED",
-  "new_ads_status": "NOT_CREATED",
+  "proposed_launch_budget_nzd": {
+    "website": 30,
+    "instant_form": 30,
+    "total": 60
+  },
+  "new_adset_status": "PAUSED",
+  "new_ads_status": "PAUSED",
   "required_create_status": "PAUSED",
   "form_name": "FS | Free 30-minute audit | 10 optional questions | 2026-10-29",
-  "form_id": null,
-  "form_status": "DRAFT",
+  "form_id": "1116182244474862",
+  "form_status": "ACTIVE",
   "form_type": "MORE_VOLUME",
   "flexible_delivery": {
     "mode": "MANUAL",
@@ -32,7 +36,10 @@
       "message": "You’ve got power tools for the work on site. But back in the office, you’re still doing everything by hand.\n\nI help electrical businesses use AI to take repetitive work off their plate, from enquiries through to quoting and follow-up.\n\nFill out the quick form below and I’ll get in touch about a free 30-minute audit. We’ll look at your process and what I’d tackle first.",
       "description": "Free 30-minute audit with Ivan",
       "cta": "LEARN_MORE",
-      "footage_cta_checked": "Existing footage says form below. No new recording needed."
+      "footage_cta_checked": "Existing footage says form below. No new recording needed.",
+      "ad_id": "120250507913830753",
+      "creative_id": "2542272709588100",
+      "status": "PAUSED"
     },
     {
       "name": "FS | Audit form | Replies while you are on site | 3527",
@@ -42,7 +49,10 @@
       "message": "A new enquiry comes in while you’re on site. By the time you get back to them, they may have already called someone else.\n\nAI can help get the conversation started and collect the details you need while you get on with the job.\n\nFill out the quick form below. We’ll have a look at where enquiries get held up in your business on a free 30-minute audit.",
       "description": "See what AI could handle in your business",
       "cta": "LEARN_MORE",
-      "footage_cta_checked": "Existing footage points to learning more below; does not promise a landing-page video."
+      "footage_cta_checked": "Existing footage points to learning more below; does not promise a landing-page video.",
+      "ad_id": "120250507984940753",
+      "creative_id": "3278630962527733",
+      "status": "PAUSED"
     },
     {
       "name": "FS | Audit form | Unbillable quoting time | 3568",
@@ -52,7 +62,17 @@
       "message": "You spend an evening putting a quote together. Send it off. Then hear nothing.\n\nThat’s time you can’t bill for, and there’s another quote waiting.\n\nI help electrical businesses take the repetitive work out of their sales process, so quotes move faster and follow-up actually happens.\n\nFill out the quick form below for a free 30-minute audit. We’ll look at what’s taking your time and where AI could help.",
       "description": "Free audit. A practical place to start.",
       "cta": "LEARN_MORE",
-      "footage_cta_checked": "Existing footage invites learning more and booking a free call."
+      "footage_cta_checked": "Existing footage invites learning more and booking a free call.",
+      "ad_id": "120250507984950753",
+      "creative_id": "2057600894939587",
+      "status": "PAUSED"
     }
-  ]
+  ],
+  "new_adset_id": "120250507913820753",
+  "lead_ad_terms": "ACCEPTED_IN_META_UI",
+  "crm_delivery": "DEPLOYED_BUT_DISABLED_UNTIL_META_LEADS_TOKEN_IS_CONFIGURED",
+  "meta_connection_app": "Flowstate Ads",
+  "meta_connection_app_id": "4854641474862084",
+  "meta_system_user": "adsops",
+  "production_pr": "https://github.com/IvanOnaMission/flowstate-web/pull/14"
 }
