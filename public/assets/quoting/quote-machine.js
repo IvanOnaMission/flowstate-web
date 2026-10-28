@@ -88,8 +88,10 @@
     url.searchParams.set('a1', digits);
     calendly.href = url.toString();
     booking.hidden = false;
+    document.getElementById('book-call')?.setAttribute('aria-labelledby', 'calendar-title');
     document.dispatchEvent(new CustomEvent('flowstate:lead'));
     booking.scrollIntoView({behavior: smooth(), block: 'start'});
+    document.getElementById('calendar-title')?.focus({preventScroll: true});
   }
 
   // A confirmed booking (booking.js has already sent Meta Schedule) goes to the thank-you page.
@@ -125,8 +127,12 @@
     } catch {
       // Don't lose the booking over a failed save: carry on, and give them Ivan's number.
       sent = true;
-      feedback.textContent = "That didn't send, but you can still pick a time. Or call Ivan on 027 200 6121.";
-      setTimeout(toCalendar, 1500);
+      const notice = booking.querySelector('.booking-notice');
+      if (notice) {
+        notice.textContent = "Your details didn’t save, but you can still book below. Or call Ivan on 027 200 6121.";
+        notice.hidden = false;
+      }
+      toCalendar();
     }
   });
 })();

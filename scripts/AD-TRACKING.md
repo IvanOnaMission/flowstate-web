@@ -71,3 +71,36 @@ Historical form records lack source parameters and role answers, so they cannot
 be retroactively classified or reliably attributed. The new form begins that
 collection at deployment. Records imported from the CRM/calendar can include
 other enquiries; unknown-source records are not assigned to an ad.
+
+## Quote Machine booking funnel (28 October 2026)
+
+The existing two-step contact form remains in place. Its Meta `Lead` event means
+the details were saved successfully, not that a call was booked. Meta `Schedule`
+still fires only on a confirmed booking from the embedded Calendly frame.
+The confirmed booking also reaches the existing server webhook and dashboard.
+
+New anonymous custom events in Meta Events Manager:
+
+- `QuoteMachineLandingView`: the landing page loaded.
+- `QuoteMachineCalendarOpened`: step two opened after the contact form.
+- `QuoteMachineCalendarLoaded`: the embedded Calendly event type loaded.
+- `QuoteMachineTimeSelected`: Calendly reported that a date and time were selected.
+
+Events contain only the offer name; contact details and Calendly payloads are not
+forwarded to the pixel. Video engagement events already exist and remain in place.
+Attendance and qualification stay explicit CRM outcomes, not inferred from a
+meeting date. The intermediate custom events are available in Events Manager;
+they are not new columns in the private ads dashboard.
+
+Future Quote Machine enquiries keep the existing Makeover lead tag and also get
+Kit tag `quote-machine:lead` (25101853), configured as production Netlify variable
+`KIT_TAG_QUOTE_MACHINE_LEAD`. Kit's active tag-added rule subscribes them to
+sequence 2947321, a single booking-link email after one hour. The email exclusion
+filter suppresses subscribers with any of `makeover:call-booked`, `Calendly booked`,
+or `quoting:call-booked`. The existing verified booking webhook applies
+`makeover:call-booked` (23507362). No historical contacts were enrolled.
+
+The public Calendly URL remains `/ivan-flowstate/30min`; its display name is now
+`Quote Machine — Quoting Review`. Availability, reminders and the existing
+post-booking welcome video are preserved. A calendar-first variant remains a
+later experiment, after enough confirmed booking data is collected.
