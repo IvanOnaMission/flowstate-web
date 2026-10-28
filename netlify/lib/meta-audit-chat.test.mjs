@@ -127,6 +127,17 @@ test('failed Telegram delivery stays pending for retry',async()=>{
   assert.equal((await flushAuditDigests({store,now:210000,send:async()=>({message_id:2})})).sent,1);
 });
 
+test('skipping a question does not retry an unchanged Telegram message forever',async()=>{
+  const store=memory(),contact=await connected(store);
+  const dependencies={store,send:async()=>({message_id:42}),edit:async()=>{throw Error('Telegram: message is not modified');}};
+  await processAuditEvent(answer('5555555555',contact.id,0),{store,now:2000,send:async()=>{},save:async()=>true});
+  await flushAuditDigests({...dependencies,now:2000+QUIET_MS});
+  await processAuditEvent(answer('5555555555',contact.id,1,'skip'),{store,now:130000,send:async()=>{},save:async()=>true});
+  const result=await flushAuditDigests({...dependencies,now:130000+QUIET_MS});
+  assert.equal(result.failed,0);assert.equal(result.updated,0);
+  const state=await store.get('lead:'+contact.id);assert.equal(state.notifiedRevision,state.revision);
+});
+
 test('a skipped question advances without inventing an answer; old buttons cannot overwrite a later answer',async()=>{
   const store=memory(),contact=await connected(store);let saves=0;
   const deps={store,send:async()=>{},save:async()=>{saves++;return true;},now:2000};

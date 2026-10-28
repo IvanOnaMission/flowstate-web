@@ -173,9 +173,12 @@ export async function flushAuditDigests({store=auditChatStore(),send=sendAlert,e
           const deadline=!state.telegramMessageId && now-state.startedAt>=MAX_WAIT_MS;
           if (!quiet && !deadline) return;
           const text=auditDigest(state);
+          if(state.telegramMessageId && state.lastDigestText===text) {
+            state.notifiedRevision=state.revision;await store.setJSON(key,state);return;
+          }
           if (state.telegramMessageId) { await edit(state.telegramMessageId,text); updated++; }
           else { const result=await send(text); if (!result?.message_id) throw new Error('Telegram did not confirm delivery.'); state.telegramMessageId=result.message_id; sent++; }
-          state.notifiedRevision=state.revision; await store.setJSON(key,state);
+          state.lastDigestText=text;state.notifiedRevision=state.revision; await store.setJSON(key,state);
         });
       } catch { failed++; }
     }
