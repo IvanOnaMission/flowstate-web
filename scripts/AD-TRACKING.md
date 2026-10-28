@@ -106,3 +106,53 @@ The public Calendly URL remains `/ivan-flowstate/30min`; its display name is now
 Availability, reminders and the existing
 post-booking welcome video are preserved. A calendar-first variant remains a
 later experiment, after enough confirmed booking data is collected.
+
+
+## Native Facebook audit form test (29 October 2026)
+
+The ten optional questions are inside Meta's Instant Form. There is no separate
+website questionnaire. All answers arrive only when the prospect presses Submit.
+Meta's fixed standard form places custom questions before the contact block.
+Flexible form delivery is enabled in Manual mode for just question/contact
+reordering and moving/skipping optional questions. This lets Meta show contact
+first but does not force that order for every visitor. There is no booking link
+on every question.
+The final screen links to the existing free 30-minute Calendly audit. Skipping
+optional questions does not prevent a contact-only submission. No abandoned
+contact details or unfinished answers can be imported.
+
+The draft uses More volume, no greeting, no role question, and required name,
+email and mobile. Meta may skip optional questions; the completion/booking screen is preserved.
+Question export field names match `netlify/lib/meta-audit-questions.mjs`.
+Software is a single choice for the main tool, as offered by this native builder.
+
+`audit-lead-sync` checks the single configured form every minute. Required private
+production variables: `META_AUDIT_FORM_ID` and `META_LEADS_TOKEN`. The token needs
+Page lead access, including `leads_retrieval`; form management also requires
+`pages_manage_ads`. The existing ads-management connection lacks both permissions.
+Do not activate the test until a real permissioned connection and a Meta test lead
+have verified the whole delivery path. Never put access tokens in git or URLs.
+
+Each submitted lead has independently retried CRM, answers, tracking, Kit and
+Telegram steps in private Netlify Blobs. Twenty reuses the contact/opportunity by
+email, preserves a booked call and existing follow-up, and attaches one note per
+Meta submission, titled **Facebook audit enquiry — [name]**, to both the person and
+opportunity. The note contains all ten questions; skipped answers say Not answered.
+This does not assert that the prospect owns a business. Existing Kit reminder and
+confirmed Calendly booking processing remain separate from form submissions.
+
+Proposed launch allocation: NZ$30/day existing website ad set + NZ$30/day native
+forms, within the existing NZ$60/day total. Preparation leaves the website at
+NZ$60/day and all new ads/ad set paused. Apply both budget changes together only
+at launch. Compare confirmed bookings, qualified calls and cost per qualified
+booking; a form submission alone is not a booked call.
+
+
+Current build blockers: Meta rejects even validate-only native ad-set creation
+with code 100 / subcode 1815089: the Page has not accepted Lead Generation Terms
+of Service. Acceptance needs the owner's explicit confirmation. The form remains
+a saved draft and native ad-set/ads have not been created. Exact proposed copy,
+verified footage IDs, unchanged budget and planned paused status are recorded in
+`scripts/meta-native-audit-test.json`. Do not describe those records as ads already
+created. The separate website questionnaire was removed after the owner confirmed
+that every question must be inside Facebook.

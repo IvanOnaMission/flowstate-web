@@ -1,0 +1,58 @@
+{
+  "prepared_at": "2026-10-29",
+  "status": "BLOCKED_PAGE_LEAD_GENERATION_TERMS_AND_LEAD_ACCESS",
+  "account_id": "act_1630869461967772",
+  "page_id": "1095779013619484",
+  "campaign_id": "120250452722590753",
+  "website_adset_id": "120250452722710753",
+  "existing_website_daily_budget_nzd": 60,
+  "proposed_launch_budget_nzd": {"website": 30, "instant_form": 30, "total": 60},
+  "new_adset_status": "NOT_CREATED",
+  "new_ads_status": "NOT_CREATED",
+  "required_create_status": "PAUSED",
+  "form_name": "FS | Free 30-minute audit | 10 optional questions | 2026-10-29",
+  "form_id": null,
+  "form_status": "DRAFT",
+  "form_type": "MORE_VOLUME",
+  "flexible_delivery": {
+    "mode": "MANUAL",
+    "allow_question_contact_reordering": true,
+    "allow_optional_questions_skipped_or_at_end": true,
+    "allow_ending_removed_or_moved": false,
+    "contact_first_guaranteed": false
+  },
+  "booking_url": "https://calendly.com/ivan-flowstate/30min?utm_source=facebook&utm_medium=instant_form&utm_campaign=quote-machine",
+  "creative_enhancements": "ALL_OPT_OUT",
+  "ads": [
+    {
+      "name": "FS | Audit form | Power tools vs office work | 3563",
+      "source_ad_id": "120250480126280753",
+      "video_id": "3218930068497999",
+      "headline": "Take the manual work out of your office",
+      "message": "You’ve got power tools for the work on site. But back in the office, you’re still doing everything by hand.\n\nI help electrical businesses use AI to take repetitive work off their plate, from enquiries through to quoting and follow-up.\n\nFill out the quick form below and I’ll get in touch about a free 30-minute audit. We’ll look at your process and what I’d tackle first.",
+      "description": "Free 30-minute audit with Ivan",
+      "cta": "LEARN_MORE",
+      "footage_cta_checked": "Existing footage says form below. No new recording needed."
+    },
+    {
+      "name": "FS | Audit form | Replies while you are on site | 3527",
+      "source_ad_id": "120250453378550753",
+      "video_id": "1643887403786056",
+      "headline": "Still replying to enquiries after work?",
+      "message": "A new enquiry comes in while you’re on site. By the time you get back to them, they may have already called someone else.\n\nAI can help get the conversation started and collect the details you need while you get on with the job.\n\nFill out the quick form below. We’ll have a look at where enquiries get held up in your business on a free 30-minute audit.",
+      "description": "See what AI could handle in your business",
+      "cta": "LEARN_MORE",
+      "footage_cta_checked": "Existing footage points to learning more below; does not promise a landing-page video."
+    },
+    {
+      "name": "FS | Audit form | Unbillable quoting time | 3568",
+      "source_ad_id": "120250477749980753",
+      "video_id": "1454905336568454",
+      "headline": "How many hours went into quotes you never won?",
+      "message": "You spend an evening putting a quote together. Send it off. Then hear nothing.\n\nThat’s time you can’t bill for, and there’s another quote waiting.\n\nI help electrical businesses take the repetitive work out of their sales process, so quotes move faster and follow-up actually happens.\n\nFill out the quick form below for a free 30-minute audit. We’ll look at what’s taking your time and where AI could help.",
+      "description": "Free audit. A practical place to start.",
+      "cta": "LEARN_MORE",
+      "footage_cta_checked": "Existing footage invites learning more and booking a free call."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import {test,afterEach,beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {twentyLead,twentyBooked,twentyQuiz} from './twenty-crm.mjs';
+import {twentyLead,twentyBooked,twentyQuiz,twentyMetaLead,twentyMetaAnswers} from './twenty-crm.mjs';
 import {crmLead} from './crm.mjs';
 import submissionCreated from '../functions/submission-created.mjs';
 
@@ -59,6 +59,24 @@ test('a quiz completed before booking saves to the contact without a Calendly ca
  assert.equal(response.status,200);assert.equal(await response.text(),'quiz linked');assert.equal(rows.notes.size,1);assert.match([...rows.notes.values()][0].bodyV2.markdown,/Booking: Not booked yet/);assert.equal(rows.opportunities.get('contact-1').nextAction,'Existing action');assert.ok(calls.every(c=>c.url.startsWith('https://crm.example/')));
 });
 test('an unknown quiz contact does not invent a deal',async()=>{assert.equal(await twentyQuiz({email:'unknown@example.com'}),false);assert.equal(rows.notes.size,0);assert.equal(rows.opportunities.size,0);});
+test('native audit submissions link all answers once and preserve booked calls and follow-up',async()=>{
+ rows.opportunities.set('contact-1',contact({stage:'SCREENING',nextAction:'Keep this call',nextActionDate:'2026-10-30T00:30:00Z'}));
+ const lead={email:'shannon@example.com',id:'12345678901234',at:'2026-10-29T00:00:00Z',ad_id:'22345678901234',answers:[{id:'industry',question:'Business',answer:'Electrical'},{id:'pain',question:'Pain',answer:'Not answered'}]};
+ await twentyMetaLead({...lead,adId:lead.ad_id});
+ assert.equal(await twentyMetaAnswers(lead),true);assert.equal(await twentyMetaAnswers(lead),true);
+ assert.equal(rows.notes.size,1);assert.equal(rows.noteTargets.size,2);assert.match([...rows.notes.values()][0].bodyV2.markdown,/Pain: Not answered/);
+ assert.equal(rows.opportunities.get('contact-1').stage,'SCREENING');assert.equal(rows.opportunities.get('contact-1').nextAction,'Keep this call');assert.equal(rows.opportunities.get('contact-1').nextActionDate,'2026-10-30T00:30:00Z');assert.equal(rows.tasks.size,0);
+ assert.equal(await twentyMetaAnswers({...lead,email:'unknown@example.com'}),false);
+});
+test('new native form contacts are called once and a failed task delivery can retry',async()=>{
+ const lead={email:'new@example.test',name:'Native enquiry',source:'Facebook Instant Form — free audit',answers:[]};
+ failure=({plural,method})=>plural==='tasks'&&method==='POST';
+ await assert.rejects(twentyMetaLead(lead),/503/);
+ const first=[...rows.opportunities.values()][0];assert.equal(first.nextAction,undefined);
+ failure=null;await twentyMetaLead(lead);await twentyMetaLead(lead);
+ assert.equal(rows.opportunities.size,1);assert.equal(rows.people.size,1);assert.equal(rows.tasks.size,1);assert.match([...rows.opportunities.values()][0].wikiNotes,/Facebook Instant Form/);
+ assert.equal(calls.filter(c=>c.plural==='tasks'&&c.method==='PATCH').length,0);
+});
 test('intake errors remain visible and never fall through to the retired Notion backend',async()=>{
  process.env.CRM_BACKEND='twenty';process.env.NOTION_TOKEN='test-only';process.env.NOTION_CRM_DATABASE_ID='test-only';failure=()=>true;
  await assert.rejects(()=>crmLead({email:'new@example.com'}),/failed \(503\)/);assert.ok(calls.every(c=>c.url.startsWith('https://crm.example/')));
