@@ -1,6 +1,6 @@
 import {test,afterEach,beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {twentyLead,twentyBooked,twentyQuiz,twentyMetaLead,twentyMetaAnswers} from './twenty-crm.mjs';
+import {twentyLead,twentyBooked,twentyQuiz,twentyMetaLead,twentyMetaAnswers,twentyMetaProgress} from './twenty-crm.mjs';
 import {crmLead} from './crm.mjs';
 import submissionCreated from '../functions/submission-created.mjs';
 
@@ -76,6 +76,16 @@ test('new native form contacts are called once and a failed task delivery can re
  failure=null;await twentyMetaLead(lead);await twentyMetaLead(lead);
  assert.equal(rows.opportunities.size,1);assert.equal(rows.people.size,1);assert.equal(rows.tasks.size,1);assert.match([...rows.opportunities.values()][0].wikiNotes,/Facebook Instant Form/);
  assert.equal(calls.filter(c=>c.plural==='tasks'&&c.method==='PATCH').length,0);
+});
+test('each Messenger answer replaces the same linked note without changing the call or another person',async()=>{
+ rows.opportunities.set('contact-1',contact({nextAction:'Keep booked call'}));
+ rows.opportunities.set('contact-2',contact({id:'contact-2',emailLookup:'another@example.com',pointOfContactId:'person-2'}));
+ const lead={email:'shannon@example.com',id:'12345678901234',answers:[{id:'industry',question:'Business',answer:'Electrical'},{id:'pain',question:'Pain',answer:'Not answered'}]};
+ await twentyMetaAnswers(lead);
+ const noteId=[...rows.notes.keys()][0];
+ await twentyMetaProgress({...lead,answers:[lead.answers[0],{id:'pain',question:'Pain',answer:'General admin'}]});
+ assert.equal(rows.notes.size,1);assert.equal(rows.noteTargets.size,2);assert.match(rows.notes.get(noteId).bodyV2.markdown,/Pain: General admin/);
+ assert.equal(rows.opportunities.get('contact-1').nextAction,'Keep booked call');assert.equal(rows.opportunities.get('contact-2').nextAction,undefined);assert.equal(rows.tasks.size,0);
 });
 test('intake errors remain visible and never fall through to the retired Notion backend',async()=>{
  process.env.CRM_BACKEND='twenty';process.env.NOTION_TOKEN='test-only';process.env.NOTION_CRM_DATABASE_ID='test-only';failure=()=>true;

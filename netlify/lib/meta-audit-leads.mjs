@@ -5,6 +5,7 @@ import {holdLead} from './pending.mjs';
 import {recordFormLead} from './ads-tracking.mjs';
 import {trackingDatabase} from './tracking-server.mjs';
 import {metaAuditAnswers} from './meta-audit-questions.mjs';
+import {initialiseAuditChat} from './meta-audit-chat.mjs';
 const emailKey = email => String(email || '').trim().toLowerCase();
 const validEmail = email => email.length <= 200 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 export function normaliseMetaLead(input) {
@@ -52,7 +53,7 @@ export function liveIntegrations() {
       if (!process.env.KIT_API_KEY) throw new Error('Kit is not configured.');
       return addToKit({...lead, tagId: process.env.KIT_TAG_MAKEOVER_LEAD, tagIds: [process.env.KIT_TAG_QUOTE_MACHINE_LEAD]});
     },
-    alert: lead => holdLead({...lead, offer: 'Quote Machine', source: `Facebook Instant Form${lead.ad_id ? ` · ad ${lead.ad_id}` : ''}${lead.role ? `\nRole: ${lead.role}` : ''}`}),
+    alert: lead => process.env.META_AUDIT_CONTACT_FIRST==='true' ? initialiseAuditChat(lead) : holdLead({...lead, offer: 'Quote Machine', source: `Facebook Instant Form${lead.ad_id ? ` · ad ${lead.ad_id}` : ''}${lead.role ? `\nRole: ${lead.role}` : ''}`}),
   };
 }
 export async function pollMetaAuditLeads({token = process.env.META_LEADS_TOKEN, formId = process.env.META_AUDIT_FORM_ID, fetcher = fetch, store, integrations} = {}) {

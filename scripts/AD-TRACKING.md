@@ -185,3 +185,44 @@ The separate website questionnaire was removed after the owner confirmed every
 question must be inside Facebook. Meta controls ordering and Continue/Submit;
 flexible delivery allows reordering but does not guarantee contact-first or
 capture unsubmitted/abandoned answers. The booking link is on the final screen.
+
+### Contact-first replacement — prepared, pending live Messenger verification
+
+An API ordering experiment (`2230455587511903`, no attached ads) put contact fields
+first in the API response, but Meta's native preview still displayed the custom
+question first. Array order therefore does not meet the contact-first requirement.
+
+Replacement native form `1091630220564926` contains only full name, email and
+phone. Its completion screen links to
+`https://m.me/1095779013619484?ref=fs_audit_v1`. The contact is submitted before
+the optional Messenger questions. No additional website questionnaire is used.
+The initial one-tap email confirmation matches the chat to the submitted enquiry.
+The bot does not create a new lead from an unmatched email or respond to unrelated
+Page conversations. All ten questions are optional; every step includes a skip
+option and a Calendly booking button.
+
+`meta-audit-messenger` verifies Meta's HMAC-SHA256 signature before accepting an
+event, restricts events to the configured Page and form, and durably queues the
+audit's message events. Each answer updates the same Twenty note linked to the
+person and opportunity. Persisted replies survive CRM errors; scheduled recovery
+retries them. Event IDs and per-person leases protect retries and concurrent
+workers. The existing booked-call stage and follow-up remain intact.
+
+For this replacement flow, `META_AUDIT_CONTACT_FIRST=true` routes the native
+lead's alert into the audit summary instead of the old booking-cancellable alert.
+Telegram receives **New lead form**, name, email, phone and all supplied answers
+after two minutes without a new answer, with a maximum ten-minute wait for the
+initial summary. No answers still produces a contact-only alert. Late replies
+update the same Telegram message after the quiet period.
+
+Additional private production variables: `META_PAGE_ID`, `META_MESSENGER_TOKEN`
+(Page messaging access), `META_APP_SECRET` (webhook signature verification) and
+`META_MESSENGER_VERIFY_TOKEN` (random callback verification token). The Meta app
+needs Messenger capability and Page messaging access; subscribe its Page webhook
+to `leadgen`, `messages`, `messaging_postbacks` and `messaging_referrals` using
+`https://flowstate.net.nz/.netlify/functions/meta-audit-messenger`.
+
+Do not point the paused ads/importer at the replacement form until the real
+Meta-to-Messenger-to-Twenty-to-Telegram flow, partial abandonment, timing and
+booking button have been verified. The existing form and paused ads remain the
+current configuration until that verification is recorded.
