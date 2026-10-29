@@ -77,6 +77,12 @@ test('new native form contacts are called once and a failed task delivery can re
  assert.equal(rows.opportunities.size,1);assert.equal(rows.people.size,1);assert.equal(rows.tasks.size,1);assert.match([...rows.opportunities.values()][0].wikiNotes,/Facebook Instant Form/);
  assert.equal(calls.filter(c=>c.plural==='tasks'&&c.method==='PATCH').length,0);
 });
+test('business form notes preserve general answers and use the correct question count',async()=>{
+ rows.opportunities.set('contact-1',contact());
+ const lead={email:'shannon@example.com',id:'98765432101234',questionnaire:'business',answers:[{id:'business_time_sink',question:'Biggest time sink',answer:'Invoicing and chasing payments'},{id:'business_help',question:'Useful help',answer:'Hands-on training for me or my team'}]};
+ await twentyMetaAnswers(lead);await twentyMetaAnswers(lead);
+ assert.equal(rows.notes.size,1);const note=[...rows.notes.values()][0];assert.match(note.title,/Facebook business enquiry/);assert.match(note.bodyV2.markdown,/Answered 2 of 2 business questions/);assert.match(note.bodyV2.markdown,/Invoicing and chasing payments/);
+});
 test('each Messenger answer replaces the same linked note without changing the call or another person',async()=>{
  rows.opportunities.set('contact-1',contact({nextAction:'Keep booked call'}));
  rows.opportunities.set('contact-2',contact({id:'contact-2',emailLookup:'another@example.com',pointOfContactId:'person-2'}));

@@ -81,7 +81,7 @@ export async function twentyMetaLead(input){
  const op=await ensureOpportunity(input),date=today();
  const update={};
  if(!op.sourceAdId&&/^\d{8,30}$/.test(input.adId||''))update.sourceAdId=input.adId;
- const industry=input.answers?.find(a=>a.id==='industry')?.answer;
+ const industry=input.answers?.find(a=>a.id==='industry'||a.id==='business_industry')?.answer;
  if(!op.trade&&industry&&industry!=='Not answered')update.trade=industry;
  if(op.stage==='NEW'&&!op.nextAction){
   // Write the deterministic task first, so a failed request retries without losing it.
@@ -91,14 +91,14 @@ export async function twentyMetaLead(input){
  if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
  return op;
 }
-export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref}){
+export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref,questionnaire}){
  if(!email)return false;
  const website=channel==='website';
  const op=website&&crm_ref?.id?crm_ref:await findOpportunity(email);if(!op)return false;
  const noteId=uuid((website?'website-audit-lead:':'meta-audit-lead:')+id);
  const count=answers.filter(a=>a.answer!=='Not answered').length;
  const contactSnapshot=website?`\nName: ${name||'Not supplied'}\nEmail: ${email}\nPhone: ${phone||'Not supplied'}`:'';
- const data={title:(website?'Audit enquiry — ':'Facebook audit enquiry — ')+op.name,bodyV2:body(`${website?'Website audit enquiry':'Facebook lead'}: ${id}\nSubmitted: ${at||'Unknown'}${contactSnapshot}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of 10 optional questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
+ const data={title:(website?'Audit enquiry — ':questionnaire==='business'?'Facebook business enquiry — ':'Facebook audit enquiry — ')+op.name,bodyV2:body(`${website?'Website audit enquiry':'Facebook lead'}: ${id}\nSubmitted: ${at||'Unknown'}${contactSnapshot}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of ${questionnaire==='business'?answers.length:10} ${questionnaire==='business'?'business':'optional'} questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
  await createOrGet('notes',noteId,data);
   if(progress)await request('/notes/'+noteId,'PATCH',data);
  await createOrGet('noteTargets',uuid(noteId+'targetOpportunityId'+op.id),{noteId,targetOpportunityId:op.id});

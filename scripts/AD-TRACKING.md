@@ -1,3 +1,27 @@
+<!-- CURRENT-BUSINESS-DISCOVERY -->
+## Current direction — 29 October 2026
+
+Ivan has authorised pausing the broad Quote Machine campaign and bringing back
+his original Jordan interview review, with a native Facebook form about the
+whole business. The total authorised budget remains NZ$60/day, prepared as
+NZ$30/day native form and NZ$30/day original Jordan → original VSL route.
+The VSL identity is awaiting Ivan's clarification before that route is enabled.
+The two new time-sink creative variants are copy drafts, not launched ads.
+
+Current operations and exact IDs: `scripts/meta-business-discovery.json`.
+The eight business fields have separate `business_` keys; legacy quoting forms
+and the independently working website autosave form keep their original schema.
+Both native forms remain polled so late old-form submissions are not dropped.
+Business leads use business-AI attribution and the existing Makeover lead tag,
+without enrolling them in the Quote Machine tag. They receive one CRM note and
+an answer-inclusive Telegram notification. Native Meta submissions arrive only
+after Submit; abandoned native answers cannot be recovered.
+
+The website autosave evidence below is historical and remains valid for that
+website endpoint, but it is no longer the current ad destination.
+
+---
+
 # FlowState Meta ads tracking
 
 Dashboard: https://flowstate.net.nz/ads/ — existing FlowState Auth account

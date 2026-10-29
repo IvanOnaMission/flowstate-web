@@ -35,7 +35,7 @@ async function leased(store, key, now, action) {
 export {leased as withAuditLeadLease};
 
 export async function initialiseAuditChat(lead, store=auditChatStore(), now=Date.now()) {
-  const state={lead, index:0, startedAt:now, lastActivity:now, revision:0, crmDirty:false, notifiedRevision:-1};
+  const state={lead, index:lead.questionnaire==='business'?lead.answers.length:0, test:Boolean(lead.test), startedAt:now, lastActivity:now, revision:0, crmDirty:false, notifiedRevision:-1};
   await store.setJSON(leadKey(lead.id),state,{onlyIfNew:true});
   const previous=await json(store,emailKey(lead.email));
   if (!previous || Date.parse(lead.at)>=Date.parse(previous.at)) {
@@ -154,7 +154,8 @@ export async function drainAuditEvents({store=auditChatStore(),queue=auditEventS
 
 export function auditDigest(state) {
   const lead=state.lead, answered=lead.answers.filter(a=>a.answer!=='Not answered');
-  return [`${state.test?'[TEST] ':''}New lead form`,lead.name||'Name not supplied',`Email: ${lead.email}`,`Phone: ${lead.phone||'Not supplied'}`,`Answers: ${answered.length}/10${state.index===10?' · Questions finished':''}`,'',...(answered.length?answered.map(a=>`${a.question}\n${a.answer}`):['No optional answers yet. Contact details are saved in the CRM.'])].join('\n\n').slice(0,3900);
+  const total=lead.answers.length;
+  return [`${state.test?'[TEST] ':''}New lead form`,lead.name||'Name not supplied',`Email: ${lead.email}`,`Phone: ${lead.phone||'Not supplied'}`,`Answers: ${answered.length}/${total}${state.index===total?' · Questions finished':''}`,'',...(answered.length?answered.map(a=>`${a.question}\n${a.answer}`):['No optional answers yet. Contact details are saved in the CRM.'])].join('\n\n').slice(0,3900);
 }
 
 export async function flushAuditDigests({store=auditChatStore(),send=sendAlert,edit=editAlert,save=twentyMetaProgress,now=Date.now()}={}) {

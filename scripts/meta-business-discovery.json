@@ -1,0 +1,146 @@
+{
+  "total_daily_budget_nzd": 60,
+  "website_daily_budget_nzd": 30,
+  "native_daily_budget_nzd": 30,
+  "original_ad_id": "120249982198220753",
+  "original_creative_id": "1095937392805944",
+  "original_video_id": "1919630609437843",
+  "new_variants_status": "DRAFT_COPY_ONLY",
+  "form_id": "1110508731707277",
+  "form_name": "FS | Business AI discovery | Biggest time sink | 8 questions | 2026-10-29",
+  "question_count": 8,
+  "booking_url": "https://calendly.com/ivan-flowstate/30min?utm_source=facebook&utm_medium=instant_form&utm_campaign=business-ai",
+  "question_schema": [
+    {
+      "id": "business_industry",
+      "label": "What type of business do you run?",
+      "options": [
+        "Electrical",
+        "Plumbing or drainage",
+        "Building or construction",
+        "Another trade",
+        "Professional or office services",
+        "Another industry"
+      ]
+    },
+    {
+      "id": "business_role",
+      "label": "What is your role in the business?",
+      "options": [
+        "Owner or director",
+        "Manager or team leader",
+        "Office or administration",
+        "Employee or apprentice",
+        "Other"
+      ]
+    },
+    {
+      "id": "business_team_size",
+      "label": "How many people are in the business, including you?",
+      "options": [
+        "Just me",
+        "2–5",
+        "6–10",
+        "11–25",
+        "26+"
+      ]
+    },
+    {
+      "id": "business_time_sink",
+      "label": "What area of the business is your biggest time sink?",
+      "options": [
+        "General admin and data entry",
+        "Enquiries and customer communication",
+        "Quoting or proposals",
+        "Scheduling and job coordination",
+        "Invoicing and chasing payments",
+        "Finding information and preparing documents",
+        "Marketing and follow-up",
+        "Something else / not sure"
+      ]
+    },
+    {
+      "id": "business_weekly_hours",
+      "label": "Roughly how much team time does that take each week?",
+      "options": [
+        "Under 2 hours",
+        "2–5 hours",
+        "6–10 hours",
+        "11–20 hours",
+        "More than 20 hours",
+        "Not sure"
+      ]
+    },
+    {
+      "id": "business_software",
+      "label": "What main software does your team use for that work?",
+      "options": [
+        "Fergus",
+        "Tradify",
+        "Simpro",
+        "ServiceM8",
+        "Xero",
+        "Microsoft 365 or Google Workspace",
+        "Other software",
+        "Mostly manual / no main system"
+      ]
+    },
+    {
+      "id": "business_ai_experience",
+      "label": "How is your team using AI at the moment?",
+      "options": [
+        "Not yet",
+        "Tried a few things",
+        "Use it regularly",
+        "Already have some automations"
+      ]
+    },
+    {
+      "id": "business_help",
+      "label": "What would be most useful to you?",
+      "options": [
+        "Find out where AI could help",
+        "Hands-on training for me or my team",
+        "Improve one time-consuming process",
+        "Help setting up an automation",
+        "Not sure — I would like your advice"
+      ]
+    }
+  ],
+  "native_adset_id": "120250512267320753",
+  "native_creative_id": "1896947301287722",
+  "native_ad_id": "120250512267970753",
+  "status": "PREPARED_PENDING_PRODUCTION_DELIVERY_TEST",
+  "launch_authorized": true,
+  "budget_change_authorized": true,
+  "quoting_campaign_id": "120250452722590753",
+  "quoting_campaign_status": "PAUSED",
+  "website_adset_id": "120249928318100753",
+  "website_destination": "https://flowstate.net.nz/ai-makeover/",
+  "native_submission": "ALL_FIELDS_DELIVERED_AFTER_SUBMIT_NO_ABANDONED_ANSWERS",
+  "native_contact_fields": [
+    "full_name",
+    "email",
+    "phone_number"
+  ],
+  "question_schema_source": "netlify/lib/meta-audit-questions.mjs:META_BUSINESS_QUESTIONS",
+  "vsl_identity_confirmation": "PENDING_USER_REPLY",
+  "original_website_creative_preserved": true,
+  "native_video_and_thumbnail_preserved": true,
+  "creative_drafts": [
+    {
+      "name": "Your biggest time sink",
+      "headline": "Could AI help with your biggest time sink?",
+      "primary_text": "What is the one job in your business that keeps eating up time?\n\nIt might be admin, customer enquiries, scheduling, invoicing or something else entirely.\n\nTell me a little about your business. We’ll look at how you do that job now, whether AI could help, and a sensible place to start.\n\nAnswer the quick questions and I’ll get in touch. — Ivan",
+      "spoken_script": "If you could take one time-consuming job off your plate, what would it be? I’m Ivan from Flowstate. I help business owners work out where AI could actually be useful. Tell me what’s taking up your time and show me how you do it now. We’ll look at whether AI could speed it up, take care of part of it, or whether it needs a different approach. Answer the quick questions below and let’s have a chat.",
+      "status": "DRAFT_NOT_PUBLISHED"
+    },
+    {
+      "name": "What keeps coming back to you?",
+      "headline": "What keeps coming back to you?",
+      "primary_text": "You’ve got a team and software, but there’s still that job that keeps landing back on your desk.\n\nWhat is it in your business?\n\nI’d like to hear how it works and see whether AI could make it easier. That might mean training your team, improving the process or setting something up around the tools you already use.\n\nAnswer a few quick questions and we’ll find a useful place to start. — Ivan",
+      "spoken_script": "What’s the job that keeps coming back to you? The information someone needs, the admin that piles up, or the same thing you end up explaining again? That’s what I’d like to look at with you. I’m Ivan from Flowstate. We’ll start with how your business actually works and see where AI could help. Sometimes that’s training, sometimes a better process, sometimes automation. Tell me a little about your business in the form below and I’ll get in touch.",
+      "status": "DRAFT_NOT_PUBLISHED"
+    }
+  ]
+}
