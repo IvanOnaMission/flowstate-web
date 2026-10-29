@@ -10,7 +10,9 @@ its existing /ai-makeover/ link redirects to /transformation-partner/ and plays
 the same 274.8-second /assets/makeover/ai-makeover-vsl.mp4 asset. The native
 clone keeps the original review video and thumbnail, with a business-discovery
 headline, form-specific copy and the new native form1110508731707277.
-Meta activation/review status is recorded separately from configured ACTIVE.
+Final Meta readback at 2026-10-29T04:47:11Z confirms both ads and both adsets
+are configured AND effective ACTIVE, with no returned issues. Total configured
+daily budget is NZ$60.
 The old quoting campaign, adset and individual ads are PAUSED.
 
 Production test1014794661638913 delivered all eight general answers to one

@@ -110,7 +110,7 @@
   "native_adset_id": "120250512267320753",
   "native_creative_id": "1896947301287722",
   "native_ad_id": "120250512267970753",
-  "status": "ENABLED_PRODUCTION_DELIVERY_VERIFIED_META_PROCESSING",
+  "status": "ACTIVE_BOTH_ROUTES_PRODUCTION_DELIVERY_VERIFIED",
   "launch_authorized": true,
   "budget_change_authorized": true,
   "quoting_campaign_id": "120250452722590753",
@@ -154,23 +154,21 @@
     "Tried a few things",
     "Hands-on training for me or my team"
   ],
-  "launch_status": "ENABLED_META_DELIVERY_PROCESSING",
+  "launch_status": "ACTIVE_BOTH_ADS_AND_ADSETS",
   "active_adsets": [
     {
       "id": "120250512267320753",
       "name": "FS | Business AI discovery | Jordan review | Native questions | NZ$30",
       "status": "ACTIVE",
       "effective_status": "ACTIVE",
-      "daily_budget": "3000",
-      "campaign_id": "120249928317850753"
+      "daily_budget": "3000"
     },
     {
       "id": "120249928318100753",
       "name": "FS | AI Makeover | Lead | Owners + ME lookalike | NZ$30",
       "status": "ACTIVE",
       "effective_status": "ACTIVE",
-      "daily_budget": "3000",
-      "campaign_id": "120249928317850753"
+      "daily_budget": "3000"
     }
   ],
   "ads": [
@@ -178,8 +176,7 @@
       "id": "120249982198220753",
       "name": "FS | AI Makeover | IV1 | Ivan | Jordan takeaways 104s",
       "status": "ACTIVE",
-      "effective_status": "IN_PROCESS",
-      "adset_id": "120249928318100753",
+      "effective_status": "ACTIVE",
       "creative": {
         "id": "1095937392805944"
       }
@@ -188,8 +185,7 @@
       "id": "120250512267970753",
       "name": "FS | Jordan review | Biggest time sink | Native business form",
       "status": "ACTIVE",
-      "effective_status": "IN_PROCESS",
-      "adset_id": "120250512267320753",
+      "effective_status": "ACTIVE",
       "creative": {
         "id": "1896947301287722"
       }
@@ -198,7 +194,7 @@
   "vsl_resolved_url": "https://flowstate.net.nz/transformation-partner/",
   "vsl_asset": "https://flowstate.net.nz/assets/makeover/ai-makeover-vsl.mp4",
   "vsl_duration_seconds": 274.8,
-  "verified_at": "2026-10-29T04:46:53.256136+00:00",
+  "verified_at": "2026-10-29T04:47:11.998473+00:00",
   "implementation_pr": "https://github.com/IvanOnaMission/flowstate-web/pull/23",
   "implementation_commit": "9028e686833c1382bbff51e7c4fff3bd7517c2ed",
   "production_deploy_id": "6ae2ce022c8e603fd36b28da",
@@ -268,6 +264,53 @@
       "telegramMessageId": 123,
       "summary_count": "8/8",
       "crmDirty": false
+    }
+  },
+  "quoting_ads_paused": 18,
+  "final_readback": {
+    "verified_at": "2026-10-29T04:47:11.998473+00:00",
+    "ads": [
+      {
+        "id": "120249982198220753",
+        "name": "FS | AI Makeover | IV1 | Ivan | Jordan takeaways 104s",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "creative": {
+          "id": "1095937392805944"
+        }
+      },
+      {
+        "id": "120250512267970753",
+        "name": "FS | Jordan review | Biggest time sink | Native business form",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "creative": {
+          "id": "1896947301287722"
+        }
+      }
+    ],
+    "active_adsets": [
+      {
+        "id": "120250512267320753",
+        "name": "FS | Business AI discovery | Jordan review | Native questions | NZ$30",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "daily_budget": "3000"
+      },
+      {
+        "id": "120249928318100753",
+        "name": "FS | AI Makeover | Lead | Owners + ME lookalike | NZ$30",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "daily_budget": "3000"
+      }
+    ],
+    "total_daily_budget_nzd": 60,
+    "quoting_ads_paused": 18,
+    "quoting_campaign": {
+      "id": "120250452722590753",
+      "status": "PAUSED",
+      "effective_status": "PAUSED"
     }
   }
 }
