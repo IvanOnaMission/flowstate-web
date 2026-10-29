@@ -158,23 +158,57 @@ still applies when ads are activated.
   summaries are visibly marked. No public client flag can classify a normal
   enquiry as a test.
 
-### Verification and advertising status
+### Verified production evidence and paused ads
 
-Implementation acceptance requires a **real production browser contact save**,
-CRM verification before question one, several separately saved answers, closure
-and reopening midway, a partial Telegram summary, continuation and same-message
-update, plus contact-only abandonment. Unit tests cover retry, provider failure,
-invalid sessions, cross-origin writes, durable-store failure and skips. Local
-browser checking confirms a three-answer abandonment resumes on question four;
-the phone-sized layout has no horizontal overflow.
+Status: **WEBSITE_CONTACT_FIRST_PER_ANSWER_AND_ABANDONMENT_VERIFIED_ADS_PAUSED**.
+The production browser saved all three contact fields and the initial CRM note
+with **zero answers before question one was answered**. The same note then
+updated after each choice. Closing after three answers preserved them and
+reopening resumed on question four. Continuing completed ten steps with nine
+answers and question eight deliberately skipped. Exactly one note
+`693a3667-8019-5308-9474-7174f34df601` remained linked to the same person/opportunity;
+full choice wording and the skipped **Not answered** were checked. Production
+Telegram message **119** first contained three answers and later updated to nine;
+`revision=notifiedRevision=10`, `crmDirty=false`.
 
-Production evidence and the final paused website ad IDs are recorded in
-`meta-native-audit-test.json` after live verification. The running website ad set
-`120250452722710753` stays ACTIVE at **NZ$60/day**. The former native form set
-`120250507913820753` and its three ads stay PAUSED. Because that set has Meta's
-ON_AD destination, a separate PAUSED WEBSITE set is prepared for this direct
-page, preserving approved copy, footage, thumbnails and disabled enhancements.
-No ads are launched and the proposed NZ$30/NZ$30 split is not applied.
+A separate browser test saved contacts and closed before answering anything.
+One CRM note `f53d3e31-d4c5-5bb9-88bd-b971776711bc` retained all three fields and
+zero answers. Production Telegram message **120** arrived with a contact-only
+summary; `revision=notifiedRevision=0`, `crmDirty=false`. Both synthetic
+opportunities are TEST and their follow-up tasks DONE. Reporting, Kit and browser
+Lead conversions were suppressed for the tests. No booking was created.
+
+The real booking button opened **Free 30-minute audit**, 30 minutes, Auckland
+timezone, with campaign UTMs. The browser layout was checked at 390px with no
+horizontal overflow. **70 tests** cover failures, retries, partial/contact-only
+abandonment, same-message updates, sessions, skips and clearing the browser
+session without deleting the saved enquiry. The production build and focused
+lint checks pass (zero errors; one existing anonymous-export warning).
+
+Core live verification ran on deploy `6ae2960db86df73b37990484`, commit
+`dff787c046c914d3a0fe4baa66dcb90f17c7dff4`. PR #22 contains the final implementation,
+operating records and browser-session restart cleanup. Detailed IDs and evidence
+filenames are in `meta-native-audit-test.json`. Screenshots are under
+`/Users/ivanbarnett/flowstate-output/marketing/`.
+
+Prepared website set: **FS | Audit | Details first + saved answers | Website |
+NZ$30 | Paused**, ID `120250510344470753`, destination WEBSITE, Lead pixel
+optimization. **All three ads and their parent are PAUSED**, including effective
+status. They open directly on `/audit-enquiry/`:
+
+| Creative | Ad ID | Creative ID | Original video |
+| --- | --- | --- | --- |
+| Power tools | 120250510350140753 | 1016187818179065 | 3218930068497999 |
+| Replies on site | 120250510350280753 | 1404950211721853 | 1643887403786056 |
+| Unbillable time | 120250510350440753 | 1825709858469755 | 1454905336568454 |
+
+Readback confirms original approved copy, videos and thumbnail hashes, every
+returned enhancement OPT_OUT, direct website CTA and ad-ID tracking macros.
+The running website set `120250452722710753` stays ACTIVE at **NZ$60/day**.
+The old native set `120250507913820753` is named **FS | RETIRED native
+questionnaire | Keep paused** and remains PAUSED. The new website set has a
+NZ$30/day budget while PAUSED. No ads were launched or live budget changed;
+the proposed NZ$30/NZ$30 split is unapproved and unapplied.
 
 ### Historical routes
 

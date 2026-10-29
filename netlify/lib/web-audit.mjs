@@ -43,6 +43,7 @@ export function createWebAuditHandler({store=auditChatStore,save=twentyMetaProgr
       if(!request.headers.get('content-type')?.startsWith('application/json'))return json(415,{error:'JSON required'});
       const raw=await request.text();if(raw.length>8192)return json(413,{error:'Request too large'});
       let data;try{data=JSON.parse(raw);}catch{return json(400,{error:'Invalid request'});}
+      if(data.action==='restart')return json(200,{saved:false},{'set-cookie':`${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`});
       if(data.action==='contact'){
         const lead=contactInput(data,time);if(!lead)return json(400,{error:'Please enter your name, a valid email and phone number.'});
         const key=webLeadKey(data.nonce);let response;

@@ -66,3 +66,8 @@ test('reporting and reminder retries run independently and never send synthetic 
   await flushWebAuditEffects({store,effects,now:2000});await flushWebAuditEffects({store,effects,now:3000});assert.equal(tracking,2);assert.equal(kit,1);
   const testNonce='b'.repeat(64);await createWebAuditHandler({store,save:async()=>true})(request({...details,nonce:testNonce,name:'[TEST] Audit',email:'audit@example.invalid'}));await flushWebAuditEffects({store,effects,now:4000});assert.equal(tracking,2);assert.equal(kit,1);
 });
+test('starting a different enquiry clears only the browser session and preserves the saved contact and answers',async()=>{
+  const {store,handler,cookie}=await setup();await handler(request({action:'answer',index:0,choice:0},cookie));
+  const reset=await handler(request({action:'restart'},cookie));assert.equal(reset.status,200);assert.equal((await reset.json()).saved,false);assert.match(reset.headers.get('set-cookie'),/Max-Age=0/);
+  assert.equal((await store.get(key)).lead.email,details.email);assert.equal((await store.get(key)).lead.answers[0].answer,'Electrical');assert.equal((await (await handler(request())).json()).saved,false);
+});

@@ -50,7 +50,7 @@
   }
   skip.addEventListener('click',()=>saveAnswer('skip'));
   finish.addEventListener('click',async()=>{if(busy)return;disable(true);message('Saving…');try{render(await api({action:'finish'}),true);message('Everything you supplied is saved.');}catch(error){message(error.message,true);}finally{disable(false);}});
-  restart.addEventListener('click',()=>{if(busy)return;pendingNonce='';try{sessionStorage.removeItem('flowstate:audit-pending');}catch{}render({saved:false});message('');form.elements.name.focus();});
+  restart.addEventListener('click',async()=>{if(busy)return;disable(true);message('Starting a different enquiry…');try{await api({action:'restart'});pendingNonce='';try{sessionStorage.removeItem('flowstate:audit-pending');}catch{}form.reset();render({saved:false});message('');}catch(error){message(error.message,true);}finally{disable(false);if(!state?.saved)form.elements.name.focus();}});
   disable(true);message('Checking for saved progress…');
   api().then(next=>{render(next);message(next.saved?'Your saved enquiry is ready to continue.':'');}).catch(()=>{render({saved:false});message('We could not load saved progress. You can reload or enter your details again.',true);}).finally(()=>disable(false));
 })();
