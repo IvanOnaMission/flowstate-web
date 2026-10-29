@@ -1,6 +1,6 @@
 {
   "prepared_at": "2026-10-29",
-  "status": "WEBSITE_CONTACT_FIRST_PER_ANSWER_AND_ABANDONMENT_VERIFIED_ADS_PAUSED",
+  "status": "HISTORICAL_WEBSITE_AUTOSAVE_VERIFIED_NOT_CURRENT_AD_ROUTE",
   "account_id": "act_1630869461967772",
   "page_id": "1095779013619484",
   "campaign_id": "120250452722590753",
@@ -197,5 +197,6 @@
       "business_verification_status": "LAST_CHECKED_NOT_VERIFIED_NOT_A_WEBSITE_FORM_DEPENDENCY"
     },
     "native_lead_token_expires_at": "2026-12-27T19:12:11Z"
-  }
+  },
+  "superseded_by": "scripts/meta-business-discovery.json"
 }

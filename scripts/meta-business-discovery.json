@@ -110,7 +110,7 @@
   "native_adset_id": "120250512267320753",
   "native_creative_id": "1896947301287722",
   "native_ad_id": "120250512267970753",
-  "status": "PREPARED_PENDING_PRODUCTION_DELIVERY_TEST",
+  "status": "ACTIVE_BOTH_ROUTES_PRODUCTION_DELIVERY_VERIFIED",
   "launch_authorized": true,
   "budget_change_authorized": true,
   "quoting_campaign_id": "120250452722590753",
@@ -124,7 +124,7 @@
     "phone_number"
   ],
   "question_schema_source": "netlify/lib/meta-audit-questions.mjs:META_BUSINESS_QUESTIONS",
-  "vsl_identity_confirmation": "PENDING_USER_REPLY",
+  "vsl_identity_confirmation": "RESOLVED_ORIGINAL_AD_LINK_AND_EXISTING_VIDEO_ASSET",
   "original_website_creative_preserved": true,
   "native_video_and_thumbnail_preserved": true,
   "creative_drafts": [
@@ -142,5 +142,175 @@
       "spoken_script": "What’s the job that keeps coming back to you? The information someone needs, the admin that piles up, or the same thing you end up explaining again? That’s what I’d like to look at with you. I’m Ivan from Flowstate. We’ll start with how your business actually works and see where AI could help. Sometimes that’s training, sometimes a better process, sometimes automation. Tell me a little about your business in the form below and I’ll get in touch.",
       "status": "DRAFT_NOT_PUBLISHED"
     }
-  ]
+  ],
+  "test_lead_id": "1014794661638913",
+  "test_expected_answers": [
+    "Electrical",
+    "Owner or director",
+    "6–10",
+    "Scheduling and job coordination",
+    "6–10 hours",
+    "Simpro",
+    "Tried a few things",
+    "Hands-on training for me or my team"
+  ],
+  "launch_status": "ACTIVE_BOTH_ADS_AND_ADSETS",
+  "active_adsets": [
+    {
+      "id": "120250512267320753",
+      "name": "FS | Business AI discovery | Jordan review | Native questions | NZ$30",
+      "status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "daily_budget": "3000"
+    },
+    {
+      "id": "120249928318100753",
+      "name": "FS | AI Makeover | Lead | Owners + ME lookalike | NZ$30",
+      "status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "daily_budget": "3000"
+    }
+  ],
+  "ads": [
+    {
+      "id": "120249982198220753",
+      "name": "FS | AI Makeover | IV1 | Ivan | Jordan takeaways 104s",
+      "status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "creative": {
+        "id": "1095937392805944"
+      }
+    },
+    {
+      "id": "120250512267970753",
+      "name": "FS | Jordan review | Biggest time sink | Native business form",
+      "status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "creative": {
+        "id": "1896947301287722"
+      }
+    }
+  ],
+  "vsl_resolved_url": "https://flowstate.net.nz/transformation-partner/",
+  "vsl_asset": "https://flowstate.net.nz/assets/makeover/ai-makeover-vsl.mp4",
+  "vsl_duration_seconds": 274.8,
+  "verified_at": "2026-10-29T04:47:11.998473+00:00",
+  "implementation_pr": "https://github.com/IvanOnaMission/flowstate-web/pull/23",
+  "implementation_commit": "9028e686833c1382bbff51e7c4fff3bd7517c2ed",
+  "production_deploy_id": "6ae2ce022c8e603fd36b28da",
+  "production_published_at": "2026-10-29T04:40:02.499Z",
+  "native_preview": "ALL_EIGHT_DROPDOWNS_CONTACTS_SUBMIT_AND_BOOKING_BUTTON_VERIFIED",
+  "calendly_description": "GENERAL_BUSINESS_TIME_SINK_TRAINING_PROCESS_OR_AUTOMATION",
+  "booking_created": false,
+  "tests_passed": 74,
+  "crm_opportunity_id": "34e61408-add5-5ad9-b94d-d3cf723fe0ff",
+  "crm_note_id": "4aeb1a46-eefa-575f-9458-182b6dee021c",
+  "crm_note_count": 1,
+  "crm_record_kind": "TEST",
+  "crm_task_id": "135f2f78-6cea-5756-8f95-afb7f6d77049",
+  "crm_task_status": "DONE",
+  "production_test": {
+    "id": "1014794661638913",
+    "imported": true,
+    "integration_stages": {
+      "crm": true,
+      "answers": true,
+      "tracking": true,
+      "kit": true,
+      "alert": true
+    },
+    "questionnaire": "business",
+    "answer_count": 8,
+    "answers": [
+      {
+        "question": "What type of business do you run?",
+        "answer": "Electrical"
+      },
+      {
+        "question": "What is your role in the business?",
+        "answer": "Owner or director"
+      },
+      {
+        "question": "How many people are in the business, including you?",
+        "answer": "6–10"
+      },
+      {
+        "question": "What area of the business is your biggest time sink?",
+        "answer": "Scheduling and job coordination"
+      },
+      {
+        "question": "Roughly how much team time does that take each week?",
+        "answer": "6–10 hours"
+      },
+      {
+        "question": "What main software does your team use for that work?",
+        "answer": "Simpro"
+      },
+      {
+        "question": "How is your team using AI at the moment?",
+        "answer": "Tried a few things"
+      },
+      {
+        "question": "What would be most useful to you?",
+        "answer": "Hands-on training for me or my team"
+      }
+    ],
+    "test": true,
+    "digest": {
+      "index": 8,
+      "test": true,
+      "revision": 0,
+      "notifiedRevision": 0,
+      "telegramMessageId": 123,
+      "summary_count": "8/8",
+      "crmDirty": false
+    }
+  },
+  "quoting_ads_paused": 18,
+  "final_readback": {
+    "verified_at": "2026-10-29T04:47:11.998473+00:00",
+    "ads": [
+      {
+        "id": "120249982198220753",
+        "name": "FS | AI Makeover | IV1 | Ivan | Jordan takeaways 104s",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "creative": {
+          "id": "1095937392805944"
+        }
+      },
+      {
+        "id": "120250512267970753",
+        "name": "FS | Jordan review | Biggest time sink | Native business form",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "creative": {
+          "id": "1896947301287722"
+        }
+      }
+    ],
+    "active_adsets": [
+      {
+        "id": "120250512267320753",
+        "name": "FS | Business AI discovery | Jordan review | Native questions | NZ$30",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "daily_budget": "3000"
+      },
+      {
+        "id": "120249928318100753",
+        "name": "FS | AI Makeover | Lead | Owners + ME lookalike | NZ$30",
+        "status": "ACTIVE",
+        "effective_status": "ACTIVE",
+        "daily_budget": "3000"
+      }
+    ],
+    "total_daily_budget_nzd": 60,
+    "quoting_ads_paused": 18,
+    "quoting_campaign": {
+      "id": "120250452722590753",
+      "status": "PAUSED",
+      "effective_status": "PAUSED"
+    }
+  }
 }
