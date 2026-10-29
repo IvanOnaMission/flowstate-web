@@ -87,6 +87,15 @@ test('each Messenger answer replaces the same linked note without changing the c
  assert.equal(rows.notes.size,1);assert.equal(rows.noteTargets.size,2);assert.match(rows.notes.get(noteId).bodyV2.markdown,/Pain: General admin/);
  assert.equal(rows.opportunities.get('contact-1').nextAction,'Keep booked call');assert.equal(rows.opportunities.get('contact-2').nextAction,undefined);assert.equal(rows.tasks.size,0);
 });
+test('website audit saves contacts before answers and keeps one referenced note after a test classification',async()=>{
+ const lead={channel:'website',id:'web-enquiry-1',email:'web@example.test',name:'Website enquiry',phone:'021 123 4567',answers:[{id:'industry',question:'Business',answer:'Not answered'},{id:'pain',question:'Pain',answer:'Not answered'}]};
+ assert.equal(await twentyMetaProgress(lead),true);
+ assert.equal(rows.people.size,1);assert.equal(rows.opportunities.size,1);assert.equal(rows.notes.size,1);
+ const op=[...rows.opportunities.values()][0],noteId=[...rows.notes.keys()][0];assert.equal(op.sourceEmail,lead.email);assert.equal(op.sourcePhone,lead.phone);assert.equal(lead.crm_ref.id,op.id);assert.match(rows.notes.get(noteId).bodyV2.markdown,/Answered 0 of 10/);assert.ok(rows.notes.get(noteId).bodyV2.markdown.includes('Phone: '+lead.phone));
+ rows.opportunities.set(op.id,{...op,sourceRecordKind:'TEST',nextAction:'Keep existing action'});
+ lead.answers[0].answer='Electrical';await twentyMetaProgress(lead);
+ assert.equal(rows.opportunities.size,1);assert.equal(rows.notes.size,1);assert.equal(rows.noteTargets.size,2);assert.match(rows.notes.get(noteId).title,/^Audit enquiry/);assert.match(rows.notes.get(noteId).bodyV2.markdown,/Business: Electrical/);assert.equal(rows.opportunities.get(op.id).nextAction,'Keep existing action');
+});
 test('intake errors remain visible and never fall through to the retired Notion backend',async()=>{
  process.env.CRM_BACKEND='twenty';process.env.NOTION_TOKEN='test-only';process.env.NOTION_CRM_DATABASE_ID='test-only';failure=()=>true;
  await assert.rejects(()=>crmLead({email:'new@example.com'}),/failed \(503\)/);assert.ok(calls.every(c=>c.url.startsWith('https://crm.example/')));

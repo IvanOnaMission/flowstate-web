@@ -32,6 +32,7 @@ async function leased(store, key, now, action) {
   try { await action(); return true; }
   finally { await store.setJSON(k,{until:0},{onlyIfMatch:claim.etag}); }
 }
+export {leased as withAuditLeadLease};
 
 export async function initialiseAuditChat(lead, store=auditChatStore(), now=Date.now()) {
   const state={lead, index:0, startedAt:now, lastActivity:now, revision:0, crmDirty:false, notifiedRevision:-1};

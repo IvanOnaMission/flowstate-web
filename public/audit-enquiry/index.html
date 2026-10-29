@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free 30-minute audit | Flowstate</title>
+  <meta name="description" content="Save your contact details, then answer a few optional questions about your business. Each answer is saved as you go.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="/assets/quoting/funnel.css">
+  <link rel="stylesheet" href="/assets/quoting/audit-enquiry.css">
+  <script src="/assets/quoting/analytics.js" defer></script>
+  <script src="/assets/quoting/audit-enquiry.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/">FLOWSTATE</a><a class="booking-link" href="https://calendly.com/ivan-flowstate/30min?utm_source=facebook&amp;utm_medium=audit_form&amp;utm_campaign=quote-machine" target="_blank" rel="noopener">Book my free audit ↗</a></header>
+  <main id="main" class="audit-main">
+    <section class="audit-card" aria-label="Free audit enquiry">
+      <div id="contact-step">
+        <p class="eyebrow">Free 30-minute audit</p>
+        <h1>Let’s take some work off your plate.</h1>
+        <p class="intro">Leave your details so I can get in touch. Once they’re saved, you can answer a few optional questions to help me prepare. — Ivan</p>
+        <form id="audit-contact-form">
+          <label for="audit-name">Your name</label><input id="audit-name" name="name" autocomplete="name" required maxlength="120">
+          <label for="audit-email">Email address</label><input id="audit-email" name="email" type="email" autocomplete="email" required maxlength="200">
+          <label for="audit-phone">Phone number</label><input id="audit-phone" name="phone" type="tel" autocomplete="tel" required maxlength="40" minlength="7">
+          <div class="honeypot" aria-hidden="true"><label for="company-website">Leave this empty</label><input id="company-website" name="company_website" tabindex="-1" autocomplete="off"></div>
+          <button class="primary" type="submit">Save my details &amp; continue</button>
+          <p class="fine-print">By saving your details, you’re asking Ivan to contact you about your free audit. <a href="/quoting-privacy/" target="_blank" rel="noopener">Privacy notice</a></p>
+        </form>
+      </div>
+      <div id="question-step" hidden>
+        <p class="saved-contact">✓ Your contact details are saved</p>
+        <p id="question-count" class="eyebrow"></p>
+        <progress id="audit-progress" max="10" value="0" aria-label="Optional questions completed"></progress>
+        <h1 id="question-title" tabindex="-1"></h1>
+        <div id="answer-options" class="answer-options"></div>
+        <div class="question-actions"><button id="skip-question" type="button" class="secondary">Skip this question</button><button id="finish-questions" type="button" class="text-button">Finish here</button></div>
+        <p class="fine-print">Each answer saves as you go. You can leave at any point and keep what you’ve already saved.</p>
+      </div>
+      <div id="complete-step" hidden>
+        <p class="saved-contact">✓ Your enquiry is saved</p>
+        <h1 tabindex="-1" id="complete-title">Thanks. Let’s find a time.</h1>
+        <p id="complete-summary"></p>
+        <p>Choose a time for your free 30-minute audit. We’ll look at where manual work builds up and what I’d tackle first.</p>
+        <a class="primary booking-link" href="https://calendly.com/ivan-flowstate/30min?utm_source=facebook&amp;utm_medium=audit_form&amp;utm_campaign=quote-machine" target="_blank" rel="noopener">Book my free 30-minute audit ↗</a>
+        <p class="fine-print">Your call is confirmed when you complete the booking. Your enquiry and answers are already saved.</p>
+      </div>
+      <p id="audit-save-status" role="status" aria-live="polite"></p>
+      <button id="new-enquiry" class="text-button" type="button" hidden>Start a different enquiry</button>
+    </section>
+    <noscript><p>Please enable JavaScript to save your enquiry and answers, or <a href="https://calendly.com/ivan-flowstate/30min">book your free audit directly</a>.</p></noscript>
+  </main>
+  <footer><span>Flowstate · Practical AI for trade businesses</span><a href="/quoting-privacy/">Privacy</a></footer>
+</body></html>
