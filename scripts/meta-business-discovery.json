@@ -312,5 +312,91 @@
       "status": "PAUSED",
       "effective_status": "PAUSED"
     }
-  }
+  },
+  "additional_existing_ads": [
+    {
+      "source_ad_id": "120249979245330753",
+      "name": "Jordan — Get started with AI",
+      "creative_id": "2896742430702142",
+      "video_id": "2648258712261347",
+      "headline": "Get AI working in your business.",
+      "primary_text": "Jordan explains the time it took to get started with AI. If you’d like help finding a useful place to start, tell me what takes up time in your business.\n\nWe’ll look at whether training, a better process or an automation could help. Answer the quick questions and I’ll get in touch. — Ivan",
+      "ad_id": "120250512661370753",
+      "configured_status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "form_verified": true,
+      "enhancements": "ALL_OPT_OUT",
+      "issues": [],
+      "destination_form_id": "1110508731707277"
+    },
+    {
+      "source_ad_id": "120250480126280753",
+      "name": "Power tools — Office work by hand",
+      "creative_id": "1296426563563488",
+      "video_id": "3218930068497999",
+      "headline": "Where is your office still doing it by hand?",
+      "primary_text": "You’ve upgraded the tools on site. What about the repetitive work in the office?\n\nTell me which job takes up the most time. We’ll look at whether AI could help and a practical first step. Answer the quick questions below. — Ivan",
+      "ad_id": "120250512661810753",
+      "configured_status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "form_verified": true,
+      "enhancements": "ALL_OPT_OUT",
+      "issues": [],
+      "destination_form_id": "1110508731707277"
+    },
+    {
+      "source_ad_id": "120249978356620753",
+      "name": "Jordan — Admin time back for customers",
+      "creative_id": "1423831926476041",
+      "video_id": "2123189055250002",
+      "headline": "Give your team time for the work that matters.",
+      "primary_text": "Jordan explains how reducing repetitive admin freed his team for customer conversations.\n\nWhat keeps your team tied up? Tell me about your business and we’ll look at whether AI could help with one useful task. Answer the quick questions and I’ll get in touch. — Ivan",
+      "ad_id": "120250512662240753",
+      "configured_status": "ACTIVE",
+      "effective_status": "ACTIVE",
+      "form_verified": true,
+      "enhancements": "ALL_OPT_OUT",
+      "issues": [],
+      "destination_form_id": "1110508731707277"
+    },
+    {
+      "source_ad_id": "120250477765730753",
+      "name": "Software admin — Revised general-business ending",
+      "creative_id": "1623657639504410",
+      "video_id": "1143964738284187",
+      "headline": "Software is in place. Why is the admin still yours?",
+      "primary_text": "Job software can help keep things organised, but there’s still work that keeps landing back on your desk.\n\nJordan explains how reducing repetitive admin freed his team for customer conversations. What is the biggest time sink in your business?\n\nAnswer a few quick questions and we’ll look at whether AI could help, through training, a better process or an automation. — Ivan",
+      "revised": true,
+      "duration_seconds": 48.833333,
+      "ad_id": "120250512762650753",
+      "configured_status": "ACTIVE",
+      "form_verified": true,
+      "enhancements": "ALL_OPT_OUT",
+      "effective_status": "IN_PROCESS",
+      "issues": [],
+      "destination_form_id": "1110508731707277"
+    }
+  ],
+  "expanded_existing_ads_authorized": true,
+  "expanded_existing_ads_requested": 4,
+  "expansion_status": "ALL_FOUR_ENABLED_META_REVIEW_STATUS_RECORDED",
+  "software_revision": {
+    "duration_seconds": 48.833333,
+    "file": "software-admin-business-discovery.mp4",
+    "source_intro_out": 22.666667,
+    "admin_example_source_in": 5.033333,
+    "admin_example_source_out": 27.2,
+    "closing_seconds": 4,
+    "rapid_quote_example_removed": true,
+    "general_business_cta": true,
+    "hyperframes_check": "PASS",
+    "rendered_video_and_audio_verified": true,
+    "video_id": "1143964738284187",
+    "ad_id": "120250512762650753",
+    "rendered_audio_transcription_verified": true,
+    "source": "Existing user-owned software and Jordan admin videos; no generated voice"
+  },
+  "expansion_verified_at": "2026-10-29T05:51:01.576506+00:00",
+  "native_ads_total": 5,
+  "vsl_ads_total": 1
 }

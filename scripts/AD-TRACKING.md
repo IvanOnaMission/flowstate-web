@@ -23,6 +23,22 @@ The Calendly description now covers the biggest time sink, training, process
 improvement or automation. No booking was made. Tests74/74 and build pass.
 The two new time-sink creative variants are copy drafts, not launched ads.
 
+### Additional existing videos — authorised 29 October 2026
+
+Ivan authorised launching all four candidates in the ad-review shortlist:
+Jordan getting started, power tools, Jordan admin and the revised software/admin
+video. These are additional ads inside the existing NZ$30/day native-form adset,
+not new adset budgets. The original Jordan VSL adset remains NZ$30/day. Total
+configured daily budget stays NZ$60. All use business form1110508731707277.
+The two separately written new filming concepts remain unpublished copy drafts.
+
+The software/admin cut preserves its opening and replaces the rapid-quote
+example with Jordan’s admin/customer-conversation example and a general-business
+CTA. Revised delivery file is 48.833 seconds, 1080x1920,30fps,H.264/AAC48kHz.
+HyperFrames check and rendered-frame/audio-stream verification passed. Exact
+creative, video and ad IDs plus current Meta review/delivery statuses are in
+`scripts/meta-business-discovery.json` and the external launch receipt.
+
 Current operations and exact IDs: `scripts/meta-business-discovery.json`.
 The eight business fields have separate `business_` keys; legacy quoting forms
 and the independently working website autosave form keep their original schema.
