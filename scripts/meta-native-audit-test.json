@@ -1,6 +1,6 @@
 {
   "prepared_at": "2026-10-29",
-  "status": "NATIVE_FORM_AND_DELIVERY_VERIFIED_ADS_PAUSED",
+  "status": "WEBSITE_DETAILS_FIRST_AUTOSAVE_IMPLEMENTED_PENDING_PRODUCTION_VERIFICATION",
   "account_id": "act_1630869461967772",
   "page_id": "1095779013619484",
   "campaign_id": "120250452722590753",
@@ -16,9 +16,7 @@
   "new_adset_status": "PAUSED",
   "new_ads_status": "PAUSED",
   "required_create_status": "PAUSED",
-  "form_name": "FS | Free 30-minute audit | 10 optional questions | 2026-10-29",
-  "form_id": "1116182244474862",
-  "form_status": "ACTIVE",
+  "form_status": "IMPLEMENTED_PENDING_PRODUCTION_VERIFICATION",
   "form_type": "MORE_VOLUME",
   "booking_url": "https://calendly.com/ivan-flowstate/30min?utm_source=facebook&utm_medium=instant_form&utm_campaign=quote-machine",
   "creative_enhancements": "ALL_OPT_OUT",
@@ -129,8 +127,8 @@
     "EMAIL",
     "PHONE"
   ],
-  "contact_first_guaranteed": false,
-  "contact_first_scope": "NOT_REQUIRED_FOR_NATIVE_QUESTIONNAIRE",
+  "contact_first_guaranteed": true,
+  "contact_first_scope": "NAME_EMAIL_PHONE_DURABLY_SAVED_BEFORE_QUESTION_ONE",
   "new_adset_daily_budget_nzd": 30,
   "budget_change_authorized": false,
   "launch_authorized": false,
@@ -159,35 +157,12 @@
     ]
   },
   "connection_test": {
-    "meta_test_lead_id": "1135595305639949",
-    "twenty_opportunity_id": "ed40b017-5781-5971-8b23-ac5e05c15fb7",
-    "twenty_note_id": "3746b0e5-189f-5734-97ef-f6d22b5eb2a7",
-    "answers_verified": 10,
-    "delivery": "PRODUCTION_SCHEDULED_FUNCTION",
-    "crm_record_kind": "TEST",
-    "follow_up_task_status": "DONE",
-    "test_only_stages_suppressed": [
-      "tracking",
-      "kit"
-    ],
-    "scope": "EXISTING_REAL_META_NATIVE_TEST_LEAD_RETRIEVED_AND_REPLAYED_FOR_NOTIFICATION",
-    "telegram_status": "PRODUCTION_SCHEDULED_DELIVERY_VERIFIED",
-    "native_form_id": "1116182244474862",
-    "twenty_note_count": 1,
-    "booking_created": false,
-    "telegram_message_id": 118,
-    "telegram_summary_answer_count": 10,
-    "revision": 0,
-    "notified_revision": 0,
-    "crm_dirty": false,
-    "native_ui_preview": "ALL_TEN_CHOICES_CONTACT_STEP_SUBMIT_AND_COMPLETION_VERIFIED",
-    "native_ui_preview_creates_new_api_lead": false,
-    "booking_destination_verified": true,
-    "follow_up_task_id": "380dcd6a-9035-5284-9c50-d70f9898ebec",
+    "status": "PENDING_REAL_WEBSITE_CONTACT_ABANDONMENT_AND_PER_ANSWER_VERIFICATION",
     "automated_tests": {
-      "passed": 60,
+      "passed": 69,
       "failed": 0
-    }
+    },
+    "local_browser_close_after_three_answers_resumed_question": 4
   },
   "meta_review": {
     "business_id": "2087399378511036",
@@ -211,7 +186,7 @@
     "native-quick-form-complete-2026-10-29.jpg"
   ],
   "evidence_directory": "/Users/ivanbarnett/flowstate-output/marketing",
-  "submission_mode": "TEN_OPTIONAL_NATIVE_QUESTIONS_AND_CONTACT_DETAILS_THEN_SUBMIT",
+  "submission_mode": "CONTACT_SAVE_ACKNOWLEDGED_THEN_ANSWER_SAVE_ACKNOWLEDGED_BEFORE_ADVANCING",
   "requires_messenger": false,
   "custom_messenger_app_review_required": false,
   "retired_contact_only_form": {
@@ -257,5 +232,52 @@
       "failed": 0
     }
   },
-  "runtime_note": "META_AUDIT_CONTACT_FIRST=true is retained only to enable the existing durable Telegram summary worker. The current form contains all questions and its ending links directly to Calendly; Messenger is not part of the prospect journey."
+  "runtime_note": "The audit-web endpoint and scheduled audit-lead-sync worker use private Netlify Blobs and the existing CRM/digest helpers. Website saves do not depend on META_AUDIT_CONTACT_FIRST, Messenger, or Meta Instant Form submission.",
+  "historical_native_questionnaire_test": {
+    "meta_test_lead_id": "1135595305639949",
+    "twenty_opportunity_id": "ed40b017-5781-5971-8b23-ac5e05c15fb7",
+    "twenty_note_id": "3746b0e5-189f-5734-97ef-f6d22b5eb2a7",
+    "answers_verified": 10,
+    "delivery": "PRODUCTION_SCHEDULED_FUNCTION",
+    "crm_record_kind": "TEST",
+    "follow_up_task_status": "DONE",
+    "test_only_stages_suppressed": [
+      "tracking",
+      "kit"
+    ],
+    "scope": "EXISTING_REAL_META_NATIVE_TEST_LEAD_RETRIEVED_AND_REPLAYED_FOR_NOTIFICATION",
+    "telegram_status": "PRODUCTION_SCHEDULED_DELIVERY_VERIFIED",
+    "native_form_id": "1116182244474862",
+    "twenty_note_count": 1,
+    "booking_created": false,
+    "telegram_message_id": 118,
+    "telegram_summary_answer_count": 10,
+    "revision": 0,
+    "notified_revision": 0,
+    "crm_dirty": false,
+    "native_ui_preview": "ALL_TEN_CHOICES_CONTACT_STEP_SUBMIT_AND_COMPLETION_VERIFIED",
+    "native_ui_preview_creates_new_api_lead": false,
+    "booking_destination_verified": true,
+    "follow_up_task_id": "380dcd6a-9035-5284-9c50-d70f9898ebec",
+    "automated_tests": {
+      "passed": 60,
+      "failed": 0
+    }
+  },
+  "current_route": "WEBSITE_CONTACT_SAVE_THEN_OPTIONAL_PER_ANSWER_SAVE",
+  "form_url": "https://flowstate.net.nz/audit-enquiry/",
+  "per_answer_save": true,
+  "questions_location": "SAME_WEBSITE_PAGE_AFTER_CONTACT_SAVE",
+  "native_questionnaire_retired": true,
+  "native_form_id_historical": "1116182244474862",
+  "native_form_name_historical": "FS | Free 30-minute audit | 10 optional questions | 2026-10-29",
+  "current_ad_setup": {
+    "destination": "WEBSITE",
+    "status": "PENDING_PAUSED_WEBSITE_AD_PREPARATION",
+    "existing_native_adset_id": "120250507913820753",
+    "existing_native_ads_remain_paused": true,
+    "live_website_budget_nzd": 60,
+    "launch_authorized": false,
+    "budget_change_authorized": false
+  }
 }

@@ -91,16 +91,26 @@ export async function twentyMetaLead(input){
  if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
  return op;
 }
-export async function twentyMetaAnswers({email,id,answers=[],at,ad_id,progress=false}){
+export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref}){
  if(!email)return false;
- const op=await findOpportunity(email);if(!op)return false;
- const noteId=uuid('meta-audit-lead:'+id);
+ const website=channel==='website';
+ const op=website&&crm_ref?.id?crm_ref:await findOpportunity(email);if(!op)return false;
+ const noteId=uuid((website?'website-audit-lead:':'meta-audit-lead:')+id);
  const count=answers.filter(a=>a.answer!=='Not answered').length;
- const data={title:'Facebook audit enquiry — '+op.name,bodyV2:body(`Facebook lead: ${id}\nSubmitted: ${at||'Unknown'}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of 10 optional questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
+ const contactSnapshot=website?`\nName: ${name||'Not supplied'}\nEmail: ${email}\nPhone: ${phone||'Not supplied'}`:'';
+ const data={title:(website?'Audit enquiry — ':'Facebook audit enquiry — ')+op.name,bodyV2:body(`${website?'Website audit enquiry':'Facebook lead'}: ${id}\nSubmitted: ${at||'Unknown'}${contactSnapshot}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of 10 optional questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
  await createOrGet('notes',noteId,data);
   if(progress)await request('/notes/'+noteId,'PATCH',data);
  await createOrGet('noteTargets',uuid(noteId+'targetOpportunityId'+op.id),{noteId,targetOpportunityId:op.id});
  if(op.pointOfContactId)await createOrGet('noteTargets',uuid(noteId+'targetPersonId'+op.pointOfContactId),{noteId,targetPersonId:op.pointOfContactId});
  return true;
 }
-export const twentyMetaProgress=input=>twentyMetaAnswers({...input,progress:true});
+export async function twentyMetaProgress(input){
+ if(input.channel==='website'&&!input.crm_ref){
+  const op=await twentyMetaLead({...input,adId:input.ad_id,source:'Audit enquiry form'});
+  // This reference is stored only on the server. Later answers keep the exact
+  // contact even if the record is subsequently classified as a test or client.
+  input.crm_ref={id:op.id,name:op.name,pointOfContactId:op.pointOfContactId};
+ }
+ return twentyMetaAnswers({...input,progress:true});
+}

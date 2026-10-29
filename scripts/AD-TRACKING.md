@@ -108,107 +108,86 @@ post-booking welcome video are preserved. A calendar-first variant remains a
 later experiment, after enough confirmed booking data is collected.
 
 
-## Native Facebook audit questionnaire (29 October 2026)
+## Details-first audit enquiry (29 October 2026)
 
-Current route: **Facebook/Instagram ad → native Instant Form → Submit → optional
-Calendly booking**. All ten optional business questions and required contact
-fields are inside Meta's form. There is no Messenger step or separate website
-questionnaire. The user chose this straightforward submission flow instead of
-the custom contact-first Messenger route.
+Current implementation: `https://flowstate.net.nz/audit-enquiry/`.
+The first screen contains only required name, email and phone. **Save my details
+& continue** durably saves those details on the server and attempts the CRM save
+before returning the first optional question. The ten questions then appear one
+at a time. Choosing an answer or Skip persists that answer before returning the
+next question. An unconfirmed or failed save never advances the browser. People
+can stop, finish early or book at any point; their previously saved contacts and
+answers remain. Reloading or reopening in the same browser resumes the saved
+question for up to seven days.
 
-Active form `1116182244474862`, **FS | Free 30-minute audit | 10 optional questions
-| 2026-10-29**, contains industry, main software, biggest business pain, team size,
-AI experience, timing, response speed, site visits, quote preparation time and
-follow-up, plus full name, email and phone. The completion screen links directly
-to `https://calendly.com/ivan-flowstate/30min?utm_source=facebook&utm_medium=instant_form&utm_campaign=quote-machine`.
-Booking is optional and separate from the enquiry submission.
+This is a website form, opened directly from the prepared website ads. Meta's
+native forms cannot provide guaranteed contact-first and per-answer persistence
+before Submit. The earlier native questionnaire and custom Messenger detour are
+not the current journey. No Messenger review, tester account, recording or new
+business verification is introduced by this website route. Normal ad review
+still applies when ads are activated.
 
-Meta controls the question/contact ordering and can use the form's enabled
-flexible delivery. Contact-first ordering and a booking button on each question
-are not guarantees of this native form. We receive details and answers when the
-person presses Submit; abandoned and unsubmitted fields cannot be recovered.
-Skipped questions are stored as **Not answered**. No ownership inference is made.
+### Save and delivery contract
 
-### Production delivery
+- Endpoint `/.netlify/functions/audit-web` accepts contact creation and separate
+  answer/skip/finish requests. It returns a question only for an existing saved
+  contact session. Required fields are validated server-side.
+- Contact and answer data are durably stored in private Netlify Blobs before
+  attempting provider delivery. A random HttpOnly, Secure, SameSite cookie
+  authorizes resumption. Contact details, answers and the session capability are
+  not put in tracking links. Browser session storage contains no form fields.
+- Each answer updates the same **Audit enquiry — [name]** Twenty note, linked to
+  the person and opportunity. The note includes the submitted name, email and
+  phone even when an existing canonical contact is reused. Existing booked calls
+  and follow-up actions remain intact. The private CRM reference keeps subsequent
+  answers on the same record, including synthetic records classified TEST.
+- Shared leases serialize API and scheduled-worker writes. Duplicate contact or
+  answer retries are idempotent; a stale answer cannot overwrite a later one.
+- CRM failure leaves `crmDirty=true`; the minute worker retries from the durable
+  saved state. Campaign reporting and Kit reminders retry independently and do
+  not block saving answers. The existing booking reminder behavior is retained.
+- Telegram sends **New lead form**, all three contact details and the supplied
+  answers after 120 seconds quiet (normally 2–3 minutes with the minute worker).
+  Contact-only and abandoned partial enquiries still notify. Later answers edit
+  the original summary rather than create another notification.
+- Saving contact details triggers the browser Lead event once; optional answers
+  do not create more leads or booked-call events. No form fields are sent to the
+  pixel. Campaign attribution uses the existing server reporting adapter.
+- Test records require both a `[TEST]` name prefix and `@example.invalid` email;
+  reporting and Kit are suppressed for those synthetic records. Telegram test
+  summaries are visibly marked. No public client flag can classify a normal
+  enquiry as a test.
 
-`audit-lead-sync` retrieves form `1116182244474862` every minute through the
-existing private Page lead-access token. It saves a durable integration outbox,
-updates the Twenty contact/opportunity and one note containing all ten questions,
-records campaign attribution, applies the existing Kit reminder tags, and queues
-an answer-inclusive Telegram summary headed **New lead form**. Independently
-completed stages are not repeated on retry. The same note links to the person
-and opportunity. A native form submission is not a confirmed booking.
+### Verification and advertising status
 
-`META_AUDIT_FORM_ID=1116182244474862`. The legacy variable
-`META_AUDIT_CONTACT_FIRST=true` is retained to enable the existing durable summary
-worker. This is an internal configuration name, not the prospect experience.
-The summary worker stores the submitted answers and sends Telegram after its
-120-second quiet period; the minute schedule normally makes delivery roughly
-2–3 minutes after import. No Messenger conversation is needed. Do not set this
-flag false without preserving the answer-inclusive digest route: the older alert
-path sends a different contact-only notification. Netlify runtime secrets remain
-private; never overwrite a secret with a masked API value.
+Implementation acceptance requires a **real production browser contact save**,
+CRM verification before question one, several separately saved answers, closure
+and reopening midway, a partial Telegram summary, continuation and same-message
+update, plus contact-only abandonment. Unit tests cover retry, provider failure,
+invalid sessions, cross-origin writes, durable-store failure and skips. Local
+browser checking confirms a three-answer abandonment resumes on question four;
+the phone-sized layout has no horizontal overflow.
 
-### Ads and budget
+Production evidence and the final paused website ad IDs are recorded in
+`meta-native-audit-test.json` after live verification. The running website ad set
+`120250452722710753` stays ACTIVE at **NZ$60/day**. The former native form set
+`120250507913820753` and its three ads stay PAUSED. Because that set has Meta's
+ON_AD destination, a separate PAUSED WEBSITE set is prepared for this direct
+page, preserving approved copy, footage, thumbnails and disabled enhancements.
+No ads are launched and the proposed NZ$30/NZ$30 split is not applied.
 
-All three prepared ads and their parent form ad set remain **PAUSED**. Approved
-copy, footage, thumbnails and disabled creative enhancements are preserved.
-They use the native questionnaire, not the contact-only/Messenger form:
+### Historical routes
 
-| Ad | Ad ID | Creative ID | Native form ID |
-| --- | --- | --- | --- |
-| Power tools | 120250507913830753 | 2542272709588100 | 1116182244474862 |
-| Replies on site | 120250507984940753 | 3278630962527733 | 1116182244474862 |
-| Unbillable time | 120250507984950753 | 2057600894939587 | 1116182244474862 |
+Native questionnaire `1116182244474862` only delivers after Submit, so it does not
+meet this requirement. Contact-only native form `1091630220564926` led into the
+retired custom Messenger route. Both remain stored for history; neither is the
+current ad destination. The unsubmitted Messenger review draft and its
+[META-MESSENGER-REVIEW.md](META-MESSENGER-REVIEW.md) checklist are historical only.
+Do not send the owner through that verification process for this form.
 
-Website ad set `120250452722710753` stays **ACTIVE, NZ$60/day**. Native form ad set
-`120250507913820753` stays **PAUSED, NZ$30/day**. The proposed NZ$30/NZ$30 split
-has not been applied. No launch or budget change was made during simplification.
-Normal Meta ad review and delivery rules still apply when the owner launches.
-
-### Verification
-
-The real Meta native test record `1135595305639949` contains all ten supplied
-answers and the synthetic contact **[TEST] Meta CRM connection**. Fresh API
-retrieval confirms those values. Twenty has exactly one linked note
-`3746b0e5-189f-5734-97ef-f6d22b5eb2a7` with all ten answers and the correct option
-text. Opportunity `ed40b017-5781-5971-8b23-ac5e05c15fb7` remains **TEST**; follow-up
-is **DONE**. The existing synthetic fixture is retained rather than deleted.
-The notification stage was replayed through the production minute worker. It
-sent **Telegram message 118 with all ten answers**; durable state confirms
-`revision=notifiedRevision=0`, summary count 10 and `crmDirty=false`. Tracking and Kit remain suppressed for the
-fixture; no fake conversion or reminder email is created.
-
-Meta's native preview was completed through all ten question choices, synthetic
-contact details, Submit and the success screen. Its booking button opened the
-actual **Free 30-minute audit** Calendly event, 30 minutes, Auckland timezone and
-instant-form campaign UTMs; no booking was made. The preview itself is not a new
-API lead: the retained real test record above supplied the delivery check.
-
-Status: **NATIVE_FORM_AND_DELIVERY_VERIFIED_ADS_PAUSED**. Automated suite 60/60 and
-production build pass. Verified native delivery deployment:
-`6ae2815bb5a2c4ad477289e3` (existing runtime commit
-`09476ea32604b268de50fc148a4b0264e65cf77e`, rebuilt with the native form ID).
-Screenshots in `/Users/ivanbarnett/flowstate-output/marketing/`:
-`native-quick-form-questions-2026-10-29.jpg` and
-`native-quick-form-complete-2026-10-29.jpg`. See
-`meta-native-audit-test.json` for the detailed receipt.
-
-### Retired Messenger route
-
-Contact-only form `1091630220564926` and the ordering experiment
-`2230455587511903` remain stored but are unused by the current ads/importer.
-The custom Messenger implementation and its historical test evidence remain in
-the repository, but they are not in the current native lead journey.
-
-Business portfolio `2087399378511036` was unverified and custom
-`pages_messaging` review draft `4950633641929533` was not submitted. Those were
-blockers for the optional custom Messenger bot. They are **not prerequisites
-introduced by this native questionnaire route**. Do not ask the owner to finish
-that bot's review, tester setup or recording to run this form. The retired
-[META-MESSENGER-REVIEW.md](META-MESSENGER-REVIEW.md) is historical reference only.
-Existing Page leads access and Lead Ads Terms are already configured.
-
-The lead token expires **28 December 2026, 08:12 NZDT**
-(`2026-12-27T19:12:11Z`); rotate privately before expiry. Deployment must preserve
-Netlify functions: use the connected Git build, not a static-only upload.
+The old native importer remains configured for retained submissions and retries;
+it does not handle the new website form. Its lead token expires **28 December
+2026, 08:12 NZDT**. The website route uses the existing private CRM, Kit, reporting
+and Telegram runtime configuration without new credentials. Deploy through the
+connected Git build, preserving Netlify functions. Never copy masked secret
+values back into runtime settings.

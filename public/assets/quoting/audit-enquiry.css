@@ -1,0 +1,23 @@
+[hidden]{display:none!important}
+.audit-main{max-width:680px;padding-top:24px;padding-bottom:64px}
+.audit-card{background:#fff;color:#172737;border:1px solid #dce4eb;border-radius:20px;padding:clamp(24px,5vw,44px);box-shadow:0 24px 70px #0002}
+.audit-card h1{font-size:clamp(29px,5vw,39px);line-height:1.12;letter-spacing:-1.3px;margin:12px 0 20px;color:#122332}
+.audit-card p{line-height:1.6}.audit-card .intro{font-size:17px;color:#465767}
+.audit-card .eyebrow{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#3868a0;margin-bottom:12px}
+.audit-card label{display:block;font-weight:650;font-size:15px;margin:20px 0 8px}
+.audit-card input{width:100%;box-sizing:border-box;border:1px solid #acbac7;border-radius:9px;background:white;color:#172737;font:inherit;font-size:17px;padding:13px 14px;min-height:50px}
+.audit-card input:focus,.audit-card button:focus-visible,.audit-card a:focus-visible{outline:3px solid #67adff;outline-offset:3px}
+.audit-card .primary{display:block;box-sizing:border-box;width:100%;background:#2974e5;color:white;border:0;border-radius:10px;padding:16px 18px;font:inherit;font-weight:750;text-align:center;text-decoration:none;min-height:54px;margin-top:25px;cursor:pointer}
+.audit-card .primary:hover{background:#1d5fc0}.audit-card button:disabled{opacity:.55;cursor:wait}
+.audit-card .fine-print{font-size:13px;color:#607080;line-height:1.55;margin:17px 0 0}.audit-card a{color:#2161ad}
+.audit-card .primary.booking-link{color:#fff}.saved-contact{font-size:14px;font-weight:700;color:#226b42}
+#audit-progress{width:100%;height:7px;accent-color:#2974e5;margin:2px 0 12px}
+.answer-options{display:grid;gap:10px;margin-top:24px}.answer-options button{border:1px solid #b4c5d5;border-radius:10px;padding:15px 16px;text-align:left;font:inherit;font-weight:600;background:#f8fafc;color:#1b344a;min-height:50px;cursor:pointer}
+.answer-options button:hover{background:#edf4ff;border-color:#2974e5}.answer-options button[aria-pressed=true]{background:#e7f0ff;border-color:#2974e5}
+.question-actions{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:20px}
+.audit-card .secondary{font:inherit;border:1px solid #cbd6df;border-radius:8px;padding:11px 15px;background:white;color:#344b60;cursor:pointer}
+.audit-card .text-button{font:inherit;font-size:13px;border:0;padding:8px 0;background:none;color:#557088;text-decoration:underline;cursor:pointer}
+#audit-save-status{font-size:14px;min-height:23px;margin:16px 0 0;color:#226b42}#audit-save-status.error{color:#a42929}
+#new-enquiry{display:block;margin-top:15px}.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+header>.booking-link{font-size:13px;font-weight:650;text-decoration:none}footer{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;font-size:12px}
+@media(max-width:520px){header{padding:18px 20px;gap:12px}.brand{font-size:16px;letter-spacing:1px}.brand:before{width:24px;height:24px;margin-right:7px}header>.booking-link{font-size:12px}.audit-main{padding:14px 14px 44px}.audit-card{border-radius:14px}.audit-card h1{font-size:30px}.question-actions{gap:8px}}
