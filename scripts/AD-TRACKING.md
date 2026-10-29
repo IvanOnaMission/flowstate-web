@@ -5,7 +5,20 @@ Ivan has authorised pausing the broad Quote Machine campaign and bringing back
 his original Jordan interview review, with a native Facebook form about the
 whole business. The total authorised budget remains NZ$60/day, prepared as
 NZ$30/day native form and NZ$30/day original Jordan → original VSL route.
-The VSL identity is awaiting Ivan's clarification before that route is enabled.
+Both routes are now enabled. The original ad still uses its original creative;
+its existing /ai-makeover/ link redirects to /transformation-partner/ and plays
+the same 274.8-second /assets/makeover/ai-makeover-vsl.mp4 asset. The native
+clone keeps the original review video and thumbnail, with a business-discovery
+headline, form-specific copy and the new native form1110508731707277.
+Meta activation/review status is recorded separately from configured ACTIVE.
+The old quoting campaign, adset and individual ads are PAUSED.
+
+Production test1014794661638913 delivered all eight general answers to one
+Twenty note and Telegram123 (8/8). Synthetic reporting/email effects were
+suppressed; CRM fixture is TEST and its follow-up task DONE. The native preview
+completed all dropdowns, contacts, Submit and the correct Calendly destination.
+The Calendly description now covers the biggest time sink, training, process
+improvement or automation. No booking was made. Tests74/74 and build pass.
 The two new time-sink creative variants are copy drafts, not launched ads.
 
 Current operations and exact IDs: `scripts/meta-business-discovery.json`.
