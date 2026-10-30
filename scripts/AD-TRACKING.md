@@ -66,12 +66,13 @@ login is separate from this application account.
 - `meta-sync` imports all ads, including new ads without spend, every two hours.
   Each run refreshes 35 days of daily results to incorporate revised attribution.
 - Netlify form events and verified Calendly events write leads/bookings immediately.
-  A 15-minute scheduled import reconciles forms, Calendly and Notion.
+  A 15-minute scheduled import reconciles forms, Calendly and the Twenty CRM.
 - Forms save an enquiry before the visitor chooses a meeting. Customer type is
   self-reported. A person can appear as an enquiry with no active booking.
-- Notion remains the place to update Customer type, Qualification, Call outcome,
-  Sale outcome and Sale value. Client — Active / Maintenance implies Won when
-  Sale outcome is unset; Lost implies Lost. A past call does not imply attendance.
+- Twenty is the place to update Customer type, Qualification, Call outcome,
+  Sale outcome and Sale value. Customer / Maintenance stage implies Won when
+  Sale outcome is unset; Lost implies Lost. Test, duplicate and campaign records
+  are skipped. (The Notion CRM was retired on 31 October 2026.) A past call does not imply attendance.
   Sale value must be entered; proposal amounts do not count as sales.
 - An ad's topic, objection, hook and lessons can be edited in its dashboard details.
 
@@ -109,14 +110,14 @@ Occupation cannot be inferred for anonymous clickers.
 - Meta token expiry or revoked provider access requires updating the encrypted
   `flowstate_marketing_config` in Vault via service-only `mkt_set_config`.
   Configuration includes `meta_token`, `meta_account_id`, `meta_api_version`,
-  `notion_token`, `notion_database_id`, `calendly_token`, `calendly_user`,
+  `twenty_api_url`, `twenty_api_key`, `calendly_token`, `calendly_user`,
   `netlify_token`, `netlify_site_id` and `cron_auth`.
 - Netlify uses server environment variables `MKT_SUPABASE_URL`,
   `MKT_SUPABASE_SERVICE_KEY` and `MKT_SUPABASE_ANON_KEY`.
   Never put service credentials in browser code or git.
 - For a manual server-side backfill, use `scripts/refresh-ad-tracking.mjs`
   with its documented environment configuration and `--backfill`. Use
-  `--source=meta` (or forms/calendly/notion) to import a single source.
+  `--source=meta` (or forms/calendly/twenty) to import a single source.
 - Apply both SQL migrations only to FlowState. Deploy the edge function with
   JWT verification enabled. Its body additionally requires the server role.
 - Deploy the website through its connected Git build or the Netlify CLI with

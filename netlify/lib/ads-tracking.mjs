@@ -11,8 +11,6 @@ const emailKey = v => text(v, 254).toLowerCase();
 const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 const numeric = v => v == null || v === '' || !Number.isFinite(Number(v)) ? null : Number(v);
 export const actionValue = (list, type = 'video_view') => numeric(list?.find(x => x.action_type === type)?.value);
-const richText = p => (p?.rich_text || p?.title || []).map(x => x.plain_text || x.text?.content || '').join('');
-const selected = p => p?.select?.name || p?.status?.name || '';
 const daysAgo = n => new Date(Date.now() - n * 86400000).toISOString();
 export const calendarDate = (value,timezone='Pacific/Auckland') =>
   new Intl.DateTimeFormat('en-CA',{timeZone:timezone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value));
@@ -218,29 +216,33 @@ async function syncForms(db,c) {
   return {form_leads:count};
 }
 
-async function syncNotion(db,c) {
+// Twenty is the only CRM. Migrated opportunities keep their old Notion page ID in
+// notionSourceId, which stays the lead's identity key so an email change updates the same lead.
+const twentyEnum = v => text(v).toUpperCase();
+const SKIPPED_KINDS = ['TEST','DUPLICATE','CAMPAIGN'];
+async function syncTwenty(db,c) {
   let cursor,count=0; const ads=await db.all('mkt_ads','select=id,name');
   do {
-    const res=await fetch(`https://api.notion.com/v1/databases/${c.notion_database_id}/query`,{
-      method:'POST',headers:{authorization:`Bearer ${c.notion_token}`,'notion-version':'2022-06-28','content-type':'application/json'},
-      body:JSON.stringify({page_size:100,...(cursor?{start_cursor:cursor}:{})}),signal:AbortSignal.timeout(25000),
+    const res=await fetch(`${String(c.twenty_api_url).replace(/\/$/,'')}/rest/opportunities?limit=60${cursor?`&starting_after=${encodeURIComponent(cursor)}`:''}`,{
+      headers:{authorization:`Bearer ${c.twenty_api_key}`},signal:AbortSignal.timeout(25000),
     });
     if(!res.ok) throw new Error(`CRM read: ${res.status}`);
     const page=await res.json();
-    for(const r of page.results || []) {
-      const p=r.properties,email=p.Email?.email; if(!validEmail(emailKey(email))) continue;
-      const data={email,name:richText(p.Name),phone:p.Phone?.phone_number,company:richText(p.Company),notion_page_id:r.id,
-        crm_stage:selected(p.Stage),lost_reason:richText(p['Lost reason']),notes:richText(p['Wiki / notes']),
-        first_seen_at:r.created_time,tracking:{source_ad_id:richText(p['Source ad ID'])}};
-      const ct=customerType(selected(p['Customer type'])); if(ct!=='unknown') {data.customer_type=ct;data.classification_source='notion';}
-      data.qualification={'Qualified':'qualified','Unqualified':'unqualified'}[selected(p.Qualification)]||'unknown';
-      data.call_outcome={'Attended':'attended','No-show':'no_show'}[selected(p['Call outcome'])]||'unknown';
-      data.sale_outcome={'Won':'won','Lost':'lost'}[selected(p['Sale outcome'])]
-        || (['Client — Active','Maintenance'].includes(data.crm_stage)?'won':data.crm_stage==='Lost'?'lost':'unknown');
-      data.sale_value=p['Sale value']?.number ?? null;
+    for(const o of page.data?.opportunities || []) {
+      const email=o.emailLookup||o.sourceEmail; if(!validEmail(emailKey(email))||SKIPPED_KINDS.includes(o.sourceRecordKind)) continue;
+      const stage=twentyEnum(o.stage);
+      const data={email,name:o.name,phone:o.sourcePhone,company:o.sourceCompany,notion_page_id:o.notionSourceId||undefined,
+        crm_stage:stage,lost_reason:o.lostReason,notes:o.wikiNotes,first_seen_at:o.createdAt,tracking:{source_ad_id:text(o.sourceAdId)}};
+      const ct=customerType(Object.values(CUSTOMER_LABELS).find(l=>twentyEnum(l).replace(/[^A-Z0-9]+/g,'_')===twentyEnum(o.customerType)));
+      if(ct!=='unknown') {data.customer_type=ct;data.classification_source='crm';}
+      data.qualification={QUALIFIED:'qualified',UNQUALIFIED:'unqualified'}[twentyEnum(o.qualification)]||'unknown';
+      data.call_outcome={ATTENDED:'attended',NO_SHOW:'no_show'}[twentyEnum(o.callOutcome)]||'unknown';
+      data.sale_outcome={WON:'won',LOST:'lost'}[twentyEnum(o.saleOutcome)]
+        || (['CUSTOMER','MAINTENANCE'].includes(stage)?'won':stage==='LOST'?'lost':'unknown');
+      data.sale_value=numeric(o.saleValue);
       await saveLead(db,data,ads);count++;
     }
-    cursor=page.has_more?page.next_cursor:null;
+    cursor=page.pageInfo?.hasNextPage?page.pageInfo.endCursor:null;
   } while(cursor);
   return {crm_leads:count};
 }
@@ -266,8 +268,8 @@ async function syncCalendly(db,c,backfill) {
   return {bookings:count};
 }
 
-export async function syncTracking(db,c,{sources=['meta','forms','calendly','notion'],backfill=false}={}) {
-  const jobs={meta:syncMeta,forms:syncForms,calendly:syncCalendly,notion:syncNotion},results={};
+export async function syncTracking(db,c,{sources=['meta','forms','calendly','twenty'],backfill=false}={}) {
+  const jobs={meta:syncMeta,forms:syncForms,calendly:syncCalendly,twenty:syncTwenty},results={};
   for(const source of sources) {
     if(!jobs[source])continue;
     if(!await db.request('rpc/mkt_claim_sync','POST',{p_source:source})){results[source]={skipped:'already running'};continue;}
@@ -291,7 +293,7 @@ export async function trackingReport(db,{since,until}) {
     db.all('mkt_ad_daily',`select=ad_id,date,spend,impressions,link_clicks,outbound_clicks,landing_page_views,video_plays,video_3s,thruplays,average_watch_seconds,p25,p50,p75,p95,p100,meta_leads,meta_bookings&date=gte.${since}&date=lte.${until}`),
     db.all('mkt_ad_breakdowns',`select=*&date=gte.${since}&date=lte.${until}`),
     db.all('mkt_leads','select=*'),db.all('mkt_bookings','select=*'),
-    Promise.all(['meta','forms','calendly','notion'].map(source =>
+    Promise.all(['meta','forms','calendly','twenty'].map(source =>
       db.request(`mkt_sync_runs?select=*&source=eq.${source}&order=started_at.desc&limit=1`)
     )).then(rows => rows.flat()),
   ]);

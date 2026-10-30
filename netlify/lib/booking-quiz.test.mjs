@@ -1,7 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {quizAnswers, quizContact, verifiedQuizBooking} from './booking-quiz.mjs';
-import {crmQuiz} from './crm.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 
@@ -188,35 +187,4 @@ test('CRM identity comes from the active Calendly invitee', async () => {
   assert.equal(booking.email, 'booked@example.test');
   await assert.rejects(verifiedQuizBooking(uri, 'test-token', async () => Response.json({resource: {uri, email: 'x@test.nz', status: 'canceled'}})), /confirmed/);
   assert.equal(await verifiedQuizBooking(uri, ''), null);
-});
-
-test('CRM quiz notes preserve stage and existing notes, and deduplicate event retries', async () => {
-  const oldFetch = globalThis.fetch;
-  const oldToken = process.env.NOTION_TOKEN;
-  const oldDb = process.env.NOTION_CRM_DATABASE_ID;
-  process.env.NOTION_TOKEN = 'test';
-  process.env.NOTION_CRM_DATABASE_ID = 'test-db';
-  const calls = [];
-  let saved = false;
-  globalThis.fetch = async (url, options) => {
-    calls.push({url, ...options});
-    if (url.endsWith('/query')) return Response.json({results: [{id: 'crm-page'}]});
-    if (options.method === 'GET') return Response.json({results: saved ? [{paragraph: {rich_text: [{plain_text: 'Business quiz submission: test-submission'}]}}] : [], has_more: false});
-    saved = true;
-    const body = JSON.parse(options.body);
-    assert.equal(body.properties, undefined);
-    assert.equal(body.children.length, 9);
-    assert.match(body.children.at(-1).paragraph.rich_text[0].text.content, /Need to discuss/);
-    return Response.json({results: []});
-  };
-  try {
-    const quiz = {email: 'booked@example.test', uri, answers: quizAnswers(data), submissionId: 'test-submission'};
-    assert.equal(await crmQuiz(quiz), true);
-    assert.equal(await crmQuiz(quiz), true);
-    assert.equal(calls.filter(call => call.method === 'PATCH').length, 1);
-  } finally {
-    globalThis.fetch = oldFetch;
-    if (oldToken === undefined) delete process.env.NOTION_TOKEN; else process.env.NOTION_TOKEN = oldToken;
-    if (oldDb === undefined) delete process.env.NOTION_CRM_DATABASE_ID; else process.env.NOTION_CRM_DATABASE_ID = oldDb;
-  }
 });
