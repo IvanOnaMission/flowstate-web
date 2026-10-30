@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {resolveAd,dailyMetric,saveLead,customerType,recordBooking,calendarDate} from './ads-tracking.mjs';
+import {resolveAd,dailyMetric,saveLead,customerType,recordBooking,calendarDate,syncTracking} from './ads-tracking.mjs';
 test('the Meta date range includes today in the ad account timezone',()=>{
   const now='2026-09-28T21:00:00Z';
   assert.equal(calendarDate(now,'Pacific/Auckland'),'2026-09-29');
@@ -49,4 +49,27 @@ test('a changed CRM email updates the same lead and keeps linked bookings intact
   assert.equal(updated.body.first_seen_at,'2026-09-01T00:00:00Z');
   assert.equal(Object.hasOwn(updated.body,'source_ad_id'),false);
   assert.equal(result.id,'lead-1');
+});
+test('CRM outcomes import from Twenty, keep migrated identities and skip test records',async()=>{
+  const oldFetch=globalThis.fetch,saved=[],urls=[];
+  globalThis.fetch=async url=>{urls.push(url);return Response.json(url.includes('starting_after')
+    ?{data:{opportunities:[{emailLookup:'test@example.nz',sourceRecordKind:'TEST',stage:'NEW'}]},pageInfo:{hasNextPage:false}}
+    :{data:{opportunities:[{name:'Jane',emailLookup:'jane@example.nz',sourceRecordKind:'CONTACT',stage:'CUSTOMER',notionSourceId:'page-1',
+      customerType:'ELECTRICAL_BUSINESS_OWNER',qualification:'QUALIFIED',callOutcome:'ATTENDED',saleOutcome:null,saleValue:5000,sourceAdId:'123456789',createdAt:'2026-09-01T00:00:00Z'}]},
+      pageInfo:{hasNextPage:true,endCursor:'cursor-1'}});};
+  const db={all:async()=>[],request:async(path,method,body)=>{
+    if(path==='rpc/mkt_claim_sync')return true;
+    if(path==='mkt_sync_runs'&&method==='POST')return [{id:'run-1'}];
+    if(path.startsWith('mkt_leads?email=')||path.startsWith('mkt_leads?notion_page_id='))return [];
+    if(path.startsWith('mkt_leads?on_conflict')){saved.push(body);return [body];}
+    return [];
+  }};
+  try {
+    const result=await syncTracking(db,{twenty_api_url:'https://crm.example/',twenty_api_key:'test'},{sources:['twenty']});
+    assert.equal(result.twenty.status,'success');assert.equal(result.twenty.crm_leads,1);
+    assert.ok(urls[0].startsWith('https://crm.example/rest/opportunities?'));assert.match(urls[1],/starting_after=cursor-1/);
+    const lead=saved[0];
+    assert.equal(lead.notion_page_id,'page-1');assert.equal(lead.customer_type,'electrical_owner');assert.equal(lead.qualification,'qualified');
+    assert.equal(lead.call_outcome,'attended');assert.equal(lead.sale_outcome,'won');assert.equal(lead.sale_value,5000);
+  } finally { globalThis.fetch=oldFetch; }
 });
