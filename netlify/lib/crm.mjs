@@ -1,11 +1,8 @@
-// Puts leads into Kit and the selected CRM. CRM_BACKEND=twenty routes leads,
-// bookings and quiz notes to TWENTY_API_URL using the server-only TWENTY_API_KEY.
-// The Notion path remains available for rollback while its source records are retained.
+// Puts leads into Kit and the Twenty CRM (TWENTY_API_URL, server-only TWENTY_API_KEY).
+// Twenty is the only CRM: the Notion CRM was retired on 31 October 2026.
 // Each step is optional and independent: a missing key or a failed call is logged and skipped,
 // so a lead alert to Ivan is never blocked by the CRM.
-// Env: KIT_API_KEY, KIT_TAG_MAKEOVER_LEAD, KIT_TAG_MAKEOVER_BOOKED, NOTION_TOKEN, NOTION_CRM_DATABASE_ID
-const today = () => new Date().toLocaleDateString('en-CA', {timeZone: 'Pacific/Auckland'});
-import {CUSTOMER_LABELS,customerType as normaliseCustomerType} from './ads-tracking.mjs';
+// Env: KIT_API_KEY, KIT_TAG_MAKEOVER_LEAD, KIT_TAG_MAKEOVER_BOOKED, TWENTY_API_URL, TWENTY_API_KEY
 import {twentyLead,twentyBooked,twentyQuiz} from './twenty-crm.mjs';
 
 async function kit(path, body) {
@@ -32,108 +29,15 @@ export async function addToKit({email, name, phone, tagId, tagIds = []}) {
   }
 }
 
-async function notion(path, method, body) {
-  const res = await fetch(`https://api.notion.com/v1${path}`, {
-    method,
-    headers: {
-      authorization: `Bearer ${process.env.NOTION_TOKEN}`,
-      'notion-version': '2022-06-28',
-      'content-type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const out = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(`Notion ${path} ${res.status} ${out.message || ''}`);
-  return out;
-}
+// A form lead: create the CRM opportunity, or refresh it if they've been here before.
+export const crmLead = input => twentyLead(input);
 
-async function findByEmail(email) {
-  const db = process.env.NOTION_CRM_DATABASE_ID;
-  const out = await notion(`/databases/${db}/query`, 'POST', {filter: {property: 'Email', email: {equals: email}}, page_size: 1});
-  return out.results?.[0] || null;
-}
-
-const text = value => ({rich_text: [{text: {content: String(value).slice(0, 1900)}}]});
-const date = start => ({date: {start}});
-
-// A form lead: create the CRM row, or refresh it if they've been here before.
-export async function crmLead({email, name, phone, source, customerType, adId}) {
-  if(process.env.CRM_BACKEND==='twenty')return twentyLead({email,name,phone,source,customerType,adId});
-  if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
-  const props = {
-    'Next action': text('Call within 5 minutes'),
-    'Next action date': date(today()),
-    'Last touch': date(today()),
-  };
-  const kind=normaliseCustomerType(customerType);
-  if(kind!=='unknown')props['Customer type']={select:{name:CUSTOMER_LABELS[kind]}};
-  if(/^\d{8,30}$/.test(adId||''))props['Source ad ID']=text(adId);
-  const existing = await findByEmail(email);
-  if (existing) return notion(`/pages/${existing.id}`, 'PATCH', {properties: props});
-  return notion('/pages', 'POST', {
-    parent: {database_id: process.env.NOTION_CRM_DATABASE_ID},
-    properties: {
-      Name: {title: [{text: {content: name || email}}]},
-      Email: {email},
-      Phone: {phone_number: phone || null},
-      Stage: {select: {name: 'Lead'}},
-      Type: {select: {name: 'Warm'}},
-      ...(kind==='electrical_owner'?{Trade:text('Electrical')}:{}),
-      'Plan / value': text('Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)'),
-      'Wiki / notes': text(`Came in through the workflow diagnostic page${source ? ` (${source})` : ''}.`),
-      ...props,
-    },
-  });
-}
-
-// A booked discovery call: move the row to Discovery with the call time.
-export async function crmBooked({email, name, phone, start}) {
-  if(process.env.CRM_BACKEND==='twenty')return twentyBooked({email,name,phone,start});
-  if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
-  const props = {
-    Stage: {select: {name: 'Discovery'}},
-    'Next action': text('Discovery call'),
-    'Next action date': date(start || today()),
-    'Last touch': date(today()),
-  };
-  const existing = await findByEmail(email);
-  if (existing) return notion(`/pages/${existing.id}`, 'PATCH', {properties: props});
-  return notion('/pages', 'POST', {
-    parent: {database_id: process.env.NOTION_CRM_DATABASE_ID},
-    properties: {
-      Name: {title: [{text: {content: name || email}}]},
-      Email: {email},
-      Phone: {phone_number: phone || null},
-      Type: {select: {name: 'Warm'}},
-      'Plan / value': text('Workflow diagnostic → AI partnership (scope and rate agreed after diagnostic)'),
-      ...props,
-    },
-  });
-}
+// A booked discovery call: move the opportunity to screening with the call time.
+export const crmBooked = input => twentyBooked(input);
 
 // Append preparation notes without changing the booking stage, next action or
 // existing notes. The verified Calendly email may differ from the lead form email.
-export async function crmQuiz({email, uri, answers, submissionId}) {
-  if(process.env.CRM_BACKEND==='twenty')return twentyQuiz({email,uri,answers,submissionId});
-  if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return false;
-  const existing = await findByEmail(email);
-  if (!existing) return false; // The original answers remain in Netlify Forms.
-  const marker = `Business quiz submission: ${submissionId || uri}`;
-  let cursor;
-  do {
-    const page = await notion(`/blocks/${existing.id}/children?page_size=100${cursor ? `&start_cursor=${encodeURIComponent(cursor)}` : ''}`, 'GET');
-    if (page.results?.some(block => block.paragraph?.rich_text?.some(part => part.plain_text === marker || part.text?.content === marker))) return true;
-    cursor = page.has_more ? page.next_cursor : null;
-  } while (cursor);
-  const paragraph = content => ({object: 'block', type: 'paragraph', paragraph: text(content)});
-  await notion(`/blocks/${existing.id}/children`, 'PATCH', {children: [
-    {object: 'block', type: 'heading_2', heading_2: text('Pre-call business quiz')},
-    paragraph(marker),
-    paragraph(`Booking: ${uri || 'Not booked yet'}`),
-    ...answers.map(({question, answer}) => paragraph(`${question}: ${answer}`)),
-  ]});
-  return true;
-}
+export const crmQuiz = input => twentyQuiz(input);
 
 export async function safely(label, fn) {
   try { await fn(); } catch (err) { console.error(`${label} failed:`, err.message); }

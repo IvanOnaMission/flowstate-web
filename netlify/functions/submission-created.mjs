@@ -4,12 +4,12 @@
 // The business quiz is saved as preparation notes; it never creates another lead
 // or sends another booking notification. Other forms are ignored.
 //
-// The lead goes to Kit and the Notion CRM straight away, but the Telegram alert is
+// The lead goes to Kit and the Twenty CRM straight away, but the Telegram alert is
 // held for LEAD_ALERT_DELAY_SECONDS (default 120) so they can pick a Calendly time
 // first. If they book inside that window, lead-alert.mjs cancels the hold and Ivan
 // only gets the "New call booked" message. pending-lead-alerts.mjs sends the rest.
 // If the holding list is unavailable the alert goes out immediately instead.
-// Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Notion keys in ../lib/crm.mjs)
+// Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (plus the Kit and Twenty keys in ../lib/crm.mjs)
 import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
 import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
@@ -55,7 +55,7 @@ export default async (req) => {
   const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
   await Promise.all([
     safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : []})),
-    safely('notion lead', () => crmLead({...contact, source: quoteMachine ? 'Quote Machine page' : 'form', customerType: data.customer_type, adId: data.ad_id})),
+    safely('crm lead', () => crmLead({...contact, source: quoteMachine ? 'Quote Machine page' : 'form', customerType: data.customer_type, adId: data.ad_id})),
     safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,data,payload.created_at || new Date().toISOString()); }),
   ]);
 

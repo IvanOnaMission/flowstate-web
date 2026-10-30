@@ -115,7 +115,7 @@ export default async (req) => {
       await Promise.all([
         quiet ? null : aboutLead({email: p.email, tracking: p.tracking}).then(lines => { aboutLines = lines; }, () => {}),
         safely('kit booked', () => addToKit({...booked, tagId: process.env.KIT_TAG_MAKEOVER_BOOKED})),
-        safely('notion booked', () => crmBooked(booked)),
+        safely('crm booked', () => crmBooked(booked)),
         // They filled the form minutes ago: drop the waiting "not booked yet" alert, keeping its answers.
         safely('release pending', async () => { held = await takeLead(booked); }),
       ]);
