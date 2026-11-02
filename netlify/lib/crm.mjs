@@ -57,8 +57,8 @@ const text = value => ({rich_text: [{text: {content: String(value).slice(0, 1900
 const date = start => ({date: {start}});
 
 // A form lead: create the CRM row, or refresh it if they've been here before.
-export async function crmLead({email, name, phone, source, customerType, adId}) {
-  if(process.env.CRM_BACKEND==='twenty')return twentyLead({email,name,phone,source,customerType,adId});
+export async function crmLead({email, name, phone, source, customerType, adId, fbclid, fbc, fbp, metaLeadId}) {
+  if(process.env.CRM_BACKEND==='twenty')return twentyLead({email,name,phone,source,customerType,adId,fbclid,fbc,fbp,metaLeadId});
   if (!process.env.NOTION_TOKEN || !process.env.NOTION_CRM_DATABASE_ID || !email) return;
   const props = {
     'Next action': text('Call within 5 minutes'),

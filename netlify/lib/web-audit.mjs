@@ -5,6 +5,7 @@ import {twentyMetaProgress} from './twenty-crm.mjs';
 import {addToKit} from './crm.mjs';
 import {recordFormLead} from './ads-tracking.mjs';
 import {trackingDatabase} from './tracking-server.mjs';
+import {acceptedMatch, sendCrmEvent} from './meta-capi.mjs';
 
 const COOKIE='__Host-fs-audit',LIFETIME=7*86400000;
 const noncePattern=/^[a-f0-9]{64}$/;
@@ -18,7 +19,8 @@ function contactInput(data,now){
   const name=clean(data.name),email=clean(data.email).toLowerCase(),phone=clean(data.phone);
   if(data.company_website||!noncePattern.test(data.nonce||'')||!name||name.length>120||email.length>200||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||phone.length>40||!/^\+?[\d\s().-]+$/.test(phone)||!/^\d{7,15}$/.test(phone.replace(/\D/g,'')))return null;
   const attribution=Object.fromEntries(['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].map(k=>[k,clean(data.attribution?.[k]).slice(0,200)]));
-  return {id:randomUUID(),channel:'website',name,email,phone,at:new Date(now).toISOString(),ad_id:/^\d{8,30}$/.test(data.ad_id||'')?data.ad_id:'',attribution,answers:metaAuditAnswers([])};
+  const click=acceptedMatch({fbclid:data.fbclid,fbc:data.fbc,fbp:data.fbp},now);
+  return {id:randomUUID(),channel:'website',name,email,phone,at:new Date(now).toISOString(),ad_id:/^\d{8,30}$/.test(data.ad_id||'')?data.ad_id:'',attribution,...click,answers:metaAuditAnswers([])};
 }
 
 async function syncContact(state,store,key,save){
@@ -94,12 +96,13 @@ export function createWebAuditHandler({store=auditChatStore,save=twentyMetaProgr
 const liveEffects={
   tracking:async lead=>{
     const db=trackingDatabase();if(!db)throw Error('Reporting not configured');
-    await recordFormLead(db,{...lead,...lead.attribution,ad_id:lead.ad_id,landing_path:'/audit-enquiry/'},lead.at);
+    await recordFormLead(db,{...lead,...lead.attribution,ad_id:lead.ad_id,fbclid:lead.fbclid,fbc:lead.fbc,fbp:lead.fbp,landing_path:'/audit-enquiry/'},lead.at);
   },
   kit:lead=>{
     if(!process.env.KIT_API_KEY)throw Error('Reminders not configured');
     return addToKit({...lead,tagId:process.env.KIT_TAG_MAKEOVER_LEAD,tagIds:[process.env.KIT_TAG_QUOTE_MACHINE_LEAD]});
   },
+  capi:lead=>sendCrmEvent({eventName:'Lead',eventTime:lead.at,email:lead.email,phone:lead.phone,name:lead.name,fbclid:lead.fbclid,fbc:lead.fbc,fbp:lead.fbp,test:lead.name?.startsWith('[TEST]')&&lead.email?.endsWith('@example.invalid')}),
 };
 export async function flushWebAuditEffects({store=auditChatStore(),effects=liveEffects,now=Date.now()}={}){
   let failed=0;
@@ -107,9 +110,13 @@ export async function flushWebAuditEffects({store=auditChatStore(),effects=liveE
     await withAuditLeadLease(store,key,now,async()=>{
       const state=await store.get(key,{type:'json'});if(!state)return;
       state.webEffectsDone||={};
-      for(const stage of ['tracking','kit']){
-        if(state.webEffectsDone[stage])continue;
-        try{if(!state.test)await effects[stage](state.lead);state.webEffectsDone[stage]=true;await store.setJSON(key,state);}
+      for(const stage of ['tracking','kit',...(effects.capi?['capi']:[])]){
+        if(state.webEffectsDone[stage]||typeof effects[stage]!=='function')continue;
+        try{
+          const result=state.test?undefined:await effects[stage](state.lead);
+          if(result?.reason==='unconfigured')continue;
+          state.webEffectsDone[stage]=true;await store.setJSON(key,state);
+        }
         catch{failed++;}
       }
     });

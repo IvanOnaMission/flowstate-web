@@ -15,6 +15,15 @@ const details={action:'contact',nonce,name:'Alex Example',email:'alex@example.te
 const request=(data,cookie='',extra={})=>new Request(origin+'/.netlify/functions/audit-web',{method:data?'POST':'GET',headers:{origin,'content-type':'application/json',...(cookie?{cookie}:{}),...extra},...(data?{body:JSON.stringify(data)}:{})});
 async function setup(save=async()=>true){const store=memory();let clock=1000;const handler=createWebAuditHandler({store,save,now:()=>clock});const response=await handler(request(details));const cookie=response.headers.get('set-cookie').split(';')[0];return {store,handler,response,cookie,time:t=>{clock=t;}};}
 
+test('a website enquiry stores a valid click id and ignores a client-supplied Meta lead id',async()=>{
+  const store=memory();const fbc='fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890';
+  const nonce='c'.repeat(64);
+  const handler=createWebAuditHandler({store,now:()=>1000,save:async()=>true});
+  const response=await handler(request({...details,nonce,fbclid:'nope',fbc,meta_lead_id:'123456789012345'}));
+  assert.equal(response.status,201);
+  const lead=(await store.get(webLeadKey(nonce))).lead;
+  assert.equal(lead.fbc,fbc);assert.equal(lead.fbclid,undefined);assert.equal(lead.meta_lead_id,undefined);
+});
 test('contacts are durable and synced before optional questions are returned; retries keep one lead',async()=>{
   const store=memory();let calls=0;
   const handler=createWebAuditHandler({store,now:()=>1000,save:async lead=>{calls++;assert.equal((await store.get(key)).lead.email,details.email);assert.equal(lead.answers.length,10);return true;}});

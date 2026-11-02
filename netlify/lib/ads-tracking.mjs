@@ -1,4 +1,5 @@
 // Shared by Netlify and the Supabase scheduled function. No browser credentials.
+import {acceptedMatch} from './meta-capi.mjs';
 export const CUSTOMER_LABELS = {
   unknown: 'Unknown', electrical_owner: 'Electrical business owner',
   other_trade_owner: 'Other trade business owner', employee_apprentice: 'Employee / apprentice', other: 'Other',
@@ -52,6 +53,24 @@ export function resolveAd(tracking = {}, ads = []) {
   return {id: null, evidence: 'unknown'};
 }
 
+const META_MATCH_KEYS = ['meta_lead_id', 'fbclid', 'fbc', 'fbp'];
+function mergeMetaTracking(base, incomingTracking, existingTracking) {
+  const incoming = acceptedMatch(incomingTracking || {});
+  const previous = acceptedMatch(existingTracking || {});
+  const meta = {};
+  for (const key of META_MATCH_KEYS) {
+    if (previous[key]) meta[key] = previous[key];
+    else if (incoming[key]) meta[key] = incoming[key];
+  }
+  if (!Object.keys(meta).length) return base;
+  if (base && META_MATCH_KEYS.every(key => !meta[key] || base[key] === meta[key])) return base;
+  return {...(base || {}), ...meta};
+}
+const FORM_TRACKING_KEYS = ['ad_id','utm_source','utm_medium','utm_campaign','utm_content','utm_term','landing_path'];
+export function formTracking(data = {}, eventTimeMs = Date.now()) {
+  return {...Object.fromEntries(FORM_TRACKING_KEYS.map(key => [key, text(data[key], 200)])), ...acceptedMatch(data, eventTimeMs)};
+}
+
 export async function saveLead(db, data, ads = []) {
   const email = emailKey(data.email);
   if (!validEmail(email)) return null;
@@ -80,6 +99,9 @@ export async function saveLead(db, data, ads = []) {
   if (!existing.source_ad_id && attributed.id) {
     row.source_ad_id = attributed.id; row.attribution_evidence = attributed.evidence; row.tracking = tracking;
   } else if (!existing.tracking || !Object.keys(existing.tracking).length) row.tracking = tracking;
+  const trackingBase = row.tracking ?? (existing.tracking && Object.keys(existing.tracking).length ? existing.tracking : undefined);
+  const mergedTracking = mergeMetaTracking(trackingBase, tracking, existing.tracking);
+  if (mergedTracking !== trackingBase) row.tracking = mergedTracking;
   if (data.customer_type && customerType(data.customer_type) !== 'unknown') {
     row.customer_type = customerType(data.customer_type); row.classification_source = data.classification_source || 'self_report';
   }
@@ -97,7 +119,7 @@ export async function recordFormLead(db, data, at = isoNow()) {
     email: data.email, name: data.name, phone: data.phone,
     customer_type: customerType(data.customer_type), classification_source: 'self_report',
     first_seen_at: at, form_submitted_at: at,
-    tracking: Object.fromEntries(['ad_id','utm_source','utm_medium','utm_campaign','utm_content','utm_term','landing_path'].map(k => [k,text(data[k],200)])),
+    tracking: formTracking(data, Date.parse(at) || Date.now()),
   }, ads);
 }
 
@@ -211,7 +233,7 @@ async function syncForms(db,c) {
       if (s.spam) continue;
       const d=s.data || {}; await saveLead(db,{email:d.email,name:d.name,phone:d.phone,customer_type:customerType(d.customer_type),
         classification_source:'self_report',first_seen_at:s.created_at,form_submitted_at:s.created_at,
-        tracking:Object.fromEntries(['ad_id','utm_source','utm_medium','utm_campaign','utm_content','utm_term','landing_path'].map(k=>[k,text(d[k],200)]))},ads); count++;
+        tracking:formTracking(d, Date.parse(s.created_at) || Date.now())},ads); count++;
     }
     if(list.length<100) break;
   }

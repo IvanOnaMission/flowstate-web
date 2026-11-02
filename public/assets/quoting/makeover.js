@@ -41,6 +41,16 @@
   if (!form) return;
   keys.concat('ad_id').forEach(key=>{const field=form.elements.namedItem(key);if(field)field.value=tracking[key]||'';});
   form.elements.namedItem('landing_path').value=location.pathname;
+  function applyMetaClick() {
+    if (typeof window.flowstateMetaClick !== 'function') return;
+    let click = {};
+    try { click = window.flowstateMetaClick() || {}; } catch { return; }
+    for (const key of ['fbclid', 'fbc', 'fbp']) {
+      const field = form.elements.namedItem(key);
+      if (field) field.value = click[key] || '';
+    }
+  }
+  applyMetaClick();
   const feedback = form.querySelector('#feedback');
   const submit = form.querySelector('button[type=submit]');
   const name = form.elements.namedItem('name');
@@ -86,6 +96,7 @@
     submit.disabled = true;
     feedback.textContent = 'Sending…';
     try {
+      applyMetaClick();
       const res = await fetch(form.getAttribute('action') || location.pathname, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
