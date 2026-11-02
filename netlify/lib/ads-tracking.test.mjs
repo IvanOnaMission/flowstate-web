@@ -50,3 +50,17 @@ test('a changed CRM email updates the same lead and keeps linked bookings intact
   assert.equal(Object.hasOwn(updated.body,'source_ad_id'),false);
   assert.equal(result.id,'lead-1');
 });
+test('meta match keys merge into an existing lead without replacing the first ad',async()=>{
+  let posted;
+  const db={request:async(path,method,body)=>{
+    if(method==='POST'){posted=body;return [body];}
+    return [{id:'existing',email:'jane@example.nz',source_ad_id:'123456789',first_seen_at:'2026-09-01T00:00:00Z',tracking:{ad_id:'123456789'}}];
+  }};
+  const fbc='fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890';
+  await saveLead(db,{email:'jane@example.nz',tracking:{ad_id:'999',meta_lead_id:'123456789012345',fbc,fbclid:'nope'}},[]);
+  assert.equal(Object.hasOwn(posted,'source_ad_id'),false);
+  assert.equal(posted.tracking.ad_id,'123456789');
+  assert.equal(posted.tracking.meta_lead_id,'123456789012345');
+  assert.equal(posted.tracking.fbc,fbc);
+  assert.equal(posted.tracking.fbclid,undefined);
+});

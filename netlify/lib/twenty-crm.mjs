@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {CUSTOMER_LABELS,customerType as normaliseCustomerType} from './ads-tracking.mjs';
+import {acceptedMatch} from './meta-capi.mjs';
 
 const today=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Pacific/Auckland'});
 const uuid=value=>{const b=createHash('sha256').update('flowstate-notion-migration:'+value).digest().subarray(0,16);b[6]=(b[6]&15)|80;b[8]=(b[8]&63)|128;const h=b.toString('hex');return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;};
@@ -7,12 +8,27 @@ const emailKey=email=>String(email||'').trim().toLowerCase();
 const selectValue=s=>s.toUpperCase().replace(/[^A-Z0-9]+/g,'_').replace(/^_|_$/g,'');
 const body=markdown=>({markdown});
 
-async function request(path,method='GET',data){
+async function requestFull(path,method='GET',data){
  if(!process.env.TWENTY_API_URL||!process.env.TWENTY_API_KEY)throw new Error('Twenty CRM is not configured');
  const res=await fetch(process.env.TWENTY_API_URL.replace(/\/$/,'')+'/rest'+path,{method,signal:AbortSignal.timeout(15000),headers:{authorization:`Bearer ${process.env.TWENTY_API_KEY}`,'content-type':'application/json'},body:data?JSON.stringify(data):undefined});
  const out=await res.json().catch(()=>({}));
  if(!res.ok||out.status>=400||out.errors){const error=new Error(`Twenty CRM ${method} ${path.split('?')[0]} failed (${res.status})`);error.status=res.status;throw error;}
- return out.data;
+ return out;
+}
+async function request(path,method='GET',data){return (await requestFull(path,method,data)).data;}
+let metaFieldWarning=false;
+// Optional opportunity fields. A workspace without them keeps the lead; the
+// marketing record still stores the same keys.
+export async function rememberMetaMatch(id,input={}){
+ const match=acceptedMatch({meta_lead_id:input.metaLeadId||input.meta_lead_id,fbclid:input.fbclid,fbc:input.fbc,fbp:input.fbp});
+ const update={};
+ if(match.meta_lead_id)update.metaLeadId=match.meta_lead_id;
+ if(match.fbclid)update.fbclid=match.fbclid;
+ if(match.fbc)update.fbc=match.fbc;
+ if(match.fbp)update.fbp=match.fbp;
+ if(!id||!Object.keys(update).length)return;
+ try{await request('/opportunities/'+id,'PATCH',update);}
+ catch(error){if(!metaFieldWarning){metaFieldWarning=true;console.error('Twenty did not store Meta match fields ('+(error.status||'error')+'). They remain on the marketing lead.');}}
 }
 const filter=(field,value)=>encodeURIComponent(`${field}[eq]:${JSON.stringify(value)}`);
 const findOne=async path=>{try{return await request(path);}catch(error){if(error.status===404)return null;throw error;}};
@@ -56,6 +72,7 @@ export async function twentyLead(input){
  if(kind==='electrical_owner')update.trade='Electrical';
  await request('/opportunities/'+op.id,'PATCH',update);
  await followUp(op,update.nextAction,date);
+ await rememberMetaMatch(op.id,input);
  return op;
 }
 export async function twentyBooked(input){
@@ -89,6 +106,7 @@ export async function twentyMetaLead(input){
   Object.assign(update,{nextAction:'Call within 5 minutes',nextActionDate:date+'T00:00:00Z',lastTouch:date});
  }
  if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
+ await rememberMetaMatch(op.id,{metaLeadId:input.metaLeadId||input.id,fbclid:input.fbclid,fbc:input.fbc,fbp:input.fbp});
  return op;
 }
 export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref,questionnaire}){
@@ -113,4 +131,32 @@ export async function twentyMetaProgress(input){
   input.crm_ref={id:op.id,name:op.name,pointOfContactId:op.pointOfContactId};
  }
  return twentyMetaAnswers({...input,progress:true});
+}
+export async function readMetaMatch(email){
+ if(!process.env.TWENTY_API_URL||!process.env.TWENTY_API_KEY||!email)return {};
+ try{
+  const op=await findOpportunity(email);
+  if(!op)return {};
+  return {metaLeadId:op.metaLeadId||'',fbclid:op.fbclid||'',fbc:op.fbc||'',fbp:op.fbp||'',sourceRecordKind:op.sourceRecordKind||'',name:op.name||'',phone:op.sourcePhone||''};
+ }catch(error){console.error('Twenty Meta match read failed ('+(error.status||'error')+')');return {};}
+}
+export async function listOpportunities({since,pageLimit=20}={}){
+ if(!process.env.TWENTY_API_URL||!process.env.TWENTY_API_KEY)return [];
+ const rows=[];
+ let cursor='';
+ for(let page=0;page<pageLimit;page++){
+  const params=new URLSearchParams();
+  params.set('limit','60');
+  params.set('order_by','updatedAt[DescNullsLast]');
+  if(since)params.set('filter',`updatedAt[gte]:${JSON.stringify(since)}`);
+  if(cursor)params.set('starting_after',cursor);
+  const body=await requestFull('/opportunities?'+params.toString());
+  const data=body.data||{};
+  const batch=data.opportunities||[];
+  rows.push(...batch);
+  const info=body.pageInfo||data.pageInfo||{};
+  if(!info.hasNextPage||!info.endCursor||!batch.length)break;
+  cursor=info.endCursor;
+ }
+ return rows;
 }

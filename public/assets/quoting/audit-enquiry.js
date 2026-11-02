@@ -39,7 +39,9 @@
   form.addEventListener('submit',async event=>{
     event.preventDefault();if(busy||!form.reportValidity())return;disable(true);message('Saving your contact details…');
     try{
-      const next=await api({action:'contact',nonce:nonce(),name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,company_website:form.elements.company_website.value,attribution,ad_id:params.get('ad_id')||params.get('utm_content')||''});
+      let click={};
+      try{click=window.flowstateMetaClick?.()||{};}catch{click={};}
+      const next=await api({action:'contact',nonce:nonce(),name:form.elements.name.value,email:form.elements.email.value,phone:form.elements.phone.value,company_website:form.elements.company_website.value,attribution,ad_id:params.get('ad_id')||params.get('utm_content')||'',fbclid:click.fbclid||'',fbc:click.fbc||'',fbp:click.fbp||''});
       form.reset();try{sessionStorage.removeItem('flowstate:audit-pending');}catch{}pendingNonce='';leadEvent(next);render(next,true);message('Your contact details are saved. These questions are optional.');
     }catch(error){restart.hidden=false;message(error.message||'We could not confirm that save. Please try again.',true);}finally{disable(false);}
   });

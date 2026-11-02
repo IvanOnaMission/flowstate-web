@@ -6,6 +6,7 @@ import {recordFormLead} from './ads-tracking.mjs';
 import {trackingDatabase} from './tracking-server.mjs';
 import {metaAuditAnswers, META_BUSINESS_QUESTIONS} from './meta-audit-questions.mjs';
 import {initialiseAuditChat} from './meta-audit-chat.mjs';
+import {sendCrmEvent} from './meta-capi.mjs';
 const emailKey = email => String(email || '').trim().toLowerCase();
 const validEmail = email => email.length <= 200 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 export function normaliseMetaLead(input) {
@@ -33,10 +34,12 @@ export async function importMetaLead(input, store, integrations) {
   const lead = normaliseMetaLead(input);
   const state = await store.get(lead.id, {type: 'json'}) || {lead, done: {}};
   const failed = [];
-  for (const key of ['crm', 'answers', 'tracking', 'kit', 'alert']) {
-    if (state.done[key]) continue;
+  for (const key of ['crm', 'answers', 'tracking', 'kit', 'alert', 'capi']) {
+    if (state.done[key] || typeof integrations[key] !== 'function') continue;
     try {
-      await integrations[key](lead);
+      const result = await integrations[key](lead);
+      // Keep retrying until a token exists. A stale or test lead is finished.
+      if (result?.reason === 'unconfigured') continue;
       state.done[key] = true;
       await store.setJSON(lead.id, state);
     } catch { failed.push(key); }
@@ -48,14 +51,14 @@ export function liveIntegrations() {
   return {
     crm: lead => {
       if (process.env.CRM_BACKEND !== 'twenty' || !process.env.TWENTY_API_KEY || !process.env.TWENTY_API_URL) throw new Error('Twenty CRM is not configured.');
-      return twentyMetaLead({...lead, adId: lead.ad_id, source: lead.questionnaire==='business' ? 'Facebook Instant Form — business AI discovery' : 'Facebook Instant Form — free audit'});
+      return twentyMetaLead({...lead, adId: lead.ad_id, metaLeadId: lead.id, source: lead.questionnaire==='business' ? 'Facebook Instant Form — business AI discovery' : 'Facebook Instant Form — free audit'});
     },
     answers: async lead => { if (!await twentyMetaAnswers(lead)) throw new Error('CRM contact is not available yet.'); },
     tracking: async lead => {
       if(lead.test)return;
       const db = trackingDatabase();
       if (!db) throw new Error('Marketing reporting is not configured.');
-      await recordFormLead(db, {...lead, utm_source: 'facebook', utm_medium: 'instant_form', utm_campaign: lead.questionnaire==='business'?'business-ai':'quote-machine', utm_content: lead.ad_id, landing_path: '/facebook-instant-form/'}, lead.at);
+      await recordFormLead(db, {...lead, meta_lead_id: lead.id, utm_source: 'facebook', utm_medium: 'instant_form', utm_campaign: lead.questionnaire==='business'?'business-ai':'quote-machine', utm_content: lead.ad_id, landing_path: '/facebook-instant-form/'}, lead.at);
     },
     kit: lead => {
       if(lead.test)return;
@@ -63,6 +66,9 @@ export function liveIntegrations() {
       return addToKit({...lead, tagId: process.env.KIT_TAG_MAKEOVER_LEAD, tagIds: lead.questionnaire==='business'?[]:[process.env.KIT_TAG_QUOTE_MACHINE_LEAD]});
     },
     alert: lead => lead.questionnaire==='business'||process.env.META_AUDIT_CONTACT_FIRST==='true' ? initialiseAuditChat(lead) : holdLead({...lead, offer: 'Quote Machine', source: `Facebook Instant Form${lead.ad_id ? ` · ad ${lead.ad_id}` : ''}${lead.role ? `\nRole: ${lead.role}` : ''}`}),
+    capi: lead => lead.test ? {reason: 'test'} : sendCrmEvent({
+      eventName: 'Lead', eventTime: lead.at, email: lead.email, phone: lead.phone, name: lead.name, leadId: lead.id, test: lead.test,
+    }),
   };
 }
 export async function pollMetaAuditLeads({token = process.env.META_LEADS_TOKEN, formId = process.env.META_AUDIT_FORM_ID, businessFormId = process.env.META_BUSINESS_FORM_ID, fetcher = fetch, store, integrations} = {}) {

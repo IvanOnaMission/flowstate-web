@@ -1,6 +1,6 @@
 import {test,afterEach,beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {twentyLead,twentyBooked,twentyQuiz,twentyMetaLead,twentyMetaAnswers,twentyMetaProgress} from './twenty-crm.mjs';
+import {twentyLead,twentyBooked,twentyQuiz,twentyMetaLead,twentyMetaAnswers,twentyMetaProgress,listOpportunities} from './twenty-crm.mjs';
 import {crmLead} from './crm.mjs';
 import submissionCreated from '../functions/submission-created.mjs';
 
@@ -18,7 +18,7 @@ beforeEach(()=>{
   if(method==='GET'){
    if(id)return table.has(id)?reply({data:{record:table.get(id)}}):reply({message:'not found'},404);
    let found=[...table.values()],filter=u.searchParams.get('filter');
-   if(filter){const match=filter.match(/^(.+)\[eq\]:(.+)$/);assert.ok(match,'Unexpected filter');const value=JSON.parse(match[2]);found=found.filter(row=>match[1].split('.').reduce((v,k)=>v?.[k],row)===value);}
+   if(filter){const match=filter.match(/^(.+)\[(eq|gte|lte)\]:(.+)$/);assert.ok(match,'Unexpected filter');const value=JSON.parse(match[3]);const currentOf=row=>match[1].split('.').reduce((v,k)=>v?.[k],row);found=found.filter(row=>{const current=currentOf(row);if(match[2]==='eq')return current===value;if(current==null)return false;return match[2]==='gte'?String(current)>=String(value):String(current)<=String(value);});}
    return reply({data:{[plural]:found}});
   }
   const body=JSON.parse(options.body);
@@ -111,3 +111,31 @@ test('a failed task lookup is not treated as a missing task',async()=>{
  await assert.rejects(()=>twentyBooked({email:'shannon@example.com',start:'2026-10-28T00:30:00Z'}),/503/);assert.equal(rows.tasks.size,0);
 });
 test('selecting Twenty without credentials fails clearly',async()=>{delete process.env.TWENTY_API_KEY;await assert.rejects(()=>twentyLead({email:'new@example.com'}),/not configured/);assert.equal(calls.length,0);});
+test('meta click ids are saved on a separate update and a rejected field does not drop the lead',async()=>{
+ const fbclid='AbCdEfGhIjKlMnOpQrStUvWxYz1234567890';
+ let patches=0;
+ failure=({plural,method})=>{if(plural==='opportunities'&&method==='PATCH'){patches++;return patches===2;}return false;};
+ const op=await twentyLead({email:'meta@example.test',name:'Meta Person',metaLeadId:'123456789012345',fbclid});
+ const saved=rows.opportunities.get(op.id);
+ assert.equal(saved.nextAction,'Call within 5 minutes');
+ assert.equal(saved.metaLeadId,undefined);
+ assert.equal(patches,2);
+});
+test('a valid Meta lead id is saved without rewriting the follow-up',async()=>{
+ const fbclid='AbCdEfGhIjKlMnOpQrStUvWxYz1234567890';
+ const op=await twentyLead({email:'saved@example.test',name:'Saved Person',metaLeadId:'123456789012345',fbclid,fbc:`fb.1.1554763741205.${fbclid}`});
+ const saved=rows.opportunities.get(op.id);
+ assert.equal(saved.metaLeadId,'123456789012345');assert.equal(saved.fbclid,fbclid);assert.match(saved.fbc,/^fb\.1\./);
+ const meta=calls.filter(call=>call.plural==='opportunities'&&call.method==='PATCH'&&call.body.metaLeadId);
+ assert.equal(meta.length,1);assert.equal(meta[0].body.nextAction,undefined);
+});
+test('a short native lead id is not written as a Meta lead id',async()=>{
+ const op=await twentyMetaLead({email:'short@example.test',name:'Short',id:'12345678901234',source:'Facebook Instant Form — free audit'});
+ assert.equal(rows.opportunities.get(op.id).metaLeadId,undefined);
+ assert.equal(calls.some(call=>call.body?.metaLeadId),false);
+});
+test('opportunity listing keeps the updatedAt lower bound',async()=>{
+ rows.opportunities.set('old',{id:'old',updatedAt:'2026-01-01T00:00:00.000Z',sourceRecordKind:'CONTACT'});
+ rows.opportunities.set('new',{id:'new',updatedAt:'2026-11-01T00:00:00.000Z',sourceRecordKind:'DUPLICATE'});
+ assert.deepEqual((await listOpportunities({since:'2026-10-01T00:00:00.000Z'})).map(row=>row.id),['new']);
+});

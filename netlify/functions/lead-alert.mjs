@@ -12,6 +12,8 @@ import {takeLead} from '../lib/pending.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordBooking} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
+import {sendCrmEvent} from '../lib/meta-capi.mjs';
+import {loadStoredMatch} from '../lib/meta-match.mjs';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
 
@@ -118,6 +120,22 @@ export default async (req) => {
         safely('notion booked', () => crmBooked(booked)),
         // They filled the form minutes ago: drop the waiting "not booked yet" alert, keeping its answers.
         safely('release pending', async () => { held = await takeLead(booked); }),
+        // Reschedules keep the original Booked event. A missing token does not block the text.
+        quiet ? null : safely('meta crm booked', async () => {
+          const stored = await loadStoredMatch(p.email);
+          await sendCrmEvent({
+            eventName: 'Booked',
+            eventTime: p.created_at || new Date().toISOString(),
+            email: p.email,
+            phone: phone || stored.phone,
+            name: p.name || stored.name,
+            leadId: stored.meta_lead_id,
+            fbc: stored.fbc,
+            fbp: stored.fbp,
+            fbclid: stored.fbclid,
+            sourceRecordKind: stored.sourceRecordKind,
+          });
+        }),
       ]);
     }
     // The CRM still gets the new call time above; only the Telegram text is skipped.
