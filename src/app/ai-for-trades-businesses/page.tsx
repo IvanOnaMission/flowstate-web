@@ -60,12 +60,14 @@ export default function Page() {
       <main id="main" className="shell py-[clamp(3rem,6vw,5rem)]">
         <article className="max-w-[52rem]">
           <p className="eyebrow mb-5 text-atlantic">AI for trade businesses</p>
-          <h1 className="h-hero max-w-[18ch] text-ink">AI for New Zealand trade businesses</h1>
+          <h1 className="h-hero max-w-[18ch] text-ink">
+            AI for New Zealand <span className="bg-gold px-1.5 text-ink box-decoration-clone">trade businesses</span>
+          </h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
             Electricians, plumbers, builders, HVAC and other tradies lose the same hours to admin once the tools are down. Enquiries, quotes, invoices, job notes and paperwork sit with the owner. Flowstate sets up AI to draft that work. You check it before a customer sees it.
           </p>
-          <aside className="mt-10 max-w-[65ch] border-l-2 border-atlantic pl-6">
-            <p className="eyebrow text-mute">In short</p>
+          <aside className="mt-10 max-w-[65ch] border-l-4 border-gold pl-6">
+            <p className="eyebrow inline-block bg-gold px-2 py-1 text-ink">In short</p>
             <p className="mt-3 text-[1.15rem] font-[750] leading-snug tracking-[-0.02em] text-ink">
               Flowstate helps New Zealand trade businesses use AI to draft the repetitive admin around a job, from quoting and invoicing to job notes, follow-ups, scheduling and compliance paperwork, with the owner approving anything a customer sees.
             </p>

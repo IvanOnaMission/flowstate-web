@@ -71,7 +71,7 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title max-w-[21ch] text-white">
-                    <span className="block">Less admin.</span>
+                    <span className="block w-fit bg-gold px-2 text-ink">Less admin.</span>
                     <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>

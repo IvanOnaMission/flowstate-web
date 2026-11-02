@@ -22,10 +22,12 @@ export default function CallButton({
     "px-8 py-[1.0625rem] min-h-11 cursor-pointer transition-[transform,box-shadow,filter,background] " +
     "duration-200 [transition-timing-function:var(--ease-out-soft)] hover:-translate-y-0.5";
 
+  const gold =
+    "bg-gold text-ink hover:bg-gold-hover hover:shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]";
+
   const tones = {
-    sky: "bg-sky text-atlantic hover:brightness-107 hover:shadow-[0_16px_34px_-14px_rgba(196,248,255,.6)]",
-    atlantic:
-      "bg-atlantic text-white hover:brightness-112 hover:shadow-[0_16px_32px_-14px_rgba(15,75,112,.6)]",
+    sky: gold,
+    atlantic: gold,
     ghost:
       "bg-white/[.08] text-white border border-white/30 backdrop-blur-[10px] hover:bg-white/[.17]",
   } as const;

@@ -50,8 +50,8 @@ export default function Page() {
           <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
-          <aside className="mt-8 max-w-[65ch] border-l-2 border-atlantic pl-6">
-            <p className="eyebrow text-mute">In short</p>
+          <aside className="mt-8 max-w-[65ch] border-l-4 border-gold pl-6">
+            <p className="eyebrow inline-block bg-gold px-2 py-1 text-ink">In short</p>
             <p className="mt-3 text-[1.15rem] font-[750] leading-snug tracking-[-0.02em] text-ink">
               Flowstate starts with a free call of about 30 minutes. A paid diagnostic then reviews how the business runs and gives you a prioritised roadmap. The ongoing AI partnership, including what gets built and the rate, is agreed after the diagnostic.
             </p>
