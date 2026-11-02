@@ -3,12 +3,13 @@ import Image from "next/image";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
 import { callPromise, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about/" },
   openGraph: { url: "/about/", images: ["/assets/hero/workshop-hook.jpg"] },
-  title: "About",
+  title: "About Ivan Barnett",
   description:
     "Who you'd be working with at Flowstate — Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",
 };
@@ -53,6 +54,30 @@ export default function About() {
   return (
     <>
       <SiteNav />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": `${site.url}/about/#ivan`,
+          name: "Ivan Barnett",
+          jobTitle: "Founder",
+          url: `${site.url}/about/`,
+          image: `${site.url}/assets/team/ivan.jpg`,
+          email: site.email,
+          telephone: "+64272006121",
+          worksFor: { "@id": `${site.url}/#organization` },
+          workLocation: {
+            "@type": "Place",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: site.city,
+              addressCountry: "NZ",
+            },
+          },
+          description:
+            "Founder of Flowstate in Auckland. Spent four years in the trades, most recently as an electrical apprentice, and builds the systems himself.",
+        }}
+      />
 
       <main id="main">
         <section className="shell pb-[clamp(2rem,4vw,3rem)] pt-[clamp(3rem,6vw,4.5rem)]">

@@ -1,0 +1,24 @@
+# Flowstate
+
+> Flowstate helps New Zealand electrical and trade businesses use AI on repetitive admin: replying to enquiries, following up quotes, chasing invoices, and answering the team's questions. Based in Auckland, working across New Zealand. Founded by Ivan Barnett, who spent four years in the trades, most recently as an electrical apprentice, and builds the systems himself.
+
+## Services
+
+- [Business Essentials](https://flowstate.net.nz/business-essentials/): the starting setup for a trade business. AI drafts enquiry replies, quote follow-ups, invoice reminders and review requests around the business's prices and jobs. The owner approves anything that goes to a customer.
+- [AI for trades businesses](https://flowstate.net.nz/ai-for-trades-businesses/): how this applies to NZ electricians, plumbers, builders, HVAC and other trades.
+- [How it works](https://flowstate.net.nz/services/): a free introductory call of about 30 minutes, then a paid workflow diagnostic and an ongoing AI partnership. Scope and rate are agreed after the diagnostic.
+- [AI for electricians in NZ](https://flowstate.net.nz/ai-for-electricians/)
+- [AI quoting for electricians](https://flowstate.net.nz/ai-quoting-for-electricians/)
+- [Workflow diagnostic](https://flowstate.net.nz/workflow-diagnostic/)
+
+## Guides
+
+- [Where to start with AI](https://flowstate.net.nz/guides/where-to-start-with-ai/)
+- [AI quoting for electricians](https://flowstate.net.nz/guides/ai-quoting-for-electricians/)
+- [Job software or custom AI](https://flowstate.net.nz/guides/job-software-or-custom-ai/)
+- [AI for industrial electrical businesses](https://flowstate.net.nz/guides/ai-industrial-electrical-business/)
+
+## About
+
+- [About Ivan Barnett and Flowstate](https://flowstate.net.nz/about/)
+- [Contact](https://flowstate.net.nz/contact/): 027 200 6121, ivan@flowstate.net.nz

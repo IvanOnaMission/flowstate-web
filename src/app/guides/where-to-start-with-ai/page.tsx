@@ -4,7 +4,7 @@ import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
- title: "Where should an electrical business start with AI?",
+ title: "Where an electrical business starts with AI",
  description: "Start by freeing up the owner's time. Define a repetitive task, brief AI like an employee, then test and improve a reusable workflow.",
  alternates: { canonical: "/guides/where-to-start-with-ai/" },
  openGraph: { url: "/guides/where-to-start-with-ai/", images: ["/assets/hero/workshop-hook.jpg"] },

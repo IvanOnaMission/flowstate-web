@@ -18,6 +18,13 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <h1 className="h-hero max-w-[24ch] text-ink">{"Practical AI guides for electrical business owners"}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Understand where AI could fit into your business, what information it needs and what you should still check yourself."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
+            These guides are written for electrical businesses.{" "}
+            <Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-for-trades-businesses/">AI for trade businesses</Link>
+            {" is the wider page, and "}
+            <Link className="font-semibold text-atlantic underline underline-offset-4" href="/business-essentials/">Business Essentials</Link>
+            {" is the starting package."}
+          </p>
           <h2 className="mt-10 text-2xl font-bold text-ink">AI for the work around industrial electrical projects.</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Your team handles the technical work. AI can help with the repetitive processes around it.</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/guides/ai-industrial-electrical-business/">Read the guide →</Link></p>

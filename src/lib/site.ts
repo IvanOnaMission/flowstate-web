@@ -33,7 +33,9 @@ export const workshop = {
 } as const;
 
 export const nav = [
+  { href: "/ai-for-trades-businesses/", label: "AI for trades" },
   { href: "/ai-for-electricians/", label: "AI for electricians" },
+  { href: "/business-essentials/", label: "Business Essentials" },
   { href: "/services/", label: "How it works" },
   { href: "/guides/", label: "Guides" },
   { href: "/about/", label: "About" },
