@@ -32,7 +32,7 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
         </Link>
 
         {/* Desktop: links sit between the wordmark and the button. */}
-        <nav aria-label="Main" className="hidden gap-7 text-[0.89rem] lg:flex">
+        <nav aria-label="Main" className="hidden max-w-[46rem] flex-wrap justify-end gap-x-5 gap-y-2 text-[0.86rem] lg:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className={link(dark)}>
               {item.label}
@@ -49,9 +49,8 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
       {/*
         Mobile: the same links on their own row, always visible.
 
-        Deliberately not a hamburger. There are five links — hiding them
-        behind a tap costs a discovery step and buys back a bit of tidiness,
-        and it needs JS, focus management and a scroll lock to do properly.
+        Deliberately not a hamburger. The links stay visible and wrap.
+        Hiding them behind a tap needs JS, focus management and a scroll lock.
         This works with JS off and nothing can get stuck open.
       */}
       <nav

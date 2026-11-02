@@ -4,8 +4,10 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
-const title = "Your job management software runs the job. There’s still manual work around it.";
-const description = "Flowstate builds AI workflows to take on that repetitive work, using your processes and the software you already have. Your team checks the results and stays in control.";
+const headline = "Your job management software runs the job. There’s still manual work around it.";
+const title = "Job software and the work around it";
+const description = "Flowstate builds AI workflows for the repetitive work around your job software, using your processes. Your team checks the results and stays in control.";
+const lede = "Flowstate builds AI workflows to take on that repetitive work, using your processes and the software you already have. Your team checks the results and stays in control.";
 const path = "/guides/job-software-or-custom-ai/";
 
 export const metadata: Metadata = {
@@ -23,8 +25,8 @@ export default function Page() {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "@id": `https://flowstate.net.nz${path}#article`,
-        headline: title,
-        description,
+        headline,
+        description: lede,
         datePublished: "2026-09-09",
         author: { "@type": "Person", name: "Ivan Barnett", url: "https://flowstate.net.nz/about/" },
         publisher: { "@id": "https://flowstate.net.nz/#organization" },
@@ -33,7 +35,7 @@ export default function Page() {
       }} />
       <main id="main" className="shell py-[clamp(3rem,6vw,5rem)]">
         <article>
-          <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{title}</h1>
+          <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{headline}</h1>
           <p className="mt-6 text-sm text-mute">By Ivan Barnett · 9 September 2026</p>
           <ul className="mt-9 grid max-w-[60rem] gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {["Entering information.", "Gathering photos and job notes.", "Preparing invoices.", "Updating records.", "Summarising what happened on site."].map((task) => (
@@ -43,7 +45,7 @@ export default function Page() {
           <figure className="mt-10 overflow-hidden rounded-2xl border border-hair">
             <Image src="/assets/guides/job-information-to-invoice.webp" alt="Illustrative workflow: scattered job photos, notes and timesheets become an organised job pack and invoice draft ready for review." width={1774} height={887} sizes="100vw" className="h-auto w-full" />
           </figure>
-          <p className="mt-9 max-w-[65ch] text-xl leading-relaxed text-mute">{description}</p>
+          <p className="mt-9 max-w-[65ch] text-xl leading-relaxed text-mute">{lede}</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
             <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a>

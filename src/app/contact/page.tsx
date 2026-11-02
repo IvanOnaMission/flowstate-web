@@ -8,8 +8,9 @@ import { callPromise, site } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/contact/" },
   openGraph: { url: "/contact/", images: ["/assets/hero/workshop-hook.jpg"] },
-  title: "Contact",
-  description: "Talk to Ivan about a paid workflow diagnostic for your NZ electrical business, followed by an ongoing AI partnership with scope and rate agreed after the diagnostic.",
+  title: "Contact Ivan Barnett",
+  description:
+    "Free introductory call with Ivan for NZ electricians and other trade businesses. About 30 minutes, then a paid diagnostic if it is useful.",
 };
 
 /**
