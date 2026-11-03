@@ -6,9 +6,9 @@ import Script from "next/script";
 import { site } from "@/lib/site";
 
 const path = "/essentials/";
-const title = "Business Essentials";
+const title = "Business Essentials | AI foundation for NZ trades | Flowstate";
 const description =
-  "Watch Ivan explain Business Essentials, then book a free 30-minute audit. Enquiry replies, quote follow-ups and invoice reminders, drafted for you to approve.";
+  "The AI foundation for a New Zealand trades business. Watch Ivan, then book a free 30-minute audit. Enquiry replies, quote follow-ups and invoice reminders, drafted for you to approve.";
 
 const calendly =
   "https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&utm_medium=direct-booking&utm_campaign=business-essentials";
@@ -42,13 +42,13 @@ const primaryButton =
   "hover:shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   // Unlisted ad page. /business-essentials/ is the page that should rank.
   robots: { index: false, follow: false },
   alternates: { canonical: path },
   openGraph: {
-    title: "Business Essentials | Flowstate",
+    title,
     description,
     url: path,
     images: [
@@ -80,18 +80,15 @@ export default function Page() {
         <div className="mx-auto max-w-[40rem]">
           <p className="eyebrow mb-3 text-atlantic">Business Essentials</p>
           <h1 className="text-balance text-[clamp(1.9rem,3.4vw,2.7rem)] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink">
-            Business Essentials: the{" "}
+            The{" "}
             <span className="box-decoration-clone bg-gold px-1.5 text-ink">AI foundation</span>{" "}
-            for your trade business
+            for your trades business
           </h1>
-          <p className="mt-3 text-balance text-[clamp(1.25rem,2.2vw,1.5rem)] font-[750] leading-snug tracking-[-0.02em] text-ink sm:mt-2">
+          <p className="mt-3 text-balance text-[1.02rem] font-normal leading-snug text-mute sm:text-[1.0625rem]">
             Running your business better, faster, cheaper
           </p>
-          <p className="mt-3 text-[1.0625rem] leading-relaxed text-mute sm:mt-2">
-            Your enquiries answered, your quotes followed up and your invoices chased, set up around how your business already runs. It drafts. You approve. Nothing goes to a customer until you say yes.
-          </p>
 
-          <figure className="mt-5">
+          <figure className="mt-4">
             <video
               className="vsl block aspect-video w-full rounded-2xl bg-black"
               aria-label="Ivan explains Business Essentials for New Zealand trade businesses"
