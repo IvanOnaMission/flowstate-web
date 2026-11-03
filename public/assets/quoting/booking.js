@@ -7,6 +7,7 @@
   const path = location.pathname;
   const route = path.startsWith('/quote-machine') ? 'Quote Machine'
     : path.startsWith('/workflow-diagnostic') ? 'Workflow diagnostic'
+    : path.startsWith('/essentials') ? 'Business Essentials'
     : path.startsWith('/quoting-workbook') ? 'Quoting workbook' : 'Quoting call';
 
   // The calendar opens after contact details; the quiz waits for a confirmed booking.
@@ -22,9 +23,11 @@
     url.searchParams.set('hide_gdpr_banner', '1');
     url.searchParams.set('hide_event_type_details', '1');
     url.searchParams.set('hide_landing_page_details', '1');
-    url.searchParams.set('background_color', '121722');
-    url.searchParams.set('text_color', 'f4f4f2');
-    url.searchParams.set('primary_color', '0079cc');
+    // Defaults keep the dark widget. A page can set data-calendly-* (hex, no #)
+    // when it needs a different theme. Other pages leave these unset.
+    url.searchParams.set('background_color', box.dataset.calendlyBackground || '121722');
+    url.searchParams.set('text_color', box.dataset.calendlyText || 'f4f4f2');
+    url.searchParams.set('primary_color', box.dataset.calendlyPrimary || '0079cc');
 
     box.id = 'book';
     const widget = document.createElement('div');
