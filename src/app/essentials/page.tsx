@@ -36,9 +36,10 @@ const field =
   "transition-colors duration-200 placeholder:text-mute/50 focus:border-ink";
 
 const primaryButton =
-  "inline-flex items-center justify-center rounded-full bg-atlantic font-semibold text-white " +
-  "cursor-pointer transition-colors duration-200 " +
-  "[transition-timing-function:var(--ease-out-soft)] hover:bg-[#0c3e5c]";
+  "inline-flex items-center justify-center rounded-full bg-gold font-bold text-ink " +
+  "cursor-pointer transition-[transform,box-shadow,background] duration-200 " +
+  "[transition-timing-function:var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-gold-hover " +
+  "hover:shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]";
 
 export const metadata: Metadata = {
   title,
