@@ -48,6 +48,18 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
+# Ad landing for the Business Essentials VSL. The page also sends noindex.
+# It must stay out of search so it does not compete with /business-essentials/.
+[[headers]]
+  for = "/essentials"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/essentials/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[headers]]
   for = "/audit-full/*"
   [headers.values]
