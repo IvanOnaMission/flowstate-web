@@ -32,13 +32,13 @@ const suits = [
 ] as const;
 
 const field =
-  "min-h-11 w-full rounded-lg border border-hair bg-white px-4 py-3 text-[1rem] text-ink placeholder:text-mute/60 focus:border-atlantic focus:outline-none";
+  "min-h-12 w-full rounded-lg border border-hair bg-white px-4 py-3 text-base text-ink " +
+  "transition-colors duration-200 placeholder:text-mute/50 focus:border-ink";
 
-const goldButton =
-  "inline-flex items-center justify-center rounded-full bg-gold font-bold text-ink min-h-11 " +
-  "cursor-pointer transition-[transform,box-shadow,background] duration-200 " +
-  "[transition-timing-function:var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-gold-hover " +
-  "hover:shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]";
+const primaryButton =
+  "inline-flex items-center justify-center rounded-full bg-atlantic font-semibold text-white " +
+  "cursor-pointer transition-colors duration-200 " +
+  "[transition-timing-function:var(--ease-out-soft)] hover:bg-[#0c3e5c]";
 
 export const metadata: Metadata = {
   title,
@@ -65,29 +65,32 @@ export default function Page() {
   return (
     <>
       <header className="border-b border-hair bg-white">
-        <div className="shell flex items-center justify-between gap-4 py-4">
+        <div className="shell flex items-center justify-between gap-4 py-3">
           <Link href="/" className="text-[1.0625rem] font-[750] tracking-[-0.015em] text-ink">
             {site.name}
           </Link>
-          <a href="#book-call" className={`${goldButton} px-5 py-2.5 text-[0.85rem]`}>
+          <a href="#book-call" className={`${primaryButton} min-h-11 px-5 py-2 text-[0.875rem]`}>
             Book a free audit
           </a>
         </div>
       </header>
 
-      <main id="main" className="shell pb-16 pt-6 sm:pt-8">
+      <main id="main" className="shell pb-16 pt-5 sm:pt-6">
         <div className="mx-auto max-w-[40rem]">
-          <p className="eyebrow mb-4 text-atlantic">Business Essentials</p>
+          <p className="eyebrow mb-3 text-atlantic">Business Essentials</p>
           <h1 className="text-balance text-[clamp(1.9rem,3.4vw,2.7rem)] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink">
             Business Essentials: the{" "}
             <span className="box-decoration-clone bg-gold px-1.5 text-ink">AI foundation</span>{" "}
             for your trade business
           </h1>
-          <p className="mt-4 text-[1.0625rem] leading-relaxed text-mute">
+          <p className="mt-3 text-balance text-[clamp(1.25rem,2.2vw,1.5rem)] font-[750] leading-snug tracking-[-0.02em] text-ink sm:mt-2">
+            Running your business better, faster, cheaper
+          </p>
+          <p className="mt-3 text-[1.0625rem] leading-relaxed text-mute sm:mt-2">
             Your enquiries answered, your quotes followed up and your invoices chased, set up around how your business already runs. It drafts. You approve. Nothing goes to a customer until you say yes.
           </p>
 
-          <figure className="mt-6">
+          <figure className="mt-5">
             <video
               className="vsl block aspect-video w-full rounded-2xl bg-black"
               aria-label="Ivan explains Business Essentials for New Zealand trade businesses"
@@ -102,17 +105,23 @@ export default function Page() {
             >
               <source src="/assets/business-essentials/business-essentials-vsl.mp4" type="video/mp4" />
             </video>
-            <figcaption className="mt-3 text-center text-sm text-mute">
+            <figcaption className="mt-2 text-center text-sm leading-relaxed text-mute">
               Ivan on what Business Essentials sets up. Just under 3 minutes, with sound.
             </figcaption>
           </figure>
 
-          <section id="book-call" className="mt-6 scroll-mt-6 rounded-2xl border border-hair bg-sky-50 p-5 sm:p-7" aria-labelledby="book-title">
-            <p className="eyebrow text-atlantic">Step 1 of 2 · Your details</p>
-            <h2 id="book-title" className="mt-3 text-[clamp(1.45rem,2.4vw,1.85rem)] font-extrabold leading-tight tracking-[-0.025em] text-ink">
+          <section
+            id="book-call"
+            className="mt-5 scroll-mt-6 border-t border-hair pt-5 sm:rounded-2xl sm:border sm:bg-white sm:p-8 sm:pt-3 sm:shadow-[0_24px_60px_-40px_rgba(6,40,61,0.45)]"
+            aria-labelledby="book-title"
+          >
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-mute">
+              Step 1 of 2 · Your details
+            </p>
+            <h2 id="book-title" className="mt-2 text-[clamp(1.6rem,2.8vw,2rem)] font-bold leading-[1.15] tracking-[-0.03em] text-ink">
               Book your free 30-minute audit.
             </h2>
-            <p className="mt-3 text-[1.02rem] leading-relaxed text-mute">
+            <p className="mt-3 max-w-[42ch] text-[0.98rem] leading-relaxed text-mute">
               Leave your details, then choose a time. It takes about 30 minutes. Tell me what&apos;s taking up your time. You&apos;ll leave knowing what I&apos;d look at first. If I can&apos;t help, I&apos;ll say so. The diagnostic is quoted separately.
             </p>
 
@@ -124,7 +133,7 @@ export default function Page() {
               data-netlify="true"
               netlify-honeypot="bot-field"
               data-offer="Business Essentials"
-              className="mt-5"
+              className="mt-8"
             >
               <input type="hidden" name="form-name" value="ai-makeover" />
               <input type="hidden" name="ad_id" />
@@ -144,21 +153,21 @@ export default function Page() {
                 </label>
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid gap-6">
                 <div>
-                  <label htmlFor="ess-name" className="mb-2 block text-[0.9rem] font-semibold text-ink">Name</label>
+                  <label htmlFor="ess-name" className="mb-1.5 block text-[0.8125rem] font-medium text-mute">Name</label>
                   <input id="ess-name" name="name" type="text" autoComplete="name" maxLength={120} required className={field} />
                 </div>
                 <div>
-                  <label htmlFor="ess-phone" className="mb-2 block text-[0.9rem] font-semibold text-ink">Phone</label>
+                  <label htmlFor="ess-phone" className="mb-1.5 block text-[0.8125rem] font-medium text-mute">Phone</label>
                   <input id="ess-phone" name="phone" type="tel" autoComplete="tel" maxLength={40} required className={field} />
                 </div>
                 <div>
-                  <label htmlFor="ess-email" className="mb-2 block text-[0.9rem] font-semibold text-ink">Email</label>
+                  <label htmlFor="ess-email" className="mb-1.5 block text-[0.8125rem] font-medium text-mute">Email</label>
                   <input id="ess-email" name="email" type="email" autoComplete="email" maxLength={200} required className={field} />
                 </div>
                 <div>
-                  <label htmlFor="ess-customer-type" className="mb-2 block text-[0.9rem] font-semibold text-ink">Which best describes you?</label>
+                  <label htmlFor="ess-customer-type" className="mb-1.5 block text-[0.8125rem] font-medium text-mute">Which best describes you?</label>
                   <select id="ess-customer-type" name="customer_type" required className={field}>
                     <option value="">Choose an option</option>
                     <option value="electrical_owner">Electrical business owner</option>
@@ -169,11 +178,11 @@ export default function Page() {
                 </div>
               </div>
 
-              <button type="submit" className={`${goldButton} mt-5 w-full px-8 py-4 text-[0.95rem] sm:w-auto`}>
+              <button type="submit" className={`${primaryButton} mt-8 min-h-12 w-full px-7 py-3 text-[0.95rem] sm:w-auto`}>
                 Continue to choose a time
               </button>
-              <p data-feedback role="status" aria-live="polite" className="mt-3 min-h-[1.25em] text-sm text-atlantic" />
-              <p className="mt-2 text-sm text-mute">
+              <p data-feedback role="status" aria-live="polite" className="mt-3 min-h-[1.25em] text-sm text-ink" />
+              <p className="mt-3 text-[0.8125rem] leading-relaxed text-mute">
                 Next: choose a time in the calendar. I&apos;ll use your details to contact you about the call.{" "}
                 <Link className="underline decoration-hair underline-offset-4 hover:decoration-atlantic" href="/quoting-privacy/">
                   Privacy notice
@@ -186,15 +195,24 @@ export default function Page() {
               </p>
             </form>
 
-            <div className="booking mt-6 border-t border-hair pt-6" data-after-lead hidden>
-              <p className="eyebrow text-atlantic">Step 2 of 2 · Your call</p>
-              <h2 className="mt-3 text-[clamp(1.35rem,2.2vw,1.7rem)] font-extrabold leading-tight tracking-[-0.025em] text-ink">
+            <div
+              className="booking mt-10 border-t border-hair pt-8"
+              data-after-lead
+              hidden
+              data-calendly-background="ffffff"
+              data-calendly-text="06283d"
+              data-calendly-primary="0f4b70"
+            >
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-mute">
+                Step 2 of 2 · Your call
+              </p>
+              <h2 className="mt-2 text-[clamp(1.45rem,2.4vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.03em] text-ink">
                 Choose a time that suits you.
               </h2>
-              <a href={calendly} className={`${goldButton} mt-4 px-8 py-4 text-[0.95rem]`}>
+              <a href={calendly} className={`${primaryButton} mt-6 min-h-12 px-7 py-3 text-[0.95rem]`}>
                 Choose a time
               </a>
-              <p className="mt-3 text-sm text-mute">Free · 30 minutes with Ivan</p>
+              <p className="mt-3 text-[0.8125rem] text-mute">Free · 30 minutes with Ivan</p>
             </div>
             <noscript>
               <p className="mt-4 text-sm text-mute">
@@ -281,7 +299,7 @@ export default function Page() {
                 I&apos;m Ivan Barnett. I spent four years in the trades, most recently as an electrical apprentice. I&apos;ve been on the tools and on the jobs. I build the systems myself, so the person you talk to on the call is the person setting it up.
               </p>
               <p className="mt-6">
-                <a href="#book-call" className={`${goldButton} px-8 py-4 text-[0.95rem]`}>
+                <a href="#book-call" className={`${primaryButton} min-h-12 px-7 py-3 text-[0.95rem]`}>
                   Book a free 30-minute audit
                 </a>
               </p>
@@ -296,13 +314,15 @@ export default function Page() {
       </main>
 
       <style>{`
-        .calendly-inline-widget{min-width:0;height:760px;margin-top:12px;border-radius:12px;overflow:hidden}
-        @media(max-width:700px){.calendly-inline-widget{height:1060px}}
+        #book-call .calendly-inline-widget{min-width:0;height:740px;margin-top:24px;border:1px solid #d6e4ec;border-radius:16px;overflow:hidden;background:#fff}
+        #book-call .small{margin:14px 0 0;font-size:0.8125rem;line-height:1.5;color:#3f5f73}
+        #book-call .small a{color:#0f4b70}
+        @media(max-width:700px){#book-call .calendly-inline-widget{height:1040px}}
       `}</style>
       <Script src="/assets/quoting/analytics.js?v=2" strategy="afterInteractive" />
       <Script src="/assets/quoting/meta-click.js?v=1" strategy="afterInteractive" />
       <Script src="/assets/business-essentials/landing.js?v=1" strategy="afterInteractive" />
-      <Script src="/assets/quoting/booking.js?v=5" strategy="afterInteractive" />
+      <Script src="/assets/quoting/booking.js?v=6" strategy="afterInteractive" />
     </>
   );
 }
