@@ -11,13 +11,16 @@ export default function FaqBlock({
   faqs,
   path,
   heading = "Frequently asked questions",
+  accent = false,
 }: {
   faqs: readonly Faq[];
   path: string;
   heading?: string;
+  accent?: boolean;
 }) {
   return (
     <section aria-labelledby="faq" className="mt-14 border-t border-hair pt-9">
+      {accent ? <span className="mb-3 block h-1 w-10 bg-gold" aria-hidden="true" /> : null}
       <h2 id="faq" className="h-sec max-w-[24ch] text-ink">
         {heading}
       </h2>

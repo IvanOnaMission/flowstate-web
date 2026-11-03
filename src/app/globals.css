@@ -12,6 +12,11 @@
   --color-atlantic-500: #1a6fa3; /* 5.31:1 on white — large text and borders only */
   --color-sky: #c4f8ff; /* CTA on dark. 8.05:1 with atlantic text */
   --color-sky-50: #ebfdff;
+  /* Booking gold from public/quote-machine/index.html (--gold / --gold-hover).
+     Ink on gold is 9.87:1. Gold on white is 1.54:1, so gold is a fill or a
+     mark, never body text. */
+  --color-gold: #f5cc47;
+  --color-gold-hover: #e9bb2f;
   --color-ink: #06283d; /* 14.9:1 on white */
   --color-mute: #3f5f73; /* 6.85:1 on white */
   --color-hair: #d6e4ec;
