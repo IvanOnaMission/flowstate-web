@@ -1,6 +1,10 @@
-// CRM stage events for Meta's Conversions API (Events Manager "Send a CRM event").
-// Conversion Leads optimisation reads free-form stage names. This module always
-// sends action_source system_generated with custom_data.event_source crm.
+// CRM events for Meta's Conversions API (Events Manager "Send a CRM event").
+// A new form, instant form, or audit enquiry still sends the standard Lead event,
+// and a Calendly booking still sends Booked, with the same event ids as before.
+// The minute stage poll must not use Lead or Schedule: Meta counts those exact
+// names as standard conversions, so a later stage change is sent as FS_Booked,
+// FS_Attended, or FS_Won. Each of those is recorded once per opportunity.
+// This module always sends action_source system_generated with custom_data.event_source crm.
 // Missing META_CAPI_TOKEN or META_CAPI_DATASET_ID logs once and does nothing.
 // Raw email, phone, click ids and the access token are never written to logs.
 import {createHash} from 'node:crypto';
@@ -9,7 +13,11 @@ const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const CLICK = /^fb\.\d\.\d{10,17}\.[A-Za-z0-9_-]{5,200}$/;
 const FBCLID = /^[A-Za-z0-9_-]{8,200}$/;
 const LEAD_ID = /^\d{15,17}$/;
-const EVENTS = ['Lead', 'Booked', 'Attended', 'Won'];
+// Lead and Booked remain valid for a new submission or Calendly booking.
+// Attended and Won remain accepted by the sender; the stage poll uses FS_* only.
+const EVENTS = ['Lead', 'Booked', 'Attended', 'Won', 'FS_Booked', 'FS_Attended', 'FS_Won'];
+const STAGE_META_EVENT = {Booked: 'FS_Booked', Attended: 'FS_Attended', Won: 'FS_Won'};
+const BLOCKED_STAGE_EVENTS = new Set(['Lead', 'Schedule']);
 const SENT = 'sent:';
 const SNAP = 'snap:';
 const STARTED = 'meta:crm-sync-started';
@@ -83,10 +91,40 @@ function stageList(raw, fallback) {
   return list.length ? list : fallback;
 }
 
-// Current funnel implied by a Twenty opportunity. Lead is every live record.
-// Booked is Calendly's SCREENING stage (and anything past it). Attended is an
-// explicit meeting stage or callOutcome, never inferred from a later sale.
-// Won follows the existing client rule: CUSTOMER / MAINTENANCE, or saleOutcome WON.
+// Wire names for the stage poll. Lead is omitted on purpose: it is a standard
+// Meta event, and this poll also never emits Schedule.
+function metaEventsFor(stages) {
+  const names = [];
+  for (const stage of stages) {
+    const name = STAGE_META_EVENT[stage] || '';
+    if (!name || BLOCKED_STAGE_EVENTS.has(name) || names.includes(name)) continue;
+    names.push(name);
+  }
+  return names;
+}
+
+function stageSentKey(id, eventName) {
+  return id && eventName ? `stage:${id}:${eventName}` : '';
+}
+
+async function alreadySent(store, id, eventName, eventId) {
+  if (eventId && await store.get(SENT + eventId, {type: 'json'})) return true;
+  const key = stageSentKey(id, eventName);
+  return !!(key && await store.get(key, {type: 'json'}));
+}
+
+async function rememberSent(store, id, eventName, eventId, reason, now) {
+  const record = {eventName, reason, at: new Date(now).toISOString()};
+  if (eventId) await store.setJSON(SENT + eventId, record);
+  const key = stageSentKey(id, eventName);
+  if (key) await store.setJSON(key, record);
+}
+
+// Current funnel implied by a Twenty opportunity. Lead is every live record and
+// stays internal: the stage poll does not send it to Meta. Booked is Calendly's
+// SCREENING stage (and anything past it). Attended is an explicit meeting stage
+// or callOutcome, never inferred from a later sale. Won follows the existing
+// client rule: CUSTOMER / MAINTENANCE, or saleOutcome WON.
 export function funnelEventNames(snapshot = {}, env = process.env) {
   const stage = String(snapshot.stage || '').toUpperCase();
   const call = String(snapshot.call || snapshot.callOutcome || snapshot.call_outcome || '').toUpperCase();
@@ -189,19 +227,20 @@ function snapshotOf(op) {
   };
 }
 
-async function markEvents(op, names, store, reason, now) {
+async function markEvents(op, stages, store, reason, now) {
   const email = op.emailLookup || op.sourceEmail || '';
-  for (const eventName of names) {
+  for (const eventName of metaEventsFor(stages)) {
     const eventId = crmEventId(eventName, {email, leadId: op.metaLeadId});
-    if (!eventId) continue;
-    const key = SENT + eventId;
-    if (!(await store.get(key, {type: 'json'}))) await store.setJSON(key, {eventName, reason, at: new Date(now).toISOString()});
+    if (!eventId && !op.id) continue;
+    if (await alreadySent(store, op.id, eventName, eventId)) continue;
+    await rememberSent(store, op.id, eventName, eventId, reason, now);
   }
 }
 
-async function deliver(op, names, {store, send, resolve, env, now, eventTime}) {
+async function deliver(op, stages, {store, send, resolve, env, now, eventTime}) {
   let sent = 0;
   let failed = 0;
+  const names = metaEventsFor(stages);
   if (!names.length) return {sent, failed};
   let match = {};
   try { match = await resolve(op); } catch { match = {}; }
@@ -209,15 +248,19 @@ async function deliver(op, names, {store, send, resolve, env, now, eventTime}) {
   match = {...match, ...local};
   const email = op.emailLookup || op.sourceEmail || match.email || '';
   if (isInternalLead({email, name: op.name || match.name, sourceRecordKind: op.sourceRecordKind || match.sourceRecordKind, test: op.test})) {
-    await markEvents(op, names, store, 'test', now);
+    await markEvents(op, stages, store, 'test', now);
     return {sent, failed};
   }
   const when = eventTime || op.updatedAt || op.createdAt || new Date(now).toISOString();
   for (let i = 0; i < names.length; i++) {
     const eventName = names[i];
+    if (BLOCKED_STAGE_EVENTS.has(eventName)) continue;
     const eventId = crmEventId(eventName, {email, leadId: match.meta_lead_id});
     if (!eventId) continue;
-    if (await store.get(SENT + eventId, {type: 'json'})) continue;
+    if (await alreadySent(store, op.id, eventName, eventId)) {
+      await rememberSent(store, op.id, eventName, eventId, 'already', now);
+      continue;
+    }
     const ms = Date.parse(when);
     const offset = (names.length - 1 - i) * 1000;
     try {
@@ -235,7 +278,7 @@ async function deliver(op, names, {store, send, resolve, env, now, eventTime}) {
         sourceRecordKind: op.sourceRecordKind,
       }, {env, now});
       if (result.reason === 'unconfigured') return {sent, failed, unconfigured: true};
-      await store.setJSON(SENT + eventId, {eventName, reason: result.reason, at: new Date(now).toISOString()});
+      await rememberSent(store, op.id, eventName, eventId, result.reason, now);
       if (result.sent) sent++;
     } catch {
       failed++;
@@ -248,10 +291,11 @@ async function deliver(op, names, {store, send, resolve, env, now, eventTime}) {
 // Poll, not a Twenty webhook. Stage changes are made by hand, so a one-minute
 // schedule is soon enough for ads, and the next run retries a failed send.
 // The first run records the current stage and only sends opportunities created
-// in the last 7 days (Meta drops anything older). Later runs send the new
-// stage only: MEETING/ATTENDED or callOutcome ATTENDED, and CUSTOMER/MAINTENANCE
-// or saleOutcome WON. A webhook would need a new public secret and would drop
-// events whenever Twenty did not retry.
+// in the last 7 days (Meta drops anything older), as FS_Booked, FS_Attended or
+// FS_Won. It does not send Lead. Later runs send a custom event only when that
+// stage is new: booked (SCREENING and anything past it), MEETING/ATTENDED or
+// callOutcome ATTENDED, and CUSTOMER/MAINTENANCE or saleOutcome WON. A webhook
+// would need a new public secret and would drop events whenever Twenty did not retry.
 export async function syncCrmStageEvents(options = {}) {
   const env = options.env || process.env;
   const now = options.now || Date.now();

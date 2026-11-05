@@ -1,6 +1,7 @@
-// Minute poll of Twenty opportunity stages. Sends Attended and Won (and a
-// Booked backstop) through the CRM Conversions API. With META_CAPI_TOKEN unset
-// this returns immediately and does not call Twenty.
+// Minute poll of Twenty opportunity stages. Sends FS_Booked, FS_Attended and
+// FS_Won through the CRM Conversions API, once per opportunity. It never sends
+// the standard Lead or Schedule events. With META_CAPI_TOKEN unset this returns
+// immediately and does not call Twenty.
 // See docs/meta-crm-events.md for the stage names and why this is a poll.
 import {getStore} from '@netlify/blobs';
 import {syncCrmStageEvents} from '../lib/meta-capi.mjs';

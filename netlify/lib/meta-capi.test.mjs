@@ -82,6 +82,10 @@ test('the CRM payload has the required fields, hashed contact data, and a stable
   assert.equal(buildCrmEvent({eventName: 'Lead', eventTime: '2026-10-01T00:00:00.000Z', email: 'jane@example.com'}, {now}).reason, 'stale');
   assert.equal(buildCrmEvent({eventName: 'Lead', email: 'ivan@flowstate.net.nz'}, {now}).reason, 'test');
   assert.equal(buildCrmEvent({eventName: 'Lead'}, {now}).reason, 'unmatchable');
+  assert.equal(buildCrmEvent({eventName: 'Schedule', email: 'jane@example.com'}, {now}).reason, 'name');
+  const custom = buildCrmEvent({eventName: 'FS_Attended', email: 'jane@example.com', eventTime: '2026-11-01T00:00:00.000Z'}, {now});
+  assert.equal(custom.event.event_name, 'FS_Attended');
+  assert.notEqual(crmEventId('FS_Booked', {email: 'jane@example.com'}), crmEventId('Booked', {email: 'jane@example.com'}));
 });
 
 test('a missing token does not call Meta, and a live post keeps the token out of the URL and the error', async () => {
@@ -132,31 +136,48 @@ test('funnel names follow the booked, attended and won stages without inferring 
   assert.deepEqual(funnelEventNames({stage: 'PROPOSAL'}, {META_CAPI_ATTENDED_STAGES: 'PROPOSAL'}), ['Lead', 'Booked', 'Attended']);
 });
 
-test('the first stage sync snapshots history and later sends only the new attended stage', async () => {
+test('the stage sync sends each custom stage once and never as Lead or Schedule', async () => {
   const now = Date.parse('2026-11-02T00:00:00.000Z');
   const env = {META_CAPI_TOKEN: 'secret-token-xyz', META_CAPI_DATASET_ID: '3159317364459626'};
   const store = memoryStore();
   const sent = [];
-  const send = async input => { sent.push(input.eventName + ':' + input.email); return {sent: true, reason: 'sent'}; };
+  const send = async input => {
+    if (input.eventName === 'Lead' || input.eventName === 'Schedule') throw new Error(`stage sync sent ${input.eventName}`);
+    const built = buildCrmEvent(input, {now});
+    assert.equal(built.ok, true);
+    assert.equal(built.event.event_name, input.eventName);
+    sent.push(input.eventName + ':' + input.email);
+    return {sent: true, reason: 'sent'};
+  };
   const opportunities = [
     {id: 'old', emailLookup: 'old@example.test', name: 'Old', stage: 'SCREENING', sourcePhone: '021 123 4567', sourceRecordKind: 'CONTACT', createdAt: '2026-08-01T00:00:00.000Z', updatedAt: '2026-08-01T00:00:00.000Z'},
     {id: 'fresh', emailLookup: 'fresh@example.test', name: 'Fresh', stage: 'NEW', sourceRecordKind: 'CONTACT', createdAt: '2026-11-01T00:00:00.000Z', updatedAt: '2026-11-01T00:00:00.000Z'},
+    {id: 'booked', emailLookup: 'booked@example.test', name: 'Booked', stage: 'SCREENING', sourceRecordKind: 'CONTACT', createdAt: '2026-11-01T00:00:00.000Z', updatedAt: '2026-11-01T00:00:00.000Z'},
     {id: 'staff', emailLookup: 'ivan@flowstate.net.nz', name: 'Ivan', stage: 'NEW', sourceRecordKind: 'CONTACT', createdAt: '2026-11-01T00:00:00.000Z', updatedAt: '2026-11-01T00:00:00.000Z'},
     {id: 'copy', emailLookup: 'old@example.test', name: 'Copy', stage: 'SCREENING', sourceRecordKind: 'DUPLICATE', createdAt: '2026-11-01T00:00:00.000Z', updatedAt: '2026-11-01T00:00:00.000Z'},
   ];
   const listOpportunities = async () => structuredClone(opportunities);
   const first = await syncCrmStageEvents({env, now, store, send, listOpportunities, resolveMatch: async () => ({})});
-  assert.equal(first.baselined, 3);
-  assert.deepEqual(sent, ['Lead:fresh@example.test']);
+  assert.equal(first.baselined, 4);
+  assert.deepEqual(sent, ['FS_Booked:booked@example.test']);
   sent.length = 0;
   opportunities[0].stage = 'MEETING';
   opportunities[0].updatedAt = '2026-11-02T00:00:00.000Z';
+  opportunities.push({id: 'after', emailLookup: 'after@example.test', name: 'After', stage: 'SCREENING', sourceRecordKind: 'CONTACT', createdAt: '2026-11-02T00:00:00.000Z', updatedAt: '2026-11-02T00:00:00.000Z'});
   const second = await syncCrmStageEvents({env, now, store, send, listOpportunities, resolveMatch: async () => ({meta_lead_id: '123456789012345'})});
-  assert.equal(second.sent, 1);
-  assert.deepEqual(sent, ['Attended:old@example.test']);
+  assert.equal(second.sent, 2);
+  assert.deepEqual(sent, ['FS_Attended:old@example.test', 'FS_Booked:after@example.test']);
   sent.length = 0;
   await syncCrmStageEvents({env, now, store, send, listOpportunities, resolveMatch: async () => ({})});
   assert.deepEqual(sent, []);
+  opportunities.find(op => op.id === 'after').emailLookup = 'after-renamed@example.test';
+  for (const key of [...store.rows.keys()]) if (key.startsWith('snap:')) store.rows.delete(key);
+  await syncCrmStageEvents({env, now, store, send, listOpportunities, resolveMatch: async () => ({})});
+  assert.deepEqual(sent, []);
+  opportunities.find(op => op.id === 'after').stage = 'CUSTOMER';
+  const won = await syncCrmStageEvents({env, now, store, send, listOpportunities, resolveMatch: async () => ({})});
+  assert.equal(won.sent, 1);
+  assert.deepEqual(sent, ['FS_Won:after-renamed@example.test']);
   const idle = await syncCrmStageEvents({env: {}, store, listOpportunities: async () => { throw new Error('should not list'); }});
   assert.deepEqual(idle, {configured: false, sent: 0, failed: 0, baselined: 0});
 });
