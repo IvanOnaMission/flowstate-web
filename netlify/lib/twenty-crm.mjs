@@ -112,13 +112,19 @@ export async function twentyMetaLead(input){
 export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref,questionnaire}){
  if(!email)return false;
  const website=channel==='website';
+ const instant=questionnaire==='instant';
+ const business=questionnaire==='business';
  const op=website&&crm_ref?.id?crm_ref:await findOpportunity(email);if(!op)return false;
- const noteId=uuid((website?'website-audit-lead:':'meta-audit-lead:')+id);
+ const noteId=uuid((website?'website-audit-lead:':instant?'meta-instant-lead:':'meta-audit-lead:')+id);
  const count=answers.filter(a=>a.answer!=='Not answered').length;
  const contactSnapshot=website?`\nName: ${name||'Not supplied'}\nEmail: ${email}\nPhone: ${phone||'Not supplied'}`:'';
- const data={title:(website?'Audit enquiry — ':questionnaire==='business'?'Facebook business enquiry — ':'Facebook audit enquiry — ')+op.name,bodyV2:body(`${website?'Website audit enquiry':'Facebook lead'}: ${id}\nSubmitted: ${at||'Unknown'}${contactSnapshot}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of ${questionnaire==='business'?answers.length:10} ${questionnaire==='business'?'business':'optional'} questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
+ const title=(website?'Audit enquiry — ':instant?'Facebook instant form — ':business?'Facebook business enquiry — ':'Facebook audit enquiry — ')+op.name;
+ const intro=website?'Website audit enquiry':instant?'Facebook instant form':'Facebook lead';
+ const total=business||instant?answers.length:10;
+ const kind=instant?'form':business?'business':'optional';
+ const data={title,bodyV2:body(`${intro}: ${id}\nSubmitted: ${at||'Unknown'}${contactSnapshot}\nSource ad: ${ad_id||'Unknown'}\nAnswered ${count} of ${total} ${kind} questions.\n\n${answers.map(({question,answer})=>`${question}: ${answer}`).join('\n\n')}`)};
  await createOrGet('notes',noteId,data);
-  if(progress)await request('/notes/'+noteId,'PATCH',data);
+ if(progress)await request('/notes/'+noteId,'PATCH',data);
  await createOrGet('noteTargets',uuid(noteId+'targetOpportunityId'+op.id),{noteId,targetOpportunityId:op.id});
  if(op.pointOfContactId)await createOrGet('noteTargets',uuid(noteId+'targetPersonId'+op.pointOfContactId),{noteId,targetPersonId:op.pointOfContactId});
  return true;

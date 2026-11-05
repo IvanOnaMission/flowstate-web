@@ -1,6 +1,7 @@
 // CRM events for Meta's Conversions API (Events Manager "Send a CRM event").
-// A new form, instant form, or audit enquiry still sends the standard Lead event,
+// Website forms, the audit instant form, and audit enquiries still send the standard Lead event,
 // and a Calendly booking still sends Booked, with the same event ids as before.
+// Admin instant forms (META_LEAD_FORM_IDS) do not send Lead from the webhook.
 // The minute stage poll must not use Lead or Schedule: Meta counts those exact
 // names as standard conversions, so a later stage change is sent as FS_Booked,
 // FS_Attended, or FS_Won. Each of those is recorded once per opportunity.

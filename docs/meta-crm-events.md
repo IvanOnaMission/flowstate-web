@@ -43,7 +43,8 @@ Website ad sets optimise on the pixel’s standard `Lead` and `Schedule` events.
 
 | When | `event_name` | Where it fires |
 | --- | --- | --- |
-| Form, instant form, or audit enquiry is first saved | `Lead` | `submission-created`, or once from `audit-lead-sync` for a new instant form or audit enquiry |
+| Website form, audit instant form (`META_AUDIT_FORM_ID`), or audit enquiry is first saved | `Lead` | `submission-created`, or once from `audit-lead-sync` |
+| Admin instant forms (`META_LEAD_FORM_IDS`; default `1174559812181344`, `1480350577329067`) | *(none)* | Telegram alert and Twenty contact only. No `Lead` event. Later `FS_Booked` / `FS_Attended` / `FS_Won` still come from `crm-stage-sync` when the deal moves. |
 | Calendly `invitee.created` (not a reschedule or cancellation) | `Booked` | `lead-alert` |
 | Twenty reaches booked (`SCREENING`, `PROPOSAL`, or any later stage), first time only | `FS_Booked` | `crm-stage-sync`, every minute |
 | Twenty stage `MEETING` or `ATTENDED`, or `callOutcome` `ATTENDED`, first time only | `FS_Attended` | `crm-stage-sync` |
@@ -68,6 +69,7 @@ Optional Twenty opportunity fields, all text: `metaLeadId`, `fbclid`, `fbc`, `fb
 ## What is never sent
 
 - Names starting with `[TEST]`, any `@example.invalid` address, any `@flowstate.net.nz` address, and Twenty records marked `TEST`.
+- `Lead` from the admin instant-form webhook (`META_LEAD_FORM_IDS`). That path texts Ivan and saves the Twenty contact. It does not call the Conversions API.
 - Calendly reschedules and cancellations.
 - Events with no email, phone, lead id or click id.
 - Events whose time is older than 7 days.

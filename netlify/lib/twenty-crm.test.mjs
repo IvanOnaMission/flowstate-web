@@ -77,6 +77,13 @@ test('new native form contacts are called once and a failed task delivery can re
  assert.equal(rows.opportunities.size,1);assert.equal(rows.people.size,1);assert.equal(rows.tasks.size,1);assert.match([...rows.opportunities.values()][0].wikiNotes,/Facebook Instant Form/);
  assert.equal(calls.filter(c=>c.plural==='tasks'&&c.method==='PATCH').length,0);
 });
+test('admin instant form notes name the form and count only the answers that were sent',async()=>{
+ rows.opportunities.set('contact-1',contact());
+ const lead={email:'shannon@example.com',id:'1174559812181344',questionnaire:'instant',ad_id:'FS | Admin breaking | Instant form v2 · 223456789012345',answers:[{question:'How big is your company?',answer:'6–10'},{question:'What\'s your goal with AI?',answer:'Cut admin time'}]};
+ await twentyMetaAnswers(lead);await twentyMetaAnswers(lead);
+ assert.equal(rows.notes.size,1);const note=[...rows.notes.values()][0];
+ assert.match(note.title,/Facebook instant form/);assert.match(note.bodyV2.markdown,/Answered 2 of 2 form questions/);assert.match(note.bodyV2.markdown,/How big is your company\?: 6–10/);assert.match(note.bodyV2.markdown,/Source ad: FS \| Admin breaking \| Instant form v2/);
+});
 test('business form notes preserve general answers and use the correct question count',async()=>{
  rows.opportunities.set('contact-1',contact());
  const lead={email:'shannon@example.com',id:'98765432101234',questionnaire:'business',answers:[{id:'business_time_sink',question:'Biggest time sink',answer:'Invoicing and chasing payments'},{id:'business_help',question:'Useful help',answer:'Hands-on training for me or my team'}]};
