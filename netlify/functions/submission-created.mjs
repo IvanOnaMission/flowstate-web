@@ -20,7 +20,8 @@ import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordFormLead} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
 import {acceptedMatch, sendCrmEvent} from '../lib/meta-capi.mjs';
-const FORMS = ['ai-makeover', 'quote-machine'];
+import {FORM as ESSENTIALS_FORM, OFFER as ESSENTIALS, essentialsAnswers, essentialsCustomerType} from '../lib/essentials-quiz.mjs';
+const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM];
 
 export default async (req) => {
   let payload;
@@ -49,17 +50,26 @@ export default async (req) => {
   if (!FORMS.includes(formName)) return new Response('ignored', {status: 200});
 
   const quoteMachine = formName === 'quote-machine';
+  // /essentials/ sends its quiz answers with the contact details in one submission.
+  const essentials = formName === ESSENTIALS_FORM;
+  const customerType = essentials ? essentialsCustomerType(data) : data.customer_type;
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
-    ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {})};
+    ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {}),
+    ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {})};
   const contact = {email: lead.email, name: lead.name, phone: lead.phone};
   const submittedAt = payload.created_at || new Date().toISOString();
   const click = acceptedMatch({fbclid: data.fbclid, fbc: data.fbc, fbp: data.fbp}, Date.parse(submittedAt) || Date.now());
+  const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : 'form';
   // Keep the existing lead tag and automations; the separate Quote Machine tag starts its booking reminder.
   const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
   await Promise.all([
     safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : []})),
-    safely('notion lead', () => crmLead({...contact, source: quoteMachine ? 'Quote Machine page' : 'form', customerType: data.customer_type, adId: data.ad_id, ...click, metaLeadId: click.meta_lead_id})),
-    safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,{...data, ...click}, submittedAt); }),
+    safely('notion lead', async () => {
+      await crmLead({...contact, source, customerType, adId: data.ad_id, ...click, metaLeadId: click.meta_lead_id});
+      // The quiz note needs the opportunity crmLead has just created.
+      if (essentials && lead.quiz.length) await crmQuiz({email: lead.email, answers: lead.quiz, submissionId: payload.id});
+    }),
+    safely('marketing lead', async () => { const db=trackingDatabase(); if(db)await recordFormLead(db,{...data, customer_type: customerType, ...click}, submittedAt); }),
     safely('meta crm lead', () => sendCrmEvent({eventName: 'Lead', eventTime: submittedAt, email: lead.email, phone: lead.phone, name: lead.name, ...click, leadId: click.meta_lead_id})),
   ]);
 

@@ -5,6 +5,11 @@ export const clean = (value, max = 200) => String(value ?? '').replace(/\s+/g, '
 const about = lines => (lines?.length ? ['', 'ABOUT THEM', ...lines] : []);
 // Quote Machine leads carry the ad they came from.
 const quoteMachine = lead => (lead?.source ? ['', clean(lead.source, 300)] : []);
+// Business Essentials leads carry their quiz answers, one "Question: answer" per line.
+const quiz = lead => {
+  const lines = (lead?.quiz || []).filter(a => clean(a?.answer)).map(a => `${clean(a.question)}: ${clean(a.answer)}`);
+  return lines.length ? ['', 'QUIZ', ...lines] : [];
+};
 
 export function formLeadMessage(lead, aboutLines = []) {
   return [
@@ -14,6 +19,7 @@ export function formLeadMessage(lead, aboutLines = []) {
     clean(lead.email),
     '',
     'Extra details: none yet (they only fill those in when they book)',
+    ...quiz(lead),
     ...quoteMachine(lead),
     ...about(aboutLines),
   ].join('\n');
@@ -45,6 +51,7 @@ export function bookedMessage({name, phone, email, when, answers = [], held = nu
     when,
     '',
     ...extra,
+    ...quiz(held),
     ...quoteMachine(held),
     ...about(aboutLines),
   ].join('\n');
