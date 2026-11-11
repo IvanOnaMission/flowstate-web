@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 import { EMPLOYEE, questions } from "./questions";
 import styles from "./quiz.module.css";
 
-type Screen = "intro" | "details" | "calendar" | "done" | "exit" | `q${number}`;
+type Screen = "details" | "calendar" | "done" | "exit" | `q${number}`;
 type Details = { name: string; business: string; phone: string; email: string };
 type Errors = Partial<Record<keyof Details, string>>;
 type MetaClick = { fbclid?: string; fbc?: string; fbp?: string };
@@ -26,7 +26,7 @@ const CALENDLY =
   "https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&utm_medium=direct-booking&utm_campaign=business-essentials";
 const TRACKED = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
 const STEPS = questions.length + 2;
-const ORDER: Screen[] = ["intro", ...questions.map((_, i) => `q${i}` as Screen), "details", "calendar", "done"];
+const ORDER: Screen[] = [...questions.map((_, i) => `q${i}` as Screen), "details", "calendar", "done"];
 const EMPTY: Details = { name: "", business: "", phone: "", email: "" };
 
 const production = () => ["flowstate.net.nz", "www.flowstate.net.nz"].includes(location.hostname);
@@ -89,7 +89,8 @@ const Check = () => (
 );
 
 export default function EssentialsQuiz() {
-  const [screen, setScreen] = useState<Screen>("intro");
+  // No start screen: the page opens on question 1.
+  const [screen, setScreen] = useState<Screen>("q0");
   const [fromLeft, setFromLeft] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -218,20 +219,10 @@ export default function EssentialsQuiz() {
     [go],
   );
 
-  const start = useCallback(() => {
-    fbq("trackCustom", "EssentialsQuizStarted", { content_name: OFFER });
-    go("q0");
-  }, [go]);
-
-  // Number keys answer, Enter starts.
+  // Number keys answer.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      if (screen === "intro" && e.key === "Enter" && (document.activeElement as HTMLElement | null)?.tagName !== "BUTTON") {
-        e.preventDefault();
-        start();
-        return;
-      }
       if (!screen.startsWith("q")) return;
       const i = Number(screen.slice(1));
       const n = Number.parseInt(e.key, 10);
@@ -243,7 +234,7 @@ export default function EssentialsQuiz() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [screen, choose, start]);
+  }, [screen, choose]);
 
   function openCalendar(v: Details) {
     const link = calendarLink.current;
@@ -339,8 +330,8 @@ export default function EssentialsQuiz() {
 
   // Progress: questions, then details, then the calendar.
   const k = ORDER.indexOf(screen);
-  const showBar = screen !== "intro" && screen !== "exit";
-  const doneSteps = screen === "done" ? STEPS : k - 1 + (bump ? 1 : 0);
+  const showBar = screen !== "exit";
+  const doneSteps = screen === "done" ? STEPS : k + (bump ? 1 : 0);
   const pct = showBar ? Math.max(3, (doneSteps / STEPS) * 100) : 0;
   const countText = !showBar
     ? ""
@@ -356,44 +347,18 @@ export default function EssentialsQuiz() {
   );
 
   function renderScreen() {
-    if (screen === "intro") {
-      return (
-        <>
-          <p className={styles.eyebrow}>Business Essentials</p>
-          <h1 ref={heading} tabIndex={-1}>
-            The <mark>AI foundation</mark> for your trades business
-          </h1>
-          <p className={styles.lede}>
-            Answer 7 quick questions, then pick a time for your free 30-minute audit with Ivan.
-          </p>
-          <div className={styles.ctaRow}>
-            <button type="button" className={styles.btn} onClick={start}>
-              Let&apos;s go <span className={styles.arrow} aria-hidden="true">→</span>
-            </button>
-            <span className={styles.hint}>
-              About a minute
-              <span className={styles.kb}>
-                {" "}
-                · press <kbd>Enter</kbd>
-              </span>
-            </span>
-          </div>
-          <ul className={styles.facts}>
-            <li><Check />Free 30-minute audit</li>
-            <li><Check />For NZ trade businesses</li>
-            <li><Check />You approve everything</li>
-          </ul>
-        </>
-      );
-    }
-
     if (screen.startsWith("q")) {
       const i = Number(screen.slice(1));
       const q = questions[i];
       const chosen = answers[q.field];
       return (
         <>
-          {back(i === 0 ? "intro" : (`q${i - 1}` as Screen))}
+          {i > 0 ? (
+            back(`q${i - 1}` as Screen)
+          ) : (
+            // Keeps question 1 lined up with the rest, which all have a Back button.
+            <span className={`${styles.back} ${styles.spacer}`} aria-hidden="true">←</span>
+          )}
           <h2 ref={heading} tabIndex={-1}>{q.question}</h2>
           {q.note ? <p className={styles.lede}>{q.note}</p> : null}
           <div className={`${styles.opts} ${justChose === q.field ? styles.locked : ""}`} role="group" aria-label={q.question}>
@@ -537,6 +502,7 @@ export default function EssentialsQuiz() {
       <canvas ref={canvas} className={styles.burst} aria-hidden="true" />
       <div className={styles.inner}>
         <header className={styles.top}>
+          <h1 className={styles.srOnly}>Business Essentials: book a free 30-minute audit with Ivan</h1>
           <div className={styles.topRow}>
             <Link href="/" className={styles.wordmark}>
               {site.name}
