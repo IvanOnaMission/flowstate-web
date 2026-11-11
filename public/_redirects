@@ -1,7 +1,8 @@
-# Existing VSL links point to the transformation partner page, which keeps the video.
-/ai-makeover/                  /transformation-partner/  302!
-/ai-makeover                   /transformation-partner/  302!
-/ai-makeover/index.html        /transformation-partner/  302!
+# The live Meta ad (IV1) links to /ai-makeover/. Since 12 Nov 2026 that traffic goes to the
+# Business Essentials quiz instead of the video. Netlify keeps the UTM and fbclid query string.
+/ai-makeover/                  /essentials/  302!
+/ai-makeover                   /essentials/  302!
+/ai-makeover/index.html        /essentials/  302!
 # Retired quoting offers point to the diagnostic.
 # Netlify preserves campaign query strings. Historical private offers and audits remain intact.
 /quoting-help/                 /workflow-diagnostic/  301
