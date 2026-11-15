@@ -14,14 +14,16 @@ import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
 import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
-import {holdLead} from '../lib/pending.mjs';
+import {holdLead, updateHeldLead} from '../lib/pending.mjs';
 import {OFFER as QUOTE_MACHINE, sourceLine} from '../lib/quote-machine.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
 import {recordFormLead} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
 import {acceptedMatch, sendCrmEvent} from '../lib/meta-capi.mjs';
 import {FORM as ESSENTIALS_FORM, OFFER as ESSENTIALS, essentialsAnswers, essentialsCustomerType} from '../lib/essentials-quiz.mjs';
-const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM];
+import {ANSWERS_FORM as LIVE_ANSWERS_FORM, EXTRA as LIVE_EXTRA, FORM as LIVE_FORM, OFFER as LIVE, SOURCE as LIVE_SOURCE,
+  liveAnswers, liveCustomerType} from '../lib/live-session.mjs';
+const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM, LIVE_FORM];
 
 export default async (req) => {
   let payload;
@@ -47,21 +49,43 @@ export default async (req) => {
       return new Response('quiz saved in Netlify Forms; CRM sync failed', {status: 502});
     }
   }
+  if (formName === LIVE_ANSWERS_FORM) {
+    // The optional questions after a live-session signup. Never a new lead or a second alert.
+    const contact = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
+    const answers = liveAnswers(data);
+    if (!answers.length) return new Response('no answers', {status: 200});
+    const customerType = liveCustomerType(data);
+    let linked = false;
+    await Promise.all([
+      safely('live answers alert', () => updateHeldLead(contact, {quiz: answers})),
+      safely('live answers crm', async () => {
+        // Refreshes the customer type, and creates the lead if the signup is still on its way.
+        if (customerType || !(linked = await crmQuiz({email: contact.email, answers, submissionId: payload.id}))) {
+          await crmLead({...contact, source: LIVE_SOURCE, customerType});
+          linked = await crmQuiz({email: contact.email, answers, submissionId: payload.id});
+        }
+      }),
+    ]);
+    return new Response(linked ? 'answers linked' : 'answers saved in Netlify Forms', {status: 200});
+  }
   if (!FORMS.includes(formName)) return new Response('ignored', {status: 200});
 
   const quoteMachine = formName === 'quote-machine';
   // /essentials/ sends its quiz answers with the contact details in one submission.
   const essentials = formName === ESSENTIALS_FORM;
-  const customerType = essentials ? essentialsCustomerType(data) : data.customer_type;
+  const live = formName === LIVE_FORM;
+  const customerType = essentials ? essentialsCustomerType(data) : live ? undefined : data.customer_type;
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
     ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {}),
-    ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {})};
+    ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {}),
+    ...(live ? {offer: LIVE, extra: LIVE_EXTRA} : {})};
   const contact = {email: lead.email, name: lead.name, phone: lead.phone};
   const submittedAt = payload.created_at || new Date().toISOString();
   const click = acceptedMatch({fbclid: data.fbclid, fbc: data.fbc, fbp: data.fbp}, Date.parse(submittedAt) || Date.now());
-  const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : 'form';
+  const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : live ? LIVE_SOURCE : 'form';
   // Keep the existing lead tag and automations; the separate Quote Machine tag starts its booking reminder.
-  const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
+  // Live-session signups only get their own tag, so the call-booking emails never reach them.
+  const kitTag = live ? process.env.KIT_TAG_LIVE_SESSION : process.env.KIT_TAG_MAKEOVER_LEAD;
   await Promise.all([
     safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : []})),
     safely('notion lead', async () => {

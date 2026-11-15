@@ -47,3 +47,14 @@ export async function dueLeads(minAgeMs = DELAY_MS, s = store(), now = Date.now(
 }
 
 export const forgetLead = (key, s = store()) => s.delete(key);
+
+// Adds fields to a lead still waiting on the holding list, keeping its place in the queue.
+// Returns false when the alert has already gone (or was never held).
+export async function updateHeldLead(lead, patch, s = store()) {
+  const key = leadKey(lead);
+  if (!key) return false;
+  const waiting = await s.get(key, {type: 'json'});
+  if (!waiting) return false;
+  await s.setJSON(key, {...waiting, ...patch});
+  return true;
+}

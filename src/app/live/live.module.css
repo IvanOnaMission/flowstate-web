@@ -1,0 +1,88 @@
+/* /live/ page. Sits on the /essentials/ quiz styles (same colours and answer cards)
+   and adds the video, session facts and signup card. */
+.inner { max-width: 44rem; }
+
+.eyebrow { margin: 0 0 10px; color: var(--gold); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.title { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+
+.video {
+  margin-top: 22px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8);
+}
+.video video { display: block; width: 100%; max-height: 78svh; background: #000; }
+.placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  color: var(--mute);
+  font-weight: 600;
+  background: repeating-linear-gradient(135deg, var(--surface), var(--surface) 14px, var(--surface-2) 14px, var(--surface-2) 28px);
+}
+
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.facts li {
+  padding: 7px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--line-hi);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.875rem;
+}
+.facts b { color: var(--gold); }
+
+.form {
+  margin-top: 26px;
+  padding: 22px clamp(16px, 4vw, 26px) 20px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.formTitle { font-size: clamp(1.4rem, 4.4vw, 1.75rem) !important; }
+.form .fields { margin-top: 18px; }
+@media (min-width: 560px) {
+  .form > div > div:first-child { grid-column: 1 / -1; }
+}
+.price { margin: 4px 0 0; color: var(--text); font-size: 0.9375rem; font-weight: 600; }
+
+.qTop { display: flex; align-items: center; justify-content: space-between; }
+.skip {
+  margin: 0 0 18px;
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: var(--mute);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.skip:hover { color: var(--text); }
+.skip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+.saved {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--gold) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  color: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.saved svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+
+.ghost {
+  color: var(--sky);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

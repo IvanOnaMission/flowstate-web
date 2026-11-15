@@ -18,7 +18,7 @@ export function formLeadMessage(lead, aboutLines = []) {
     `Phone: ${clean(lead.phone) || 'not given'}`,
     clean(lead.email),
     '',
-    'Extra details: none yet (they only fill those in when they book)',
+    clean(lead.extra, 300) || 'Extra details: none yet (they only fill those in when they book)',
     ...quiz(lead),
     ...quoteMachine(lead),
     ...about(aboutLines),
