@@ -3,7 +3,25 @@
 .inner { max-width: 44rem; }
 
 .eyebrow { margin: 0 0 10px; color: var(--gold); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-.title { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+.title { font-size: clamp(1.7rem, 6vw, 3rem) !important; line-height: 1.06 !important; }
+.sub { margin: 14px 0 0; color: var(--mute); font-size: clamp(1rem, 2.6vw, 1.125rem); line-height: 1.55; max-width: 38em; }
+
+/* Signup screen: stacked on phones, video beside the copy and form on wider screens. */
+.wide { max-width: 70rem; }
+.signup { display: grid; gap: 0; margin-top: calc(-1 * clamp(10px, 4vh, 40px)); }
+@media (min-width: 900px) {
+  .signup {
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    grid-template-areas: "video hero" "video side";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  .signup .hero { grid-area: hero; }
+  .signup .video { grid-area: video; margin-top: 0; position: sticky; top: 24px; }
+  .signup .side { grid-area: side; }
+  .signup .video video { max-height: none; width: 100%; }
+}
 
 .video {
   margin-top: 22px;
@@ -13,7 +31,7 @@
   border: 1px solid var(--line);
   box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8);
 }
-.video video { display: block; width: auto; max-width: 100%; max-height: 72svh; margin: 0 auto; background: #000; }
+.video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 80svh; object-fit: contain; background: #000; }
 .placeholder {
   display: grid;
   place-items: center;
@@ -23,7 +41,7 @@
   background: repeating-linear-gradient(135deg, var(--surface), var(--surface) 14px, var(--surface-2) 14px, var(--surface-2) 28px);
 }
 
-.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
 .facts li {
   padding: 7px 12px;
   border-radius: 99px;
@@ -35,8 +53,8 @@
 .facts b { color: var(--gold); }
 
 .form {
-  margin-top: 26px;
-  padding: 22px clamp(16px, 4vw, 26px) 20px;
+  margin-top: 20px;
+  padding: clamp(20px, 4vw, 30px) clamp(18px, 4vw, 30px) 22px;
   border-radius: 18px;
   background: var(--surface);
   border: 1px solid var(--line);

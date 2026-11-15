@@ -362,8 +362,11 @@ export default function LiveSession() {
       );
       return (
         <>
-          <p className={live.eyebrow}>Free live session · Electrical business owners</p>
-          <h1 ref={heading} tabIndex={-1} className={live.title}>{SESSION.headline}</h1>
+          <div className={live.hero}>
+            <p className={live.eyebrow}>{SESSION.eyebrow}</p>
+            <h1 ref={heading} tabIndex={-1} className={live.title}>{SESSION.headline}</h1>
+            <p className={live.sub}>{SESSION.subhead}</p>
+          </div>
           <div className={live.video}>
             {VIDEO ? (
               <video className="vsl" data-name="Live session" data-marks="25,50,75,100" src={VIDEO} poster={VIDEO_POSTER || undefined} controls playsInline preload="metadata" />
@@ -371,6 +374,7 @@ export default function LiveSession() {
               <div className={live.placeholder}>Video coming</div>
             )}
           </div>
+          <div className={live.side}>
           {sessionLine}
           <form onSubmit={submit} noValidate className={live.form}>
             <h2 className={live.formTitle}>Save your spot</h2>
@@ -389,6 +393,7 @@ export default function LiveSession() {
               <Link href="/quoting-privacy/">Privacy notice</Link>.
             </p>
           </form>
+          </div>
         </>
       );
     }
@@ -479,7 +484,7 @@ export default function LiveSession() {
   return (
     <section ref={root} className={`${styles.quiz} ${live.page}`} aria-label="Free live session sign-up">
       <canvas ref={canvas} className={styles.burst} aria-hidden="true" />
-      <div className={`${styles.inner} ${live.inner}`}>
+      <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
           <div className={styles.topRow}>
             <Link href="/" className={styles.wordmark}>
@@ -495,7 +500,7 @@ export default function LiveSession() {
           </div>
         </header>
         <div className={styles.stage}>
-          <div key={screen} className={screenClass}>
+          <div key={screen} className={`${screenClass} ${screen === "signup" ? live.signup : ""}`}>
             {renderScreen()}
           </div>
         </div>
