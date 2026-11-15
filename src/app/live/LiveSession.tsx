@@ -129,6 +129,19 @@ export default function LiveSession() {
     reduce.current = matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
+  // Prefill from the link, e.g. /live/?name=Jane%20Smith&email=jane@x.co.nz&phone=0211234567
+  // (Kit emails and Meta can fill these in). Browser autofill works through the autocomplete attributes.
+  useEffect(() => {
+    const p = new URLSearchParams(location.search);
+    const get = (...keys: string[]) => keys.map((k) => p.get(k)?.trim() || "").find(Boolean)?.slice(0, 200) || "";
+    const joined = [get("first_name"), get("last_name")].filter(Boolean).join(" ");
+    const from = { name: get("name", "full_name") || joined, email: get("email"), phone: get("phone", "mobile") };
+    if (!from.name && !from.email && !from.phone) return;
+    queueMicrotask(() =>
+      setDetails((d) => ({ name: d.name || from.name, email: d.email || from.email, phone: d.phone || from.phone })),
+    );
+  }, []);
+
   const go = useCallback((next: Screen, back = false) => {
     const swap = () => {
       busy.current = false;
