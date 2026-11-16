@@ -44,19 +44,18 @@
 .sub { margin: 14px auto 0; max-width: 38rem; color: var(--mute); font-size: clamp(1.0625rem, 2.4vw, 1.1875rem); line-height: 1.6; }
 .watch { margin: 8px 0 0; color: var(--mute); font-size: 0.8125rem; }
 
-/* Portrait VSL: full width on phones, a centred phone-shaped player on bigger screens. */
+/* Landscape VSL, full width of the column like the Quote Machine page. */
 .video {
   position: relative;
   width: 100%;
-  max-width: 420px;
   margin: 22px auto 0;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: #000;
 }
-.video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
-.placeholder { display: grid; place-items: center; aspect-ratio: 9 / 16; color: #9bb6c7; font-weight: 600; background: #0a1d2b; }
+.video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
+.placeholder { display: grid; place-items: center; aspect-ratio: 16 / 9; color: #9bb6c7; font-weight: 600; background: #0a1d2b; }
 
 /* Covers the whole video so the first tap anywhere starts it with sound, from the top. */
 .play {
@@ -65,7 +64,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 0 34%;
+  padding: 0 0 11%;
   background: rgba(3, 16, 26, 0.12);
   border: 0;
   cursor: pointer;
