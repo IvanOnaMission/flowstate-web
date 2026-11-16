@@ -129,11 +129,9 @@ export default function LiveSession() {
 
   useEffect(() => {
     reduce.current = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Plays muted as a preview (captions are burned in), like the Quote Machine page.
-    if (!reduce.current) vsl.current?.play().catch(() => {});
   }, []);
 
-  /** The first tap restarts the video from the top with sound. */
+  /** Tapping the thumbnail starts the video with sound. */
   function withSound() {
     const v = vsl.current;
     if (!v) return;
@@ -398,16 +396,13 @@ export default function LiveSession() {
                   data-progress="sound-on"
                   src={VIDEO}
                   poster={VIDEO_POSTER || undefined}
-                  muted
                   playsInline
                   preload="metadata"
                   controls={soundOn}
-                  onVolumeChange={(e) => !e.currentTarget.muted && setSoundOn(true)}
+                  onPlay={() => setSoundOn(true)}
                 />
                 {soundOn ? null : (
-                  <button type="button" className={live.play} aria-label="Play the video with sound" onClick={withSound}>
-                    <span className={live.pill}><span className={live.ring} aria-hidden="true" />Tap for sound</span>
-                  </button>
+                  <button type="button" className={live.play} aria-label="Play Jordan's video" onClick={withSound} />
                 )}
               </>
             ) : (
