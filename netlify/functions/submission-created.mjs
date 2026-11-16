@@ -84,10 +84,11 @@ export default async (req) => {
   const click = acceptedMatch({fbclid: data.fbclid, fbc: data.fbc, fbp: data.fbp}, Date.parse(submittedAt) || Date.now());
   const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : live ? LIVE_SOURCE : 'form';
   // Keep the existing lead tag and automations; the separate Quote Machine tag starts its booking reminder.
-  // Live-session signups only get their own tag, so the call-booking emails never reach them.
-  const kitTag = live ? process.env.KIT_TAG_LIVE_SESSION : process.env.KIT_TAG_MAKEOVER_LEAD;
+  // Every landing page uses the same lead tag. Live-session signups also get KIT_TAG_LIVE_SESSION when it's set.
+  const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
+  const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [process.env.KIT_TAG_LIVE_SESSION] : [];
   await Promise.all([
-    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : []})),
+    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags})),
     safely('notion lead', async () => {
       await crmLead({...contact, source, customerType, adId: data.ad_id, ...click, metaLeadId: click.meta_lead_id});
       // The quiz note needs the opportunity crmLead has just created.

@@ -13,7 +13,9 @@ export const VIDEO_POSTER = "/assets/live/jordan-live-session-poster-v2.jpg";
 
 export const SESSION = {
   eyebrow: "Free live session for electrical business owners",
-  headline: "How AI took over most of the office work in my electrical business",
+  // The highlighter-pen word sits on `mark`, like the Quote Machine page.
+  headline: { before: "How AI took over ", mark: "most of the office work", after: " in my electrical business" },
+  watch: "Watch the 45-second video from Jordan.",
   subhead:
     "I'm Jordan from Conduction Company. I'll show you exactly what AI does in our business and the lessons I learned the hard way. You don't need to be technical, just bring your questions.",
   day: "Tuesday 24 November",

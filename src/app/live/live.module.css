@@ -1,70 +1,110 @@
-/* /live/ page. Sits on the /essentials/ quiz styles (same colours and answer cards)
-   and adds the video, session facts and signup card. */
-.inner { max-width: 44rem; }
-
-.eyebrow { margin: 0 0 10px; color: var(--gold); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-.title { font-size: clamp(1.7rem, 6vw, 3rem) !important; line-height: 1.06 !important; }
-.sub { margin: 14px 0 0; color: var(--mute); font-size: clamp(1rem, 2.6vw, 1.125rem); line-height: 1.55; max-width: 38em; }
-
-/* Signup screen: stacked on phones, video beside the copy and form on wider screens. */
-.wide { max-width: 70rem; }
-.signup { display: grid; gap: 0; margin-top: calc(-1 * clamp(10px, 4vh, 40px)); }
-@media (min-width: 900px) {
-  .signup {
-    grid-template-columns: minmax(300px, 400px) 1fr;
-    grid-template-areas: "video hero" "video side";
-    grid-template-rows: auto 1fr;
-    column-gap: clamp(32px, 5vw, 64px);
-    align-items: start;
-  }
-  .signup .hero { grid-area: hero; }
-  .signup .video { grid-area: video; margin-top: 0; position: sticky; top: 24px; }
-  .signup .side { grid-area: side; }
-  .signup .video video { max-height: none; width: 100%; }
+/* /live/ page. Built on the /essentials/ quiz styles, recoloured to the light look of the
+   Quote Machine page (public/quote-machine/): paper background, navy text, gold actions. */
+.page {
+  --night: #faf9f6;
+  --surface: #ffffff;
+  --surface-2: #f1f2ef;
+  --line: #dce0df;
+  --line-hi: #b9c3c6;
+  --text: #06283d;
+  --mute: #53646d;
+  --sky: #d6ecf8;
+  --link: #1a6fa3;
+  --blue: #0f4b70;
+  --ink: #06283d;
+  --danger: #b4321f;
+  color-scheme: light;
 }
+.page::after { display: none; }
 
+.inner { max-width: 40rem; }
+.wide { max-width: 55rem; }
+.signup { margin-top: calc(-1 * clamp(14px, 4vh, 44px)); }
+
+.hero { text-align: center; }
+.eyebrow { margin: 0 0 12px; color: var(--link); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; }
+.title {
+  margin: 0 auto !important;
+  max-width: 760px;
+  font-size: clamp(2rem, 6vw, 3.375rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+}
+/* Highlighter-pen stroke, same as the Quote Machine headline. */
+.title mark {
+  color: inherit;
+  background: linear-gradient(100deg, rgba(255, 213, 0, 0) 1%, rgba(255, 213, 0, 0.95) 3%, rgba(255, 206, 0, 0.85) 50%, rgba(255, 213, 0, 0.95) 96%, rgba(255, 213, 0, 0) 99%) 0 78% / 100% 62% no-repeat;
+  padding: 0 0.14em;
+  margin: 0 -0.06em;
+  border-radius: 0.35em 0.15em 0.45em 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.sub { margin: 14px auto 0; max-width: 38rem; color: var(--mute); font-size: clamp(1.0625rem, 2.4vw, 1.1875rem); line-height: 1.6; }
+.watch { margin: 8px 0 0; color: var(--mute); font-size: 0.8125rem; }
+
+/* Portrait VSL: full width on phones, a centred phone-shaped player on bigger screens. */
 .video {
-  margin-top: 22px;
-  border-radius: 18px;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 22px auto 0;
+  border-radius: 14px;
   overflow: hidden;
-  background: var(--surface);
   border: 1px solid var(--line);
-  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.8);
+  background: #000;
 }
-.video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 80svh; object-fit: contain; background: #000; }
-.placeholder {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  color: var(--mute);
-  font-weight: 600;
-  background: repeating-linear-gradient(135deg, var(--surface), var(--surface) 14px, var(--surface-2) 14px, var(--surface-2) 28px);
-}
+.video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
+.placeholder { display: grid; place-items: center; aspect-ratio: 9 / 16; color: #9bb6c7; font-weight: 600; background: #0a1d2b; }
 
-.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
-.facts li {
-  padding: 7px 12px;
-  border-radius: 99px;
-  border: 1px solid var(--line-hi);
-  background: var(--surface);
-  color: var(--text);
-  font-size: 0.875rem;
+/* Covers the whole video so the first tap anywhere starts it with sound, from the top. */
+.play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0 34%;
+  background: rgba(3, 16, 26, 0.12);
+  border: 0;
+  cursor: pointer;
+  color: #fff;
 }
-.facts b { color: var(--gold); }
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--blue);
+  border-radius: 999px;
+  padding: 10px 22px 10px 12px;
+  font: 700 1.0625rem var(--font-sans);
+  box-shadow: 0 8px 28px rgba(3, 16, 26, 0.45);
+}
+.ring { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+.ring::after { content: ""; margin-left: 4px; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent var(--blue); }
+.play:hover .pill { background: #14608c; }
+.play:focus-visible { outline: 3px solid var(--link); outline-offset: -3px; }
+
+.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.facts li { padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 0.875rem; }
+.facts b { color: var(--text); }
 
 .form {
   margin-top: 20px;
-  padding: clamp(20px, 4vw, 30px) clamp(18px, 4vw, 30px) 22px;
-  border-radius: 18px;
+  padding: 26px clamp(18px, 4vw, 28px) 22px;
+  border-radius: 14px;
   background: var(--surface);
   border: 1px solid var(--line);
+  box-shadow: 0 8px 30px rgba(7, 31, 48, 0.04);
 }
-.formTitle { font-size: clamp(1.4rem, 4.4vw, 1.75rem) !important; }
-.form .fields { margin-top: 18px; }
-@media (min-width: 560px) {
-  .form > div > div:first-child { grid-column: 1 / -1; }
+.formTitle { font-size: clamp(1.45rem, 4vw, 1.75rem) !important; }
+@media (min-width: 700px) {
+  .form > div:first-of-type { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .price { margin: 4px 0 0; color: var(--text); font-size: 0.9375rem; font-weight: 600; }
+
+.landing :global(button[type="submit"]) { border-radius: 8px; color: #071f30; }
 
 .qTop { display: flex; align-items: center; justify-content: space-between; }
 .skip {
@@ -81,7 +121,7 @@
   cursor: pointer;
 }
 .skip:hover { color: var(--text); }
-.skip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+.skip:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 6px; }
 
 .saved {
   display: flex;
@@ -90,17 +130,17 @@
   margin: 0 0 22px;
   padding: 12px 14px;
   border-radius: 12px;
-  background: color-mix(in srgb, var(--gold) 12%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  background: #fff5d9;
+  border: 1px solid #e7d69d;
   color: var(--text);
   font-size: 0.9375rem;
   line-height: 1.45;
 }
-.saved svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+.saved svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: #8a6d00; }
 
-.ghost {
-  color: var(--sky);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+.ghost { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Text that the dark quiz colours with --sky needs the darker link blue on paper. */
+.page [role="status"],
+.page [aria-live] { color: var(--link); }
+.page p a { color: var(--link); }

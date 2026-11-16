@@ -114,6 +114,8 @@ export default function LiveSession() {
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
 
+  const [soundOn, setSoundOn] = useState(false);
+  const vsl = useRef<HTMLVideoElement>(null);
   const root = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -127,7 +129,19 @@ export default function LiveSession() {
 
   useEffect(() => {
     reduce.current = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Plays muted as a preview (captions are burned in), like the Quote Machine page.
+    if (!reduce.current) vsl.current?.play().catch(() => {});
   }, []);
+
+  /** The first tap restarts the video from the top with sound. */
+  function withSound() {
+    const v = vsl.current;
+    if (!v) return;
+    v.muted = false;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+    setSoundOn(true);
+  }
 
   // Prefill from the link, e.g. /live/?name=Jane%20Smith&email=jane@x.co.nz&phone=0211234567
   // (Kit emails and Meta can fill these in). Browser autofill works through the autocomplete attributes.
@@ -364,12 +378,38 @@ export default function LiveSession() {
         <>
           <div className={live.hero}>
             <p className={live.eyebrow}>{SESSION.eyebrow}</p>
-            <h1 ref={heading} tabIndex={-1} className={live.title}>{SESSION.headline}</h1>
+            <h1 ref={heading} tabIndex={-1} className={live.title}>
+              {SESSION.headline.before}
+              <mark>{SESSION.headline.mark}</mark>
+              {SESSION.headline.after}
+            </h1>
             <p className={live.sub}>{SESSION.subhead}</p>
+            <p className={live.watch}>{SESSION.watch}</p>
           </div>
           <div className={live.video}>
             {VIDEO ? (
-              <video className="vsl" data-name="Live session" data-marks="25,50,75,100" src={VIDEO} poster={VIDEO_POSTER || undefined} controls playsInline preload="metadata" />
+              <>
+                <video
+                  ref={vsl}
+                  className="vsl"
+                  aria-label="Jordan explains the live session"
+                  data-name="Live session"
+                  data-marks="25,50,75,100"
+                  data-progress="sound-on"
+                  src={VIDEO}
+                  poster={VIDEO_POSTER || undefined}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  controls={soundOn}
+                  onVolumeChange={(e) => !e.currentTarget.muted && setSoundOn(true)}
+                />
+                {soundOn ? null : (
+                  <button type="button" className={live.play} aria-label="Play the video with sound" onClick={withSound}>
+                    <span className={live.pill}><span className={live.ring} aria-hidden="true" />Tap for sound</span>
+                  </button>
+                )}
+              </>
             ) : (
               <div className={live.placeholder}>Video coming</div>
             )}
@@ -482,7 +522,7 @@ export default function LiveSession() {
   const screenClass = [styles.screen, fromLeft ? styles.fromLeft : "", leaving ? styles.leaving : ""].join(" ");
 
   return (
-    <section ref={root} className={`${styles.quiz} ${live.page}`} aria-label="Free live session sign-up">
+    <section ref={root} className={`${styles.quiz} ${live.page} ${screen === "signup" ? live.landing : ""}`} aria-label="Free live session sign-up">
       <canvas ref={canvas} className={styles.burst} aria-hidden="true" />
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
