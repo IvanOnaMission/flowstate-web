@@ -64,7 +64,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 0 24%;
+  padding: 0 0 16%;
   background: rgba(3, 16, 26, 0.12);
   border: 0;
   cursor: pointer;
@@ -143,3 +143,11 @@
 .page [role="status"],
 .page [aria-live] { color: var(--link); }
 .page p a { color: var(--link); }
+
+/* On phones the wide player is short, so a smaller pill keeps Jordan's face clear. */
+@media (max-width: 699px) {
+  .play { padding-bottom: 21%; }
+  .pill { gap: 8px; padding: 6px 14px 6px 6px; font-size: 0.9375rem; }
+  .ring { width: 28px; height: 28px; }
+  .ring::after { margin-left: 3px; border-width: 6px 0 6px 10px; }
+}
