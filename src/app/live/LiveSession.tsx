@@ -97,6 +97,26 @@ function calendarLinks() {
 
 const CAL = calendarLinks();
 
+/** Ivan's Calendly, the same 30-minute call as the other landing pages, prefilled with their details. */
+function bookingLink(d: Details) {
+  const url = new URL(SESSION.calendly);
+  if (typeof window !== "undefined") {
+    const t = tracking();
+    for (const key of TRACKED) if (t[key]) url.searchParams.set(key, t[key]);
+  }
+  if (d.name) {
+    const [first, ...rest] = d.name.split(/\s+/);
+    url.searchParams.set("name", d.name);
+    url.searchParams.set("first_name", first);
+    if (rest.length) url.searchParams.set("last_name", rest.join(" "));
+  }
+  if (d.email) url.searchParams.set("email", d.email);
+  const digits = d.phone.replace(/\D/g, "");
+  const phone = d.phone.trim().startsWith("+") ? `+${digits}` : digits.startsWith("0") ? `+64${digits.slice(1)}` : digits.startsWith("64") ? `+${digits}` : "";
+  if (phone) url.searchParams.set("a1", phone);
+  return url.toString();
+}
+
 const Check = () => (
   <svg viewBox="0 0 16 16" aria-hidden="true">
     <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -428,6 +448,15 @@ export default function LiveSession() {
               <Link href="/quoting-privacy/">Privacy notice</Link>.
             </p>
           </form>
+          <div className={live.faq}>
+            <h2 className={live.faqTitle}>Questions</h2>
+            {SESSION.faq.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
           </div>
         </>
       );
@@ -453,7 +482,7 @@ export default function LiveSession() {
           </div>
           {i === 0 ? (
             <p className={live.saved}>
-              <Check /> You&apos;re in. Just before you go, a few quick ones so Jordan can pitch it right. All optional.
+              <Check /> You&apos;re in. Before you go, can you answer a few questions? It helps Jordan pitch the session right. All optional.
             </p>
           ) : null}
           <h2 ref={heading} tabIndex={-1}>{q.question}</h2>
@@ -507,6 +536,14 @@ export default function LiveSession() {
             <a className={live.ghost} href={CAL.ics} download="live-session.ics">Apple or Outlook</a>
           </div>
         ) : null}
+        <div className={live.callCard}>
+          <h3>Want to talk about your business before then?</h3>
+          <p>Book a free 30-minute call with Ivan. Pick a time that suits.</p>
+          <a className={styles.btn} href={bookingLink(details)} target="_blank" rel="noopener noreferrer"
+            onClick={() => fbq("trackCustom", "LiveSessionBookCall", { content_name: OFFER })}>
+            Book a call with Ivan
+          </a>
+        </div>
       </>
     );
   }

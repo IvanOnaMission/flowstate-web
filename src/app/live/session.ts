@@ -23,6 +23,12 @@ export const SESSION = {
   where: "Live online",
   priceNote: "Free this time. Future sessions will be around $200.",
   doneNote: "Your spot's saved. The joining link comes by email before Tuesday.",
+  calendly: "https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&utm_medium=direct-booking&utm_campaign=live-session",
+  faq: [
+    { q: "Is it really free?", a: "Yes, this one's free. Future sessions will be around $200." },
+    { q: "Do I need to be technical?", a: "No. Jordan keeps it practical. Just bring your questions." },
+    { q: "How do I join?", a: "It's online. You'll get the joining link by email before Tuesday 24 November, 10am NZ time." },
+  ],
   title: "Free live session for electrical business owners",
   calendarNote: "Live session with Jordan from Conduction Company. The joining link comes by email.",
   // 10am NZDT (UTC+13) on Tue 24 Nov 2026. One hour is a guess for the calendar entry.
