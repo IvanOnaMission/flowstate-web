@@ -8,8 +8,8 @@ export const OFFER = "Live session";
 export const CAMPAIGN = "live-session";
 
 /** The VSL. Empty shows a placeholder until the final cut is in public/assets/live/. */
-export const VIDEO = "/assets/live/jordan-live-session-vsl.mp4";
-export const VIDEO_POSTER = "/assets/live/jordan-live-session-poster.jpg";
+export const VIDEO = "/assets/live/jordan-live-session-vsl-v2.mp4";
+export const VIDEO_POSTER = "/assets/live/jordan-live-session-poster-v2.jpg";
 
 export const SESSION = {
   eyebrow: "Free live session for electrical business owners",
