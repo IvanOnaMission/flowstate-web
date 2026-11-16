@@ -9,12 +9,12 @@ export const CAMPAIGN = "live-session";
 
 /** The VSL. Empty shows a placeholder until the final cut is in public/assets/live/. */
 export const VIDEO = "/assets/live/jordan-live-session-vsl-wide.mp4";
-export const VIDEO_POSTER = "/assets/live/jordan-live-session-thumbnail.jpg";
+export const VIDEO_POSTER = "/assets/live/jordan-live-session-thumbnail-2.jpg";
 
 export const SESSION = {
   eyebrow: "Free live session for electrical business owners",
   // The highlighter-pen word sits on `mark`, like the Quote Machine page.
-  headline: { before: "How AI took over ", mark: "most of the office work", after: " in my electrical business" },
+  headline: { before: "AI took over ", mark: "most of the work", after: " in my electrical business" },
   watch: "Watch the 45-second video from Jordan.",
   subhead:
     "I'm Jordan from Conduction Company. I'll show you exactly what AI does in our business and the lessons I learned the hard way. You don't need to be technical, just bring your questions.",
