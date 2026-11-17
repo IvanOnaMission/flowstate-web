@@ -532,7 +532,7 @@ export default function LiveSession() {
         <p className={styles.lede}>{SESSION.doneNote}{details.email ? ` Check ${details.email}.` : ""}</p>
         {sessionLine}
         {CAL ? (
-          <div className={styles.ctaRow}>
+          <div className={`${styles.ctaRow} ${live.doneCta}`}>
             <a className={styles.btn} href={CAL.google} target="_blank" rel="noopener noreferrer">Add to Google Calendar</a>
             <a className={live.ghost} href={CAL.ics} download="live-session.ics">Apple or Outlook</a>
           </div>
