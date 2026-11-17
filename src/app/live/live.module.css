@@ -41,7 +41,7 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.sub { margin: 14px auto 0; max-width: 38rem; color: var(--mute); font-size: clamp(1.0625rem, 2.4vw, 1.1875rem); line-height: 1.6; }
+.sub { margin: 10px auto 0; max-width: 34rem; color: var(--mute); font-size: clamp(0.875rem, 2vw, 1rem); line-height: 1.5; }
 .watch { margin: 8px 0 0; color: var(--mute); font-size: 0.8125rem; }
 
 /* Landscape VSL, full width of the column like the Quote Machine page. */
@@ -165,3 +165,7 @@
 .callCard h3 { margin: 0 0 6px; color: var(--text); font-size: 1.2rem; }
 .callCard p { margin: 0 0 16px; color: var(--mute); }
 .callCard a { text-decoration: none; border-radius: 8px; color: #071f30; }
+
+.logo { display: inline-flex; align-items: center; }
+.logo img { display: block; height: 40px; width: auto; }
+@media (min-width: 700px) { .logo img { height: 46px; } }
