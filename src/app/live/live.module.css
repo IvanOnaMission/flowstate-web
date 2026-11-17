@@ -1,16 +1,18 @@
-/* /live/ page. Built on the /essentials/ quiz styles, recoloured to the light look of the
-   Quote Machine page (public/quote-machine/): paper background, navy text, gold actions. */
+/* /live/ page. Built on the /essentials/ quiz styles, recoloured to the Flowstate brand
+   (globals.css): pale blue ground, ink text, atlantic actions, logo blue accent.
+   Yellow is kept to one small touch: the stroke under the headline's key words. */
 .page {
-  --night: #faf9f6;
+  --night: #f3f8fb;
   --surface: #ffffff;
-  --surface-2: #f1f2ef;
-  --line: #dce0df;
-  --line-hi: #b9c3c6;
+  --surface-2: #e9f2f8;
+  --line: #d6e4ec;
+  --line-hi: #a9c4d4;
   --text: #06283d;
-  --mute: #53646d;
+  --mute: #3f5f73;
   --sky: #d6ecf8;
-  --link: #1a6fa3;
+  --link: #0f4b70;
   --blue: #0f4b70;
+  --brand: #0090fe;
   --ink: #06283d;
   --danger: #b4321f;
   color-scheme: light;
@@ -31,13 +33,11 @@
   font-weight: 700 !important;
   letter-spacing: -0.035em !important;
 }
-/* Highlighter-pen stroke, same as the Quote Machine headline. */
+/* Key words in the logo blue, with a thin gold stroke underneath: the page's one bit of yellow. */
 .title mark {
-  color: inherit;
-  background: linear-gradient(100deg, rgba(255, 213, 0, 0) 1%, rgba(255, 213, 0, 0.95) 3%, rgba(255, 206, 0, 0.85) 50%, rgba(255, 213, 0, 0.95) 96%, rgba(255, 213, 0, 0) 99%) 0 78% / 100% 62% no-repeat;
-  padding: 0 0.14em;
-  margin: 0 -0.06em;
-  border-radius: 0.35em 0.15em 0.45em 0.2em;
+  color: var(--brand);
+  background: linear-gradient(var(--gold), var(--gold)) 0 92% / 100% 0.12em no-repeat;
+  padding: 0 0.04em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -103,7 +103,12 @@
 }
 .price { margin: 4px 0 0; color: var(--text); font-size: 0.9375rem; font-weight: 600; }
 
-.landing :global(button[type="submit"]) { border-radius: 8px; color: #071f30; }
+/* Actions in brand atlantic instead of gold. */
+.page :global(button[type="submit"]),
+.page .callCard a,
+.page .doneCta :global(a) { border-radius: 8px; background: var(--blue); color: #fff; }
+.page :global(button[type="submit"]:hover),
+.page .callCard a:hover { background: #14608c; box-shadow: 0 16px 32px -14px rgba(15, 75, 112, 0.55); }
 
 .qTop { display: flex; align-items: center; justify-content: space-between; }
 .skip {
@@ -164,7 +169,7 @@
 .callCard { margin-top: 30px; padding: 22px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
 .callCard h3 { margin: 0 0 6px; color: var(--text); font-size: 1.2rem; }
 .callCard p { margin: 0 0 16px; color: var(--mute); }
-.callCard a { text-decoration: none; border-radius: 8px; color: #071f30; }
+.callCard a { text-decoration: none; }
 
 .logo { display: inline-flex; align-items: center; }
 .logo img { display: block; height: 40px; width: auto; }
