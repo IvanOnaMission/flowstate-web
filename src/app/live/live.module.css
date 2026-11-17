@@ -1,0 +1,167 @@
+/* /live/ page. Built on the /essentials/ quiz styles, recoloured to the light look of the
+   Quote Machine page (public/quote-machine/): paper background, navy text, gold actions. */
+.page {
+  --night: #faf9f6;
+  --surface: #ffffff;
+  --surface-2: #f1f2ef;
+  --line: #dce0df;
+  --line-hi: #b9c3c6;
+  --text: #06283d;
+  --mute: #53646d;
+  --sky: #d6ecf8;
+  --link: #1a6fa3;
+  --blue: #0f4b70;
+  --ink: #06283d;
+  --danger: #b4321f;
+  color-scheme: light;
+}
+.page::after { display: none; }
+
+.inner { max-width: 40rem; }
+.wide { max-width: 55rem; }
+.signup { margin-top: calc(-1 * clamp(14px, 4vh, 44px)); }
+
+.hero { text-align: center; }
+.eyebrow { margin: 0 0 12px; color: var(--link); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; }
+.title {
+  margin: 0 auto !important;
+  max-width: 760px;
+  font-size: clamp(2rem, 6vw, 3.375rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+}
+/* Highlighter-pen stroke, same as the Quote Machine headline. */
+.title mark {
+  color: inherit;
+  background: linear-gradient(100deg, rgba(255, 213, 0, 0) 1%, rgba(255, 213, 0, 0.95) 3%, rgba(255, 206, 0, 0.85) 50%, rgba(255, 213, 0, 0.95) 96%, rgba(255, 213, 0, 0) 99%) 0 78% / 100% 62% no-repeat;
+  padding: 0 0.14em;
+  margin: 0 -0.06em;
+  border-radius: 0.35em 0.15em 0.45em 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.sub { margin: 14px auto 0; max-width: 38rem; color: var(--mute); font-size: clamp(1.0625rem, 2.4vw, 1.1875rem); line-height: 1.6; }
+.watch { margin: 8px 0 0; color: var(--mute); font-size: 0.8125rem; }
+
+/* Landscape VSL, full width of the column like the Quote Machine page. */
+.video {
+  position: relative;
+  width: 100%;
+  margin: 22px auto 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+}
+.video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
+.placeholder { display: grid; place-items: center; aspect-ratio: 16 / 9; color: #9bb6c7; font-weight: 600; background: #0a1d2b; }
+
+/* Covers the whole video so the first tap anywhere starts it with sound, from the top. */
+.play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0 16%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+}
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--blue);
+  border-radius: 999px;
+  padding: 10px 22px 10px 12px;
+  font: 700 1.0625rem var(--font-sans);
+  box-shadow: 0 8px 28px rgba(3, 16, 26, 0.45);
+}
+.ring { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; }
+.ring::after { content: ""; margin-left: 4px; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent var(--blue); }
+.play:hover .pill { background: #14608c; }
+.play:focus-visible { outline: 3px solid var(--link); outline-offset: -3px; }
+
+.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.facts li { padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 0.875rem; }
+.facts b { color: var(--text); }
+
+.form {
+  margin-top: 20px;
+  padding: 26px clamp(18px, 4vw, 28px) 22px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 30px rgba(7, 31, 48, 0.04);
+}
+.formTitle { font-size: clamp(1.45rem, 4vw, 1.75rem) !important; }
+@media (min-width: 700px) {
+  .form > div:first-of-type { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.price { margin: 4px 0 0; color: var(--text); font-size: 0.9375rem; font-weight: 600; }
+
+.landing :global(button[type="submit"]) { border-radius: 8px; color: #071f30; }
+
+.qTop { display: flex; align-items: center; justify-content: space-between; }
+.skip {
+  margin: 0 0 18px;
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: var(--mute);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.skip:hover { color: var(--text); }
+.skip:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 6px; }
+
+.saved {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff5d9;
+  border: 1px solid #e7d69d;
+  color: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.saved svg { flex: none; width: 18px; height: 18px; margin-top: 2px; color: #8a6d00; }
+
+.ghost { color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Text that the dark quiz colours with --sky needs the darker link blue on paper. */
+.page [role="status"],
+.page [aria-live] { color: var(--link); }
+.page p a { color: var(--link); }
+
+/* On phones the wide player is short, so a smaller pill keeps Jordan's face clear. */
+@media (max-width: 699px) {
+  .play { padding-bottom: 21%; }
+  .pill { gap: 8px; padding: 6px 14px 6px 6px; font-size: 0.9375rem; }
+  .ring { width: 28px; height: 28px; }
+  .ring::after { margin-left: 3px; border-width: 6px 0 6px 10px; }
+}
+
+/* Three FAQs under the signup card, styled like the Quote Machine page. */
+.faq { margin-top: 36px; text-align: left; }
+.faqTitle { font-size: clamp(1.4rem, 4vw, 1.75rem) !important; margin-bottom: 8px !important; }
+.faq details { border-top: 1px solid var(--line); padding: 16px 0; }
+.faq details:last-of-type { border-bottom: 1px solid var(--line); }
+.faq summary { font-weight: 700; cursor: pointer; color: var(--text); }
+.faq details p { margin: 10px 0 0; color: var(--mute); }
+
+/* Book a call, on the done screen. */
+.callCard { margin-top: 30px; padding: 22px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+.callCard h3 { margin: 0 0 6px; color: var(--text); font-size: 1.2rem; }
+.callCard p { margin: 0 0 16px; color: var(--mute); }
+.callCard a { text-decoration: none; border-radius: 8px; color: #071f30; }
