@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {EXTRA, OFFER, liveAnswers, liveCustomerType} from './live-session.mjs';
+import {EXTRA, HEADLINE, OFFER, liveAnswers, liveCustomerType} from './live-session.mjs';
 import {formLeadMessage} from './messages.mjs';
 import {holdLead, updateHeldLead} from './pending.mjs';
 
@@ -28,14 +28,14 @@ test('customer type only once a role is given', () => {
 
 test('the held alert picks up the answers and shows the session line', async () => {
   const s = memory();
-  const lead = {email: 'Jane@Example.com', name: 'Jane', phone: '021 123 4567', offer: OFFER, extra: EXTRA};
+  const lead = {email: 'Jane@Example.com', name: 'Jane', phone: '021 123 4567', offer: OFFER, extra: EXTRA, headline: HEADLINE};
   await holdLead(lead, s);
   const heldAt = s.m.get('jane@example.com').heldAt;
   assert.equal(await updateHeldLead({email: 'jane@example.com'}, {quiz: [{question: 'Role', answer: 'Owner'}]}, s), true);
   const held = s.m.get('jane@example.com');
   assert.equal(held.heldAt, heldAt);
   const text = formLeadMessage(held);
-  assert.match(text, /^New Live session lead/);
+  assert.match(text, /^New live session signup/);
   assert.match(text, /Signed up for the free live session/);
   assert.doesNotMatch(text, /Extra details/);
   assert.match(text, /QUIZ\nRole: Owner/);

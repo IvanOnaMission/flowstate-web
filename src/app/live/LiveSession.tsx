@@ -78,6 +78,7 @@ function calendarLinks() {
   google.searchParams.set("text", SESSION.title);
   google.searchParams.set("dates", `${start}/${end}`);
   google.searchParams.set("details", SESSION.calendarNote);
+  google.searchParams.set("location", SESSION.meet);
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -89,6 +90,8 @@ function calendarLinks() {
     `DTEND:${end}`,
     `SUMMARY:${SESSION.title}`,
     `DESCRIPTION:${SESSION.calendarNote}`,
+    `LOCATION:${SESSION.meet}`,
+    `URL:${SESSION.meet}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -528,7 +531,7 @@ export default function LiveSession() {
           </svg>
         </div>
         <h2 ref={heading} tabIndex={-1}>See you Tuesday{first ? `, ${first}` : ""}.</h2>
-        <p className={styles.lede}>{SESSION.doneNote}{details.email ? ` We'll send it to ${details.email}.` : ""}</p>
+        <p className={styles.lede}>{SESSION.doneNote}{details.email ? ` Check ${details.email}.` : ""}</p>
         {sessionLine}
         {CAL ? (
           <div className={styles.ctaRow}>

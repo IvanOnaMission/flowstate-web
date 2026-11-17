@@ -21,8 +21,8 @@ import {recordFormLead} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
 import {acceptedMatch, sendCrmEvent} from '../lib/meta-capi.mjs';
 import {FORM as ESSENTIALS_FORM, OFFER as ESSENTIALS, essentialsAnswers, essentialsCustomerType} from '../lib/essentials-quiz.mjs';
-import {ANSWERS_FORM as LIVE_ANSWERS_FORM, EXTRA as LIVE_EXTRA, FORM as LIVE_FORM, OFFER as LIVE, SOURCE as LIVE_SOURCE,
-  liveAnswers, liveCustomerType} from '../lib/live-session.mjs';
+import {ANSWERS_FORM as LIVE_ANSWERS_FORM, EXTRA as LIVE_EXTRA, HEADLINE as LIVE_HEADLINE, FORM as LIVE_FORM, OFFER as LIVE, SOURCE as LIVE_SOURCE,
+  liveAnswers, liveCustomerType, welcomeSequence} from '../lib/live-session.mjs';
 const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM, LIVE_FORM];
 
 export default async (req) => {
@@ -78,7 +78,7 @@ export default async (req) => {
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
     ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {}),
     ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {}),
-    ...(live ? {offer: LIVE, extra: LIVE_EXTRA} : {})};
+    ...(live ? {offer: LIVE, extra: LIVE_EXTRA, headline: LIVE_HEADLINE} : {})};
   const contact = {email: lead.email, name: lead.name, phone: lead.phone};
   const submittedAt = payload.created_at || new Date().toISOString();
   const click = acceptedMatch({fbclid: data.fbclid, fbc: data.fbc, fbp: data.fbp}, Date.parse(submittedAt) || Date.now());
@@ -88,7 +88,7 @@ export default async (req) => {
   const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
   const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [process.env.KIT_TAG_LIVE_SESSION] : [];
   await Promise.all([
-    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags})),
+    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags, sequenceIds: live ? [welcomeSequence()] : []})),
     safely('notion lead', async () => {
       await crmLead({...contact, source, customerType, adId: data.ad_id, ...click, metaLeadId: click.meta_lead_id});
       // The quiz note needs the opportunity crmLead has just created.

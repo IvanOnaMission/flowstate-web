@@ -17,7 +17,7 @@ async function kit(path, body) {
   if (!res.ok) throw new Error(`Kit ${path} ${res.status} ${(await res.text()).slice(0, 200)}`);
 }
 
-export async function addToKit({email, name, phone, tagId, tagIds = []}) {
+export async function addToKit({email, name, phone, tagId, tagIds = [], sequenceIds = []}) {
   if (!process.env.KIT_API_KEY || !email) return;
   const first = String(name || '').trim().split(/\s+/)[0] || undefined;
   try {
@@ -29,6 +29,10 @@ export async function addToKit({email, name, phone, tagId, tagIds = []}) {
   }
   for (const id of new Set([tagId, ...tagIds].filter(Boolean))) {
     await kit(`/tags/${id}/subscribers`, {email_address: email});
+  }
+  // A sequence starts sending its first email as soon as they're added.
+  for (const id of new Set(sequenceIds.filter(Boolean))) {
+    await kit(`/sequences/${id}/subscribers`, {email_address: email});
   }
 }
 
