@@ -14,6 +14,8 @@ export const SOURCE = 'Live session page';
 // Kit sequence "Live session 24 Nov — welcome (fires on signup)": one email with the Google Meet link.
 // KIT_SEQUENCE_LIVE_SESSION overrides it for a later session.
 export const welcomeSequence = () => process.env.KIT_SEQUENCE_LIVE_SESSION || '2975201';
+// Kit tag "live-session-2026-11-24": the reminder broadcasts (day before, 1 hour, 5 minutes) go to it.
+export const sessionTag = () => process.env.KIT_TAG_LIVE_SESSION || '26010706';
 // Shown in the Telegram alert instead of the Calendly "extra details" line.
 export const EXTRA = 'Signed up for the free live session, Tue 24 Nov 10am';
 export const HEADLINE = 'New live session signup (Jordan, Tue 24 Nov)';
