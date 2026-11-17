@@ -33,11 +33,13 @@
   font-weight: 700 !important;
   letter-spacing: -0.035em !important;
 }
-/* Key words in the logo blue, with a thin gold stroke underneath: the page's one bit of yellow. */
+/* Highlighter-pen stroke behind the key words, same as the Quote Machine headline. */
 .title mark {
-  color: var(--brand);
-  background: linear-gradient(var(--gold), var(--gold)) 0 92% / 100% 0.12em no-repeat;
-  padding: 0 0.04em;
+  color: inherit;
+  background: linear-gradient(100deg, rgba(255, 213, 0, 0) 1%, rgba(255, 213, 0, 0.95) 3%, rgba(255, 206, 0, 0.85) 50%, rgba(255, 213, 0, 0.95) 96%, rgba(255, 213, 0, 0) 99%) 0 78% / 100% 62% no-repeat;
+  padding: 0 0.14em;
+  margin: 0 -0.06em;
+  border-radius: 0.35em 0.15em 0.45em 0.2em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
