@@ -398,14 +398,12 @@ export default function LiveSession() {
       return (
         <>
           <div className={live.hero}>
-            <p className={live.eyebrow}>{SESSION.eyebrow}</p>
             <h1 ref={heading} tabIndex={-1} className={live.title}>
               {SESSION.headline.before}
               <mark>{SESSION.headline.mark}</mark>
               {SESSION.headline.after}
             </h1>
             <p className={live.sub}>{SESSION.subhead}</p>
-            <p className={live.watch}>{SESSION.watch}</p>
           </div>
           <div className={live.video}>
             {VIDEO ? (
@@ -562,9 +560,9 @@ export default function LiveSession() {
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
           <div className={styles.topRow}>
-            <Link href="/" className={styles.wordmark}>
-              {site.name}
-              <span>.</span>
+            <Link href="/" className={live.logo} aria-label="Flowstate home">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/live/flowstate-logo-light.svg" alt="Flowstate" width={96} height={40} />
             </Link>
             <span className={styles.count} aria-live="polite">
               {asking ? `Just before you go · ${qi + 1} of ${questions.length}` : ""}
