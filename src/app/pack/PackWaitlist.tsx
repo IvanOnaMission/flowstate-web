@@ -447,7 +447,7 @@ export default function PackWaitlist() {
 
     if (screen === "live") {
       return (
-        <>
+        <div className={own.liveScreen}>
           <p className={live.saved}>
             <Check /> {PACK.liveOffer.saved}
           </p>
@@ -483,7 +483,7 @@ export default function PackWaitlist() {
             </button>
           </div>
           <p className={styles.status} role="status">{status}</p>
-        </>
+        </div>
       );
     }
 
@@ -596,7 +596,7 @@ export default function PackWaitlist() {
             <i className={`${styles.fill} ${duo.fill}`} style={{ width: `${pct}%` }} />
           </div>
         </header>
-        <div className={styles.stage}>
+        <div className={`${styles.stage} ${duo.stage}`}>
           <div key={screen} className={`${screenClass} ${screen === "signup" ? live.signup : ""}`}>
             {renderScreen()}
           </div>

@@ -37,7 +37,8 @@ export const questions: Question[] = [
     field: "job_software",
     summary: "Job software",
     question: "What runs your jobs?",
-    options: plain("Simpro", "Fergus", "Tradify", "Katipolt", "Paper or spreadsheets", "Something else"),
+    options: plain("Simpro", "Fergus", "Tradify", "Katipolt", "FeeWorks", "WorkflowMax", "Paper or spreadsheets", "Something else"),
+    layout: "grid",
   },
   {
     field: "time_sink",
@@ -46,9 +47,10 @@ export const questions: Question[] = [
     note: "Pick the one that hurts most.",
     options: plain(
       "Quoting",
-      "Getting paid",
+      "Invoicing",
       "Replying to enquiries",
-      "Email and admin",
+      "Email",
+      "General admin",
       "Getting my team more productive",
       "Still figuring it out",
     ),

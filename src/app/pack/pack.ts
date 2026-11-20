@@ -25,7 +25,7 @@ export const PACK = {
   // Shown after the questions while Jordan's live session (src/app/live/session.ts) is still ahead.
   liveOffer: {
     saved: "Thanks, that's everything for the pack.",
-    title: "Hang on, sign up for this as well",
+    title: "Hang on, come to this. Free live session.",
     body: "Jordan owns an Auckland electrical business and runs it with AI. He's doing a free live session showing what AI actually does in his business. Watch the short video.",
     yes: "Save my spot",
     no: "No thanks",

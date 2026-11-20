@@ -584,7 +584,7 @@ export default function LiveSession() {
             <i className={`${styles.fill} ${duo.fill}`} style={{ width: `${pct}%` }} />
           </div>
         </header>
-        <div className={styles.stage}>
+        <div className={`${styles.stage} ${duo.stage}`}>
           <div key={screen} className={`${screenClass} ${screen === "signup" ? live.signup : ""}`}>
             {renderScreen()}
           </div>
