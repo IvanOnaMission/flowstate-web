@@ -110,6 +110,9 @@ export default async (req) => {
     safely('meta crm lead', () => sendCrmEvent({eventName: 'Lead', eventTime: submittedAt, email: lead.email, phone: lead.phone, name: lead.name, ...click, leadId: click.meta_lead_id})),
   ]);
 
+  // Pack waitlist signups get no Telegram alert each; pack-waitlist-digest.mjs sends one count a day.
+  if (pack) return new Response('saved; counted in the daily pack digest', {status: 200});
+
   try {
     await holdLead(lead);
     return new Response('held', {status: 200});
