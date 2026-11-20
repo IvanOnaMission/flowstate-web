@@ -25,6 +25,10 @@ type Screen = "signup" | "live" | "done" | `q${number}`;
 
 /** The live-session offer shows only until the session starts, then the flow skips it. */
 const liveOpen = () => Date.now() < Date.parse(SESSION.startUtc);
+
+/** A short cheer above each question after the first, by question number. */
+const CHEERS = ["", "Nice one!", "Good stuff!", "Halfway there!", "Keep going!", "Nearly there!", "Last one!"];
+const SOUND_KEY = "flowstate-quiz-sound";
 type Details = { name: string; email: string; phone: string };
 type Errors = Partial<Record<keyof Details, string>>;
 type MetaClick = { fbclid?: string; fbc?: string; fbp?: string };
@@ -113,6 +117,8 @@ export default function PackWaitlist() {
   const [status, setStatus] = useState("");
   const [joinedLive, setJoinedLive] = useState(false);
   const [joining, setJoining] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
+  const audio = useRef<AudioContext | null>(null);
 
   const root = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -127,7 +133,57 @@ export default function PackWaitlist() {
 
   useEffect(() => {
     reduce.current = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    try {
+      if (localStorage.getItem(SOUND_KEY) === "off") queueMicrotask(() => setSoundOn(false));
+    } catch {
+      /* Storage blocked: sound stays on. */
+    }
   }, []);
+
+  /**
+   * Little synthesised tones, no audio files: a two-note ding per answer and a rising run at the end.
+   * The AudioContext is created on the first tap, which phones require before any sound.
+   */
+  const play = useCallback(
+    (notes: number[], gap = 0.09, length = 0.22) => {
+      if (!soundOn) return;
+      try {
+        const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+        if (!Ctx) return;
+        const ctx = (audio.current ??= new Ctx());
+        if (ctx.state === "suspended") void ctx.resume();
+        const t0 = ctx.currentTime + 0.01;
+        notes.forEach((freq, k) => {
+          const t = t0 + k * gap;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0.0001, t);
+          gain.gain.exponentialRampToValueAtTime(0.14, t + 0.012);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + length);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + length + 0.05);
+        });
+      } catch {
+        /* No sound is fine. */
+      }
+    },
+    [soundOn],
+  );
+  const ding = useCallback(() => play([880, 1318.5]), [play]);
+  const fanfare = useCallback(() => play([523.25, 659.25, 783.99, 1046.5], 0.11, 0.35), [play]);
+
+  function toggleSound() {
+    const next = !soundOn;
+    setSoundOn(next);
+    try {
+      localStorage.setItem(SOUND_KEY, next ? "on" : "off");
+    } catch {
+      /* Storage blocked: the choice lasts for this visit. */
+    }
+  }
 
   // Prefill from the link, e.g. /pack/?name=Jane%20Smith&email=jane@x.co.nz
   // (Kit emails and Meta can fill these in). Browser autofill works through the autocomplete attributes.
@@ -245,10 +301,13 @@ export default function PackWaitlist() {
     if (!navigated.current) return;
     heading.current?.focus({ preventScroll: true });
     if (screen === "done") {
-      const id = window.setTimeout(burst, 260);
+      const id = window.setTimeout(() => {
+        burst();
+        fanfare();
+      }, 260);
       return () => window.clearTimeout(id);
     }
-  }, [screen, burst]);
+  }, [screen, burst, fanfare]);
 
   const choose = useCallback(
     (i: number, label: string) => {
@@ -263,10 +322,11 @@ export default function PackWaitlist() {
       } catch {
         /* Not every phone allows it. */
       }
+      ding();
       fbq("trackCustom", "PackWaitlistAnswer", { content_name: OFFER, question: q.field });
       window.setTimeout(() => (i + 1 < questions.length ? go(`q${i + 1}` as Screen) : finish()), reduce.current ? 150 : 440);
     },
-    [go, finish],
+    [go, finish, ding],
   );
 
   // Number keys answer.
@@ -414,7 +474,7 @@ export default function PackWaitlist() {
                 {field("email", "Email", { type: "email", inputMode: "email", autoComplete: "email", maxLength: 200, placeholder: "you@yourbusiness.co.nz" })}
                 {field("phone", <>Mobile <span className={own.optional}>(optional)</span></>, { type: "tel", inputMode: "tel", autoComplete: "tel", maxLength: 40, placeholder: "021 123 4567" })}
               </div>
-              <button type="submit" className={`${styles.btn} ${styles.wide}`} disabled={sending}>
+              <button type="submit" className={`${styles.btn} ${styles.wide} ${own.chunky}`} disabled={sending}>
                 {sending ? "Saving…" : PACK.button} <span className={styles.arrow} aria-hidden="true">→</span>
               </button>
               <p className={styles.status} role="status">{status}</p>
@@ -450,7 +510,7 @@ export default function PackWaitlist() {
             <li>{SESSION.where}</li>
           </ul>
           <div className={`${styles.ctaRow} ${live.doneCta}`}>
-            <button type="button" className={`${styles.btn} ${own.liveYes}`} onClick={joinLive} disabled={joining}>
+            <button type="button" className={`${styles.btn} ${own.chunky}`} onClick={joinLive} disabled={joining}>
               {joining ? "Saving…" : PACK.liveOffer.yes}
             </button>
             <button type="button" className={live.skip} onClick={() => go("done")}>
@@ -485,12 +545,13 @@ export default function PackWaitlist() {
               <Check /> {PACK.saved}
             </p>
           ) : null}
+          {CHEERS[i] ? <p className={own.cheer}>{CHEERS[i]}</p> : null}
           <h2 ref={heading} tabIndex={-1}>{q.question}</h2>
           {q.note ? <p className={styles.lede}>{q.note}</p> : null}
           <div className={`${styles.opts} ${justChose === q.field ? styles.locked : ""}`} role="group" aria-label={q.question}>
             {q.options.map((o, j) => {
               const on = chosen === o.label;
-              const cls = [styles.opt, on ? styles.chosen : "", on && justChose !== q.field ? styles.instant : ""].join(" ");
+              const cls = [styles.opt, own.opt, on ? `${styles.chosen} ${own.chosen}` : "", on && justChose !== q.field ? styles.instant : ""].join(" ");
               return (
                 <button
                   key={o.label}
@@ -500,7 +561,7 @@ export default function PackWaitlist() {
                   aria-pressed={on}
                   onClick={() => choose(i, o.label)}
                 >
-                  <span className={styles.key} aria-hidden="true">{j + 1}</span>
+                  <span className={`${styles.key} ${own.key}`} aria-hidden="true">{j + 1}</span>
                   <span className={styles.label}>{o.label}</span>
                   {o.level ? (
                     <span className={styles.lvl} aria-hidden="true">
@@ -509,7 +570,7 @@ export default function PackWaitlist() {
                       ))}
                     </span>
                   ) : null}
-                  <span className={styles.tick}><Check /></span>
+                  <span className={`${styles.tick} ${own.tick}`}><Check /></span>
                 </button>
               );
             })}
@@ -548,7 +609,7 @@ export default function PackWaitlist() {
   const screenClass = [styles.screen, fromLeft ? styles.fromLeft : "", leaving ? styles.leaving : ""].join(" ");
 
   return (
-    <section ref={root} className={`${styles.quiz} ${live.page} ${screen === "signup" ? live.landing : ""}`} aria-label="Free AI systems pack waitlist">
+    <section ref={root} className={`${styles.quiz} ${live.page} ${own.duo} ${screen === "signup" ? live.landing : ""}`} aria-label="Free AI systems pack waitlist">
       <canvas ref={canvas} className={styles.burst} aria-hidden="true" />
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
@@ -557,12 +618,23 @@ export default function PackWaitlist() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/live/flowstate-logo-light.svg" alt="Flowstate" width={96} height={40} />
             </Link>
-            <span className={styles.count} aria-live="polite">
-              {asking ? `Just before you go · ${qi + 1} of ${questions.length}` : ""}
+            <span className={own.topRight}>
+              <span className={styles.count} aria-live="polite">
+                {asking ? `Just before you go · ${qi + 1} of ${questions.length}` : ""}
+              </span>
+              {screen === "signup" ? null : (
+                <button type="button" className={own.sound} onClick={toggleSound} aria-pressed={soundOn}
+                  aria-label={soundOn ? "Turn sound off" : "Turn sound on"}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" />
+                    {soundOn ? <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" /> : <path d="M17 9l5 6M22 9l-5 6" />}
+                  </svg>
+                </button>
+              )}
             </span>
           </div>
-          <div className={`${styles.bar} ${asking ? "" : styles.barHide}`} aria-hidden="true">
-            <i className={styles.fill} style={{ width: `${pct}%` }} />
+          <div className={`${styles.bar} ${own.bar} ${asking ? "" : styles.barHide}`} aria-hidden="true">
+            <i className={`${styles.fill} ${own.fill}`} style={{ width: `${pct}%` }} />
           </div>
         </header>
         <div className={styles.stage}>
