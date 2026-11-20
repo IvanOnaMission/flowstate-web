@@ -4,7 +4,8 @@
  * Kept out of the client component so the server page can list the fields in the
  * static form Netlify detects at deploy.
  */
-export type Option = { label: string; level?: 1 | 2 | 3 };
+/** `detail` is a smaller second line under the label; `level` fills that many of the four meter bars. */
+export type Option = { label: string; detail?: string; level?: 1 | 2 | 3 | 4 };
 /** `layout: "grid"` shows short answers (numbers) two to a row on the /pack/ and /live/ quizzes. */
 export type Question = { field: string; summary: string; question: string; note?: string; options: Option[]; layout?: "grid" };
 
@@ -60,9 +61,10 @@ export const questions: Question[] = [
     summary: "Investment",
     question: "How much are you looking to invest?",
     options: [
-      { label: "A few one-off tools", level: 1 },
-      { label: "Fix my biggest problem properly", level: 2 },
-      { label: "All in on a new way to run my business", level: 3 },
+      { label: "Dipping Toes", detail: "I just want to see what's possible", level: 1 },
+      { label: "Ankles In", detail: "A few one-off automations to see how it can help", level: 2 },
+      { label: "Waist Deep", detail: "Automate the major time-sinks, get big chunks of time back", level: 3 },
+      { label: "Deep End Diving", detail: "Full AI automation and augmentation, market domination", level: 4 },
     ],
   },
   {
