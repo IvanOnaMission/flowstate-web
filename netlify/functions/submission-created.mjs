@@ -23,7 +23,14 @@ import {acceptedMatch, sendCrmEvent} from '../lib/meta-capi.mjs';
 import {FORM as ESSENTIALS_FORM, OFFER as ESSENTIALS, essentialsAnswers, essentialsCustomerType} from '../lib/essentials-quiz.mjs';
 import {ANSWERS_FORM as LIVE_ANSWERS_FORM, EXTRA as LIVE_EXTRA, HEADLINE as LIVE_HEADLINE, FORM as LIVE_FORM, OFFER as LIVE, SOURCE as LIVE_SOURCE,
   liveAnswers, liveCustomerType, welcomeSequence} from '../lib/live-session.mjs';
-const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM, LIVE_FORM];
+import {ANSWERS_FORM as PACK_ANSWERS_FORM, EXTRA as PACK_EXTRA, HEADLINE as PACK_HEADLINE, FORM as PACK_FORM, OFFER as PACK, SOURCE as PACK_SOURCE,
+  packAnswers, packCustomerType, waitlistTag, welcomeSequence as packWelcomeSequence} from '../lib/pack-waitlist.mjs';
+const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM, LIVE_FORM, PACK_FORM];
+// The optional questions asked after a signup on /live/ or /pack/.
+const ANSWER_FORMS = new Map([
+  [LIVE_ANSWERS_FORM, {answers: liveAnswers, customerType: liveCustomerType, source: LIVE_SOURCE}],
+  [PACK_ANSWERS_FORM, {answers: packAnswers, customerType: packCustomerType, source: PACK_SOURCE}],
+]);
 
 export default async (req) => {
   let payload;
@@ -49,19 +56,20 @@ export default async (req) => {
       return new Response('quiz saved in Netlify Forms; CRM sync failed', {status: 502});
     }
   }
-  if (formName === LIVE_ANSWERS_FORM) {
-    // The optional questions after a live-session signup. Never a new lead or a second alert.
+  const answerPage = ANSWER_FORMS.get(formName);
+  if (answerPage) {
+    // The optional questions after a live-session or pack signup. Never a new lead or a second alert.
     const contact = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
-    const answers = liveAnswers(data);
+    const answers = answerPage.answers(data);
     if (!answers.length) return new Response('no answers', {status: 200});
-    const customerType = liveCustomerType(data);
+    const customerType = answerPage.customerType(data);
     let linked = false;
     await Promise.all([
-      safely('live answers alert', () => updateHeldLead(contact, {quiz: answers})),
-      safely('live answers crm', async () => {
+      safely('signup answers alert', () => updateHeldLead(contact, {quiz: answers})),
+      safely('signup answers crm', async () => {
         // Refreshes the customer type, and creates the lead if the signup is still on its way.
         if (customerType || !(linked = await crmQuiz({email: contact.email, answers, submissionId: payload.id}))) {
-          await crmLead({...contact, source: LIVE_SOURCE, customerType});
+          await crmLead({...contact, source: answerPage.source, customerType});
           linked = await crmQuiz({email: contact.email, answers, submissionId: payload.id});
         }
       }),
@@ -74,21 +82,25 @@ export default async (req) => {
   // /essentials/ sends its quiz answers with the contact details in one submission.
   const essentials = formName === ESSENTIALS_FORM;
   const live = formName === LIVE_FORM;
-  const customerType = essentials ? essentialsCustomerType(data) : live ? undefined : data.customer_type;
+  const pack = formName === PACK_FORM;
+  const customerType = essentials ? essentialsCustomerType(data) : live || pack ? undefined : data.customer_type;
   const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
     ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {}),
     ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {}),
-    ...(live ? {offer: LIVE, extra: LIVE_EXTRA, headline: LIVE_HEADLINE} : {})};
+    ...(live ? {offer: LIVE, extra: LIVE_EXTRA, headline: LIVE_HEADLINE} : {}),
+    ...(pack ? {offer: PACK, extra: PACK_EXTRA, headline: PACK_HEADLINE} : {})};
   const contact = {email: lead.email, name: lead.name, phone: lead.phone};
   const submittedAt = payload.created_at || new Date().toISOString();
   const click = acceptedMatch({fbclid: data.fbclid, fbc: data.fbc, fbp: data.fbp}, Date.parse(submittedAt) || Date.now());
-  const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : live ? LIVE_SOURCE : 'form';
+  const source = quoteMachine ? 'Quote Machine page' : essentials ? 'Business Essentials quiz' : live ? LIVE_SOURCE : pack ? PACK_SOURCE : 'form';
   // Keep the existing lead tag and automations; the separate Quote Machine tag starts its booking reminder.
-  // Every landing page uses the same lead tag. Live-session signups also get KIT_TAG_LIVE_SESSION when it's set.
+  // Every landing page uses the same lead tag. Live-session signups also get KIT_TAG_LIVE_SESSION when it's set;
+  // pack signups get the pack-waitlist tag (who to send the pack to) and its "you're on the list" email.
   const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
-  const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [process.env.KIT_TAG_LIVE_SESSION] : [];
+  const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [process.env.KIT_TAG_LIVE_SESSION] : pack ? [waitlistTag()] : [];
+  const sequenceIds = live ? [welcomeSequence()] : pack ? [packWelcomeSequence()] : [];
   await Promise.all([
-    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags, sequenceIds: live ? [welcomeSequence()] : []})),
+    safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags, sequenceIds})),
     safely('notion lead', async () => {
       await crmLead({...contact, source, customerType, adId: data.ad_id, ...click, metaLeadId: click.meta_lead_id});
       // The quiz note needs the opportunity crmLead has just created.
