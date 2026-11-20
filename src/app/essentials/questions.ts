@@ -5,7 +5,8 @@
  * static form Netlify detects at deploy.
  */
 export type Option = { label: string; level?: 1 | 2 | 3 };
-export type Question = { field: string; summary: string; question: string; note?: string; options: Option[] };
+/** `layout: "grid"` shows short answers (numbers) two to a row on the /pack/ and /live/ quizzes. */
+export type Question = { field: string; summary: string; question: string; note?: string; options: Option[]; layout?: "grid" };
 
 const plain = (...labels: string[]): Option[] => labels.map((label) => ({ label }));
 
@@ -29,13 +30,14 @@ export const questions: Question[] = [
     summary: "Team size",
     question: "How big's the team?",
     note: "Including you.",
-    options: plain("Just me", "2–5", "6–20", "20+"),
+    options: plain("Just me", "2–3", "4–5", "6–10", "11–20", "21–50", "50+"),
+    layout: "grid",
   },
   {
     field: "job_software",
     summary: "Job software",
     question: "What runs your jobs?",
-    options: plain("Simpro", "Fergus", "Tradify", "ServiceM8", "Paper or spreadsheets", "Something else"),
+    options: plain("Simpro", "Fergus", "Tradify", "Katipolt", "Paper or spreadsheets", "Something else"),
   },
   {
     field: "time_sink",

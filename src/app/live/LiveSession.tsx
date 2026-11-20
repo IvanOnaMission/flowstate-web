@@ -16,6 +16,9 @@ import { site } from "@/lib/site";
 import { questions } from "../essentials/questions";
 import styles from "../essentials/quiz.module.css";
 import live from "./live.module.css";
+import duo from "../essentials/duo.module.css";
+import { CHEERS, useQuizSound } from "../essentials/duo";
+import SoundButton from "../essentials/SoundButton";
 import { ANSWERS_FORM, CAMPAIGN, FORM_NAME, OFFER, SESSION, VIDEO, VIDEO_POSTER } from "./session";
 
 type Screen = "signup" | "done" | `q${number}`;
@@ -138,6 +141,7 @@ export default function LiveSession() {
   const [status, setStatus] = useState("");
 
   const [soundOn, setSoundOn] = useState(false);
+  const { soundOn: quizSound, toggle: toggleQuizSound, ding, fanfare } = useQuizSound();
   const vsl = useRef<HTMLVideoElement>(null);
   const root = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -279,10 +283,13 @@ export default function LiveSession() {
     if (!navigated.current) return;
     heading.current?.focus({ preventScroll: true });
     if (screen === "done") {
-      const id = window.setTimeout(burst, 260);
+      const id = window.setTimeout(() => {
+        burst();
+        fanfare();
+      }, 260);
       return () => window.clearTimeout(id);
     }
-  }, [screen, burst]);
+  }, [screen, burst, fanfare]);
 
   const choose = useCallback(
     (i: number, label: string) => {
@@ -297,10 +304,11 @@ export default function LiveSession() {
       } catch {
         /* Not every phone allows it. */
       }
+      ding();
       fbq("trackCustom", "LiveSessionAnswer", { content_name: OFFER, question: q.field });
       window.setTimeout(() => (i + 1 < questions.length ? go(`q${i + 1}` as Screen) : finish()), reduce.current ? 150 : 440);
     },
-    [go, finish],
+    [go, finish, ding],
   );
 
   // Number keys answer.
@@ -439,7 +447,7 @@ export default function LiveSession() {
               {field("email", "Email", { type: "email", inputMode: "email", autoComplete: "email", maxLength: 200, placeholder: "you@yourbusiness.co.nz" })}
               {field("phone", "Mobile", { type: "tel", inputMode: "tel", autoComplete: "tel", maxLength: 40, placeholder: "021 123 4567" })}
             </div>
-            <button type="submit" className={`${styles.btn} ${styles.wide}`} disabled={sending}>
+            <button type="submit" className={`${styles.btn} ${styles.wide} ${duo.chunky}`} disabled={sending}>
               {sending ? "Saving…" : "Save my spot"} <span className={styles.arrow} aria-hidden="true">→</span>
             </button>
             <p className={styles.status} role="status">{status}</p>
@@ -486,12 +494,13 @@ export default function LiveSession() {
               <Check /> You&apos;re in. Before you go, can you answer a few questions? It helps Jordan pitch the session right. All optional.
             </p>
           ) : null}
+          {CHEERS[i] ? <p className={duo.cheer}>{CHEERS[i]}</p> : null}
           <h2 ref={heading} tabIndex={-1}>{q.question}</h2>
           {q.note ? <p className={styles.lede}>{q.note}</p> : null}
-          <div className={`${styles.opts} ${justChose === q.field ? styles.locked : ""}`} role="group" aria-label={q.question}>
+          <div className={`${styles.opts} ${q.layout === "grid" ? duo.grid : ""} ${justChose === q.field ? styles.locked : ""}`} role="group" aria-label={q.question}>
             {q.options.map((o, j) => {
               const on = chosen === o.label;
-              const cls = [styles.opt, on ? styles.chosen : "", on && justChose !== q.field ? styles.instant : ""].join(" ");
+              const cls = [styles.opt, duo.opt, on ? `${styles.chosen} ${duo.chosen}` : "", on && justChose !== q.field ? styles.instant : ""].join(" ");
               return (
                 <button
                   key={o.label}
@@ -501,8 +510,8 @@ export default function LiveSession() {
                   aria-pressed={on}
                   onClick={() => choose(i, o.label)}
                 >
-                  <span className={styles.key} aria-hidden="true">{j + 1}</span>
-                  <span className={styles.label}>{o.label}</span>
+                  <span className={`${styles.key} ${duo.key}`} aria-hidden="true">{j + 1}</span>
+                  <span className={`${styles.label} ${duo.label}`}>{o.label}</span>
                   {o.level ? (
                     <span className={styles.lvl} aria-hidden="true">
                       {[1, 2, 3].map((n) => (
@@ -510,7 +519,7 @@ export default function LiveSession() {
                       ))}
                     </span>
                   ) : null}
-                  <span className={styles.tick}><Check /></span>
+                  <span className={`${styles.tick} ${duo.tick}`}><Check /></span>
                 </button>
               );
             })}
@@ -555,7 +564,7 @@ export default function LiveSession() {
   const screenClass = [styles.screen, fromLeft ? styles.fromLeft : "", leaving ? styles.leaving : ""].join(" ");
 
   return (
-    <section ref={root} className={`${styles.quiz} ${live.page} ${screen === "signup" ? live.landing : ""}`} aria-label="Free live session sign-up">
+    <section ref={root} className={`${styles.quiz} ${live.page} ${duo.duo} ${screen === "signup" ? live.landing : ""}`} aria-label="Free live session sign-up">
       <canvas ref={canvas} className={styles.burst} aria-hidden="true" />
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
@@ -564,12 +573,15 @@ export default function LiveSession() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/live/flowstate-logo-light.svg" alt="Flowstate" width={96} height={40} />
             </Link>
-            <span className={styles.count} aria-live="polite">
-              {asking ? `Just before you go · ${qi + 1} of ${questions.length}` : ""}
+            <span className={duo.topRight}>
+              <span className={styles.count} aria-live="polite">
+                {asking ? `Just before you go · ${qi + 1} of ${questions.length}` : ""}
+              </span>
+              {screen === "signup" ? null : <SoundButton on={quizSound} onToggle={toggleQuizSound} />}
             </span>
           </div>
-          <div className={`${styles.bar} ${asking ? "" : styles.barHide}`} aria-hidden="true">
-            <i className={styles.fill} style={{ width: `${pct}%` }} />
+          <div className={`${styles.bar} ${duo.bar} ${asking ? "" : styles.barHide}`} aria-hidden="true">
+            <i className={`${styles.fill} ${duo.fill}`} style={{ width: `${pct}%` }} />
           </div>
         </header>
         <div className={styles.stage}>
