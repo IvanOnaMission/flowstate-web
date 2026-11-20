@@ -25,3 +25,6 @@
   .cover { width: 100%; }
 }
 .optional { color: var(--mute); font-weight: 500; }
+/* "Save my spot" in brand atlantic, like the other actions on /live/. */
+.liveYes { border-radius: 8px !important; background: var(--blue) !important; color: #fff !important; }
+.liveYes:hover { background: #14608c !important; }

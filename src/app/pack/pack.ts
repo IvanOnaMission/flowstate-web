@@ -22,6 +22,15 @@ export const PACK = {
   saved:
     "You're on the list. Before you go, can you answer a few questions? It helps me point you to the systems that suit your business. All optional.",
   doneNote: "I'll email the pack to you the day it's ready.",
+  // Shown after the questions while Jordan's live session (src/app/live/session.ts) is still ahead.
+  liveOffer: {
+    saved: "Thanks, that's everything for the pack.",
+    title: "Hang on, before you go",
+    body: "Jordan owns an Auckland electrical business and runs it with AI. He's doing a free live session where he shows what AI actually does in his business and the lessons he learned the hard way. You don't need to be technical.",
+    yes: "Save my spot",
+    no: "No thanks",
+    done: "You're also booked in for the live session on Tuesday at 10am. The Meet link is in your email.",
+  },
   calendly: "https://calendly.com/ivan-flowstate/30min?utm_source=flowstate&utm_medium=direct-booking&utm_campaign=pack-waitlist",
   faq: [
     { q: "Is it free?", a: "Yes, it's free." },

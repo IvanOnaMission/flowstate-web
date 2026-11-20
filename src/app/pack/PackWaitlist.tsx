@@ -19,8 +19,12 @@ import styles from "../essentials/quiz.module.css";
 import live from "../live/live.module.css";
 import own from "./pack.module.css";
 import { ANSWERS_FORM, CAMPAIGN, COVER, FORM_NAME, OFFER, PACK } from "./pack";
+import { FORM_NAME as LIVE_FORM, SESSION } from "../live/session";
 
-type Screen = "signup" | "done" | `q${number}`;
+type Screen = "signup" | "live" | "done" | `q${number}`;
+
+/** The live-session offer shows only until the session starts, then the flow skips it. */
+const liveOpen = () => Date.now() < Date.parse(SESSION.startUtc);
 type Details = { name: string; email: string; phone: string };
 type Errors = Partial<Record<keyof Details, string>>;
 type MetaClick = { fbclid?: string; fbc?: string; fbp?: string };
@@ -107,6 +111,8 @@ export default function PackWaitlist() {
   const [errors, setErrors] = useState<Errors>({});
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState("");
+  const [joinedLive, setJoinedLive] = useState(false);
+  const [joining, setJoining] = useState(false);
 
   const root = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -184,7 +190,8 @@ export default function PackWaitlist() {
 
   const finish = useCallback(() => {
     sendAnswers();
-    go("done");
+    // Last step: "Hang on, before you go" offers the live session while it's still ahead.
+    go(liveOpen() ? "live" : "done");
   }, [go, sendAnswers]);
 
   const burst = useCallback(() => {
@@ -291,11 +298,12 @@ export default function PackWaitlist() {
       document.getElementById(`pack-${firstBad}`)?.focus();
       return;
     }
-    if (sent.current) return go("q0");
+    const next: Screen = "q0";
+    if (sent.current) return go(next);
     if (!production()) {
       sent.current = true;
       setStatus("Preview only. Your details haven't been sent.");
-      return go("q0");
+      return go(next);
     }
     setSending(true);
     setStatus("");
@@ -320,11 +328,47 @@ export default function PackWaitlist() {
       sent.current = true;
       const id = typeof window.crypto?.randomUUID === "function" ? crypto.randomUUID() : String(Date.now());
       fbq("track", "Lead", { content_name: OFFER }, { eventID: `lead-${id}` });
-      go("q0");
+      go(next);
     } catch {
       setStatus(`That didn't go through. Try again, or text Ivan on ${site.phone}.`);
     } finally {
       setSending(false);
+    }
+  }
+
+  /**
+   * One tap signs them up to the live session with the details they just gave, as the
+   * "live-session" form, so they get its welcome email with the Meet link and Ivan gets
+   * the live-session alert. Not a second Meta Lead.
+   */
+  async function joinLive() {
+    if (joining) return;
+    if (!production()) {
+      setJoinedLive(true);
+      return go("done");
+    }
+    setJoining(true);
+    const body = new URLSearchParams({
+      "form-name": LIVE_FORM,
+      "bot-field": "",
+      ...detailsRef.current,
+      ...tracking(),
+      landing_path: location.pathname,
+    });
+    try {
+      const res = await fetch(location.pathname, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setJoinedLive(true);
+      fbq("trackCustom", "PackLiveSessionJoin", { content_name: OFFER });
+      go("done");
+    } catch {
+      setStatus(`That didn't go through. Try again, or text Ivan on ${site.phone}.`);
+    } finally {
+      setJoining(false);
     }
   }
 
@@ -388,6 +432,32 @@ export default function PackWaitlist() {
               </details>
             ))}
           </div>
+        </>
+      );
+    }
+
+    if (screen === "live") {
+      return (
+        <>
+          <p className={live.saved}>
+            <Check /> {PACK.liveOffer.saved}
+          </p>
+          <h2 ref={heading} tabIndex={-1}>{PACK.liveOffer.title}</h2>
+          <p className={styles.lede}>{PACK.liveOffer.body}</p>
+          <ul className={live.facts}>
+            <li><b>{SESSION.day}</b></li>
+            <li>{SESSION.time}</li>
+            <li>{SESSION.where}</li>
+          </ul>
+          <div className={`${styles.ctaRow} ${live.doneCta}`}>
+            <button type="button" className={`${styles.btn} ${own.liveYes}`} onClick={joinLive} disabled={joining}>
+              {joining ? "Saving…" : PACK.liveOffer.yes}
+            </button>
+            <button type="button" className={live.skip} onClick={() => go("done")}>
+              {PACK.liveOffer.no}
+            </button>
+          </div>
+          <p className={styles.status} role="status">{status}</p>
         </>
       );
     }
@@ -459,6 +529,7 @@ export default function PackWaitlist() {
         </div>
         <h2 ref={heading} tabIndex={-1}>You&apos;re on the list{first ? `, ${first}` : ""}.</h2>
         <p className={styles.lede}>{PACK.doneNote}{details.email ? ` Keep an eye on ${details.email}.` : ""}</p>
+        {joinedLive ? <p className={styles.lede}>{PACK.liveOffer.done}</p> : null}
         <div className={live.callCard}>
           <h3>Want to talk about your business before then?</h3>
           <p>Book a free 30-minute call with Ivan. Pick a time that suits.</p>
