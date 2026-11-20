@@ -25,6 +25,15 @@
   .cover { width: 100%; }
 }
 .optional { color: var(--mute); font-weight: 500; }
-/* "Save my spot" in brand atlantic, like the other actions on /live/. */
-.liveYes { border-radius: 8px !important; background: var(--blue) !important; color: #fff !important; }
-.liveYes:hover { background: #14608c !important; }
+
+/* "Hang on, come to this" screen: tighter on phones so the video and "Save my spot" fit without scrolling. */
+.liveScreen > * { margin-top: 0; margin-bottom: 0; }
+.liveScreen > * + * { margin-top: 16px; }
+@media (max-width: 480px) {
+  .liveScreen > * + * { margin-top: 10px; }
+  .liveScreen > p:first-child { padding: 8px 12px; font-size: 0.875rem; }
+  .liveScreen h2 { font-size: 1.55rem !important; }
+  .liveScreen ul { gap: 6px; }
+  .liveScreen ul li { padding: 5px 10px; font-size: 0.8125rem; }
+  .liveScreen button[type="button"]:first-child { flex: 1 1 auto; }
+}
