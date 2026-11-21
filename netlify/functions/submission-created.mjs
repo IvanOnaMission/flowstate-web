@@ -22,7 +22,7 @@ import {trackingDatabase} from '../lib/tracking-server.mjs';
 import {acceptedMatch, sendCrmEvent} from '../lib/meta-capi.mjs';
 import {FORM as ESSENTIALS_FORM, OFFER as ESSENTIALS, essentialsAnswers, essentialsCustomerType} from '../lib/essentials-quiz.mjs';
 import {ANSWERS_FORM as LIVE_ANSWERS_FORM, EXTRA as LIVE_EXTRA, HEADLINE as LIVE_HEADLINE, FORM as LIVE_FORM, OFFER as LIVE, SOURCE as LIVE_SOURCE,
-  liveAnswers, liveCustomerType, welcomeSequence} from '../lib/live-session.mjs';
+  liveAnswers, liveCustomerType, sessionTag, welcomeSequence} from '../lib/live-session.mjs';
 import {ANSWERS_FORM as PACK_ANSWERS_FORM, EXTRA as PACK_EXTRA, HEADLINE as PACK_HEADLINE, FORM as PACK_FORM, OFFER as PACK, SOURCE as PACK_SOURCE,
   packAnswers, packCustomerType, waitlistTag, welcomeSequence as packWelcomeSequence} from '../lib/pack-waitlist.mjs';
 const FORMS = ['ai-makeover', 'quote-machine', ESSENTIALS_FORM, LIVE_FORM, PACK_FORM];
@@ -97,7 +97,7 @@ export default async (req) => {
   // Every landing page uses the same lead tag. Live-session signups also get KIT_TAG_LIVE_SESSION when it's set;
   // pack signups get the pack-waitlist tag (who to send the pack to) and its "you're on the list" email.
   const kitTag = process.env.KIT_TAG_MAKEOVER_LEAD;
-  const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [process.env.KIT_TAG_LIVE_SESSION] : pack ? [waitlistTag()] : [];
+  const extraTags = quoteMachine ? [process.env.KIT_TAG_QUOTE_MACHINE_LEAD] : live ? [sessionTag()] : pack ? [waitlistTag()] : [];
   const sequenceIds = live ? [welcomeSequence()] : pack ? [packWelcomeSequence()] : [];
   await Promise.all([
     safely('kit lead', () => addToKit({...contact, tagId: kitTag, tagIds: extraTags, sequenceIds})),
