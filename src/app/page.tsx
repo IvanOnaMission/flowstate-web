@@ -223,16 +223,16 @@ export default function Home() {
           blocked on filming. Swap the panel for the embed when it exists. */}
       <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <p className="eyebrow mb-4 text-mute">Who you&apos;d be working with</p>
+          <p className="eyebrow mb-4 text-mute">Meet the team</p>
         </Reveal>
-        <div className="grid items-start gap-10 md:grid-cols-[16rem_1fr] md:gap-14">
+        <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_1fr] md:gap-14">
           <Reveal>
-            <div className="relative aspect-4/5 overflow-hidden bg-atlantic">
+            <div className="relative aspect-3/2 overflow-hidden bg-night">
               <Image
-                src="/assets/team/ivan.jpg"
-                alt="Ivan Barnett, founder of Flowstate"
+                src="/assets/team/ivan-jordan.jpg"
+                alt="Jordan and Ivan, the Flowstate team"
                 fill
-                sizes="(max-width: 768px) 100vw, 16rem"
+                sizes="(max-width: 768px) 100vw, 36rem"
                 className="object-cover"
               />
             </div>
@@ -240,7 +240,13 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p className="text-ink">
-                I&apos;m Ivan. I build the systems myself.
+                I&apos;m Ivan. I build the systems myself. Jordan handles
+                strategy.
+              </p>
+              <p>
+                Jordan ran his own electrical business for eight years.
+                He&apos;s fixed the leaks in his own operation, so he knows
+                where the time and money go in yours.
               </p>
               <p>
                 I grew up around technology and computers, so this stuff is
@@ -265,7 +271,7 @@ export default function Home() {
                   href="/about/"
                   className="text-[1rem] font-semibold text-ink underline decoration-hair underline-offset-4 transition-colors duration-200 hover:decoration-atlantic"
                 >
-                  More about who you&apos;d be working with
+                  Meet the team
                 </Link>
               </p>
             </div>
