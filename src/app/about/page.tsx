@@ -50,29 +50,6 @@ const people = [
   },
 ] as const;
 
-const onTheJob = [
-  {
-    src: "/assets/team/on-the-job/client-office.jpg",
-    alt: "Ivan in hi-vis walking a client through their system at the client's office",
-    caption: "Walking a client through their system",
-  },
-  {
-    src: "/assets/team/on-the-job/building-system.jpg",
-    alt: "Ivan at a multi-screen desk building a client's system",
-    caption: "Building the system",
-  },
-  {
-    src: "/assets/team/on-the-job/jordans-desk.jpg",
-    alt: "Jordan at his desk fist-bumping Ivan",
-    caption: "Checking in with Jordan",
-  },
-  {
-    src: "/assets/team/on-the-job/office-desk.jpg",
-    alt: "Ivan typing at an office desk with two laptops",
-    caption: "Heads down on the build",
-  },
-] as const;
-
 export default function About() {
   return (
     <>
@@ -148,37 +125,6 @@ export default function About() {
               </Reveal>
             ))}
           </ol>
-        </section>
-
-        {/* ── On the job ─────────────────────────────────────────────
-            Stills pulled from real B-roll, not stock or AI, so people see
-            the actual work. Only shots where Ivan or Jordan is confirmed. */}
-        <section className="shell pb-[clamp(3rem,6vw,5rem)]">
-          <div className="border-t border-hair pt-[clamp(1.75rem,3vw,2.5rem)]">
-            <Reveal>
-              <p className="eyebrow mb-6 text-mute">On the job</p>
-            </Reveal>
-            <ul className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-              {onTheJob.map((s, i) => (
-                <Reveal as="li" key={s.src} delay={i * 70}>
-                  <figure>
-                    <div className="relative aspect-9/16 overflow-hidden bg-night">
-                      <Image
-                        src={s.src}
-                        alt={s.alt}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 18rem"
-                        className="object-cover"
-                      />
-                    </div>
-                    <figcaption className="mt-2 text-[0.9rem] text-mute">
-                      {s.caption}
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
         </section>
 
         {/* ── Why we joined forces ──────────────────────────────────
