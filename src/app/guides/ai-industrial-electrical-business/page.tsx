@@ -4,8 +4,7 @@ import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
-const headline = "AI for the work around industrial electrical projects.";
-const title = "AI for industrial electrical projects";
+const title = "AI for the work around industrial electrical projects.";
 const description = "Flowstate builds AI workflows around your processes and existing software. Your team reviews the output and keeps control of technical decisions.";
 const path = "/guides/ai-industrial-electrical-business/";
 
@@ -24,7 +23,7 @@ export default function Page() {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "@id": `https://flowstate.net.nz${path}#article`,
-        headline,
+        headline: title,
         description,
         datePublished: "2026-09-09",
         author: { "@type": "Person", name: "Ivan Barnett", url: "https://flowstate.net.nz/about/" },
@@ -34,7 +33,7 @@ export default function Page() {
       }} />
       <main id="main" className="shell py-[clamp(3rem,6vw,5rem)]">
         <article>
-          <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{headline}</h1>
+          <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{title}</h1>
           <p className="mt-6 text-sm text-mute">By Ivan Barnett · 9 September 2026</p>
           <p className="mt-7 max-w-[65ch] text-xl leading-relaxed text-mute">Your team handles the technical work. AI can help with the repetitive processes around it:</p>
           <ul className="mt-9 grid gap-4 sm:grid-cols-2">

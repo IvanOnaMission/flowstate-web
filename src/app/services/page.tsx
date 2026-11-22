@@ -3,35 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
-import FaqBlock from "@/components/FaqBlock";
-
-const faqs = [
-  {
-    question: "What happens on the first call?",
-    answer:
-      "You fill in a short form and pick a time. The call is free and takes about 30 minutes. We talk about your business, how you quote and the software you use, and whether a paid diagnostic is the right next step.",
-  },
-  {
-    question: "Is the diagnostic free?",
-    answer:
-      "The call is free. The diagnostic is paid. We agree its scope and fee before starting. You get a review of your workflows and a prioritised roadmap.",
-  },
-  {
-    question: "When is the ongoing rate agreed?",
-    answer:
-      "After the diagnostic. We agree the scope and rate for an ongoing AI partnership, including implementation, training and support.",
-  },
-  {
-    question: "Who approves a quote?",
-    answer:
-      "For a quoting workflow, AI helps prepare the draft. You check the scope, quantities and prices, and you approve the final quote before it is sent.",
-  },
-  {
-    question: "What do I need to bring?",
-    answer:
-      "Have a few recent examples ready. Before the diagnostic, we agree which workflows, records and people to include. You don't need to be technical. If you can send a text, you can use it.",
-  },
-] as const;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/services/" },
@@ -50,19 +21,6 @@ export default function Page() {
           <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
-          <aside className="mt-8 max-w-[65ch] border-l-2 border-atlantic pl-6">
-            <p className="eyebrow text-mute">In short</p>
-            <p className="mt-3 text-[1.15rem] font-[750] leading-snug tracking-[-0.02em] text-ink">
-              Flowstate starts with a free call of about 30 minutes. A paid diagnostic then reviews how the business runs and gives you a prioritised roadmap. The ongoing AI partnership, including what gets built and the rate, is agreed after the diagnostic.
-            </p>
-          </aside>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
-            If you run a trade other than electrical, the call, diagnostic and partnership work the same way.{" "}
-            <Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-for-trades-businesses/">AI for trade businesses</Link>
-            {" covers that admin, and "}
-            <Link className="font-semibold text-atlantic underline underline-offset-4" href="/business-essentials/">Business Essentials</Link>
-            {" is the starting package."}
-          </p>
           <SoftwareExplanation />
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. Book a call"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Fill in a short form and pick a time that suits you."}</p>
@@ -81,7 +39,6 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree what support is included in the AI partnership. We review how the work is going and decide together what to tackle next from your roadmap."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"What you'll need to bring"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Have a few recent examples ready. Before the diagnostic, we agree which workflows, records and people to include. You don't need to be technical. If you can send a text, you can use it."}</p>
-          <FaqBlock faqs={faqs} path="/services/" />
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Tell me where work is getting stuck."}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. We'll discuss whether the paid diagnostic is right for your business before you commit."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
