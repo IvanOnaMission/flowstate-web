@@ -223,7 +223,7 @@ export default function Home() {
           blocked on filming. Swap the panel for the embed when it exists. */}
       <section className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <p className="eyebrow mb-4 text-mute">Who you&apos;d be working with</p>
+          <p className="eyebrow mb-4 text-mute">Meet the team</p>
         </Reveal>
         <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_1fr] md:gap-14">
           <Reveal>
@@ -271,7 +271,7 @@ export default function Home() {
                   href="/about/"
                   className="text-[1rem] font-semibold text-ink underline decoration-hair underline-offset-4 transition-colors duration-200 hover:decoration-atlantic"
                 >
-                  More about who you&apos;d be working with
+                  Meet the team
                 </Link>
               </p>
             </div>
