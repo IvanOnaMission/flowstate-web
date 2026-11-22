@@ -7,20 +7,10 @@ import CallButton from "@/components/CallButton";
 import Reveal from "@/components/Reveal";
 import { callPromise, rungs } from "@/lib/site";
 
-const title = "AI for NZ electricians and trade businesses — Flowstate";
-const description =
-  "Less admin for NZ electricians, tradies and trade businesses. Free introductory call, then a paid diagnostic. The AI partnership is agreed after that.";
-
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: { absolute: title },
-  description,
-  openGraph: {
-    title,
-    description,
-    url: "/",
-    images: ["/assets/hero/workshop-hook.jpg"],
-  },
+  title: "AI partner for NZ electrical businesses",
+  description: "Less admin. More time to run your electrical business. Start with a paid workflow diagnostic and prioritised roadmap, then agree your ongoing AI partner scope and rate.",
 };
 
 /**
@@ -67,7 +57,7 @@ export default function Home() {
             <div className="shell w-full">
               <div className="flex max-w-[70rem] flex-col gap-6">
                 <Reveal>
-                  <p className="eyebrow text-sky/90">AI help for New Zealand electricians and tradies</p>
+                  <p className="eyebrow text-sky/90">AI help for New Zealand electrical businesses</p>
                 </Reveal>
                 <Reveal delay={90}>
                   <h1 className="home-hero-title max-w-[21ch] text-white">
@@ -75,15 +65,9 @@ export default function Home() {
                     <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>
-                <Reveal delay={160}>
-                  <p className="max-w-[46ch] text-[1.05rem] leading-relaxed text-white/80">
-                    Flowstate works with electrical businesses, and with plumbers, builders, HVAC and other trade businesses across New Zealand.
-                  </p>
-                </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
                     <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
-                    <Link href="/business-essentials/" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">Business Essentials →</Link>
                     <Link href="/services/" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">See how it works →</Link>
                   </div>
                   <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · diagnostic quoted separately</p>
@@ -119,8 +103,6 @@ export default function Home() {
           </section>
           <SoftwareExplanation />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
-            <Link href="/ai-for-trades-businesses/">AI for trade businesses →</Link>
-            <Link href="/business-essentials/">Business Essentials →</Link>
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
             <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
           </div>

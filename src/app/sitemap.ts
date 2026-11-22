@@ -12,25 +12,10 @@ import { site } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = [
-    { path: "", priority: 1 },
-    { path: "/business-essentials/", priority: 0.9 },
-    { path: "/ai-for-trades-businesses/", priority: 0.9 },
-    { path: "/services/", priority: 0.8 },
-    { path: "/about/", priority: 0.8 },
-    { path: "/contact/", priority: 0.8 },
-    { path: "/ai-for-electricians/", priority: 0.8 },
-    { path: "/workflow-diagnostic/", priority: 0.8 },
-    { path: "/ai-quoting-for-electricians/", priority: 0.8 },
-    { path: "/guides/", priority: 0.8 },
-    { path: "/guides/ai-quoting-for-electricians/", priority: 0.8 },
-    { path: "/guides/where-to-start-with-ai/", priority: 0.8 },
-    { path: "/guides/job-software-or-custom-ai/", priority: 0.8 },
-    { path: "/guides/ai-industrial-electrical-business/", priority: 0.8 },
-  ];
-  return pages.map(({ path, priority }) => ({
+  const pages = ["", "/services/", "/about/", "/contact/", "/ai-for-electricians/", "/workflow-diagnostic/", "/ai-quoting-for-electricians/", "/guides/", "/guides/ai-quoting-for-electricians/", "/guides/where-to-start-with-ai/", "/guides/job-software-or-custom-ai/", "/guides/ai-industrial-electrical-business/"];
+  return pages.map((path) => ({
     url: `${site.url}${path || "/"}`,
-    changeFrequency: "monthly" as const,
-    priority,
+    changeFrequency: "monthly",
+    priority: path === "" ? 1 : 0.8,
   }));
 }

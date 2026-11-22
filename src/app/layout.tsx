@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description:
-    "Flowstate helps New Zealand electricians and trade businesses use AI on repetitive admin. You approve what goes to a customer. Based in Auckland.",
+    "Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",
   openGraph: {
     type: "website",
     locale: "en_NZ",
@@ -56,45 +56,12 @@ export default function RootLayout({
       <body>
         <StructuredData data={{
           "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              "@id": `${site.url}/#organization`,
-              name: site.name,
-              url: site.url,
-              logo: {
-                "@type": "ImageObject",
-                url: `${site.url}/assets/makeover/flowstate-logo.svg`,
-              },
-              email: site.email,
-              telephone: "+64272006121",
-              areaServed: { "@type": "Country", name: "New Zealand" },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: site.city,
-                addressCountry: "NZ",
-              },
-              founder: { "@id": `${site.url}/about/#ivan` },
-            },
-            {
-              "@type": "ProfessionalService",
-              "@id": `${site.url}/#business`,
-              name: site.name,
-              url: site.url,
-              image: `${site.url}/assets/makeover/flowstate-logo.svg`,
-              email: site.email,
-              telephone: "+64272006121",
-              description: site.tagline,
-              serviceType: "AI implementation for trade businesses",
-              areaServed: { "@type": "Country", name: "New Zealand" },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: site.city,
-                addressCountry: "NZ",
-              },
-              parentOrganization: { "@id": `${site.url}/#organization` },
-            },
-          ],
+          "@type": "Organization",
+          "@id": `${site.url}/#organization`,
+          name: site.name,
+          url: site.url,
+          email: site.email,
+          telephone: site.phone,
         }} />
         {/* Keyboard users land here first. Hidden until focused. */}
         <a
