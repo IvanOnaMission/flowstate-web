@@ -25,8 +25,6 @@
 | On Secondary | `#FFFFFF` | `--color-on-secondary` | 5.31:1 |
 | Accent/CTA (Soft Sky) | `#C4F8FF` | `--color-accent` | — |
 | On Accent/CTA | `#0F4B70` | `--color-on-accent` | 8.05:1 |
-| Booking gold | `#F5CC47` | `--color-gold` | Ink `#06283D` on gold 9.87:1. Gold on white is 1.54:1, so it is a fill or a mark, not body text. Same hex as `--gold` on the quoting page. |
-| Gold hover | `#E9BB2F` | `--color-gold-hover` | Ink on this fill is 8.42:1. |
 | Background | `#FFFFFF` | `--color-background` | — |
 | Surface (Sky 50) | `#EBFDFF` | `--color-surface` | — |
 | Foreground (Ink) | `#06283D` | `--color-foreground` | 14.9:1 on white |
