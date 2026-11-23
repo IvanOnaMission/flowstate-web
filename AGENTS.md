@@ -13,6 +13,7 @@ Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan
 | `docs/mvp-plan.md` | Scope, timeline, success threshold (not yet written) | planning, estimating | stable | propose |
 | `docs/content/answers-batch-1.md` | Ivan's answers to the 20 customer questions (source material for pages) | writing site pages, LinkedIn posts, FAQ | stable | propose |
 | `docs/baseline/` | Visibility baseline: protocol, questions, raw results per engine | running or comparing the "after" run | stable | propose |
+| `docs/audits/` | Dated audits of external profiles (Google Business Profile first) with proposed fixes | editing the Google profile or planning local or AI-visibility work | changing | direct |
 | Jordan's SEO plan (tasks T1...), Project only | Original plan and task ids | checking task ids or original scope | stable | propose (owned by Jordan, not edited here) |
 
 ## Rules
