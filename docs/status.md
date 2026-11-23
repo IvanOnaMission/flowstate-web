@@ -38,7 +38,8 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Torque AI, Fylo
 ## Blockers
 - Gemini free limit; 37 checks scheduled for 2026-11-23 17:50 NZDT. Not confirmed finished.
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
-- Access pending from Ivan: CRM, Claude Team (GitHub access granted).
+- Access pending from Ivan: CRM, Claude Team, Netlify (GitHub access granted).
+- Netlify deploy previews fail on PR 47 (docs only; `npm run build` passes locally). The log needs Netlify access, so the preview check before merging (D02) can't be done yet.
 - Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
 - Open questions for Ivan: D11 to D16, D22.
 
