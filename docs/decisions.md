@@ -10,15 +10,14 @@ owner: Johan
 supersedes: none
 ---
 
-Ivan settled ten setup decisions and Johan set the doc location and after-run date on 2026-11-23; seven questions stay open, mostly about public claims in the answer batch.
+Ivan answered ten setup questions (D01-D09). On 2026-11-23 Johan settled the doc standard and doc location under D02; measurement and tools wait on D22. Seven questions stay open, mostly about public claims in the answer batch.
 
 | id | date | decision | why | decided by | status | source | replaces |
 |---|---|---|---|---|---|---|---|
-| D22 | 2026-11-23 | Open: does Johan decide SEO execution beyond publishing (measurement method, success threshold, doc location, tools within budget)? Proposed: yes | D03 only covers publishing without sign-off | | open | Ivan's reply, Q3 | none |
-| D21 | 2026-11-23 | Adopted project-kickoff standard: added AGENTS.md, CLAUDE.md, docs/decisions.md, docs/status.md, docs/content/answers-batch-1.md, docs/baseline/README.md | Shared context for Johan and agents | Johan | settled | Johan: "ok this is fine", kickoff session | none |
+| D22 | 2026-11-23 | Open: does Johan decide SEO execution beyond publishing (measurement method, success threshold, tools within budget)? Proposed: yes. Doc location is settled in D19 under D02 | D03 only covers publishing without sign-off; Q2 and Q3 do not cover measurement or tools | | open | Ivan's reply, Q2, Q3 | none |
+| D21 | 2026-11-23 | Adopt the project-kickoff doc standard: extend AGENTS.md into the context index (CLAUDE.md already imports it); add docs/decisions.md, docs/status.md, docs/content/answers-batch-1.md, docs/baseline/README.md | Shared context for Johan and agents | Johan | settled | Johan: "ok this is fine", kickoff session; within D02 (repo docs are PRs on flowstate-web) | D18 |
 | D20 | 2026-11-23 | "After" visibility run on 2026-12-21 (4 weeks after baseline) | Fixed comparison date | Johan | proposed (Johan; settled once Ivan confirms D22) | Johan, kickoff session | none |
-| D19 | 2026-11-23 | Docs live in `flowstate-web/docs/` (source); Claude Team Project holds copies of the index and stable docs; tasks are GitHub Issues on `flowstate-web` | One source, readable from chat and repo | Johan | proposed (Johan; settled once Ivan confirms D22) | Johan, kickoff session | none |
-| D18 | 2026-11-23 | Adopt the project-kickoff doc standard for this project | Shared context for Johan and agents | Johan | settled | Johan: "ok this is fine", kickoff session | none |
+| D19 | 2026-11-23 | Docs live in `flowstate-web/docs/` (source); Claude Team Project holds copies of the index and stable docs; tasks are GitHub Issues on `flowstate-web` | One source, readable from chat and repo | Johan | settled | Johan, kickoff session; within D02 (flowstate-web PRs) and D08 (Claude Team account) | none |
 | D17 | 2026-11-23 | Success threshold for the 2026-12-21 run: Flowstate named in at least 30 of 360 checks, on at least 3 of 6 engines | Baseline (4 of 323) gives a number to beat | Johan | proposed (Johan; settled once Ivan confirms D22) | Johan: "ok this is fine", kickoff session | none |
 | D16 | 2026-11-23 | Open: publish the limits in answers Q4 (no standalone receptionist) and Q11 (no full Simpro build yet)? Proposed: yes, as written | Honest limits build trust | | open | answers batch 1 | none |
 | D15 | 2026-11-23 | Open: Q18 setup timeframe is missing. Proposed: ask Ivan for a typical range in weeks | Question asks how long | | open | answers batch 1 | none |
