@@ -37,7 +37,7 @@ Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan
 | name | role | decides |
 |---|---|---|
 | Ivan | owner | scope, pricing, naming, targeting, budget, public claims |
-| Johan | builder | site PRs, content and publishing without sign-off (D02, D03); measurement and tooling pending D22 |
+| Johan | builder | site PRs and repo docs, incl. doc location and this doc standard (D02, D19, D21); content and publishing without sign-off (D03); measurement and tooling pending D22 |
 | Jordan | advisor | proposes only (D07) |
 
 <!-- BEGIN:nextjs-agent-rules -->

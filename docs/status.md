@@ -48,7 +48,7 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Torque AI, Fylo
 - D13: Can you confirm "10+ clients" and "six years"?
 - D14: Does it work with ServiceM8?
 - D15: How long does a typical setup take?
-- D22: Do I decide the measurement method, success threshold and doc setup myself?
+- D22: Do I decide the measurement method, success threshold and tools within budget myself? (Doc setup is settled under D02.)
 
 ## Changes since last update
-Adopted project-kickoff standard (D21), PR pending. Latest real change: baseline run on 5 of 6 engines, 2026-11-23.
+Adopted project-kickoff standard (D21) and settled doc location (D19) under D02; PR 47 open. Latest real change: baseline run on 5 of 6 engines, 2026-11-23.
