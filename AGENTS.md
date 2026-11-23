@@ -24,7 +24,7 @@ Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan
 - Never type or store passwords. Johan logs in himself.
 - Tasks are GitHub Issues on `flowstate-web`, one per deliverable, each with an owner and a `Context:` line listing 1 to 3 docs.
 - Website changes go through PRs on `flowstate-web`; check the Netlify preview before merging.
-- The "after" visibility run must repeat `docs/baseline/protocol` exactly (same questions, engines, modes, run count).
+- The "after" visibility run must repeat `docs/baseline/protocol.md` exactly (same questions, engines, modes, run count).
 
 ## Context rules
 

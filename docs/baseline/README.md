@@ -27,6 +27,6 @@ The baseline (2026-11-23 to 2026-11-24) found Flowstate in 4 of 360 checks, all 
 
 Competitors named: Automate AI, Stride AI, Ez-AI, Sophiie, TradieCall, Talkify, Wisely, Hyper Digital, e2e Ltd, Torque AI, Fylo, H3llo, FirstVoice.
 
-Gemini `names_cited` lists are partial: they hold the bold text the extractor captured, not every name in the answer.
+Gemini `names_cited` lists are partial: they hold the bold text the extractor captured, not every name in the answer. The list above is a sample. `results/gemini.csv` has per-check rows for 37 of the 60 Gemini checks (not the first 23); names from the other engines were not kept.
 
 Proposed: for the "after" run, keep per-check rows for every engine.

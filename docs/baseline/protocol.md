@@ -24,7 +24,7 @@ The "after" run (2026-12-21, D20) must repeat this exactly.
 | Bing AI answer | Bing AI answer (Copilot needed a sign-in) |
 
 ## What counts as "named"
-Not yet defined. The 4 Gemini hits were counted as Flowstate by assumption. Proposed: settle the definition before the "after" run and apply it to both runs.
+Not yet defined (open, D23). The 4 Gemini hits were counted as Flowstate by assumption. Proposed: settle the definition before the "after" run and apply it to both runs.
 
 ## Known limits
 - Gemini's free tier stopped the run with "Limit reached. Resets Nov 24"; the last 6 Gemini checks ran on 2026-11-24 after the reset.
