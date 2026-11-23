@@ -2,7 +2,7 @@
 title: Status
 purpose: Current phase, this week's focus, blockers and recent changes
 read_when: starting a session, planning the week
-updated: 2026-11-23
+updated: 2026-11-24
 audience: [Ivan, Johan, agents]
 status: active
 stability: changing
@@ -10,17 +10,16 @@ owner: Johan
 supersedes: none
 ---
 
-Baseline nearly done: Flowstate appeared in 4 of 354 AI answers, all on Gemini and unlinked. Six Gemini checks left.
+Baseline done: Flowstate appeared in 4 of 360 checks, all on Gemini and unlinked.
 
 ## Phase
 Setup and baseline (week of 2026-11-23). "After" run: 2026-12-21 (D20).
 
 ## This week's focus
-1. Finish the last 6 Gemini checks (Q11 run 5, Q12) on 2026-11-24 and add them to `docs/baseline/results/gemini.csv`.
-2. Rename Google profile and LinkedIn to "Flowstate" (D04); expect Google re-verification.
-3. Turn answers batch 1 into site pages, after D12 to D16 are resolved.
-4. Directory listings: Fergus marketplace and Simpro partner directory (T17).
-5. Google Business Profile audit (T2).
+1. Rename Google profile and LinkedIn to "Flowstate" (D04); expect Google re-verification.
+2. Turn answers batch 1 into site pages, after D12 to D16 are resolved.
+3. Directory listings: Fergus marketplace and Simpro partner directory (T17).
+4. Google Business Profile audit (T2).
 
 ## Baseline results
 
@@ -31,12 +30,11 @@ Setup and baseline (week of 2026-11-23). "After" run: 2026-12-21 (D20).
 | Perplexity | 60 of 60 | 0 |
 | Claude | 60 of 60 | 0 |
 | Bing AI answer | 60 of 60 | 0 |
-| Gemini | 54 of 60 | 4 (Q1, Q2, Q5; counted as Flowstate by assumption) |
+| Gemini | 60 of 60 | 4 (Q1, Q2, Q5; counted as Flowstate by assumption) |
 
 Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, TradieCall, Talkify, Wisely, Hyper Digital, e2e Ltd, Torque AI, Fylo, H3llo, FirstVoice.
 
 ## Blockers
-- Gemini free limit reached after 54 of 60 checks; resets 2026-11-24.
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
 - Access pending from Ivan: CRM, Claude Team, Netlify (GitHub access granted).
 - Netlify deploy previews fail on PR 47 (docs only; `npm run build` passes locally). The log needs Netlify access, so the preview check before merging (D02) can't be done yet.
@@ -52,4 +50,4 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 - D22: Do I decide the measurement method, success threshold and tools within budget myself? (Doc setup is settled under D02.)
 
 ## Changes since last update
-Adopted project-kickoff standard (D21) and settled doc location (D19) under D02; PR 47 open. Latest real change: baseline protocol, questions and Gemini results saved in `docs/baseline/` (Gemini 54 of 60), 2026-11-23.
+Adopted project-kickoff standard (D21) and settled doc location (D19) under D02; PR 47 open. Latest real change: baseline protocol, questions and Gemini results saved in `docs/baseline/`; Gemini finished 60 of 60 on 2026-11-24.

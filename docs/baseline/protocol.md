@@ -2,7 +2,7 @@
 title: Baseline Protocol
 purpose: Exact method for the visibility baseline, so the "after" run repeats it
 read_when: running or comparing the "after" visibility run
-updated: 2026-11-23
+updated: 2026-11-24
 ---
 
 The "after" run (2026-12-21, D20) must repeat this exactly.
@@ -27,4 +27,4 @@ The "after" run (2026-12-21, D20) must repeat this exactly.
 Not yet defined. The 4 Gemini hits were counted as Flowstate by assumption. Proposed: settle the definition before the "after" run and apply it to both runs.
 
 ## Known limits
-- Gemini's free tier stopped the run with "Limit reached. Resets Nov 24"; the remaining Gemini checks run after the reset.
+- Gemini's free tier stopped the run with "Limit reached. Resets Nov 24"; the last 6 Gemini checks ran on 2026-11-24 after the reset.
