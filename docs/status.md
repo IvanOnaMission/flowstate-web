@@ -18,7 +18,7 @@ Setup and baseline (week of 2026-11-23). "After" run: 2026-12-21 (D20).
 ## This week's focus
 1. Rename Google profile and LinkedIn to "Flowstate" (D04); expect Google re-verification.
 2. Turn answers batch 1 into site pages, after D12 to D16 are resolved.
-3. Directory listings: Fergus marketplace and Simpro partner directory (T17).
+3. Directory listings: Fergus marketplace and Simpro partner directory (T17): requirements and draft listing text in `docs/listings/t17-directory-listings.md`. Nothing submitted; applying waits on Ivan's answers below.
 4. Google Business Profile audit (T2): drafted in `docs/audits/gbp-audit-2026-11-24.md`. Fixes wait on the rename (item 1) and Ivan's answers below.
 
 ## Baseline results
@@ -40,9 +40,9 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
 - Access pending from Ivan: CRM, Claude Team, Netlify (GitHub access granted).
-- Netlify deploy previews fail on PR 47 (docs only; `npm run build` passes locally). The log needs Netlify access, so the preview check before merging (D02) can't be done yet.
+- Netlify deploy previews fail on PRs 47 and 48 (both docs only; `npm run build` passes locally). Both were merged on Johan's call without a passing preview. The log needs Netlify access, so neither the preview check (D02) nor the production deploy result can be checked yet.
 - Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
-- Open questions for Ivan: D11 to D16, D22, plus the Google profile questions below.
+- Open questions for Ivan: D11 to D16, D22, plus the Google profile and T17 questions below.
 
 ## Questions for Ivan
 - D11: Any budget for tools, or free only?
@@ -55,6 +55,9 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 - Google profile: Should it name only the D05 trades (electricians, plumbing, HVAC), or builders too?
 - Google profile: Is the proposed services list right (audit item 6)?
 - Google profile: What are the real opening hours, and which regions or cities should be listed as service areas?
+- T17: May Johan sign the Fergus and Simpro partner agreements for Flowstate?
+- T17: For Simpro referrals, take the referral fee or the subscription discount (only one is allowed)?
+- T17: List on Simpro now, or wait for the first Simpro client build (D16)?
 
 ## Changes since last update
-Google Business Profile audit drafted, independently reviewed and added to `docs/audits/` (2026-11-24); nothing on the live profile has changed yet. Earlier: adopted project-kickoff standard (D21) and settled doc location (D19) under D02; PR 47 open. Before that: baseline protocol, questions and Gemini results saved in `docs/baseline/`; Gemini finished 60 of 60 on 2026-11-24.
+T17 directory listing research and drafts added to `docs/listings/` (PR 48, 2026-11-24); nothing submitted. PR 47 (kickoff docs) merged. Earlier: Google Business Profile audit drafted, independently reviewed and added to `docs/audits/` (2026-11-24); nothing on the live profile has changed yet. Adopted project-kickoff standard (D21) and settled doc location (D19) under D02. Before that: baseline protocol, questions and Gemini results saved in `docs/baseline/`; Gemini finished 60 of 60 on 2026-11-24.
