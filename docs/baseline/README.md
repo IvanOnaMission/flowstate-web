@@ -5,12 +5,28 @@ read_when: running or comparing the "after" visibility run
 updated: 2026-11-23
 ---
 
-The baseline (2026-11-23) found Flowstate in 4 of 323 AI answers; the "after" run on 2026-12-21 repeats it exactly (D10, D17, D20).
+The baseline (2026-11-23) found Flowstate in 4 of 354 AI answers, all on Gemini; the "after" run on 2026-12-21 repeats it exactly (D10, D17, D20).
 
 | file | contents | status |
 |---|---|---|
-| `protocol.md` | Engines, modes, run count, exact setup per engine | to copy in from Johan's working folder |
-| `questions.md` | The 12 unbranded questions | to copy in |
-| `results/<engine>.csv` | One row per check: question, run, named (y/n), names cited | to copy in |
+| `protocol.md` | Engines, modes, run count, exact setup per engine | done |
+| `questions.md` | The 12 unbranded questions | done |
+| `results/gemini.csv` | One row per check: question, run, named (y/n), names cited | 54 of 60; Q11 run 5 and Q12 pending (Gemini limit, resets 2026-11-24) |
+| `results/<engine>.csv` for the other five engines | Per-check rows | not kept; totals below only |
 
-Setup per engine (D10): ChatGPT Temporary Chat with personalisation off; Gemini temporary chat; Google normal search (google.co.nz, logged in); Perplexity logged in; Claude incognito with web search on; Bing AI answer (Copilot needed sign-in). Five fresh runs per question per engine.
+## Totals
+
+| engine | checks | Flowstate named |
+|---|---|---|
+| ChatGPT | 60 | 0 |
+| Google AI Overviews | 60 | 0 |
+| Perplexity | 60 | 0 |
+| Claude | 60 | 0 |
+| Bing AI answer | 60 (no AI answer on 5 of 12 questions) | 0 |
+| Gemini | 54 of 60 | 4 (Q1, Q2, Q5; counted as Flowstate by assumption; unlinked) |
+
+Competitors named: Automate AI, Stride AI, Ez-AI, Sophiie, TradieCall, Talkify, Wisely, Hyper Digital, e2e Ltd, Torque AI, Fylo, H3llo, FirstVoice.
+
+Gemini `names_cited` lists are partial: they hold the bold text the extractor captured, not every name in the answer.
+
+Proposed: for the "after" run, keep per-check rows for every engine.

@@ -1,0 +1,33 @@
+date,question,run,flowstate_named,names_cited,note
+2026-11-23,Q1-Q5,first 23 checks,4 of 23,,Per-check rows not kept; Flowstate named on Q1 Q2 Q5 (counted as Flowstate by assumption; unlinked)
+2026-11-23,Q5,4,n,Kplex; Support Layer; Virtual Innovation,
+2026-11-23,Q5,5,n,WorkArc; Virtual Innovation; Support Layer; Virtual Coastie,
+2026-11-23,Q6,1,n,e2e Ltd; Adaptiv; Ez-AI; Integration Fox,
+2026-11-23,Q6,2,n,e2e Ltd; Softcon; Adaptiv,
+2026-11-23,Q6,3,n,e2e Ltd; SME Financial,
+2026-11-23,Q6,4,n,e2e Ltd; Softcon; Level Group ANZ,
+2026-11-23,Q6,5,n,e2e Ltd; SME Financial Ltd; Adaptiv; Integration Fox; Simplementary,
+2026-11-23,Q7,1,n,TradieCall; Automate AI; FirstVoice AI; Sophiie; ByRocket,
+2026-11-23,Q7,2,n,TradieCall; Hey Jodie; Sophiie; Automate AI,
+2026-11-23,Q7,3,n,TradieCall; Talkify; Sophiie; Automate AI; AI Agency NZ; ServiceGecko; Jodie,
+2026-11-23,Q7,4,n,TradieCall; Automate AI,
+2026-11-23,Q7,5,n,Sophiie; Talkify; Automate AI,
+2026-11-23,Q8,1,n,,Generic comparison; no companies named
+2026-11-23,Q8,2,n,,Generic comparison; no companies named
+2026-11-23,Q8,3,n,,Generic comparison; no companies named
+2026-11-23,Q8,4,n,,Generic comparison; no companies named
+2026-11-23,Q8,5,n,,Generic comparison; no companies named
+2026-11-23,Q9,1,n,Buildxact; Togal.AI; Hubdoc; Dext,Software only; a browser timeout may have run extra unrecorded Q9 checks before this one
+2026-11-23,Q9,2,n,,Generic tips; no companies named
+2026-11-23,Q9,3,n,Xero; Fergus; Tradify; simPRO,Software only
+2026-11-23,Q9,4,n,Buildxact; Fergus,Software only
+2026-11-23,Q9,5,n,Xero; Buildertrend,Software only
+2026-11-23,Q10,1,n,Ez-AI; Stride AI; Waboom AI; AI Workers; Automate AI; Muscle+Brain; Wisely; Virtual Blue; RUSH; Datacom; Qrious,
+2026-11-23,Q10,2,n,Ez-AI; Stride AI; AI Workflows NZ; Wisely; AI Automation Agency NZ; Automate AI,
+2026-11-23,Q10,3,n,Ez-AI; Stride AI; AI Workflows Agency; AI Automation Agency NZ; Automate AI; Wisely,Also software: monday.com
+2026-11-23,Q10,4,n,Ez-AI; Stride AI; AI Workflows NZ; Wisely; Automate AI; AI Automation Agency NZ,
+2026-11-23,Q10,5,n,Ez-AI; Stride AI; AI Workflows Agency; Automate AI; Wisely,
+2026-11-23,Q11,1,n,Automate AI; Stride AI; Hyper Digital; Intellect Technologies,Also software: Fergus; ServiceM8; simPRO; Xero
+2026-11-23,Q11,2,n,Automate AI; Hyper Digital; Intellect Technologies; Avtrix Software Solutions,Also software: ServiceM8; Fergus
+2026-11-23,Q11,3,n,Momentum CRM; Automate AI; Stride AI; AgentWorks; Hyper Digital,
+2026-11-23,Q11,4,n,Automate AI; Stride AI; Hyper Digital; Intellect Technologies; AiLabs,Also software: ServiceM8; Fergus; simPRO; Tradify; HubSpot; Pipedrive
