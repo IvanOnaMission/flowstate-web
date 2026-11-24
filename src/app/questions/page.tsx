@@ -7,7 +7,7 @@ import { site, callPromise } from "@/lib/site";
 
 // The FAQ hub: short answers to Ivan's batch 1 questions (docs/content/answers-batch-1.md, D25),
 // each linking to the page that answers it in full. Held: Q15 hosting, Q16 package terms, Q14 draft
-// checks and "Flowstate fixes it", Q17 "own accounts", D13 claims, the D16 receptionist line.
+// checks and "Flowstate fixes it", Q17 "own accounts", the D16 receptionist line.
 type Item = { q: string; a: string; more?: { href: string; label: string } };
 
 const groups: { title: string; items: Item[] }[] = [
@@ -49,7 +49,7 @@ const groups: { title: string; items: Item[] }[] = [
   {
     title: "Getting started",
     items: [
-      { q: "Who can automate my trade business in NZ, and what makes Flowstate different?", a: `${site.entity} We build on the software you already use, and if AI isn't the answer for something we'll tell you straight. The goal is to be New Zealand's go-to for AI in trade businesses.`, more: { href: "/about/", label: "About Flowstate" } },
+      { q: "Who can automate my trade business in NZ, and what makes Flowstate different?", a: `${site.entity} It's trained and backed by a real electrical company that's been automating its own business for the last six years, and it has delivered for 10+ clients across different trades. We build on the software you already use, and if AI isn't the answer for something we'll tell you straight. The goal is to be New Zealand's go-to for AI in trade businesses.`, more: { href: "/about/", label: "About Flowstate" } },
       { q: "What does getting set up look like, and how long does it take?", a: "It starts with a free 30-minute call to work out where the time's going. If it's a fit, a paid diagnostic gives you a prioritised roadmap. Then we build the foundation: connect your job software and Xero and build the AI brain of your prices, rules and processes, which takes 2 to 3 days. After that we build helpers one at a time, each tested on real past jobs.", more: { href: "/workflow-diagnostic/", label: "The diagnostic and AI partnership" } },
       { q: "What do you need from me to get started?", a: "Just 30 minutes to start. Once we get into the build, we'll need things like your price list, some past quotes and invoices, and access to your job software and Xero, which you log into yourself." },
     ],
