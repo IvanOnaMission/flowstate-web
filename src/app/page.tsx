@@ -104,6 +104,10 @@ export default function Home() {
           <SoftwareExplanation />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
+            <Link href="/questions/">Questions tradies ask about AI →</Link>
+            <Link href="/ai-automation-cost/">What AI automation costs →</Link>
+            <Link href="/simpro-automation/">Simpro automation →</Link>
+            <Link href="/fergus-automation/">Fergus automation →</Link>
             <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
           </div>
         </Reveal>
