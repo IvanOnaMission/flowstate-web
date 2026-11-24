@@ -11,7 +11,7 @@ Source: Ivan, message to Johan, 2026-11-23. Text below is Ivan's; only the Q9 li
 
 | answer | check before publishing |
 |---|---|
-| Q4 | D16 (open): publish the stated limit as written? |
+| Q4 | D16 (settled): leave the limit line out of public copy |
 | Q11 | D24 (settled): drop the last sentence, use Jordan's business as the proof point. See "Updates from Ivan" |
 | Q12 | D14 (settled): ServiceM8 counts too. See "Updates from Ivan" |
 | Q17 | D13 (open): confirm "10+ clients" and "six years" |
