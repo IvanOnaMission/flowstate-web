@@ -277,7 +277,7 @@ Treat AI like a new employee: train it on your systems once, and it doesn't forg
 Start with a free 30-minute call 👇
 https://flowstate.net.nz/?utm_source=linkedin&utm_medium=social&utm_campaign=li-post&utm_content=li-02
 ```
-Sources: Q20 view D25(q); D12 without "95%" or "we work with"; D14 free call.
+Sources: Q20 view D25(q); D12 without "95%" or "we work with"; D25(p) 30-minute call, free as the live site sells it.
 
 **li-03: The CHECK rule** (link: `/ai-quoting-for-electricians/`)
 ```
