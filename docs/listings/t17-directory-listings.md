@@ -126,7 +126,7 @@ API access needs Simpro's Premium plan, and Simpro approves each connection. We 
 
 **Services Offered:** Custom Development / Integration; Business Coaching / Consulting
 
-**Simpro Expertise:** leave blank for now. The closest filter option, "Premium & Mobile", would claim Mobile expertise we have no source for. Jordan's Simpro setup (D24) doesn't say whether it uses Simpro Mobile; ask Ivan before picking it.
+**Simpro Expertise:** leave blank. The closest filter option, "Premium & Mobile", would claim Mobile expertise we have no source for (Johan, 2026-11-25).
 
 Sources: Jordan as advisor (D07), fully automated through Simpro (D24), supplier pricing and pre-builds (Q11), Auckland stats (Q20, D12), setup time (D15).
 
