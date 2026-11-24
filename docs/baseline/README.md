@@ -2,28 +2,28 @@
 title: Visibility Baseline
 purpose: Where the baseline protocol and raw results live, and how to rerun it
 read_when: running or comparing the "after" visibility run
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
-The baseline (2026-11-23 to 2026-11-24) found Flowstate in 4 of 360 checks, all on Gemini; the "after" run on 2026-12-21 repeats it exactly (D10, D17, D20).
+The baseline (2026-11-23 to 2026-11-24) found Flowstate named in 0 of 360 checks under D23, plus 4 "name only" mentions on Gemini; the "after" run on 2026-12-21 repeats it exactly (D10, D17, D20, D23).
 
 | file | contents | status |
 |---|---|---|
 | `protocol.md` | Engines, modes, run count, exact setup per engine | done |
 | `questions.md` | The 12 unbranded questions | done |
-| `results/gemini.csv` | One row per check: question, run, named (y/n), names cited | 60 of 60 (last 6 run on 2026-11-24 after the Gemini limit reset) |
+| `results/gemini.csv` | One row per check: question, run, named (y/n, or name only under D23), names cited | 60 of 60 (last 6 run on 2026-11-24 after the Gemini limit reset) |
 | `results/<engine>.csv` for the other five engines | Per-check rows | not kept; totals below only |
 
 ## Totals
 
-| engine | checks | Flowstate named |
+| engine | checks | Flowstate named (D23) |
 |---|---|---|
 | ChatGPT | 60 | 0 |
 | Google AI Overviews | 60 | 0 |
 | Perplexity | 60 | 0 |
 | Claude | 60 | 0 |
 | Bing AI answer | 60 (no AI answer on 5 of 12 questions) | 0 |
-| Gemini | 60 | 4 (Q1, Q2, Q5; counted as Flowstate by assumption; unlinked) |
+| Gemini | 60 | 0 (plus 4 name only: Q1, Q2, Q5; no link, no detail) |
 
 Competitors named: Automate AI, Stride AI, Ez-AI, Sophiie, TradieCall, Talkify, Wisely, Hyper Digital, e2e Ltd, Torque AI, Fylo, H3llo, FirstVoice.
 

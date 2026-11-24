@@ -1,5 +1,5 @@
 date,question,run,flowstate_named,names_cited,note
-2026-11-23,Q1-Q5,first 23 checks,4 of 23,,Per-check rows not kept; Flowstate named on Q1 Q2 Q5 (counted as Flowstate by assumption; unlinked)
+2026-11-23,Q1-Q5,first 23 checks,0 of 23 (4 name only),,Per-check rows not kept; FlowState or Flowstate in a list of NZ automation agencies on Q1 Q2 Q5 with no link or detail; name only under D23 (reclassified 2026-11-25 from the saved summary; raw text not kept)
 2026-11-23,Q5,4,n,Kplex; Support Layer; Virtual Innovation,
 2026-11-23,Q5,5,n,WorkArc; Virtual Innovation; Support Layer; Virtual Coastie,
 2026-11-23,Q6,1,n,e2e Ltd; Adaptiv; Ez-AI; Integration Fox,

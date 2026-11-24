@@ -2,7 +2,7 @@
 title: Answers Batch 1
 purpose: Ivan's answers to the 20 customer questions, source material for site pages and posts
 read_when: writing site pages, LinkedIn posts, FAQ
-updated: 2026-11-23
+updated: 2026-11-25
 ---
 
 Ivan answered all 20 questions on 2026-11-23; check the flagged answers against `docs/decisions.md` before publishing.
@@ -11,11 +11,21 @@ Source: Ivan, message to Johan, 2026-11-23. Text below is Ivan's; only the Q9 li
 
 | answer | check before publishing |
 |---|---|
-| Q4, Q11 | D16: publish the stated limits as written? |
-| Q12 | D14: ServiceM8 not answered |
-| Q17 | D13: confirm "10+ clients" and "six years" |
-| Q18 | D15: no timeframe given |
-| Q20 | D12: client consent for named stats |
+| Q4 | D16 (open): publish the stated limit as written? |
+| Q11 | D24 (settled): drop the last sentence, use Jordan's business as the proof point. See "Updates from Ivan" |
+| Q12 | D14 (settled): ServiceM8 counts too. See "Updates from Ivan" |
+| Q17 | D13 (open): confirm "10+ clients" and "six years" |
+| Q18 | D15 (settled): foundation set up in 2 to 3 days. See "Updates from Ivan" |
+| Q20 | D12 (settled): the Auckland client stats may be used |
+
+## Updates from Ivan (2026-11-25)
+
+Source: Ivan, message to Johan, 2026-11-25. These change the answers below; the original text is kept as written.
+
+- **Q11:** "the 'no full Simpro build yet' line in Q11 is out of date. Jordan's business is fully automated through Simpro, so take that limit out and lead with it as a proof point." (D24)
+- **Q12:** "yes, ServiceM8 counts. Flowstate can work with any job management software." (D14)
+- **Q18:** "the foundation is set up in 2 to 3 days" (D15)
+- **Q20:** the Auckland client stats are "all good, you can use them." (D12)
 
 ## Cost and value
 
