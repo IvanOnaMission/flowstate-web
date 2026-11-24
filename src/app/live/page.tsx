@@ -7,7 +7,7 @@ import { formFields } from "../essentials/questions";
 const path = "/live/";
 const title = "Free live session for electrical business owners | Flowstate";
 const description =
-  "A free live session for New Zealand electrical business owners with Jordan from Conduction Company. Tuesday 24 November, 10am NZ time.";
+  "A free live session for New Zealand electrical business owners with Jordan from Conduction Company. Tuesday, 10am NZ time.";
 
 const tracking = ["ad_id", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "landing_path", "fbclid", "fbc", "fbp"];
 const answerFields = formFields.filter((f) => !["name", "business", "phone", "email", ...tracking].includes(f));
