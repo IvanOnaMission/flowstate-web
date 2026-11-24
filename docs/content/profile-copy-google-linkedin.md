@@ -237,29 +237,47 @@ AI automation, Trade business automation, AI for electricians, AI for plumbers, 
 
 One a week, posted from the company page, with a link carrying the UTM tags. Ivan and Johan reshare from their own profiles (D09).
 
-**li-01: The name** (link: `/about/`)
+li-01 and li-02 follow Alloy Robotics' early posts: a plain introduction with a stated goal, then short posts with bold list lines. Links go to the homepage until the new pages are live in production.
+
+**li-01: Introduction** (link: homepage, `utm_content=li-01`)
 ```
-Flowstate. One word.
+Hi LinkedIn, we're Flowstate.
 
-We're an Auckland company that builds AI automation for New Zealand trade businesses, and from now on that's the only way we write our name.
+We're an Auckland company that builds AI automation for New Zealand trade businesses. Electricians first, then plumbing and HVAC.
 
-Why tradies? Because the business behind us is one. Flowstate is backed by an electrical company that has been automating its own business for six years.
+The problem we're here for: in a small trade business, it's usually the owner doing the quoting, invoicing and chasing on top of the actual work.
 
-10+ clients across different trades so far. The goal is to be New Zealand's go-to for AI in trade businesses.
+So we put AI on the admin:
+𝗤𝘂𝗼𝘁𝗲𝘀 𝗮𝗻𝗱 𝗶𝗻𝘃𝗼𝗶𝗰𝗲𝘀: drafted from your price list and job notes
+𝗙𝗼𝗹𝗹𝗼𝘄-𝘂𝗽: replies to new enquiries drafted within minutes, quotes chased at 3 and 7 days
+𝗥𝗲𝘃𝗶𝗲𝘄𝘀: a request drafted every time a job's paid
+
+AI drafts, you approve, on the software you already use.
+
+Behind us is an electrical company that's been automating its own business for six years. We've delivered for 10+ clients across different trades. Our goal is to be New Zealand's go-to for AI in trade businesses, and if AI isn't the answer for something, we'll tell you straight.
+
+Over the coming weeks we'll share what's working in NZ trade businesses: real examples, the tools, and what we'd skip.
+
+Follow along 👇
+https://flowstate.net.nz/?utm_source=linkedin&utm_medium=social&utm_campaign=li-post&utm_content=li-01
 ```
-Sources: D04, D23, D13, Q17 view D25(q).
+Sources: D23; D05; Q3 view D25(q); D25(a), (e), (f); D13; Q17 view D25(q), "go-to" as a goal only.
 
-**li-02: AI is a new employee, not a tool on the side** (link: `/questions/`)
+**li-02: AI is a new employee, not a tool on the side** (link: homepage, `utm_content=li-02`)
 ```
-Most trade businesses we talk to use ChatGPT to write a scope or an email. That's a start. But it doesn't know their prices, and it doesn't connect to their software.
+Our founder Ivan's take: ChatGPT on its own isn't the answer for a tradie. It doesn't know your prices or connect to your software.
 
-The ones getting ahead use AI on the admin, not the tools. They treat it like a new employee: bring it in, train it on your systems, and once it's learned something it doesn't forget.
+Connect AI to your job software and Xero, and it's a different story. One Auckland electrical business shows it:
+𝗤𝘂𝗼𝘁𝗲𝘀: coming back almost fully built
+𝗔𝗻 𝗔𝗜 𝗮𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁: its own email and phone line
+𝗥𝗲𝘃𝗶𝗲𝘄𝘀: 150 added in three months
 
-One Auckland electrical business has quotes coming back almost fully built, an AI assistant with its own email and phone line, and a review system that added 150 reviews in three months.
+Treat AI like a new employee: train it on your systems once, and it doesn't forget.
 
-That's the difference between a tool on the side and AI as part of how the business runs.
+Start with a free 30-minute call 👇
+https://flowstate.net.nz/?utm_source=linkedin&utm_medium=social&utm_campaign=li-post&utm_content=li-02
 ```
-Sources: Q20 view D25(q); D12 without "95%", worded as on `/questions/`.
+Sources: Q20 view D25(q); D12 without "95%" or "we work with"; D14 free call.
 
 **li-03: The CHECK rule** (link: `/ai-quoting-for-electricians/`)
 ```
