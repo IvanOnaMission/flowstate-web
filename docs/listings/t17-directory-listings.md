@@ -7,12 +7,12 @@ status: draft, nothing submitted
 owner: Johan
 ---
 
-Both directories list consultancies like Flowstate for free, but each needs a partner application and a signed partner agreement first. Nothing has been submitted. Copy below follows D04 (one-word "Flowstate"), D06 (no prices) and leaves out the claims still open in D13. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
+Both directories list consultancies like Flowstate for free, but each needs a partner application and a signed partner agreement first. Nothing has been submitted. Copy below follows D04 (one-word "Flowstate"), D06 (no prices) and may use the D13 claims ("10+ clients"; six years are the electrical company's), settled 2026-11-25. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
 
-## Before submitting (Ivan)
+## Before submitting (settled 2026-11-25)
 
-1. **Signing the partner agreements.** Both programs bind Flowstate to terms (Fergus: annual certification, two-business-day reply to Fergus-related client enquiries; Simpro: five-business-day issue resolution, removal after repeated negative feedback). Ivan decides scope and public claims, so get his OK before signing.
-2. **Referral money.** Fergus pays referral bonuses into a bank account (details go to Fergus finance, not through Claude). Simpro makes you pick one: referral fee *or* a partner discount on subscriptions for referred customers, not both. Ivan picks.
+1. **Signing the partner agreements.** Both programs bind Flowstate to terms (Fergus: annual certification, two-business-day reply to Fergus-related client enquiries; Simpro: five-business-day issue resolution, removal after repeated negative feedback). Ivan cleared Johan to sign both (D26); Johan signs himself.
+2. **Referral money.** Fergus pays referral bonuses into a bank account (details go to Fergus finance, not through Claude). Simpro makes you pick one: referral fee *or* a partner discount on subscriptions for referred customers, not both. Ivan chose the referral fee (D27).
 
 The earlier question of holding the Simpro listing until a first Simpro build is gone: Ivan says the "no full Simpro build yet" line is out of date (D24).
 
@@ -140,7 +140,7 @@ Sources: Jordan as advisor (D07), fully automated through Simpro (D24), supplier
 
 | claim | why | decision |
 |---|---|---|
-| "10+ clients", "six years" | Not yet confirmed by Ivan | D13 open |
+| "10+ clients", "six years" | Confirmed by Ivan 2026-11-25; six years are the electrical company's | D13 settled, may be used |
 | Any price, fee or percentage | No prices public | D06 |
 | Whether the Auckland client is on Fergus or Simpro | Not stated; the stats are used without naming the software | D12 |
 | "Flowstate built Jordan's Simpro setup" | Ivan's answer says the business is fully automated through Simpro, not who built it | D24 |
