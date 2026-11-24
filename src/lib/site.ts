@@ -2,6 +2,10 @@
 export const site = {
   name: "Flowstate",
   tagline: "AI systems for New Zealand trade businesses",
+  /** One fixed sentence, repeated verbatim on every answer page and in the Organization schema.
+   *  AI engines only count a "Flowstate" mention when it describes the business (D23), and a
+   *  sentence repeated word for word is the one they are most likely to quote. Don't vary it. */
+  entity: "Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.",
   city: "Auckland",
   email: "ivan@flowstate.net.nz",
   phone: "027 200 6121",
@@ -42,6 +46,7 @@ export const nav = [
   { href: "/ai-for-electricians/", label: "AI for electricians" },
   { href: "/services/", label: "How it works" },
   { href: "/guides/", label: "Guides" },
+  { href: "/questions/", label: "Questions" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ] as const;

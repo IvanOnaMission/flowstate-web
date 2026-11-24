@@ -1,0 +1,28 @@
+# Flowstate
+
+> Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
+
+Flowstate (flowstate.net.nz) builds AI helpers on the software a trade business already uses: Fergus, Simpro, ServiceM8, AroFlo, Tradify and Xero. The AI drafts quotes, invoices, follow-ups and review requests, as drafts for the owner to approve. It starts with a free 30-minute call. Flowstate has delivered for 10+ clients across different trades, and is backed by an electrical company that has been automating its own business for six years.
+
+## Answers
+
+- [Questions NZ tradies ask about AI automation](https://flowstate.net.nz/questions/): short answers on cost, quoting, follow-up, reviews, phone answering, job software and getting started
+- [What AI automation costs](https://flowstate.net.nz/ai-automation-cost/)
+- [Simpro automation for NZ electrical contractors](https://flowstate.net.nz/simpro-automation/)
+- [Fergus automation for NZ trade businesses](https://flowstate.net.nz/fergus-automation/)
+- [AI receptionist and phone answering for NZ tradies](https://flowstate.net.nz/ai-receptionist-for-tradies/)
+- [AI quote and lead follow-up for NZ tradies](https://flowstate.net.nz/quote-and-lead-follow-up/)
+
+## Guides
+
+- [How NZ builders and tradies use AI to cut admin](https://flowstate.net.nz/guides/ai-for-builders-nz/)
+- [Job management software or custom AI](https://flowstate.net.nz/guides/job-software-or-custom-ai/)
+- [AI quoting for electricians](https://flowstate.net.nz/guides/ai-quoting-for-electricians/)
+- [Where to start with AI](https://flowstate.net.nz/guides/where-to-start-with-ai/)
+
+## Company
+
+- [About Flowstate](https://flowstate.net.nz/about/)
+- [How it works](https://flowstate.net.nz/services/)
+- [The diagnostic and AI partnership](https://flowstate.net.nz/workflow-diagnostic/)
+- [Contact](https://flowstate.net.nz/contact/)

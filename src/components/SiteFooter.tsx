@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { nav, site } from "@/lib/site";
+import { answerPages } from "@/lib/answers";
 import EmailSignup from "./EmailSignup";
 
 export default function SiteFooter() {
@@ -37,6 +38,19 @@ export default function SiteFooter() {
         <div className="flex flex-col gap-3 text-[0.95rem]">
           <p className="eyebrow text-mute">Pages</p>
           {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-mute transition-colors duration-200 hover:text-ink"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-3 text-[0.95rem]">
+          <p className="eyebrow text-mute">Questions</p>
+          {answerPages.map((item) => (
             <Link
               key={item.href}
               href={item.href}
