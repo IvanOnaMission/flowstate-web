@@ -39,8 +39,8 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
-- Access pending from Ivan: CRM. Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
-- Production not deploying (2026-11-25): PRs 58-60 are merged to main, but flowstate.net.nz still serves the old build (`/questions/` 404, old 12-URL sitemap) 10+ minutes later, and no commit on main since at least PR 52 has a Netlify production deploy status. Ivan or Johan checks the Netlify site's production branch and whether auto-publishing or deploys are locked, then triggers a deploy. IndexNow and Search Console wait on it.
+- Access pending from Ivan: CRM, Netlify team (to fix production deploys, below). Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
+- Production not deploying (2026-11-25): PRs 58-60 are merged to main, but flowstate.net.nz still serves the old build (`/questions/` 404, old 12-URL sitemap) 10+ minutes later, and no commit on main since at least PR 52 has a Netlify production deploy status. Johan can't see production or preview deploys in Netlify: he needs to be added to Ivan's Netlify team (Developer or Owner). Until then Ivan sets the production branch to `main`, turns builds and auto-publishing on, and triggers a deploy. IndexNow and Search Console wait on it.
 - Netlify fixed (2026-11-25): flowstate-web is now public and relinked, so pushes build previews again. Ivan reports PR 47's preview is live and PRs 48 to 51 passed on retry.
 - Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
 - Five questions for Ivan, below.
