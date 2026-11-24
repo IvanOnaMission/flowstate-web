@@ -63,7 +63,7 @@ export default function RootLayout({
           email: site.email,
           telephone: site.phone,
           description: site.entity,
-          address: { "@type": "PostalAddress", addressLocality: "Auckland", addressCountry: "NZ" },
+          address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: "NZ" },
           areaServed: { "@type": "Country", name: "New Zealand" },
           knowsAbout: ["AI automation for trade businesses", "Simpro", "Fergus", "ServiceM8", "Xero", "AroFlo", "Tradify"],
           ...(site.sameAs.length > 0 && { sameAs: site.sameAs }),

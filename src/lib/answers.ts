@@ -1,7 +1,7 @@
 /**
  * The answer pages built from Ivan's answers batch 1 (docs/content/answers-batch-1.md).
- * One list, used by the /questions/ hub, the footer, the home page and the sitemap,
- * so a new page only needs adding here.
+ * One list, used by the answer pages' "More answers" links, the footer and the sitemap,
+ * so a new page only needs adding here (the home page links a hand-picked few).
  *
  * Every claim on these pages needs a source in docs/decisions.md (D06, D12, D14, D15,
  * D24, D25). Held until Ivan answers, so do not add: "10+ clients" / "six years" (D13),

@@ -18,7 +18,7 @@ const page = {
       a: [
         "Yeah, it can make sure you actually ask every customer. When a job's paid, it drafts a review request that goes from your own phone or email, signed by you, and it skips anyone you've already asked in the last year.",
         "It runs in the background, so asking stops relying on you remembering at the end of a long day.",
-        "One rule we stick to: never ask for a 5-star review and never only ask the happy customers. Google's review policy doesn't allow either, and it can get reviews taken down.",
+        "One rule we stick to: never ask for a 5-star review and never only ask the happy customers. Google bans both, and it can get reviews taken down.",
       ],
     },
   ],

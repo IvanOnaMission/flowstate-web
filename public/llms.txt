@@ -2,7 +2,7 @@
 
 > Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
 
-Flowstate (flowstate.net.nz) builds AI helpers on the software a trade business already uses: Fergus, Simpro, ServiceM8, AroFlo, Tradify and Xero. The AI drafts quotes, invoices, follow-ups and review requests, and the owner approves them. It starts with a free 30-minute call.
+Flowstate (flowstate.net.nz) builds AI helpers on the software a trade business already uses: Fergus, Simpro, ServiceM8, AroFlo, Tradify and Xero. The AI drafts quotes, invoices, follow-ups and review requests, as drafts for the owner to approve. It starts with a free 30-minute call.
 
 ## Answers
 
