@@ -167,6 +167,9 @@
 }
 .chosen .key { background: var(--ink); border-color: var(--ink); color: var(--sky); }
 .label { flex: 1; min-width: 0; }
+/* Second line under an answer, e.g. the investment levels. */
+.detail { display: block; margin-top: 3px; font-size: 0.9375rem; font-weight: 500; line-height: 1.35; color: var(--mute); }
+.chosen .detail { color: inherit; opacity: 0.8; }
 .tick {
   flex: none;
   display: grid;
@@ -186,9 +189,10 @@
 /* Investment level meter */
 .lvl { flex: none; display: flex; align-items: flex-end; gap: 3px; height: 20px; }
 .lvl b { width: 5px; border-radius: 2px; background: var(--line); transition: background 0.2s; }
-.lvl b:nth-child(1) { height: 8px; }
-.lvl b:nth-child(2) { height: 14px; }
-.lvl b:nth-child(3) { height: 20px; }
+.lvl b:nth-child(1) { height: 6px; }
+.lvl b:nth-child(2) { height: 10px; }
+.lvl b:nth-child(3) { height: 15px; }
+.lvl b:nth-child(4) { height: 20px; }
 .lvl b.on { background: var(--gold); }
 .chosen .lvl b.on { background: var(--ink); }
 .chosen .lvl b:not(.on) { background: color-mix(in srgb, var(--ink) 18%, transparent); }

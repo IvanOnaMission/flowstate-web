@@ -376,10 +376,13 @@ export default function EssentialsQuiz() {
                   onClick={() => choose(i, o.label)}
                 >
                   <span className={styles.key} aria-hidden="true">{j + 1}</span>
-                  <span className={styles.label}>{o.label}</span>
+                  <span className={styles.label}>
+                    {o.label}
+                    {o.detail ? <small className={styles.detail}>{o.detail}</small> : null}
+                  </span>
                   {o.level ? (
                     <span className={styles.lvl} aria-hidden="true">
-                      {[1, 2, 3].map((n) => (
+                      {[1, 2, 3, 4].map((n) => (
                         <b key={n} className={n <= (o.level ?? 0) ? styles.on : ""} />
                       ))}
                     </span>
