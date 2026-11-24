@@ -11,6 +11,12 @@ export const site = {
   booking: "/workflow-diagnostic/",
   callMinutes: 30,
   url: "https://flowstate.net.nz",
+  /** Our own profiles elsewhere (Google Business Profile, LinkedIn), emitted as schema.org
+   *  sameAs so search engines tie them to this site and not to other "Flow State" brands. */
+  sameAs: [
+    "https://maps.google.com/?cid=3743371768875082870",
+    "https://www.linkedin.com/company/146714299/",
+  ] as string[],
 } as const;
 
 /**

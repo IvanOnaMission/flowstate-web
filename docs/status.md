@@ -16,7 +16,7 @@ Baseline done: Flowstate appeared in 4 of 360 checks, all on Gemini and unlinked
 Setup and baseline (week of 2026-11-23). "After" run: 2026-12-21 (D20).
 
 ## This week's focus
-1. Rename Google profile and LinkedIn to "Flowstate" (D04); expect Google re-verification.
+1. Rename Google profile and LinkedIn to "Flowstate" (D04): Google profile renamed by Johan 2026-11-24, waiting on re-verification before the other profile edits (audit item 1). LinkedIn rename not yet confirmed.
 2. Turn answers batch 1 into site pages, after D12 to D16 are resolved.
 3. Directory listings: Fergus marketplace and Simpro partner directory (T17): requirements and draft listing text in `docs/listings/t17-directory-listings.md`. Nothing submitted; applying waits on Ivan's answers below.
 4. Google Business Profile audit (T2): drafted in `docs/audits/gbp-audit-2026-11-24.md`. Fixes wait on the rename (item 1) and Ivan's answers below.
@@ -60,4 +60,5 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 - T17: List on Simpro now, or wait for the first Simpro client build (D16)?
 
 ## Changes since last update
+Google Business Profile renamed to "Flowstate" (2026-11-24, Johan); re-verification pending.
 T17 directory listing research and drafts added to `docs/listings/` (PR 48, 2026-11-24); nothing submitted. PR 47 (kickoff docs) merged. Earlier: Google Business Profile audit drafted, independently reviewed and added to `docs/audits/` (2026-11-24); nothing on the live profile has changed yet. Adopted project-kickoff standard (D21) and settled doc location (D19) under D02. Before that: baseline protocol, questions and Gemini results saved in `docs/baseline/`; Gemini finished 60 of 60 on 2026-11-24.
