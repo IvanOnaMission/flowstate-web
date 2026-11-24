@@ -17,7 +17,7 @@ Setup and baseline (week of 2026-11-23). "After" run: 2026-12-21 (D20).
 
 ## This week's focus
 1. Rename Google profile and LinkedIn to "Flowstate" (D04): Google profile renamed by Johan 2026-11-24, waiting on re-verification before the other profile edits (audit item 1). LinkedIn rename not yet confirmed.
-2. Turn answers batch 1 into site pages. Plan reviewed by two independent reviewers 2026-11-25 (both green): FAQ hub `/questions/`, six focused pages, `/about/` and job-software guide updates, Organization schema. Claims sourced in D25; the Q4 receptionist line (D16), Q15 hosting, Q16 package terms and the "a person checks every draft" line stay out until Ivan answers. Target: merged by 2026-11-30. On 2026-12-07 check `site:` results on Google and Bing and record them here; don't re-run the baseline questions before 2026-12-21.
+2. Turn answers batch 1 into site pages. Merged 2026-11-25 (PRs 58, 59, 60): FAQ hub `/questions/`, six focused pages, `/about/` and job-software guide updates, Organization schema, llms.txt; "10+ clients" and "six years" (D13) on `/questions/`, `/about/` and llms.txt. Claims sourced in D25; the Q4 receptionist line (D16), Q15 hosting, Q16 package terms and the "a person checks every draft" line stay out until Ivan answers. Next: after the production deploy, Johan runs `node scripts/submit-indexnow.mjs`, requests indexing of `/questions/` in Search Console and submits the sitemap in Bing Webmaster Tools. On 2026-12-07 check `site:` results on Google and Bing and record them here; don't re-run the baseline questions before 2026-12-21.
 3. Directory listings: Fergus marketplace and Simpro partner directory (T17): requirements and draft listing text in `docs/listings/t17-directory-listings.md`. Drafts updated 2026-11-25 with Ivan's answers (D12, D15, D24). Nothing submitted. Ivan cleared applying (2026-11-25): Johan may sign both partner agreements (D26), Simpro referral fee chosen (D27). Next: Johan registers and signs.
 4. Google Business Profile audit (T2): drafted in `docs/audits/gbp-audit-2026-11-24.md`. Fixes wait on the rename (item 1). Hours and service area stay as they are (D28).
 
@@ -40,6 +40,7 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
 - Access pending from Ivan: CRM. Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
+- Production not deploying (2026-11-25): PRs 58-60 are merged to main, but flowstate.net.nz still serves the old build (`/questions/` 404, old 12-URL sitemap) 10+ minutes later, and no commit on main since at least PR 52 has a Netlify production deploy status. Ivan or Johan checks the Netlify site's production branch and whether auto-publishing or deploys are locked, then triggers a deploy. IndexNow and Search Console wait on it.
 - Netlify fixed (2026-11-25): flowstate-web is now public and relinked, so pushes build previews again. Ivan reports PR 47's preview is live and PRs 48 to 51 passed on retry.
 - Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
 - Five questions for Ivan, below.
@@ -53,6 +54,7 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business?
 
 ## Changes since last update
+Site pages from answers batch 1 merged (PRs 58, 59, 60, 2026-11-25), with the D13 claims added after Ivan confirmed them.
 Ivan answered four questions (2026-11-25, 10:03): D13 confirmed ("10+ clients", "six years"), Johan may sign the T17 partner agreements (D26), Simpro referral fee (D27), Google profile keeps 24/7 hours and all of New Zealand (D28). The site-pages questions, incl. publishing his wording under his byline, are still open.
 Site pages from answers batch 1 planned and independently reviewed (2026-11-25); D25 added to source their claims; five site-page questions added for Ivan; D25 judge-reviewed (upheld with conditions, conditions applied).
 Johan settled D22 (measurement is his call) and D16 (Q4 line left out of public copy), and cut the questions for Ivan to four (2026-11-25). Google profile: trades stay D05, services come from the answers, opening date left blank. Simpro expertise left blank.
