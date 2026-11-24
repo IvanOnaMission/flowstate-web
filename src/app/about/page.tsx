@@ -103,8 +103,9 @@ export default function About() {
         </section>
 
         {/* ── What Flowstate is ─────────────────────────────────────
-            Ivan's Q17 answer, trimmed (D25): no "10+ clients" or "six years"
-            (D13) and no "own accounts" (Q15) until Ivan confirms them. The
+            Ivan's Q17 answer, trimmed (D25): "10+ clients" and "six years"
+            confirmed by Ivan (D13; the six years are the electrical company's);
+            no "own accounts" (Q15) until Ivan confirms it. The
             first sentence is the fixed entity sentence (site.entity, D23):
             keep it word for word. */}
         <section className="shell pb-[clamp(3rem,6vw,5rem)]">
@@ -114,7 +115,7 @@ export default function About() {
               Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
             </p>
             <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
-              We build on the software you already use, and if AI isn&apos;t the answer for something we&apos;ll tell you straight. The goal is to be New Zealand&apos;s go-to for AI in trade businesses.
+              Flowstate is trained and backed by a real electrical company that&apos;s been automating its own business for the last six years, so what we build has already been tested in a working trade business. We&apos;ve delivered for 10+ clients across different trades, and the goal is to be New Zealand&apos;s go-to for AI in trade businesses. We build on the software you already use, and if AI isn&apos;t the answer for something we&apos;ll tell you straight.
             </p>
             <h2 className="h-sec mt-12 max-w-[24ch] text-ink">An AI automation business in Auckland</h2>
             <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
