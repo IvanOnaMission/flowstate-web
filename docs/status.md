@@ -50,7 +50,7 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - T17: For Simpro referrals, take the referral fee or the subscription discount (only one is allowed)?
 - D13: Can you confirm "10+ clients" and "six years"?
 - Google profile: What are the real opening hours and service areas?
-- Site pages: Can the site use your batch 1 answers (Q2, Q5-Q14) as published wording? Yes or no; Johan can skip this if you already said so.
+- Site pages: Can the site use your batch 1 answers (Q1, Q2, Q4-Q14, Q18, Q19) as published wording? Yes or no; Johan can skip this if you already said so.
 - Site pages: Does the paid diagnostic still sit between the first call and the foundation build? Ivan's Q18 and Q19 skip it, but the live site sells it.
 - Site pages: Are two training sessions, a one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" (the check itself, and its length) standard for every client? The live site says these are agreed per client.
 - Site pages: Hosting: does the system run on the client's own account (Q15), or in "the automation service we host for them" (privacy page)? Can the site say Singapore by default and that business AI plans don't train on client data?
