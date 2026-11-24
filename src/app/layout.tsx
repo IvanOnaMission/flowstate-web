@@ -62,6 +62,7 @@ export default function RootLayout({
           url: site.url,
           email: site.email,
           telephone: site.phone,
+          ...(site.sameAs.length > 0 && { sameAs: site.sameAs }),
         }} />
         {/* Keyboard users land here first. Hidden until focused. */}
         <a
