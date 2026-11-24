@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: { url: "/about/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "About",
   description:
-    "Who you'd be working with at Flowstate — Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",
+    "Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses. Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",
 };
 
 /**
@@ -100,6 +100,35 @@ export default function About() {
               </Reveal>
             ))}
           </ol>
+        </section>
+
+        {/* ── What Flowstate is ─────────────────────────────────────
+            Ivan's Q17 answer, trimmed (D25): "10+ clients" and "six years"
+            confirmed by Ivan (D13; the six years are the electrical company's);
+            no "own accounts" (Q15) until Ivan confirms it. The
+            first sentence is the fixed entity sentence (site.entity, D23):
+            keep it word for word. */}
+        <section className="shell pb-[clamp(3rem,6vw,5rem)]">
+          <div className="max-w-[52rem] border-t border-hair pt-[clamp(1.75rem,3vw,2.5rem)]">
+            <h2 className="h-sec max-w-[24ch] text-ink">Who can automate my trade business in NZ?</h2>
+            <p className="mt-5 max-w-[65ch] text-[1.0625rem] font-semibold leading-relaxed text-ink">
+              Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
+            </p>
+            <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
+              Flowstate is trained and backed by a real electrical company that&apos;s been automating its own business for the last six years, so what we build has already been tested in a working trade business. We&apos;ve delivered for 10+ clients across different trades, and the goal is to be New Zealand&apos;s go-to for AI in trade businesses. We build on the software you already use, and if AI isn&apos;t the answer for something we&apos;ll tell you straight.
+            </p>
+            <h2 className="h-sec mt-12 max-w-[24ch] text-ink">An AI automation business in Auckland</h2>
+            <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
+              Flowstate is based in {site.city} and works with trade businesses across New Zealand. We connect the AI to Fergus, Simpro, ServiceM8, AroFlo, Tradify or whatever job software you run, and to Xero.
+            </p>
+            <h2 className="h-sec mt-12 max-w-[24ch] text-ink">Who can automate admin for an electrician in NZ?</h2>
+            <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">
+              Flowstate does. The AI drafts quotes and invoices in Xero or your job software from your price list and job notes, marks anything it can&apos;t price as CHECK, follows up enquiries and quotes, and asks every paid customer for a Google review. You approve the drafts.
+            </p>
+            <p className="mt-4">
+              <a className="font-semibold text-atlantic underline underline-offset-4" href="/questions/">Questions tradies ask about AI →</a>
+            </p>
+          </div>
         </section>
 
         {/* ── Why we joined forces ──────────────────────────────────
