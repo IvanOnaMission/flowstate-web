@@ -3,7 +3,7 @@ title: Google and LinkedIn Profile Copy
 purpose: Paste-ready copy for the Google Business Profile and the LinkedIn company page, built from Ivan's answers (batch 1)
 read_when: editing the Google profile or LinkedIn page, writing their posts, replying to reviews
 updated: 2026-11-25
-status: draft, nothing pasted or posted
+status: Google profile fields pasted 2026-11-25 (categories, description, website, LinkedIn link, services); Google posts, review replies and photos not done
 owner: Johan
 ---
 
@@ -35,8 +35,8 @@ The tags only count once the site has analytics (D22). They do no harm before th
 
 ## Before anything else
 
-1. **Pending Google update (item 2).** Open "Google updates" in the profile manager. Accept a change only if it matches this doc: name "Flowstate", phone 027 200 6121, website flowstate.net.nz, hours open 24 hours (D28), service area New Zealand (D28). Reject anything else, such as an address, different hours or a two-word name.
-2. **Categories (item 4).** Primary: **Automation company**. Secondary: **Software company**, **Business management consultant**. If the picker doesn't offer one of these, choose the closest it does offer, and write down here what was picked.
+1. **Pending Google update (item 2).** On 2026-11-25 the list showed "Google updates (1)" before the edits and 0 after them, so nothing was left to accept or reject. Open "Google updates" in the profile manager. Accept a change only if it matches this doc: name "Flowstate", phone 027 200 6121, website flowstate.net.nz, hours open 24 hours (D28), service area New Zealand (D28). Reject anything else, such as an address, different hours or a two-word name.
+2. **Categories (item 4).** Primary: **Automation company**. Secondary: **Software company**, **Business management consultant**. Pasted 2026-11-25: the picker offered all three exactly; they replace "Consultant".
 3. **Social profiles (item 9).** LinkedIn: `https://www.linkedin.com/company/146714299/` (the same URL as `sameAs` in `src/lib/site.ts`).
 4. **Opening date (item 10).** Leave blank.
 
