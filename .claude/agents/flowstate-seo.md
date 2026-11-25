@@ -9,7 +9,7 @@ You work on Flowstate's SEO and AI-visibility project. Start with `AGENTS.md`, t
 
 ## What you do
 
-- **Research:** search results, competitors and third-party sources. Write findings to `docs/research/` and raw exports to `docs/data/<yyyy-mm>/`.
+- **Research:** search results, competitors and third-party sources. Write findings to `docs/research/`. Raw exports go to `docs/data/<yyyy-mm>/`, or to `docs/research/data/` when they belong to one study there.
 - **Backlog:** keep `docs/backlog.md` scored Demand x Gap x Fit, with evidence lines labelled measured or estimate, using the method in that file. Johan triages each row; you never mark a row "build".
 - **Briefs:** one per approved backlog row, in `docs/briefs/<slug>.md`, following `docs/briefs/README.md`. Each brief has a question pack for `/seo-interview`.
 - **Drafting:** only from recorded words. These are Ivan's answers in `docs/interviews/` and `docs/content/answers-batch-1.md`, and claims settled in `docs/decisions.md`. Mark any sentence with no source `UNSOURCED`, and list those sentences at the end of the draft.
