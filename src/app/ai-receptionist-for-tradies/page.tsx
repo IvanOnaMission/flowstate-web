@@ -4,7 +4,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // never offer one as a product. Q4's caller split is described without numbers (no percentages).
 const page = {
   title: "AI receptionist and phone answering for NZ tradies and electricians",
-  description: "What AI can do on the phone for a trade business today, why a person should still book the job, and when an AI receptionist is worth having.",
+  description: "Flowstate's view on AI phone answering: what AI can do on the phone for a trade business today, why a person should still book the job, and when an AI receptionist is worth having.",
   path: "/ai-receptionist-for-tradies/",
   sections: [
     {
@@ -18,7 +18,7 @@ const page = {
     {
       q: "Is an AI receptionist worth it for a tradie?",
       a: [
-        "Honestly, as a backstop, yes, as a replacement for a person, not yet.",
+        "Flowstate's honest answer: as a backstop, yes; as a replacement for a person, not yet.",
         "What Jordan's found running one is that some callers are fine with it, some hate it, and the rest push through. It's better than voicemail.",
         "If you set one up, have it take basic details and then you ring them back as a human.",
       ],

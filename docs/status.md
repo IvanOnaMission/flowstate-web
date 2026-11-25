@@ -52,6 +52,7 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business?
 
 ## Changes since last update
+Site checked against Jordan's SEO plan (2026-11-25); gaps saved in `docs/plan-jordan-gaps.md`. Branch `claude/home-sentence-name-pass-3ba522`: home first sentence added under the unchanged H1, Flowstate named in claims and page descriptions across the sitemap pages, opening sentences checked (rules 1, 3, 5). Not yet pushed or merged.
 Google profile copy pasted (2026-11-25): new categories, description, UTM website, LinkedIn link and five services (audit items 2, 4, 5, 6, 9, 10, 15). Posts, review replies and photos still to do.
 Google profile and LinkedIn renamed to "Flowstate" (D04, confirmed 2026-11-25); the Google profile audit fixes are unblocked. Netlify team access added to the access pending from Ivan. First LinkedIn posts: li-01 posted, li-02 scheduled (2026-11-25). Production deploys fixed: Johan has Netlify access; main@210996f was published at 12:30 and the push of main@a84049f (PR 67) built and auto-published at 12:55 with a clean log. All 19 sitemap URLs, `/questions/` included, return 200 on flowstate.net.nz. The earlier production deploys show "skipped: a new one was scheduled for the same branch". IndexNow, Search Console and Bing Webmaster Tools submissions done the same day.
 Site pages from answers batch 1 merged (PRs 58, 59, 60, 2026-11-25), with the D13 claims added after Ivan confirmed them.

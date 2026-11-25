@@ -10,7 +10,7 @@ import { callPromise, rungs } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "AI partner for NZ electrical businesses",
-  description: "Less admin. More time to run your electrical business. Start with a paid workflow diagnostic and prioritised roadmap, then agree your ongoing AI partner scope and rate.",
+  description: "Flowstate builds AI automation for New Zealand trade businesses, mainly electricians. Start with a paid workflow diagnostic and prioritised roadmap, then agree your ongoing AI partner scope and rate.",
 };
 
 /**
@@ -65,6 +65,11 @@ export default function Home() {
                     <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>
+                {/* Plan 4.1 / rule 3: the first sentence says who Flowstate is and who it's for,
+                    with the name in it. The H1 above stays as it is (rule 5). Trades: D05. */}
+                <Reveal delay={160}>
+                  <p className="max-w-[46ch] text-[clamp(1.0625rem,1.6vw,1.25rem)] leading-relaxed text-white/90">Flowstate builds AI automation for New Zealand trade businesses, mainly electricians.</p>
+                </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
                     <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
@@ -96,7 +101,7 @@ export default function Home() {
             <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                The paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
+                Flowstate&apos;s paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
               </p>
               <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
             </div>
@@ -121,7 +126,7 @@ export default function Home() {
         <Reveal>
           <p className="eyebrow mb-4 text-mute">The ladder</p>
           <h2 className="h-sec max-w-[22ch] text-ink">
-            It climbs the same ladder everyone in your business climbed.
+            Flowstate&apos;s AI climbs the same ladder everyone in your business climbed.
           </h2>
         </Reveal>
 
@@ -183,8 +188,8 @@ export default function Home() {
                 details live and what a good result looks like.
               </p>
               <p>
-                That&apos;s where the diagnostic starts. We review the work,
-                identify what AI would need and decide which tasks are worth
+                That&apos;s where the diagnostic starts. Flowstate reviews the work,
+                identifies what AI would need and decides which tasks are worth
                 tackling. Your team keeps control of pricing, technical
                 decisions and final approval.
               </p>
@@ -226,7 +231,7 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p className="text-ink">
-                I&apos;m Ivan. I build the systems myself.
+                I&apos;m Ivan, Flowstate&apos;s founder. I build the systems myself.
               </p>
               <p>
                 I grew up around technology and computers, so this stuff is
@@ -273,10 +278,10 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p>
-                {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
+                {"You and Ivan from Flowstate will talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The introductory call is free and takes about 30 minutes. We'll discuss whether a paid diagnostic is a useful next step. Its scope and fee are agreed before you commit; the ongoing AI partner scope and rate are agreed after the diagnostic."}
+                {"The introductory call with Flowstate is free and takes about 30 minutes. You'll discuss whether a paid diagnostic is a useful next step. Its scope and fee are agreed before you commit; the ongoing AI partner scope and rate are agreed after the diagnostic."}
               </p>
             </div>
           </Reveal>
