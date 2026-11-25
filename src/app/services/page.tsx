@@ -20,7 +20,7 @@ export default function Page() {
           <p className="eyebrow mb-5 text-atlantic">{"How it works"}</p>
           <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. That helps reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate starts by finding where AI could make the biggest difference—whether you work in industrial, commercial or residential electrical."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate starts by finding where AI could make the biggest difference, whether you work in industrial, commercial or residential electrical."}</p>
           <SoftwareExplanation />
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. Book a call"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Fill in a short form and pick a time for a call with Flowstate."}</p>

@@ -72,7 +72,7 @@ export const rungs = [
     body:
       "Handles agreed tasks, with your team checking the results.",
     img: "/assets/ladder/02-qualified",
-    alt: "The same block half carved — a figure's head and shoulders finished, the legs still trapped in rough stone",
+    alt: "The same block half carved: a figure's head and shoulders finished, the legs still trapped in rough stone",
   },
   {
     n: "03",

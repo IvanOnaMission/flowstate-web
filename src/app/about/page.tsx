@@ -32,8 +32,8 @@ const people = [
     alt: "Ivan Barnett, founder of Flowstate",
     paras: [
       "I spent four years in the trades, most recently as an electrical apprentice. I've been on the tools and on the jobs, so I've seen up close how much time a trade business loses to everything that isn't the actual work.",
-      "I'm 20. I grew up with this stuff — AI, automation, the internet — it's second nature to me, not something I crammed for a course. So you're not paying me to figure it out. You're getting someone who already lives in these tools, moves fast, and has everything to prove.",
-      "And I'm hands-on across the whole thing — working out what's worth fixing, building it, and making sure it actually works in your business, not just on paper.",
+      "I'm 20. I grew up with this stuff (AI, automation, the internet). It's second nature to me, not something I crammed for a course. So you're not paying me to figure it out. You're getting someone who already lives in these tools, moves fast, and has everything to prove.",
+      "And I'm hands-on across the whole thing: working out what's worth fixing, building it, and making sure it actually works in your business, not just on paper.",
     ],
   },
   {
@@ -43,7 +43,7 @@ const people = [
     photo: "/assets/team/jordan.jpg",
     alt: "Jordan, strategy at Flowstate",
     paras: [
-      "Jordan brings the good looks, the beard, and — more usefully — eight years of running his own electrical business. His actual thing is systems: building trade businesses that run efficiently without the owner having to touch everything.",
+      "Jordan brings the good looks, the beard, and, more usefully, eight years of running his own electrical business. His actual thing is systems: building trade businesses that run efficiently without the owner having to touch everything.",
       "He's found and fixed the leaks in his own operation, so he knows exactly where the time and money go in yours. He brings the business strategy and the trades know-how.",
     ],
   },
@@ -170,7 +170,7 @@ export default function About() {
                 </div>
                 <blockquote className="mt-8 border-l-2 border-atlantic-500 pl-6 text-[clamp(1.15rem,2.2vw,1.45rem)] font-[750] leading-snug tracking-[-0.02em] text-ink">
                   You get the strategy and the build from people who&apos;ve
-                  actually done the work &mdash; not a consultant who never
+                  actually done the work, not a consultant who never
                   has.
                 </blockquote>
               </div>

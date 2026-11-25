@@ -62,4 +62,4 @@ Direct answers to the baseline questions (rules 1 and 3), 2026-11-25: the first 
 - GA4 and Microsoft Clarity (plan 2.1): new tracking tools, against the local-first rule. Johan's call (D22).
 - Google posts three times a week and a reply to every review (plan 2.8): Johan, using `docs/content/profile-copy-google-linkedin.md`.
 - Case studies, podcasts, guest posts (plan 4.5): need Ivan, and the client's permission for case studies.
-- Jordan's playbook (`marketing/seo/claude-seo-aio-playbook.md`) isn't in this repo. Check it against this plan once shared.
+- Jordan's playbook is linked from `AGENTS.md`, not copied (D29); where it differs from this work is logged in D30 to D35.

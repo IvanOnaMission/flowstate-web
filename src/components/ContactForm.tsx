@@ -75,6 +75,32 @@ export default function ContactForm() {
         </div>
         <div className="sm:col-span-2">
           <label
+            htmlFor="heard_from"
+            className="mb-2 block text-[0.9rem] font-semibold text-ink"
+          >
+            How did you hear about us?{" "}
+            <span className="font-normal text-mute">(optional)</span>
+          </label>
+          {/* Read monthly: the only first-party sign that search and AI
+              visibility work brings enquiries (D35). */}
+          <select
+            id="heard_from"
+            name="heard_from"
+            defaultValue=""
+            className={field}
+          >
+            <option value="">Choose one</option>
+            <option>Google search</option>
+            <option>Google Maps or Google profile</option>
+            <option>ChatGPT, Gemini or another AI assistant</option>
+            <option>LinkedIn</option>
+            <option>Fergus or Simpro directory</option>
+            <option>Someone told me</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div className="sm:col-span-2">
+          <label
             htmlFor="message"
             className="mb-2 block text-[0.9rem] font-semibold text-ink"
           >
