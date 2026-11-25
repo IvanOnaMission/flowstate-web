@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   verification: { other: { "msvalidate.01": "A54314F7256E7BFBC7446A0D056C0FE8" } },
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | ${site.tagline}`,
+    template: `%s | ${site.name}`,
   },
   description:
     "Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",

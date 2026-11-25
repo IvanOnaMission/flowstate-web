@@ -52,8 +52,8 @@ export default function EmailSignup() {
         role="status"
         className="max-w-[34ch] text-[0.95rem] leading-relaxed text-ink"
       >
-        You&apos;re on the list. Check your inbox to confirm it&mdash;
-        occasionally it lands in spam.
+        You&apos;re on the list. Check your inbox to confirm it.
+        Occasionally it lands in spam.
       </p>
     );
   }
