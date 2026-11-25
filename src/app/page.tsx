@@ -230,7 +230,7 @@ export default function Home() {
               </p>
               <p>
                 I grew up around technology and computers, so this stuff is
-                second nature &mdash; not something I crammed for a course last
+                second nature, not something I crammed for a course last
                 year. I also like getting outside, exploring, and playing
                 sport. I&apos;m not a full tech nerd.
               </p>
@@ -273,7 +273,7 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p>
-                {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example — a quote that took too long to prepare, or an enquiry that went quiet."}
+                {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
                 {"The introductory call is free and takes about 30 minutes. We'll discuss whether a paid diagnostic is a useful next step. Its scope and fee are agreed before you commit; the ongoing AI partner scope and rate are agreed after the diagnostic."}

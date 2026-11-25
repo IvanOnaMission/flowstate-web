@@ -25,7 +25,7 @@ export default function WorkshopBar() {
           <span className="px-2 text-white/45" aria-hidden="true">
             ·
           </span>
-          {workshop.name} — {workshop.date}, {workshop.minutes} min,{" "}
+          {workshop.name}: {workshop.date}, {workshop.minutes} min,{" "}
           {workshop.price}
         </span>
         <span className="whitespace-nowrap font-[650] text-sky underline decoration-sky/40 underline-offset-4">
