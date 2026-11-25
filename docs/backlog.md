@@ -153,7 +153,7 @@ Ties are ordered by the rule above. Rows 3, 5 and 8 overlap each other and row 1
 - Other risk: proof.
 
 **6. AI automation for NZ trade businesses.** Money page: `/services/`. Linked from `/`, `/ai-for-electricians/`, `/guides/where-to-start-with-ai/`.
-- Wordings: Q2 "Best AI automation company for tradies in New Zealand"; "ai automation for tradies"; "ai for tradies"; "best ai for tradies"; "ai tools for tradies"; "who can automate my trade business nz"; "best ai for tradesmen".
+- Wordings: Q2 "Best AI automation company for tradies in New Zealand"; "ai automation for tradies"; "best ai for tradies"; "ai tools for tradies"; "who can automate my trade business nz"; "best ai for tradesmen".
 - Evidence: Flowstate absent on Q2, Google and Bing, 26 Nov (measured). Autocomplete (measured). Context, not scored: the old URL `/ai-for-trades-businesses/` had 15 impressions at #16.3 and now returns 404 (GSC pages export, measured); that is page-level data, and the queries export has no trades-wide wording, so it doesn't count under the scoring method.
 - Scores: D 3 (2, plus 1 for "who can automate my trade business nz"), G 4 (absent on Q2, measured), F 3 (feeds `/services/`).
 - Proof: sourced, except D12. D13 ("10+ clients", "six years" for the electrical company), D25 (e) and (p). D12 (the Auckland client) is pending until Ivan answers whether that business is Jordan's own (`status.md`, Questions for Ivan); if it is, "client" is wrong.

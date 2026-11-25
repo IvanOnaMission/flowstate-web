@@ -90,7 +90,7 @@ Read 2026-11-26. Flowstate is on none of them.
 | nzbusinesstools.co.nz Fergus review | affiliate review | none | none found | n/a | n/a |
 | revenuebase.ai (Auckland list) | data-vendor list | none | none | n/a | n/a |
 
-Not read: tradiecorner.com (503 error), f6s.com (405 error), topsoftwarecompanies.co (Bing Q10, twice), business.govt.nz and branz.co.nz (Q9; government and an industry publisher with no listing route). Three Reddit threads are recorded only, and nobody posts in them: r/nzbusiness on Q4 (Google), r/AustralianStartups on Q8 (Google) and r/automation on Q1 (Bing, off-topic share-trading list).
+Not read: tradiecorner.com (503 error), f6s.com (405 error), topsoftwarecompanies.co (Bing Q10, twice), business.govt.nz and branz.co.nz (Q9; government and an industry publisher with no listing route). Three Reddit threads are recorded only, and nobody posts in them: r/nzbusiness on Q4 (Google), r/AustralianStartups on Q8 (Google) and r/automation on Q1 (Bing, off-topic share-trading list). Six Facebook results are recorded only: Fergus's own page posts on Q5 and S1 (twice; vendor posts, no listing route), and three groups nobody posts in: one on Q12 (Google), simprosecrets on S2 (Google) and homeassistantau on Q1 (Bing, off-topic).
 
 ## Ranked targets
 
