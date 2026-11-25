@@ -2,7 +2,7 @@
 title: Status
 purpose: Current phase, this week's focus, blockers and recent changes
 read_when: starting a session, planning the week
-updated: 2026-11-25
+updated: 2026-11-26
 audience: [Ivan, Johan, agents]
 status: active
 stability: changing
@@ -36,12 +36,13 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Findings
 - Brand search (2026-11-24): on Google, "flowstate nz" returns only Flow State, an NZ mushroom-supplement brand (flowstate.nz), including the AI Overview and an ad. Flowstate doesn't appear. Fixes in `docs/audits/gbp-audit-2026-11-24.md`.
+- Jordan's playbook compared with our work (2026-11-26): mostly in line (named over cited, basics first, pages from Ivan's answers, Fergus and Simpro first, no prices). Differences logged as D29 to D35. Playbook steps not done yet: URL Inspection of every sitemap URL; a list of the third-party sites the AI engines read for our questions (before more directories); the `flowstate-seo` agent and `/seo-interview` command; a ranked page backlog; a NZ search-volume pull (about US$0.09, D11 if paid). The playbook spells the name "Flow State"; D04 stands, Jordan to be told.
 
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
 - Access pending from Ivan: CRM. Netlify team access granted (2026-11-25). Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
-- Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
-- Five questions for Ivan, below.
+- Jordan's SEO plan (task ids T1...) not yet in this project; brief, MVP plan and issues wait on it. His playbook is found and linked in `AGENTS.md` (D29), so method questions no longer wait.
+- Six questions for Ivan, below.
 
 ## Questions for Ivan
 Only what Johan can't decide himself; everything else Johan settles (D22, D16).
@@ -50,8 +51,10 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - Site pages: Are two training sessions, a one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" (the check itself, and its length) standard for every client? The live site says these are agreed per client.
 - Site pages: Hosting: does the system run on the client's own account (Q15), or in "the automation service we host for them" (privacy page)? Can the site say Singapore by default and that business AI plans don't train on client data?
 - Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business?
+- Team: Jordan's playbook gives the build work to Alex. Who is Alex, and is he working on the site?
 
 ## Changes since last update
+Jordan's playbook found in the private `flowstate-business` repo (2026-11-26, Ivan pointed to it); linked from `AGENTS.md`, not copied, since this repo is public (D29). Compared with our work; differences logged as D30 to D35.
 Google profile copy pasted (2026-11-25): new categories, description, UTM website, LinkedIn link and five services (audit items 2, 4, 5, 6, 9, 10, 15). Posts, review replies and photos still to do.
 Google profile and LinkedIn renamed to "Flowstate" (D04, confirmed 2026-11-25); the Google profile audit fixes are unblocked. Netlify team access added to the access pending from Ivan. First LinkedIn posts: li-01 posted, li-02 scheduled (2026-11-25). Production deploys fixed: Johan has Netlify access; main@210996f was published at 12:30 and the push of main@a84049f (PR 67) built and auto-published at 12:55 with a clean log. All 19 sitemap URLs, `/questions/` included, return 200 on flowstate.net.nz. The earlier production deploys show "skipped: a new one was scheduled for the same branch". IndexNow, Search Console and Bing Webmaster Tools submissions done the same day.
 Site pages from answers batch 1 merged (PRs 58, 59, 60, 2026-11-25), with the D13 claims added after Ivan confirmed them.
