@@ -59,7 +59,7 @@ Fergus does the most when it's connected to everything else. We link it to Xero,
 
 The AI drafts and you approve. Nothing goes to a customer without your OK, and anything it can't price is marked CHECK instead of guessed. Everything runs on your own accounts, so you own the system.
 
-One Auckland electrical business we work with has quotes coming back 95% built and added 150 reviews in three months.
+One Auckland electrical business has quotes coming back almost fully built and added 150 reviews in three months.
 
 We start with a 30-minute call to work out what's costing your business the most. The foundation (accounts in your name, your software connected, the company brain) is set up in 2 to 3 days, then we add helpers one at a time.
 
@@ -120,7 +120,7 @@ How we build it:
 - Every helper is tested on real past jobs before it goes live.
 - It runs on your own accounts and card, so you own the system and your data stays with you.
 
-One Auckland electrical business we work with has quotes coming back 95% built and added 150 reviews in three months.
+One Auckland electrical business has quotes coming back almost fully built and added 150 reviews in three months.
 
 API access needs Simpro's Premium plan, and Simpro approves each connection. We start with a 30-minute call to work out what's costing your business the most. The foundation (accounts in your name, your software connected, the company brain) is set up in 2 to 3 days, then we add helpers one at a time.
 
@@ -144,6 +144,8 @@ Sources: Jordan as advisor (D07), fully automated through Simpro (D24), supplier
 | Any price, fee or percentage | No prices public | D06 |
 | Whether the Auckland client is on Fergus or Simpro | Not stated; the stats are used without naming the software | D12 |
 | "Flowstate built Jordan's Simpro setup" | Ivan's answer says the business is fully automated through Simpro, not who built it | D24 |
+| "95% built" | No percentages on public pages; "almost fully built" instead, as on the site | AGENTS.md rule, D06 |
+| "we work with" (the Auckland business) | Whether it is Jordan's own business is still a question for Ivan; the site leaves the link out too | status.md, questions for Ivan |
 
 ## Not checked
 

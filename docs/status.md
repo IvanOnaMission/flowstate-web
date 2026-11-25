@@ -39,7 +39,7 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
-- Access pending from Ivan: CRM. Netlify team access granted (2026-11-25). Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
+- Access pending from Ivan: CRM. Netlify: Johan says he doesn't have access yet (2026-11-25); his signed-in account can't open the flowstate-nz project. Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
 - Jordan's SEO plan not yet in this project; brief, MVP plan and issues wait on it.
 - Five questions for Ivan, below.
 
