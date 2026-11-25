@@ -147,7 +147,57 @@ One rule: never ask for 5 stars and never only ask the happy customers. Google b
 ```
 Sources: D12 ("150 reviews in three months"), D25(f), Q8. Doesn't say "we work with" (held, Q20).
 
-Next posts: rotate through Fergus (D25 h), Simpro and Jordan's business (D25 i, D24), what AI can't do (D25 m) and the hours-times-rate-times-52 sum (D25 l). Use the same checks as above.
+**gbp-05: Running your business on Fergus?** (button: `/fergus-automation/`)
+```
+Running your business on Fergus?
+
+Flowstate builds automation on Fergus for New Zealand trade businesses. Through Fergus's API, the AI can create quotes from you talking into your phone, update jobs, schedule work and pull your job and financial info together.
+
+Fergus's API doesn't do invoices or payments, so those run through Xero. The real value comes when Fergus is connected to everything else: your calendar, your email and your AI.
+```
+Sources: D25(h), Q10 (same wording as `/fergus-automation/`).
+
+**gbp-06: Simpro, fully automated** (button: `/simpro-automation/`)
+```
+An electrical business run on Simpro, fully automated.
+
+Jordan, who looks after strategy at Flowstate, runs his electrical business on Simpro, and it's fully automated through Simpro. His AI pulls supplier pricing into his catalogue and builds pre-builds.
+
+Through Simpro's API, Flowstate can automate quotes, invoices, payments, suppliers, purchase orders and stock. You need Simpro's Premium plan, and Simpro has to approve the connection.
+```
+Sources: D24, D25(i), Q11. Covers the same ground as li-04; post them in different weeks.
+
+**gbp-07: What stays with you** (button: `/guides/ai-for-builders-nz/`)
+```
+What AI shouldn't do in your business.
+
+Flowstate's view: leads, quotes, follow-up, emails and admin can all be handed to AI today, as long as it drafts and you approve. Two things stay with you: pricing jobs on its own and signing off compliance paperwork.
+
+Anything it can't price gets marked CHECK. It never guesses a number.
+```
+Sources: D25(m), (a), (b); the task list is Ivan's Q9 wording, shortened.
+
+**gbp-08: What an hour of admin is worth** (button: `/ai-automation-cost/`)
+```
+What's an hour of admin worth to you?
+
+Before Flowstate builds anything, it does one sum: hours saved a week, times your hourly rate, times 52. That's what the build is worth to you, worked out before it starts.
+
+There's no set price list. Each build is priced from the size of your business and what the problem is costing you.
+```
+Sources: D25(l), (n). No figures (D06).
+
+**gbp-09: Job software or AI? Both** (button: `/guides/job-software-or-custom-ai/`)
+```
+Job software or custom AI? Both.
+
+Your job software runs the job. Custom AI from Flowstate takes on the repetitive work around it, and works best connected to your job software, Xero and everything else.
+
+Flowstate can work with any job management software. Xero and AroFlo have full API access. Tradify doesn't, so there the AI works through the browser, which is more fiddly and can break when Tradify changes its screens.
+```
+Sources: D14, D25(j), Q12.
+
+Ideas for after gbp-09, with the same checks: the voice profile (D25 g) and testing every helper on real past jobs (D25 d).
 
 ## Photos (item 11)
 
