@@ -50,6 +50,8 @@ Rule 4 (headings use the exact words people type), checked against `docs/baselin
 
 No H2 changes until there's Search Console query data.
 
+Direct answers to the baseline questions (rules 1 and 3), 2026-11-25: the first sentence under each question that has an answer section names Flowstate and is 20 words or fewer. Changed: Q3 (cost page and `/questions/`), Q4 (receptionist page and `/questions/`), Q5 (Fergus page, first sentence split), Q8 (job software guide) and Q9 (builders guide). The changes reword or summarise the same page's text, with no new claims. Already fine: Q1, Q6, Q11, and the `/about/` sections near Q10 and Q12. Other `/questions/` answers that don't open with "Flowstate" (for example "How long until AI automation pays for itself?") aren't baseline questions and are left as they are.
+
 ## Can do now, later
 - No table on the site yet; any future table puts "Flowstate" in the column header (rule 1).
 - Rule 4: from 2026-12-07, when Search Console shows queries, check H2s against the real questions and add or adjust H2s only (titles and H1s stay, rule 5).

@@ -10,7 +10,7 @@ const page = {
     {
       q: "Can AI answer my phone and book jobs for my electrical business in NZ?",
       a: [
-        "It can answer and take the details, and then you or the office call back and book it.",
+        "Flowstate's answer: AI can answer and take the details, then you or the office call back and book it.",
         "I wouldn't have it booking jobs straight into your calendar on its own, customers don't trust it with that yet and you lose control of the diary.",
         "The way Flowstate sets things up, the AI captures the job and puts it in front of you, and you say yes.",
       ],

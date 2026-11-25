@@ -3,7 +3,7 @@ import { workshop } from "@/lib/site";
 /**
  * A slim announcement bar for the 25 Aug workshop, above the nav on every page.
  *
- * Why a bar and not a section: the home page has one job — book the 15-minute
+ * Why a bar and not a section: the home page has one job — book the 30-minute
  * call — and a second full-width CTA competes with it. A bar sits outside that
  * argument, and it comes off in one boolean when the workshop has run
  * (`workshop.live` in lib/site.ts).

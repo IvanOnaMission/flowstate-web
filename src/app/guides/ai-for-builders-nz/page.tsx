@@ -10,7 +10,7 @@ const page = {
     {
       q: "How can a NZ builder use AI to cut admin?",
       a: [
-        "Start with whatever is slowing your growth down the most. For most trade businesses it's one of these: getting new leads; pricing quotes faster; landing more jobs; speeding up admin; answering emails; bringing everything together so it's all on one screen. Whatever's costing you the most is the first thing Flowstate looks at.",
+        "Flowstate's advice: start with whatever is slowing your growth down the most. For most trade businesses it's one of these: getting new leads; pricing quotes faster; landing more jobs; speeding up admin; answering emails; bringing everything together so it's all on one screen. Whatever's costing you the most is the first thing Flowstate looks at.",
         "All of these can be handed to AI today, as long as it drafts and you approve. What it can't do is price jobs on its own or sign off compliance paperwork, that stays with you.",
       ],
     },

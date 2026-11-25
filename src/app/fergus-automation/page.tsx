@@ -9,7 +9,7 @@ const page = {
     {
       q: "Who can automate Fergus for my trade business?",
       a: [
-        "Flowstate builds automation on Fergus for New Zealand trade businesses, and connects it to the rest of your software: Xero, your calendar, your email and your AI.",
+        "Flowstate builds automation on Fergus for New Zealand trade businesses. It connects Fergus to the rest of your software: Xero, your calendar, your email and your AI.",
       ],
     },
     {
