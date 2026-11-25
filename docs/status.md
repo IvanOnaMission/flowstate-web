@@ -40,19 +40,19 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
-- Access pending from Ivan: CRM. Netlify team access granted (2026-11-25). Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
+- CRM access granted (2026-11-26). Johan is not on the Netlify team (2026-11-26), which is fine with Johan; Netlify settings changes go through Ivan. This replaces the 2026-11-25 notes below that say Johan has Netlify access. Contact-form leads (form "contact") stay in Netlify Forms and are not sent to the CRM: `netlify/functions/submission-created.mjs` only forwards the forms in its FORMS list, so the D35 answers are readable only in Netlify until that changes. Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
 - Jordan's SEO plan (task ids T1...) not yet in this project; brief, MVP plan and issues wait on it. His playbook is found and linked in `AGENTS.md` (D29), so method questions no longer wait.
-- Five questions for Ivan, below.
+- Four questions for Ivan, below.
 
 ## Questions for Ivan
 Only what Johan can't decide himself; everything else Johan settles (D22, D16).
-- Site pages: Can the site use your batch 1 answers (Q1, Q2, Q4-Q14, Q18, Q19) as published wording, under your name as author? Yes or no; Johan can skip this if you already said so.
 - Site pages: Does the paid diagnostic still sit between the first call and the foundation build? Ivan's Q18 and Q19 skip it, but the live site sells it.
 - Site pages: Are two training sessions, a one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" (the check itself, and its length) standard for every client? The live site says these are agreed per client.
 - Site pages: Hosting: does the system run on the client's own account (Q15), or in "the automation service we host for them" (privacy page)? Can the site say Singapore by default and that business AI plans don't train on client data?
 - Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business?
 
 ## Changes since last update
+Ivan said yes to publishing his batch 1 answers as written, under his name (D36, 2026-11-26, relayed by Johan). CRM access granted; Johan not on the Netlify team. Found that contact-form leads are not forwarded to the CRM.
 Jordan's playbook found in the private `flowstate-business` repo (2026-11-26, Ivan pointed to it); linked from `AGENTS.md`, not copied, since this repo is public (D29). Compared with our work; differences logged as D30 to D35. Same day, PR 72 also adds the optional "How did you hear about us?" dropdown to the contact form (D35; read the Netlify Forms answers monthly, first read 2026-12-21) and removes visible em and en dashes from site copy (D34).
 Google profile copy pasted (2026-11-25): new categories, description, UTM website, LinkedIn link and five services (audit items 2, 4, 5, 6, 9, 10, 15). Posts, review replies and photos still to do.
 Google profile and LinkedIn renamed to "Flowstate" (D04, confirmed 2026-11-25); the Google profile audit fixes are unblocked. Netlify team access added to the access pending from Ivan. First LinkedIn posts: li-01 posted, li-02 scheduled (2026-11-25). Production deploys fixed: Johan has Netlify access; main@210996f was published at 12:30 and the push of main@a84049f (PR 67) built and auto-published at 12:55 with a clean log. All 19 sitemap URLs, `/questions/` included, return 200 on flowstate.net.nz. The earlier production deploys show "skipped: a new one was scheduled for the same branch". IndexNow, Search Console and Bing Webmaster Tools submissions done the same day.
