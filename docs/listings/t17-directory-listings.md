@@ -3,11 +3,11 @@ title: T17 Directory Listings (Fergus, Simpro)
 purpose: What each directory needs to list Flowstate, and draft listing text ready to paste
 read_when: applying to the Fergus or Simpro partner programs, or editing either listing
 updated: 2026-11-25
-status: draft, nothing submitted
+status: draft; both partner applications submitted 2026-11-25, listings not yet live
 owner: Johan
 ---
 
-Both directories list consultancies like Flowstate for free, but each needs a partner application and a signed partner agreement first. Nothing has been submitted. Copy below follows D04 (one-word "Flowstate"), D06 (no prices) and may use the D13 claims ("10+ clients"; six years are the electrical company's), settled 2026-11-25. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
+Both directories list consultancies like Flowstate for free, but each needs a partner application and a signed partner agreement first. Johan submitted both partner applications on 2026-11-25 (Fergus type: Referral/Certified Partner); the listings are not live yet. Copy below follows D04 (one-word "Flowstate"), D06 (no prices) and may use the D13 claims ("10+ clients"; six years are the electrical company's), settled 2026-11-25. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
 
 ## Before submitting (settled 2026-11-25)
 
