@@ -51,9 +51,9 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - Site pages: Are two training sessions, a one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" (the check itself, and its length) standard for every client? The live site says these are agreed per client.
 - Site pages: Hosting: does the system run on the client's own account (Q15), or in "the automation service we host for them" (privacy page)? Can the site say Singapore by default and that business AI plans don't train on client data?
 - Google profile: the reviews from Elish Barnett (family?) and Jordan Statham (our advisor) may breach Google's conflict-of-interest rules. Reply, leave, or ask them to remove the reviews?
-- Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business? Backlog rows 6, 7 and 14 wait on this.
-- Backlog (draft, not sent): the five questions prospects ask most before booking a call, in their words; does Flowstate chase overdue invoices, and how (row 10); has Flowstate built on ServiceM8 (rows 5 and 11); any plumbing or HVAC client we could mention (rows 12 and 15); which trades Flowstate has built for (row 6); any AroFlo client example (row 13). Draft message in `docs/backlog.md`, Customer-sourced questions.
-- Backlog (draft, not sent): a page targeting Auckland (row 7) is a targeting choice. Build it or not?
+- Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business? Backlog rows 11, 12 and 14 wait on this.
+- Backlog (draft, not sent): the five questions prospects ask most before booking a call, in their words; does Flowstate chase overdue invoices, and how (row 8); has Flowstate built on ServiceM8 (rows 5 and 9); any plumbing or HVAC client we could mention (rows 10 and 15); which trades Flowstate has built for (row 11); any AroFlo client example (row 13). Draft message in `docs/backlog.md`, Customer-sourced questions.
+- Backlog (draft, not sent): a page targeting Auckland (row 12) is a targeting choice. Build it or not?
 
 ## Changes since last update
 2026-11-26: `/seo-interview` command and `flowstate-seo` agent added (issue 77), with a brief template, interviews folder and a three-question dry-run pack; AGENTS.md rows and D37 proposed, not applied.
