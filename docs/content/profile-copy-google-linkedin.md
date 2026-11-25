@@ -163,7 +163,7 @@ An electrical business run on Simpro, fully automated.
 
 Jordan, who looks after strategy at Flowstate, runs his electrical business on Simpro, and it's fully automated through Simpro. His AI pulls supplier pricing into his catalogue and builds pre-builds.
 
-Through Simpro's API, Flowstate can automate quotes, invoices, payments, suppliers, purchase orders and stock. You need Simpro's Premium plan, and Simpro has to approve the connection.
+Through Simpro's API, Flowstate can automate quotes, invoices, payments, suppliers, purchase orders and stock. You need Simpro's Premium plan for the API and quotes, and Simpro has to approve the connection.
 ```
 Sources: D24, D25(i), Q11. Covers the same ground as li-04; post them in different weeks.
 
