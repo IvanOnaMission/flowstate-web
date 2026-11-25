@@ -48,7 +48,7 @@ Indexed 19 of 19 on Google and 12 of 19 on Bing (2026-11-26). The 7 not on Bing 
 ## Notes
 
 - `/fergus-automation/` was "Discovered - currently not indexed" earlier on 26 Nov; after Johan's indexing request Google crawled it at 9:16 AM the same day and it is now indexed.
-- Four pages show "Temporary processing error" as their sitemap read status in URL Inspection (`/ai-for-electricians/`, three guides, `/questions/`). They are all indexed, so this is not blocking; recheck on 7 Dec.
+- Five pages show "Temporary processing error" as their sitemap read status in URL Inspection (`/ai-for-electricians/`, three guides, `/questions/`). They are all indexed, so this is not blocking; recheck on 7 Dec.
 - `/guides/ai-quoting-for-electricians/` has no referring page detected by Google. It is reached through the sitemap only; consider an internal link when step 3 plans pages.
 - Google's Pages report (last updated 16 Nov) shows 15 indexed and 6 not indexed. The 6 are all intended: 3 redirects (`http://`, `www.`, a Scamadviser UTM URL), 2 noindex (`/contact/thanks/`, `/quoting-privacy/`), 1 canonical alternate (the HTTPS Scamadviser UTM URL).
 - Bing flags meta description length on 3 pages and title length on 1. These are small fixes for a later site PR, not indexing blockers.

@@ -19,7 +19,7 @@ Third-party pages are a small part of what ranks: 618 results across 273 domains
 - Raw lists: `data/2026-11-26-google-top20.txt` and `data/2026-11-26-bing-top20.txt`. Every result is tagged by type in `data/2026-11-26-results-tagged.csv`. Per-domain counts are in `data/2026-11-26-domain-counts.csv`.
 - Types are mapped by domain by hand. Any domain not mapped is tagged "other AI or automation provider", which the plan calls "competitor's own site". "competitor (baseline 13)" marks the 13 named in the baseline.
 - Each flagged page was read on 2026-11-26. The flagged pages are every third-party domain found on 3 or more searches, plus every listing page that names a baseline competitor.
-- Limits: this is a proxy. Search results aren't what the AI engines read. Google was read signed in to Johan's Chrome with `pws=0`, the closest to signed out the extension allows; the plan asked for signed out or incognito. Some Google lists have 17 to 19 results, not 20, because of duplicates or rich results. Pass B (below) checks it on 21 Dec. Bing read "trade" in Q1 as share trading, so its Q1 list is off-topic.
+- Limits: this is a proxy. Search results aren't what the AI engines read. Google was read signed in to Johan's Chrome with `pws=0`, the closest to signed out the extension allows; the plan asked for signed out or incognito. Every Google list has 17 to 19 results, not 20, because of duplicates or rich results, and Bing Q1 has 19. Pass B (below) checks it on 21 Dec. Bing read "trade" in Q1 as share trading, so its Q1 list is off-topic.
 
 ## What ranks
 
@@ -59,6 +59,7 @@ Domains on 3 or more of the 16 searches (G = Google, B = Bing):
 | workflowtrade.co.nz | software vendor | 4 | |
 | agencies.nz | directory | 3 | B: Q2, Q10, S4 |
 | fergus.com | software vendor | 3 | G and B: Q5, Q12, S1 |
+| reddit.com | forum or Reddit | 3 | G: Q4, Q8; B: Q1 |
 | firstvoice.co.nz, h3llo.nz | competitor | 3 each | |
 | aivolve, answr, arkhamsolutions, heyautomate, johnni.ai, kingtide, servicegecko, tamakiai, tradienet | providers | 3 each | |
 
@@ -87,7 +88,7 @@ Read 2026-11-26. Flowstate is on none of them.
 | nzbusinesstools.co.nz Fergus review | affiliate review | none | none found | n/a | n/a |
 | revenuebase.ai (Auckland list) | data-vendor list | none | none | n/a | n/a |
 
-Not read: tradiecorner.com (503 error), f6s.com (405 error), topsoftwarecompanies.co (Bing Q10, twice), business.govt.nz and branz.co.nz (Q9; government and an industry publisher with no listing route). The reddit r/nzbusiness thread on Q4 is recorded only; nobody posts in it.
+Not read: tradiecorner.com (503 error), f6s.com (405 error), topsoftwarecompanies.co (Bing Q10, twice), business.govt.nz and branz.co.nz (Q9; government and an industry publisher with no listing route). Three Reddit threads are recorded only, and nobody posts in them: r/nzbusiness on Q4 (Google), r/AustralianStartups on Q8 (Google) and r/automation on Q1 (Bing, off-topic share-trading list).
 
 ## Ranked targets
 
