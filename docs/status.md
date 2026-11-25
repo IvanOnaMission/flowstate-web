@@ -40,7 +40,7 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Blockers
 - Copilot needs a Microsoft sign-in; Bing AI answer used instead (no AI answer on 5 of 12 questions).
-- CRM access granted (2026-11-26). Johan is not on the Netlify team (2026-11-26), which is fine with Johan; Netlify settings changes go through Ivan. This replaces the 2026-11-25 notes below that say Johan has Netlify access. Contact-form leads (form "contact") stay in Netlify Forms and are not sent to the CRM: `netlify/functions/submission-created.mjs` only forwards the forms in its FORMS list, so the D35 answers are readable only in Netlify until that changes. Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
+- CRM access granted (2026-11-26). Johan has Netlify access (2026-11-26, later the same day; replaces the earlier note that he wasn't on the team). Contact-form leads (form "contact") stay in Netlify Forms and are not sent to the CRM: `netlify/functions/submission-created.mjs` only forwards the forms in its FORMS list, so the D35 answers are readable only in Netlify until that changes. Checked 2026-11-26 on the PR 72 preview: form detection is on and a test enquiry recorded the "How did you hear about us?" answer (test entry deleted afterwards). Each contact enquiry now emails both Ivan (existing) and Johan (added 2026-11-26). Claude Team invite sent by Ivan (2026-11-25), to accept. GitHub granted.
 - Jordan's SEO plan (task ids T1...) not yet in this project; brief, MVP plan and issues wait on it. His playbook is found and linked in `AGENTS.md` (D29), so method questions no longer wait.
 - Five questions for Ivan, below.
 
@@ -53,6 +53,7 @@ Only what Johan can't decide himself; everything else Johan settles (D22, D16).
 - Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business?
 
 ## Changes since last update
+2026-11-26: Johan got Netlify access; contact form checked on the PR 72 preview (heard_from recorded) and an email notification to Johan added for the contact form.
 2026-11-26: Search Console checked (19 discovered, `/fergus-automation/` indexing requested); Google profile checked, Tezza review answered, two reviews held for Ivan; gbp-01 drafted in Google; Fergus and Simpro partner applications submitted (T17).
 Ivan said yes to publishing his batch 1 answers as written, under his name (D36, 2026-11-26, relayed by Johan). CRM access granted; Johan not on the Netlify team. Found that contact-form leads are not forwarded to the CRM.
 Jordan's playbook found in the private `flowstate-business` repo (2026-11-26, Ivan pointed to it); linked from `AGENTS.md`, not copied, since this repo is public (D29). Compared with our work; differences logged as D30 to D35. Same day, PR 72 also adds the optional "How did you hear about us?" dropdown to the contact form (D35; read the Netlify Forms answers monthly, first read 2026-12-21) and removes visible em and en dashes from site copy (D34).
