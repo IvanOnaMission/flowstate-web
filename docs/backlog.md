@@ -32,6 +32,8 @@ Scoring (playbook 4.5 with the Flowstate adjustments):
 - **Fit (F):** 2, plus 2 for a comparison or cost question, plus 1 if a live money page exists for it to feed.
 - **Proof gate:** no showable proof means parked, not scored. "Pending" means Ivan can supply it in the next interview, and the row says what to ask.
 - Ties go to measured evidence, then customer-sourced questions.
+- Gate likely to fail (playbook 2.2): 0 indexed, 1 retrieval (the engine doesn't read the page), 2 naming (it reads the page but doesn't name Flowstate). Every new page meets gate 0 first: 7 of the 19 live pages weren't on Bing yet on 26 Nov. The row gives the gate after that. "Other risk" covers the dedupe, D30 and proof checks.
+- Proposed slugs: 3 to 7 words, no year, no "best" (playbook 4.7). The brief settles the final slug.
 
 ## Gaps found
 
@@ -87,23 +89,23 @@ Layers: measured collision (Search Console already shows a live page), title, H1
 
 Score = D x G x F (maximum 125). Triage: Johan writes build, park or reject in the last column. Rejected rows are never resurfaced.
 
-| # | page (proposed slug) | D | G | F | score | proof | triage |
-|---|---|---|---|---|---|---|---|
-| 1 | Which job software can you automate? (`/guides/automate-your-job-management-software/`) | 5 | 5 | 5 | 125 | sourced | |
-| 2 | AI automation for NZ trade businesses (`/ai-for-trades-businesses/`) | 5 | 5 | 3 | 75 | sourced | |
-| 3 | AI phone answering for electricians (`/ai-answering-for-electricians/`) | 5 | 4 | 3 | 60 | sourced | |
-| 4 | Is AI worth it for a trade business? (`/guides/is-ai-worth-it-for-trades/`) | 3 | 3 | 5 | 45 | sourced | |
-| 5 | AI automation in Auckland (`/ai-automation-auckland/`) | 3 | 4 | 3 | 36 | sourced | |
-| 6 | Fergus vs Simpro: what you can automate (`/guides/fergus-vs-simpro-automation/`) | 2 | 3 | 5 | 30 | sourced | |
-| 7 | Fergus or Tradify: what you can automate (`/guides/fergus-or-tradify-automation/`) | 2 | 3 | 5 | 30 | sourced | |
-| 8 | ServiceM8 vs Simpro: what you can automate (`/guides/servicem8-vs-simpro-automation/`) | 2 | 3 | 5 | 30 | pending | |
-| 9 | Tradify automation (`/tradify-automation/`) | 2 | 3 | 3 | 18 | sourced | |
-| 10 | AroFlo automation (`/aroflo-automation/`) | 2 | 3 | 3 | 18 | sourced | |
-| 11 | Automatic review requests for tradies (`/review-requests-for-tradies/`) | 2 | 3 | 3 | 18 | sourced | |
-| 12 | Invoice follow-up automation (`/invoice-follow-up-automation/`) | 2 | 3 | 3 | 18 | partly sourced | |
-| 13 | ServiceM8 automation (`/servicem8-automation/`) | 2 | 3 | 3 | 18 | pending | |
-| 14 | AI for plumbers in NZ (`/ai-for-plumbers/`) | 2 | 3 | 3 | 18 | pending | |
-| 15 | AI for HVAC businesses in NZ (`/ai-for-hvac-businesses/`) | 2 (estimate) | 3 | 3 | 18 | pending | |
+| # | page (proposed slug) | D | G | F | score | gate | proof | triage |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Which job software can you automate? (`/guides/automate-your-job-management-software/`) | 5 | 5 | 5 | 125 | 1 | sourced | |
+| 2 | AI automation for NZ trade businesses (`/ai-for-trades-businesses/`) | 5 | 5 | 3 | 75 | 1 | sourced | |
+| 3 | AI phone answering for electricians (`/ai-answering-for-electricians/`) | 5 | 4 | 3 | 60 | 1 | sourced | |
+| 4 | Is AI worth it for a trade business? (`/guides/is-ai-worth-it-for-trades/`) | 3 | 3 | 5 | 45 | 2 | sourced | |
+| 5 | AI automation in Auckland (`/ai-automation-auckland/`) | 3 | 4 | 3 | 36 | 1 | sourced | |
+| 6 | Fergus vs Simpro: what you can automate (`/guides/fergus-vs-simpro-automation/`) | 2 | 3 | 5 | 30 | 1 | sourced | |
+| 7 | Fergus or Tradify: what you can automate (`/guides/fergus-or-tradify-automation/`) | 2 | 3 | 5 | 30 | 1 | sourced | |
+| 8 | ServiceM8 vs Simpro: what you can automate (`/guides/servicem8-vs-simpro-automation/`) | 2 | 3 | 5 | 30 | 1 | pending | |
+| 9 | Tradify automation (`/tradify-automation-for-trades/`) | 2 | 3 | 3 | 18 | 1 | sourced | |
+| 10 | AroFlo automation (`/aroflo-automation-for-trades/`) | 2 | 3 | 3 | 18 | 1 | sourced | |
+| 11 | Automatic review requests for tradies (`/review-requests-for-tradies/`) | 2 | 3 | 3 | 18 | 1 | sourced | |
+| 12 | Invoice follow-up automation (`/invoice-follow-up-automation/`) | 2 | 3 | 3 | 18 | 1 | partly sourced | |
+| 13 | ServiceM8 automation (`/servicem8-automation-for-trades/`) | 2 | 3 | 3 | 18 | 1 | pending | |
+| 14 | AI for plumbers in NZ (`/ai-for-plumbers/`) | 2 | 3 | 3 | 18 | 1 | pending | |
+| 15 | AI for HVAC businesses in NZ (`/ai-for-hvac-businesses/`) | 2 (estimate) | 3 | 3 | 18 | 1 | pending | |
 
 Order within the 18s: sourced rows first, then by how many autocomplete strings back them. Rows 6, 7 and 8 overlap each other and row 1: build at most one of them per month, and only after row 1, or the D30 similarity check will likely fail.
 
@@ -114,105 +116,120 @@ Order within the 18s: sourced rows first, then by how many autocomplete strings 
 - Evidence: GSC "job management systems" 2 impressions at #3 and "job management" 1 impression at #26 (measured, 7 Sep to 24 Nov; the export doesn't show the landing page). Autocomplete and People also ask, 26 Nov (measured).
 - Scores: D 5 (GSC impressions), G 5 (#26 is inside 11 to 30), F 5 (comparison, feeds `/services/`).
 - Proof: sourced. D25 (h) Fergus API, D25 (i) with D24 Simpro API and Jordan's business, D25 (j) with D14 Xero and AroFlo full API, Tradify by browser, any job software.
-- Likely failing gate: dedupe against `/guides/job-software-or-custom-ai/`, which shares "job software" but answers "software or custom AI". Keep this page to what each product lets Flowstate automate, not a product review. If Johan judges it too close, fold it into that guide instead.
+- Gate likely to fail: 1, retrieval (Search Console already shows "job management" at #26, so ranking is the work).
+- Other risk: dedupe against `/guides/job-software-or-custom-ai/`, which shares "job software" but answers "software or custom AI". Keep this page to what each product lets Flowstate automate, not a product review. If Johan judges it too close, fold it into that guide instead.
 
 **2. AI automation for NZ trade businesses.** Money page: `/services/`. Linked from `/`, `/ai-for-electricians/`, `/guides/where-to-start-with-ai/`.
 - Wordings: Q2 "Best AI automation company for tradies in New Zealand"; "ai automation for tradies"; "ai for tradies"; "best ai for tradies"; "ai tools for tradies"; "who can automate my trade business nz"; "best ai for tradesmen".
 - Evidence: GSC, the old URL `/ai-for-trades-businesses/` had 15 impressions at #16.3 and now returns 404 (measured). Flowstate absent on Q2, Google and Bing, 26 Nov (measured). Autocomplete (measured).
 - Scores: D 5 (GSC impressions), G 5 (#16.3), F 3 (feeds `/services/`).
 - Proof: sourced. D13 ("10+ clients", "six years" for the electrical company), D12 Auckland client, D25 (e) and (p).
-- Likely failing gate: D30 similarity with `/` and `/ai-for-electricians/`. Needs its own material, such as which trades Flowstate has built for, from Ivan. Reusing the old slug recovers the 404 (adjacent issue A1).
+- Gate likely to fail: 1, retrieval (absent on Q2; engines read competitor trade pages).
+- Other risk: D30 similarity with `/` and `/ai-for-electricians/`. Needs its own material, such as which trades Flowstate has built for, from Ivan. Reusing the old slug recovers the 404 (adjacent issue A1).
 
 **3. AI phone answering for electricians.** Money page: `/ai-receptionist-for-tradies/`. Linked from `/ai-for-electricians/`, `/ai-receptionist-for-tradies/`, `/questions/`.
 - Wordings: GSC "ai answering for electricians nz"; Q4 "Can AI answer my phone and book jobs for my electrical business in NZ?"; "ai receptionist for electricians"; "ai answering service tradies".
 - Evidence: GSC 2 impressions at #51 (measured). Q4 ranks #1 through the tradies page (measured).
 - Scores: D 5, G 4 (measured, outside 11 to 30), F 3.
 - Proof: sourced. D25 (k) the AI takes details and a person calls back, D25 (o) a backstop, not a replacement.
-- Likely failing gate: dedupe and D30 similarity with `/ai-receptionist-for-tradies/`. The alternative is an electricians section on that page (improvement I2).
+- Gate likely to fail: 1, retrieval (#51 today).
+- Other risk: dedupe and D30 similarity with `/ai-receptionist-for-tradies/`. The alternative is an electricians section on that page (improvement I2).
 
 **4. Is AI worth it for a trade business?** Money page: `/ai-automation-cost/`. Linked from `/ai-automation-cost/`, `/guides/where-to-start-with-ai/`, `/questions/`.
 - Wordings: "is ai worth it for a trade business nz"; "do i need ai in my business"; "how can ai help small businesses"; "is ai automation nz legit".
 - Evidence: autocomplete, 26 Nov (measured; no volume).
 - Scores: D 3 (2, plus 1 for "is it worth it"), G 3 (unmeasured), F 5 (cost question, feeds the cost page).
 - Proof: sourced. D25 (l) value = hours saved a week x hourly rate x 52, D25 (m) what it can't do, D25 (n) how builds are priced, with no figures (D06).
-- Likely failing gate: D06. The page must show the method, never a number or a percentage.
+- Gate likely to fail: 2, naming (cost and value pages get used without the business being named; name Flowstate inside each claim).
+- Other risk: D06. The page must show the method, never a number or a percentage.
 
 **5. AI automation in Auckland.** Money page: `/services/`. Linked from `/`, `/about/`, `/contact/`.
 - Wordings: Q10 "AI automation agency Auckland"; "ai automation auckland"; "ai consultant auckland"; "best ai consultant nz auckland"; "ai automation agency nz".
 - Evidence: Flowstate absent on Q10, Google and Bing, 26 Nov; three baseline competitors have Auckland pages (measured). Autocomplete (measured).
 - Scores: D 3 (2, plus 1 for "who can"), G 4, F 3.
 - Proof: sourced. D12 Auckland electrical client ("150 reviews in three months"; the "95%" figure can't go on a public page, D06).
-- Likely failing gate: thin page (D30: under 300 words of its own). A location page is also a targeting choice, so Ivan should confirm.
+- Gate likely to fail: 1, retrieval (three competitors already have Auckland pages).
+- Other risk: thin page (D30: under 300 words of its own). A location page is also a targeting choice, so Ivan should confirm.
 
 **6. Fergus vs Simpro: what you can automate.** Money page: `/fergus-automation/`. Linked from `/fergus-automation/`, `/simpro-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "fergus automation vs simpro"; "simpro automation vs fergus".
 - Evidence: autocomplete, 26 Nov (measured).
 - Scores: D 2, G 3, F 5.
 - Proof: sourced. D25 (h) and (i): Fergus has no invoices or payments in its API, while Simpro covers them but needs Premium and approval.
-- Likely failing gate: D30 similarity with row 1.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: D30 similarity with row 1.
 
 **7. Fergus or Tradify: what you can automate.** Money page: `/fergus-automation/`. Linked from `/fergus-automation/`, `/guides/job-software-or-custom-ai/`, `/questions/`.
 - Wordings: "fergus or tradify"; "tradify vs fergus"; "fergus vs tradify nz"; "fergus vs tradify cost nz"; "best fergus vs tradify reddit".
 - Evidence: autocomplete, 26 Nov (measured).
 - Scores: D 2, G 3, F 5.
 - Proof: sourced. D25 (h) Fergus API, D25 (j) Tradify through the browser, which can break.
-- Likely failing gate: Fit in practice. The buyer is choosing software, which Flowstate doesn't sell, so the page has to stay on the automation angle. It also overlaps row 1.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: Fit in practice. The buyer is choosing software, which Flowstate doesn't sell, so the page has to stay on the automation angle. It also overlaps row 1.
 
 **8. ServiceM8 vs Simpro: what you can automate.** Money page: `/simpro-automation/`. Linked from `/simpro-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "servicem8 vs simpro"; "servicem8 vs simpro integration"; "servicem8 vs simpro cost comparison".
 - Evidence: autocomplete, 26 Nov (measured).
 - Scores: D 2, G 3, F 5.
 - Proof: pending. Ask Ivan what ServiceM8's API allows, and whether Flowstate has built on it.
-- Likely failing gate: proof.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: proof.
 
 **9. Tradify automation.** Money page: `/services/`. Linked from `/fergus-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "tradify integrations"; "tradify integration with xero"; "tradify api integration"; "tradify supplier integration".
 - Evidence: autocomplete (measured). People also ask: "What is Tradify used for?" (measured).
 - Scores: D 2, G 3, F 3.
 - Proof: sourced, D25 (j). The page must state the browser limit honestly.
-- Likely failing gate: D30 similarity with `/fergus-automation/` and `/simpro-automation/` (a family of job-software pages).
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: D30 similarity with `/fergus-automation/` and `/simpro-automation/` (a family of job-software pages).
 
 **10. AroFlo automation.** Money page: `/services/`. Linked from `/simpro-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "aroflo automation"; "how aroflo automation works"; "aroflo automation vs xero".
 - Evidence: autocomplete (measured).
 - Scores: D 2, G 3, F 3.
 - Proof: sourced, D25 (j) full API. No client example yet, so ask Ivan for one.
-- Likely failing gate: D30 similarity (job-software family).
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: D30 similarity (job-software family).
 
 **11. Automatic review requests for tradies.** Money page: `/quote-and-lead-follow-up/`. Linked from `/quote-and-lead-follow-up/`, `/ai-for-electricians/`, `/about/`.
 - Wordings: none pulled. This wasn't a 4.2 seed, so add "google reviews tradie" to the next pull.
 - Evidence: estimate (no data yet).
 - Scores: D 2 (estimate), G 3, F 3.
 - Proof: sourced. D25 (f): a request is drafted when a job is paid, goes from the owner's own phone or email, and skips anyone asked in the last year. D12: "150 reviews in three months".
-- Likely failing gate: demand (unmeasured).
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: demand (unmeasured).
 
 **12. Invoice follow-up automation.** Money page: `/quote-and-lead-follow-up/`. Linked from `/quote-and-lead-follow-up/`, `/ai-automation-cost/`.
 - Wordings: "invoice follow up automation cost nz"; "how to follow up on an invoice"; "how to automate invoices"; "invoice automation software".
 - Evidence: autocomplete (measured).
 - Scores: D 2, G 3, F 3.
 - Proof: partly sourced. D25 (c) covers drafting invoices in Xero or the job software, but chasing unpaid invoices isn't sourced. Ask Ivan whether Flowstate chases overdue invoices, and how.
-- Likely failing gate: proof.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: proof.
 
 **13. ServiceM8 automation.** Money page: `/services/`. Linked from `/simpro-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "servicem8 automations"; "best servicem8 automations nz"; "servicem8 recurring jobs"; "servicem8 automation vs tradify".
 - Evidence: autocomplete (measured). servicem8.com appears on 4 of the 16 searches (measured).
 - Scores: D 2, G 3, F 3.
 - Proof: pending. D25 (j) says only "any job software". Ask Ivan what ServiceM8 allows and for a client example.
-- Likely failing gate: proof.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: proof.
 
 **14. AI for plumbers in NZ.** Money page: `/services/`. Linked from `/`, `/ai-for-electricians/`, `/ai-receptionist-for-tradies/`.
 - Wordings: "ai for plumbers nz"; "ai for plumbers nz cost"; "best ai for plumbers nz auckland"; "ai for electricians and plumbers".
 - Evidence: autocomplete (measured).
 - Scores: D 2, G 3, F 3.
 - Proof: pending. D05 sets the audience, but there's no plumbing client example. Ask Ivan for one.
-- Likely failing gate: proof, and the D30 similarity check with `/ai-for-electricians/`.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: proof, and the D30 similarity check with `/ai-for-electricians/`.
 
 **15. AI for HVAC businesses in NZ.** Money page: `/services/`. Linked from `/`, `/ai-for-electricians/`.
 - Wordings: none pulled. Add "ai for hvac nz" to the next pull.
 - Evidence: estimate.
 - Scores: D 2 (estimate), G 3, F 3.
 - Proof: pending (D05). Ask Ivan for an HVAC example.
-- Likely failing gate: proof and demand.
+- Gate likely to fail: 1, retrieval (unmeasured).
+- Other risk: proof and demand.
 
 Not in the backlog: trades beyond D05 (electricians, plumbing, HVAC). Builders already have a guide. Any other trade is Ivan's targeting call.
 
