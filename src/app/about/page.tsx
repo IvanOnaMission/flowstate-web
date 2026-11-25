@@ -105,7 +105,7 @@ export default function About() {
         {/* ── What Flowstate is ─────────────────────────────────────
             Ivan's Q17 answer, trimmed (D25): "10+ clients" and "six years"
             confirmed by Ivan (D13; the six years are the electrical company's);
-            no "own accounts" (Q15) until Ivan confirms it. The
+            "own accounts" (Q15/Q17) cleared by Ivan, 2026-11-26. The
             first sentence is the fixed entity sentence (site.entity, D23):
             keep it word for word. */}
         <section className="shell pb-[clamp(3rem,6vw,5rem)]">
@@ -193,15 +193,15 @@ export default function About() {
                 ],
                 [
                   "We agree what the work needs to do",
-                  "After the diagnostic, we agree the AI partner scope and rate, including how we will test the work and what support is included. If priorities change, we agree the next steps together.",
+                  "Before any build starts, we agree the AI partner scope and rate, including how we will test the work and what support is included. If priorities change, we agree the next steps together.",
                 ],
                 [
                   "My entire reputation is ahead of me, not behind me",
                   "I don't have the luxury of coasting on past accomplishments, which means every project gets my absolute focus and highest standard of work.",
                 ],
                 [
-                  "I train your team, not just the software",
-                  "Training is part of the partnership we scope together. We practise on real work, help your people check the results and make clear which decisions still need human approval.",
+                  "You own what we build",
+                  "It runs on your own accounts, so you own it. We make sure you understand how it all fits together, and which decisions still need a person's approval.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>
