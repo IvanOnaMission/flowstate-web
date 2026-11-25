@@ -5,7 +5,7 @@ read_when: planning pages, the 7 Dec recheck, or the monthly sweep
 updated: 2026-11-26
 audience: [Ivan, Johan, agents]
 status: active
-stability: stable
+stability: changing
 owner: Johan
 supersedes: none
 ---

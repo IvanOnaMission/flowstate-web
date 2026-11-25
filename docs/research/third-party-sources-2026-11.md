@@ -19,7 +19,7 @@ Third-party pages are a small part of what ranks: 618 results across 273 domains
 - Raw lists: `data/2026-11-26-google-top20.txt` and `data/2026-11-26-bing-top20.txt`. Every result is tagged by type in `data/2026-11-26-results-tagged.csv`. Per-domain counts are in `data/2026-11-26-domain-counts.csv`.
 - Types are mapped by domain by hand. Any domain not mapped is tagged "other AI or automation provider", which the plan calls "competitor's own site". "competitor (baseline 13)" marks the 13 named in the baseline.
 - Each flagged page was read on 2026-11-26. The flagged pages are every third-party domain found on 3 or more searches, plus every listing page that names a baseline competitor.
-- Limits: this is a proxy. Search results aren't what the AI engines read. Pass B (below) checks it on 21 Dec. Bing read "trade" in Q1 as share trading, so its Q1 list is off-topic.
+- Limits: this is a proxy. Search results aren't what the AI engines read. Google was read signed in to Johan's Chrome with `pws=0`, the closest to signed out the extension allows; the plan asked for signed out or incognito. Some Google lists have 17 to 19 results, not 20, because of duplicates or rich results. Pass B (below) checks it on 21 Dec. Bing read "trade" in Q1 as share trading, so its Q1 list is off-topic.
 
 ## What ranks
 
