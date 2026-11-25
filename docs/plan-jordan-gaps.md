@@ -32,10 +32,28 @@ Judgement calls:
 - Rule 2 held: no new claims. Wording that's still held stays out: "Flowstate fixes it" (D25, fixes come "within the support agreed"), hosting (Q15), the Auckland business as a Flowstate client (D12, question open with Ivan), and any offer of an AI receptionist (D16). No prices (D06).
 - Out of scope: privacy page (legal "we"), "Why we joined forces" on `/about/` (Ivan and Jordan as people), pages not in the sitemap.
 
+Audit after this pass (plan 2.7), 2026-11-25:
+- Schema: the FAQPage answers on `/questions/` and the article descriptions come from the same text as the pages, so they match the new wording. The Organization description is `site.entity`.
+- `og:description` falls back to each page's description; checked in the built HTML.
+- Internal links: none broken across the built pages, `/workflow-diagnostic/` and `llms.txt`.
+- Same facts everywhere: "10+ clients", "six years" and "free 30-minute call" match on every page. The only stale wording is a "15-minute" call in a code comment (`src/components/WorkshopBar.tsx`), which isn't rendered.
+- `llms.txt` was missing four sitemap pages: `/ai-for-electricians/`, `/ai-quoting-for-electricians/`, `/guides/` and the industrial guide. All four are added.
+- Robots: unchanged, allows everything.
+- Home hero checked in the browser on desktop and mobile (375px): the sentence sits under the H1 and wraps cleanly.
+
+Rule 4 (headings use the exact words people type), checked against `docs/baseline/questions.md`:
+- The H2s on the answer pages use Q3, Q4, Q5, Q8, Q9 and Q11 word for word.
+- Q6 is an H2 on `/simpro-automation/`, spelled "Simpro" rather than the baseline's "SimPRO".
+- Q1 is an H2 on `/about/`. On `/questions/` it opens a longer question, which is an H3 there; that page's H2s are group titles.
+- Q7 ("AI receptionist for tradies in New Zealand") is a phrase, not a question, and isn't used as a heading. The receptionist page's title covers the same topic in different words.
+- Q2 ("best…"), Q10 ("agency Auckland") and Q12 ("recommend a company…") aren't used as headings: as Flowstate headings they'd claim to be the best or recommended (rule 2).
+
+No H2 changes until there's Search Console query data.
+
 ## Can do now, later
 - No table on the site yet; any future table puts "Flowstate" in the column header (rule 1).
-- Headings with the exact searched questions (rule 4): check new pages against Search Console queries once they show.
-- Audit after each build (plan 2.7): sitemap, schema, same facts everywhere, broken links, robots.
+- Rule 4: from 2026-12-07, when Search Console shows queries, check H2s against the real questions and add or adjust H2s only (titles and H1s stay, rule 5).
+- Audit after each build (plan 2.7): sitemap, schema, same facts everywhere, broken links, robots, and `llms.txt` against the sitemap.
 
 ## Needs input from someone else
 - Tradify vs Fergus, ServiceM8 and AroFlo pages (plan 4.3): wait on Jordan's facts.
