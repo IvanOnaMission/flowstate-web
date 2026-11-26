@@ -13,7 +13,7 @@ Copy for audit items 2 to 6 and 9 to 15 in `docs/audits/gbp-audit-2026-11-24.md`
 
 - "Flowstate", one word, every time (D04). The name comes paired with what we do (audit item 14).
 - No prices, no percentages, no "$" or "%" (D06, D12 without "95%").
-- Only claims cleared in D12 to D15, D24, D25 and D28. Held, so never used here: the AI receptionist offer (D16), hosting and data location (Q15), package terms such as training sessions, cheat sheet and 30 days (Q16), "a person checks every draft for the first month" and "Flowstate fixes it" (Q14), "own accounts" (Q17) and "we work with" (Q20).
+- Only claims cleared in D12 to D15, D24, D25, D28 and D38 to D42. Never used here: the AI receptionist offer (D16), a paid diagnostic (dropped, D38), any default hosting region such as Singapore (D40), training sessions (D41), and "client" or "we work with" for the Q20 business, which is Jordan's own (D42). Still held: the cheat sheet and 30 days of support (Q16), "a person checks every draft for the first month" and "Flowstate fixes it" (Q14), and "business AI plans don't train on your data" (Q15). Cleared: the system runs on the client's own accounts (D39).
 - "Six years" belongs to the electrical company behind Flowstate, never to Flowstate (D13). No founding year or opening date.
 - Bold, but every line can be proven. No "best", "leading", "#1" or "hottest". The attention comes from concrete numbers that are true (10+ clients, 3 and 7 days, 2 to 3 days, 150 reviews in three months) and from Ivan's own straight talk.
 - Same facts and wording as the site, so Google, LinkedIn and AI assistants read one story.
@@ -76,12 +76,12 @@ We build a voice profile from your meetings, emails and texts, so the AI writes 
 We connect your job software and Xero so the AI sees the whole business, not one piece of it. Fergus, Simpro, AroFlo, Tradify, ServiceM8 and more: Flowstate can work with any job management software. Tradify is automated through the browser, which can break when Tradify changes its screens.
 ```
 
-**5. Setup and AI foundation** (Q18, Q19, D15, D25 p; diagnostic as on `/questions/` and `/workflow-diagnostic/`)
+**5. Setup and AI foundation** (Q18, Q19, D15, D25 p, D38)
 ```
-It starts with a free 30-minute call to find where the time goes. If it's a fit, a paid diagnostic gives you a prioritised roadmap. Then we build the foundation in 2 to 3 days: job software and Xero connected, and the AI brain of your prices, rules and processes. Then helpers, one at a time.
+It starts with a free 30-minute call to find where the time goes. If it's a fit, we build a custom implementation plan. Then we build the foundation in 2 to 3 days: accounts set up in your name, job software and Xero connected, and the AI brain of your prices, rules and processes. Then helpers, one at a time, each tested on real past jobs.
 ```
 
-Audit item 6 named "setup with training sessions". The training-session terms are still held (Q16), so service 5 leaves them out. Add them once Ivan clears Q16.
+Audit item 6 named "setup with training sessions". Training sessions aren't a standard part of the offer (D41), so service 5 leaves them out. The live Google service 5 still says "paid diagnostic" (pasted 2026-11-25): replace it with the text above (D38).
 
 ## Review replies (item 3)
 
@@ -145,7 +145,7 @@ Here's how a system like that works: it asks every customer, every time. When a 
 
 One rule: never ask for 5 stars and never only ask the happy customers. Google bans both.
 ```
-Sources: D12 ("150 reviews in three months"), D25(f), Q8. Doesn't say "we work with" (held, Q20).
+Sources: D12 ("150 reviews in three months"), D25(f), Q8. Doesn't say "client" or "we work with": it's Jordan's own business (D42).
 
 **gbp-05: Running your business on Fergus?** (button: `/fergus-automation/`)
 ```
@@ -352,4 +352,4 @@ Sources: D24, D25(i), Q11 (Jordan's role as on `/questions/`).
 ## Not covered here (held or needing Ivan)
 
 - Ivan's and Johan's personal LinkedIn headlines (D09): not drafted; ask if wanted.
-- Training sessions, cheat sheet and 30 days of support (Q16), hosting and data (Q15), and "a person checks every draft" (Q14): add once Ivan clears them.
+- Cheat sheet and 30 days of support (Q16), "business AI plans don't train on your data" (Q15), and "a person checks every draft" (Q14): add once Ivan clears them. Training sessions are out (D41).

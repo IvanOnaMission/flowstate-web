@@ -11,7 +11,7 @@ const page = {
       a: [
         "Flowstate sets the cost from what the problem is costing you: a one-off fee or a monthly retainer. If it's a one-off build, it's one fee up front. If you want ongoing help, with Flowstate maintaining it and building more over time, there's a monthly retainer.",
         "The price comes down to the size of the business and how much work you want done, and Flowstate works it out from what the problem is costing you. If someone's losing five hours a week to quoting, that's the number Flowstate starts from, and the build has to pay for itself off that. On top of that you pay your own running costs for hosting and AI.",
-        "It starts with a free 30-minute call. If it's a fit, a paid diagnostic reviews how your business works and gives you a prioritised roadmap, and you and Flowstate agree the scope and rate before any build starts.",
+        "It starts with a free 30-minute call. If it's a fit, Flowstate builds a custom implementation plan, and you and Flowstate agree the scope and rate before any build starts.",
       ],
     },
     {

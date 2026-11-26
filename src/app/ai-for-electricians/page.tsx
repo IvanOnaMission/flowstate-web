@@ -25,16 +25,16 @@ export default function Page() {
           <SoftwareExplanation />
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with a paid diagnostic"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate reviews your workflows, software and business information to see where AI could make a useful difference."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You get a prioritised roadmap, including the requirements and constraints for the work worth tackling first. After the diagnostic, you and Flowstate agree the scope and rate for an ongoing AI partnership covering implementation, training and support."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with a free 30-minute call"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You and Flowstate work out where the time's going and where AI could make a useful difference in your business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"If it's a fit, Flowstate builds a custom implementation plan, and you agree the scope and rate before any build starts. Flowstate builds the foundation in 2 to 3 days, then adds helpers one at a time, with an ongoing AI partnership covering implementation and support."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See how getting started works →"}</a></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"A first application: job notes to a draft quote"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate is developing a quoting workflow that starts with job information, quantities and prices supplied by the owner. It checks for missing details and prepares a draft in the job-management system for review, subject to the software access and connections available."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"You check the scope, quantities, prices and wording before sending. Independent calculation of quantities and prices is outside this initial workflow."}</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-quoting-for-electricians/">{"See the proposed quoting workflow →"}</Link></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Build around how your business works"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate needs to understand your pricing, processes and customer communication before a workflow can use them well. The planned implementation combines that foundation with a first agreed AI skill or automation and practical education."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate needs to understand your pricing, processes and customer communication before a workflow can use them well. The planned implementation combines that foundation with a first agreed AI skill or automation."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The software connections and delivery scope are checked and agreed for your business. A tool name on its own doesn't establish whether a particular workflow is possible."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Work directly with Ivan"}</h2>
           <div className="mt-6 grid items-start gap-7 sm:grid-cols-[11rem_1fr]">
@@ -46,7 +46,7 @@ export default function Page() {
             </div>
           </div>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Bring a recent example."}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A quote that took too long. An enquiry that slipped through. Something you keep having to chase yourself. Ivan at Flowstate will use it to discuss whether a paid diagnostic would help you decide where to start."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A quote that took too long. An enquiry that slipped through. Something you keep having to chase yourself. Ivan at Flowstate will use it to work out where to start."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

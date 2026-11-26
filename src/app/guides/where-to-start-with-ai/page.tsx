@@ -50,6 +50,6 @@ export default function Page() {
 <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"AI can help with a wide range of business processes. Ask what would be needed to make your idea work, then test a manageable first step. Your tools, information and the decisions involved determine how much you can hand over."}</p>
 <h2 className="mt-12 border-t border-hair pt-8 text-2xl font-bold text-ink">{"Want help getting started?"}</h2>
 <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"Flowstate helps identify where AI could make the biggest difference, then builds and tests workflows around your processes, knowledge and existing software."}</p>
-<div className="mt-7 flex flex-wrap items-center gap-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a><CallButton tone="atlantic" /></div>
+<div className="mt-7 flex flex-wrap items-center gap-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">See how getting started works</a><CallButton tone="atlantic" /></div>
 </article></main></>;
 }

@@ -107,7 +107,7 @@ export default function About() {
         {/* ── What Flowstate is ─────────────────────────────────────
             Ivan's Q17 answer, trimmed (D25): "10+ clients" and "six years"
             confirmed by Ivan (D13; the six years are the electrical company's);
-            no "own accounts" (Q15) until Ivan confirms it. The
+            "own accounts" (Q15/Q17) cleared by Ivan, 2026-11-26. The
             first sentence is the fixed entity sentence (site.entity, D23):
             keep it word for word. */}
         <section className="shell pb-[clamp(3rem,6vw,5rem)]">
@@ -195,15 +195,15 @@ export default function About() {
                 ],
                 [
                   "You and Flowstate agree what the work needs to do",
-                  "After the diagnostic, you and Flowstate agree the AI partner scope and rate, including how the work will be tested and what support is included. If priorities change, you agree the next steps together.",
+                  "Before any build starts, you and Flowstate agree the AI partner scope and rate, including how the work will be tested and what support is included. If priorities change, you agree the next steps together.",
                 ],
                 [
                   "My entire reputation is ahead of me, not behind me",
                   "I don't have the luxury of coasting on past accomplishments, which means every project gets my absolute focus and highest standard of work.",
                 ],
                 [
-                  "I train your team, not just the software",
-                  "Training is part of the partnership you and Flowstate scope together. Flowstate practises on real work with your team, helps your people check the results and makes clear which decisions still need human approval.",
+                  "You own what Flowstate builds",
+                  "It runs on your own accounts, so you own it. Flowstate makes sure you understand how it all fits together, and which decisions still need a person's approval.",
                 ],
               ].map(([term, def], i) => (
                 <Reveal key={term} delay={i * 70}>
