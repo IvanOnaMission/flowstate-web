@@ -228,117 +228,266 @@
   }
 }
 
-/* One photo layer, the height of the section, anchored on the right.
-   aspect-ratio matches the file so the whole frame is visible (more of the
-   room than a cover crop) and the left edge fades into the section colour. */
-.fs-bg {
+/* Home v4: one dark ladder, one light split, one gold call.
+   Photo path is public/assets/real. The mockup CSS is otherwise unchanged. */
+.v4-software {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) !important;
+  gap: clamp(2rem, 4.5vw, 4rem) !important;
+  align-items: center;
+}
+.v4-software > img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6 / 5;
+  object-fit: cover;
+  object-position: 30% 45%;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(6, 40, 61, 0.06), 0 28px 56px -30px rgba(6, 40, 61, 0.5);
+}
+
+.v4-ladder {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   background: #06283d;
+  overflow: hidden;
 }
-
-.fs-bg::before,
-.fs-bg::after {
+.v4-ladder::before,
+.v4-ladder::after {
   content: "";
   position: absolute;
+  inset: 0;
   pointer-events: none;
 }
-
-.fs-bg::before {
-  z-index: 0;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: auto;
-  aspect-ratio: var(--fs-ratio);
-  background: var(--fs-photo) center / cover no-repeat;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+.v4-ladder::before {
+  z-index: -2;
+  background: #06283d url("/assets/real/v4-ladder_02.jpg") var(--lad-pos, center 30%) / cover no-repeat;
+}
+.v4-ladder::after {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(6, 40, 61, 0.93) 0%, rgba(6, 40, 61, 0.84) 30%, rgba(6, 40, 61, 0.42) 50%, rgba(6, 40, 61, 0.06) 68%, rgba(6, 40, 61, 0) 100%),
+    linear-gradient(180deg, rgba(6, 40, 61, 0.25) 0%, rgba(6, 40, 61, 0) 25%, rgba(6, 40, 61, 0) 75%, rgba(6, 40, 61, 0.35) 100%);
+}
+.v4-ladder > .shell {
+  padding-block: clamp(4.5rem, 8vw, 7rem) !important;
+}
+.v4-ladder ol {
+  grid-template-columns: 1fr !important;
+  max-width: 34rem;
+  gap: 0.85rem !important;
+}
+.v4-ladder article {
+  background: rgba(6, 40, 61, 0.62) !important;
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-left: 3px solid #f5cc47 !important;
+  border-top-width: 1px !important;
+  padding: 1.15rem 1.4rem !important;
+  box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.7) !important;
+}
+.v4-ladder article > div {
+  display: grid !important;
+  grid-template-columns: 3.1rem 1fr;
+  column-gap: 1.1rem;
+  row-gap: 0.3rem !important;
+  align-items: start;
+}
+.v4-ladder article > div > div:first-child {
+  display: contents !important;
+}
+.v4-ladder article > div > div:first-child > span:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  font-size: 2.1rem !important;
+  line-height: 1 !important;
+  padding-top: 0.15rem;
+}
+.v4-ladder article > div > div:first-child .eyebrow {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+}
+.v4-ladder article h3 {
+  grid-column: 2;
+  grid-row: 2;
+}
+.v4-ladder article p {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0;
+}
+.v4-ladder ol + div p,
+.v4-ladder .reveal > p.border-l-2 {
+  max-width: 34rem;
 }
 
-.fs-bg::after {
-  inset: 0;
-  z-index: 1;
-  background: var(--fs-overlay);
+.v4-split {
+  background: #f6f9fb;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(34rem, 46vw, 42rem);
+  border-block: 1px solid rgba(6, 40, 61, 0.08);
 }
-
-.fs-bg > * {
+.v4-split__media {
   position: relative;
-  z-index: 2;
+  margin: 0;
+  overflow: hidden;
+  background: #dfe7ec;
+}
+.v4-split__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--split-pos, center);
+}
+.v4-split--08 {
+  --split-pos: 50% 12%;
+}
+.v4-split > .shell {
+  margin: 0 !important;
+  align-self: center;
+  padding: clamp(3.5rem, 6vw, 6rem) clamp(1.5rem, 6vw, 6.5rem) !important;
+  max-width: 44rem !important;
+}
+.v4-split .eyebrow {
+  color: #0f4b70 !important;
+}
+.v4-split h2 {
+  color: #06283d !important;
+}
+.v4-split h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: #f5cc47;
+  border-radius: 3px;
+  margin-top: 1.25rem;
+}
+.v4-split .space-y-4 {
+  color: #3d5566 !important;
 }
 
-.fs-bg-ladder {
-  --fs-photo: url("/assets/real/bg-ladder_02.jpg");
-  --fs-ratio: 1.5;
-  --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 0.92) 0%, rgba(6, 40, 61, 0.78) 34%, rgba(6, 40, 61, 0.34) 58%, rgba(6, 40, 61, 0.16) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.2) 55%, rgba(3, 16, 26, 0.88) 100%);
+.v4-gold {
+  background: #f5cc47;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
-
-.fs-bg-context {
-  background: #0f4b70;
-  --fs-photo: url("/assets/real/bg-context_05.jpg");
-  --fs-ratio: 2.513;
-  --fs-overlay:
-    linear-gradient(90deg, rgba(15, 75, 112, 0.96) 0%, rgba(15, 75, 112, 0.84) 36%, rgba(15, 75, 112, 0.32) 62%, rgba(15, 75, 112, 0.14) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.4) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.45) 100%);
+.v4-gold::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -12rem;
+  top: -14rem;
+  width: 44rem;
+  height: 44rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 65%);
 }
-
-.fs-bg-cta {
-  --fs-photo: url("/assets/real/bg-cta_04.jpg");
-  --fs-ratio: 1.35;
-  --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 0.98) 0%, rgba(6, 40, 61, 0.9) 32%, rgba(6, 40, 61, 0.4) 54%, rgba(6, 40, 61, 0.16) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.32) 0%, rgba(3, 16, 26, 0) 32%, rgba(3, 16, 26, 0.4) 100%);
+.v4-gold > .shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+  padding-block: clamp(4.5rem, 8vw, 7rem) !important;
+}
+.v4-gold > .shell > .reveal {
+  grid-column: 1;
+}
+.v4-gold__card {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  justify-self: center;
+  margin: 0;
+  width: min(100%, 24rem);
+  transform: rotate(2.5deg);
+  background: #fff;
+  padding: 0.65rem;
+  border-radius: 1.4rem;
+  box-shadow: 0 2px 4px rgba(6, 40, 61, 0.08), 0 30px 60px -22px rgba(6, 40, 61, 0.45);
+}
+.v4-gold__card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.v4-gold .eyebrow {
+  color: #06283d !important;
+  opacity: 0.75;
+}
+.v4-gold h2 {
+  color: #06283d !important;
+}
+.v4-gold .space-y-4 {
+  color: rgba(6, 40, 61, 0.82) !important;
+}
+.v4-gold a[href*="workflow-diagnostic"] {
+  background: #06283d !important;
+  color: #f5cc47 !important;
+  box-shadow: 0 14px 28px -14px rgba(6, 40, 61, 0.6);
+}
+.v4-gold a[href*="workflow-diagnostic"]:hover {
+  filter: none !important;
+  box-shadow: 0 18px 32px -14px rgba(6, 40, 61, 0.7) !important;
+}
+.v4-gold a[href*="workflow-diagnostic"] + span {
+  color: rgba(6, 40, 61, 0.75) !important;
 }
 
 @media (max-width: 767px) {
-  /* Photo sits in its own band under the copy. min-height keeps the very
-     wide context frame from collapsing into a thin strip; cover then crops
-     only the empty sides, with the people held in frame. */
-  .fs-bg::before {
-    top: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    min-height: var(--fs-mh);
-    background-position: var(--fs-mpos, center 42%);
-    background-size: cover;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
+  .v4-software {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
   }
-
-  .fs-bg-ladder {
-    --fs-mh: 15.5rem;
-    --fs-mpos: 70% 46%;
-    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
+  .v4-software > img {
+    aspect-ratio: 4 / 3.3;
+    object-position: 30% 40%;
   }
-
-  .fs-bg-context {
-    --fs-mh: 15.5rem;
-    --fs-mpos: center 40%;
-    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
+  .v4-ladder::before {
+    inset: 0 0 auto 0;
+    height: 17rem;
+    background-position: 62% 35%;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+    mask-image: linear-gradient(180deg, #000 55%, transparent);
   }
-
-  .fs-bg-cta {
-    --fs-mh: 16.5rem;
-    --fs-mpos: center 42%;
-    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
+  .v4-ladder::after {
+    background: linear-gradient(180deg, rgba(6, 40, 61, 0) 0, rgba(6, 40, 61, 0) 8rem, #06283d 17rem);
   }
-
-  .fs-bg-ladder > .shell {
-    padding-bottom: calc(max(15.5rem, 100% / 1.5) + 2.75rem);
+  .v4-ladder > .shell {
+    padding-top: 15rem !important;
+    padding-bottom: 3.5rem !important;
   }
-
-  .fs-bg-context > .shell {
-    padding-bottom: calc(max(15.5rem, 100% / 2.513) + 2.75rem);
+  .v4-ladder article {
+    background: rgba(255, 255, 255, 0.06) !important;
   }
-
-  .fs-bg-cta > .shell {
-    padding-bottom: calc(max(16.5rem, 100% / 1.35) + 2.75rem);
+  .v4-split {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .v4-split__media {
+    aspect-ratio: 4 / 3.4;
+  }
+  .v4-split > .shell {
+    padding: 2.75rem 1.25rem 3.25rem !important;
+  }
+  .v4-gold > .shell {
+    grid-template-columns: 1fr;
+    padding-block: 3.5rem !important;
+  }
+  .v4-gold__card {
+    grid-column: 1;
+    grid-row: auto;
+    order: -1;
+    width: min(78%, 18rem);
+    margin-bottom: 2.5rem;
+    transform: rotate(2deg);
   }
 }
 
