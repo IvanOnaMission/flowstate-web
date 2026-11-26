@@ -99,7 +99,7 @@ export default function Home() {
 
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <SoftwareExplanation />
+          <SoftwareExplanation layout="photo" />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
             <Link href="/questions/">Questions tradies ask about AI →</Link>
@@ -115,7 +115,7 @@ export default function Home() {
           Cards, not heroes. The hero is the emotional hit; this explains.
           One statue across three frames — see spec §4.5 before regenerating
           any of these images. */}
-      <section id="ladder" className="fs-bg fs-bg-ladder scroll-mt-8 on-dark">
+      <section id="ladder" className="v4-ladder scroll-mt-8 on-dark">
         <div className="shell py-[clamp(3.75rem,8vw,6.5rem)]">
         <Reveal>
           <p className="eyebrow mb-4 text-gold">The ladder</p>
@@ -171,16 +171,22 @@ export default function Home() {
       </section>
 
       {/* ── The part everyone skips ──────────────────────────────────── */}
-      <section className="fs-bg fs-bg-context on-dark">
-        <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
+      <section className="v4-split v4-split--08">
+        <figure className="v4-split__media">
+          <img
+            src="/assets/real/v4-context_08.jpg"
+            alt="Ivan mapping out how a business runs on a whiteboard"
+          />
+        </figure>
+        <div className="shell">
           <Reveal>
-            <p className="eyebrow mb-4 text-gold">The part everyone skips</p>
-            <h2 className="h-sec max-w-[20ch] text-white">
+            <p className="eyebrow mb-4 text-atlantic">The part everyone skips</p>
+            <h2 className="h-sec max-w-[20ch] text-ink">
               AI needs to know how your business works.
             </h2>
           </Reveal>
           <Reveal delay={90}>
-            <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(226,238,246,.86)]">
+            <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[#3d5566]">
               <p>
                 A useful workflow needs your business information and clear
                 instructions: how a job moves through your team, where the
@@ -253,18 +259,18 @@ export default function Home() {
       </section>
 
       {/* ── What happens on the call ───────────────────────────── */}
-      <section className="fs-bg fs-bg-cta on-dark">
-        <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
+      <section className="v4-gold">
+        <div className="shell">
           <Reveal>
-            <p className="eyebrow mb-4 text-gold">
+            <p className="eyebrow mb-4 text-ink">
               What happens on the call
             </p>
-            <h2 className="h-sec max-w-[20ch] text-white">
+            <h2 className="h-sec max-w-[20ch] text-ink">
               A few questions about your business.
             </h2>
           </Reveal>
           <Reveal delay={90}>
-            <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(226,238,246,.86)]">
+            <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(6,40,61,.82)]">
               <p>
                 {"You and Ivan from Flow State will talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
@@ -275,13 +281,16 @@ export default function Home() {
           </Reveal>
           <Reveal delay={180}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <CallButton
-                tone="atlantic"
-                className="!bg-gold !text-ink hover:!brightness-100 hover:!shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]"
-              />
-              <span className="text-[0.85rem] text-white/80">{callPromise}</span>
+              <CallButton tone="atlantic" />
+              <span className="text-[0.85rem] text-[rgba(6,40,61,.75)]">{callPromise}</span>
             </div>
           </Reveal>
+          <figure className="v4-gold__card">
+            <img
+              src="/assets/real/v4-cta_04.jpg"
+              alt="Ivan talking through a business with its owner"
+            />
+          </figure>
         </div>
       </section>
     </>
