@@ -165,6 +165,7 @@ export async function flushAuditDigests({store=auditChatStore(),send=sendAlert,e
       try {
         await leased(store,key,now,async()=>{
           const state=await json(store,key);
+          if (!state) return;
           if (state.crmDirty) {
             if (!await save(state.lead)) throw new Error('CRM answer delivery is pending.');
             state.crmDirty=false; await store.setJSON(key,state);
