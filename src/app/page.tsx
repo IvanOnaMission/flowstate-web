@@ -10,7 +10,7 @@ import { callPromise, rungs } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "AI partner for NZ electrical businesses",
-  description: "Less admin, more time to run your electrical business. Start with a free 30-minute call, then a custom plan and an ongoing AI partnership with Flow State.",
+  description: "Flow State builds AI automation for New Zealand trade businesses, mainly electricians. Start with a free 30-minute call, then a custom plan.",
 };
 
 /**
@@ -67,12 +67,17 @@ export default function Home() {
                     <span className="block text-sky">More time to run your business.</span>
                   </h1>
                 </Reveal>
+                {/* Plan 4.1 / rule 3: the first sentence says who Flow State is and who it's for,
+                    with the name in it. The H1 above stays as it is (rule 5). Trades: D05. */}
+                <Reveal delay={160}>
+                  <p className="max-w-[46ch] text-[clamp(1.0625rem,1.6vw,1.25rem)] leading-relaxed text-white/90">Flow State builds AI automation for New Zealand trade businesses, mainly electricians.</p>
+                </Reveal>
                 <Reveal delay={240}>
                   <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
                     <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
                     <Link href="/services/" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">See how it works →</Link>
                   </div>
-                  <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · then a plan if it's a fit</p>
+                  <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · then a plan if it&apos;s a fit</p>
                 </Reveal>
               </div>
             </div>
@@ -115,7 +120,7 @@ export default function Home() {
         <Reveal>
           <p className="eyebrow mb-4 text-gold">The ladder</p>
           <h2 className="h-sec max-w-[22ch] text-white">
-            It climbs the same ladder everyone in your business climbed.
+            Flow State&apos;s AI climbs the same ladder everyone in your business climbed.
           </h2>
         </Reveal>
 
@@ -157,7 +162,7 @@ export default function Home() {
             <h2 id="plan-heading" className="h-sec max-w-[18ch] text-atlantic">A clear plan. An AI partner to help you act on it.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                After a free 30-minute call, we build a custom implementation plan if it's a fit. The foundation takes 2 to 3 days, then we add helpers one at a time. The ongoing AI partnership brings agreed implementation and support.
+                After a free 30-minute call, Flow State builds a custom implementation plan if it&apos;s a fit. The foundation takes 2 to 3 days, then Flow State adds helpers one at a time. The ongoing AI partnership brings agreed implementation and support.
               </p>
               <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">See how getting started works →</a>
             </div>
@@ -188,8 +193,8 @@ export default function Home() {
                 details live and what a good result looks like.
               </p>
               <p>
-                That&apos;s where the foundation starts. We build the AI brain from
-                how you run things, work out what AI needs and decide which tasks are worth
+                That&apos;s where the foundation starts. Flow State builds the AI brain from
+                how you run things, works out what AI needs and decides which tasks are worth
                 tackling. Your team keeps control of pricing, technical
                 decisions and final approval.
               </p>
@@ -220,7 +225,7 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="max-w-[54ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
               <p className="text-ink">
-                I&apos;m Ivan. I build the systems myself.
+                I&apos;m Ivan, Flow State&apos;s founder. I build the systems myself.
               </p>
               <p>
                 I grew up around technology and computers, so this stuff is
@@ -267,10 +272,10 @@ export default function Home() {
           <Reveal delay={90}>
             <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(6,40,61,.82)]">
               <p>
-                {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
+                {"You and Ivan from Flow State will talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The introductory call is free and takes about 30 minutes. If it's a fit, we build a custom implementation plan from there. Scope and rate are agreed before any build starts."}
+                {"The introductory call is free and takes about 30 minutes. If it's a fit, Flow State builds a custom implementation plan from there. Scope and rate are agreed before any build starts."}
               </p>
             </div>
           </Reveal>

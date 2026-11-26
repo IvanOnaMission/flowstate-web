@@ -13,6 +13,8 @@ Flow State was written as one word, "Flowstate", until November 2026. It is not 
 - [Simpro automation for NZ electrical contractors](https://flowstate.net.nz/simpro-automation/)
 - [Fergus automation for NZ trade businesses](https://flowstate.net.nz/fergus-automation/)
 - [AI quote and lead follow-up for NZ tradies](https://flowstate.net.nz/quote-and-lead-follow-up/)
+- [AI implementation for electricians in New Zealand](https://flowstate.net.nz/ai-for-electricians/)
+- [AI quote preparation for electrical businesses](https://flowstate.net.nz/ai-quoting-for-electricians/)
 
 ## Blog
 
@@ -21,10 +23,12 @@ Flow State was written as one word, "Flowstate", until November 2026. It is not 
 
 ## Guides
 
+- [Practical AI guides for electrical businesses](https://flowstate.net.nz/guides/)
 - [How NZ builders and tradies use AI to cut admin](https://flowstate.net.nz/guides/ai-for-builders-nz/)
 - [Job management software or custom AI](https://flowstate.net.nz/guides/job-software-or-custom-ai/)
 - [AI quoting for electricians](https://flowstate.net.nz/guides/ai-quoting-for-electricians/)
 - [Where to start with AI](https://flowstate.net.nz/guides/where-to-start-with-ai/)
+- [AI for the work around industrial electrical projects](https://flowstate.net.nz/guides/ai-industrial-electrical-business/)
 
 ## Company
 

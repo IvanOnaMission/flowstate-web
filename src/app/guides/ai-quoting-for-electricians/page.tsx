@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/guides/ai-quoting-for-electricians/" },
   openGraph: { url: "/guides/ai-quoting-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI quoting for electricians: what you still check",
-  description: "A practical scope for AI quote preparation: supply job details, quantities and prices, check missing information, then review the draft before sending.",
+  description: "Flow State's practical scope for AI quote preparation: supply job details, quantities and prices, check missing information, then review the draft.",
 };
 
 export default function Page() {
@@ -28,8 +28,8 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <h1 className="h-hero max-w-[24ch] text-ink">{"AI quoting for electricians: what it can prepare, what you still check"}</h1>
           <p className="mt-6 text-sm text-mute">Ivan Barnett, Flow State · <time dateTime="2026-09-07">7 September 2026</time></p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"A useful starting point for AI quoting is preparing a draft from information you supply. That keeps the scope clear: the job details, quantities and prices come from you, and you review the quote before it goes to the customer."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"That's the first quoting workflow we're developing at Flow State. It isn't a claim that a finished system can independently estimate an electrical job. Here's the process we're designing around, and the questions to settle before building it into a business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"At Flow State, a useful starting point for AI quoting is preparing a draft from information you supply. That keeps the scope clear: the job details, quantities and prices come from you, and you review the quote before it goes to the customer."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"That's the first quoting workflow Flow State is developing. It isn't a claim that a finished system can independently estimate an electrical job. Here's the process Flow State is designing around, and the questions to settle before building it into a business."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Start with a real quote"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Take a recent job and trace how its quote was prepared. Where were the notes? Who supplied the quantities? Where did the prices come from? What had to be clarified before the quote could go out?"}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"This shows which work is information gathering, which is preparation and which requires a decision. It also gives you a concrete example to assess, instead of trying to automate “quoting” as one large, undefined task."}</p>
@@ -51,11 +51,11 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Test the value with actual work"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Before a pilot, record how long the existing preparation process takes and what causes rework. During the pilot, include the time spent supplying information, correcting the draft and reviewing it."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Compare similar jobs and keep a record of the problems the workflow encounters. That gives you a basis for deciding whether it is helping. Producing a draft quickly, on its own, doesn't establish the overall time saved."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We aren't quoting a measured customer saving for this workflow. It is in development, and results would need to be established in use."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flow State isn't quoting a measured customer saving for this workflow. It is in development, and results would need to be established in use."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Want to assess where AI could help your quoting?"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flow State starts with a free 30-minute call. Quoting is one possible area to look at. If it's a fit, we agree the scope and rate before any build starts, as part of an ongoing AI partnership covering implementation and support. You keep approval of quotes and pricing."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flow State starts with a free 30-minute call. Quoting is one possible area to look at. If it's a fit, you and Flow State agree the scope and rate before any build starts, as part of an ongoing AI partnership covering implementation and support. You keep approval of quotes and pricing."}</p>
           <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See how getting started works →"}</a></p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free introductory call to work out where the time's going. We assess software access and constraints before agreeing any implementation."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free introductory call to work out where the time's going. Flow State assesses software access and constraints before agreeing any implementation."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

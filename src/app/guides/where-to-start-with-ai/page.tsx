@@ -5,7 +5,7 @@ import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
  title: "Where should an electrical business start with AI?",
- description: "Start by freeing up the owner's time. Define a repetitive task, brief AI like an employee, then test and improve a reusable workflow.",
+ description: "Flow State's advice: start by freeing up the owner's time. Define a repetitive task, brief AI like an employee, then test and improve a reusable workflow.",
  alternates: { canonical: "/guides/where-to-start-with-ai/" },
  openGraph: { url: "/guides/where-to-start-with-ai/", images: ["/assets/hero/workshop-hook.jpg"] },
 };
@@ -20,7 +20,7 @@ export default function Page() {
  mainEntityOfPage: "https://flowstate.net.nz/guides/where-to-start-with-ai/",
  }} /><main id="main" className="shell py-[clamp(3rem,6vw,5rem)]"><article className="max-w-[52rem]">
 <h1 className="h-hero max-w-[24ch] text-ink">{"Where should an electrical business start with AI?"}</h1><p className="mt-6 text-sm text-mute">By Ivan Barnett · 9 September 2026</p>
-<p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"Start with the owner. The goal is to free up your time for work that moves the business forward."}</p>
+<p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"Flow State's advice is to start with the owner. The goal is to free up your time for work that moves the business forward."}</p>
 <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"Choose a repetitive task that keeps coming back to you. Then give AI the information and instructions you would give an employee taking it over."}</p>
 <h2 className="mt-12 border-t border-hair pt-8 text-2xl font-bold text-ink">{"1. Pick one repeated task"}</h2>
 <p className="mt-5 max-w-[65ch] text-lg leading-relaxed text-mute">{"What do you keep doing yourself? Finding information, preparing a document, checking job notes or answering the same questions?"}</p>

@@ -35,7 +35,7 @@ export default function Page() {
         <article>
           <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{title}</h1>
           <p className="mt-6 text-sm text-mute">By Ivan Barnett · 9 September 2026</p>
-          <p className="mt-7 max-w-[65ch] text-xl leading-relaxed text-mute">Your team handles the technical work. AI can help with the repetitive processes around it:</p>
+          <p className="mt-7 max-w-[65ch] text-xl leading-relaxed text-mute">Flow State builds AI for the repetitive processes around your team&apos;s technical work:</p>
           <ul className="mt-9 grid gap-4 sm:grid-cols-2">
             {[
               ["Project updates", "Turn job notes into clear progress summaries."],

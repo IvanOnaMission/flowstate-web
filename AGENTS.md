@@ -11,6 +11,7 @@ Flow State (flowstate.net.nz) builds AI automation for NZ trade businesses. Joha
 | `docs/status.md` | Phase, focus, blockers, recent changes | starting a session, planning the week | changing | direct |
 | `docs/brief.md` | Problem, people, requirements (not yet written) | scoping new work | stable | propose |
 | `docs/mvp-plan.md` | Scope, timeline, success threshold (not yet written) | planning, estimating | stable | propose |
+| `docs/plan-jordan-gaps.md` | What from Jordan's SEO plan is done, what Johan can do now, and what waits on someone else | planning site or visibility work against Jordan's plan | changing | direct |
 | `docs/content/answers-batch-1.md` | Ivan's answers to the 20 customer questions (source material for pages) | writing site pages, LinkedIn posts, FAQ | stable | propose |
 | `docs/content/profile-copy-google-linkedin.md` | Paste-ready Google profile and LinkedIn page copy, with sources per claim | editing the Google profile or LinkedIn page, writing their posts, replying to reviews | changing | direct |
 | `docs/baseline/` | Visibility baseline: protocol, questions, raw results per engine | running or comparing the "after" run | stable | propose |

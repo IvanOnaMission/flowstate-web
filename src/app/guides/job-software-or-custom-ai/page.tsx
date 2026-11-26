@@ -5,7 +5,7 @@ import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
 const title = "Your job management software runs the job. There’s still manual work around it.";
-const description = "Flow State builds AI workflows to take on that repetitive work, using your processes and the software you already have. Your team checks the results and stays in control.";
+const description = "Flow State builds AI workflows for the repetitive work around your job software, using your processes and tools. Your team checks the results.";
 const path = "/guides/job-software-or-custom-ai/";
 
 export const metadata: Metadata = {
@@ -46,10 +46,10 @@ export default function Page() {
           <p className="mt-9 max-w-[65ch] text-xl leading-relaxed text-mute">{description}</p>
           {/* Ivan's answer Q12 with D14 (D25 j). */}
           <h2 className="mt-14 max-w-[34ch] border-t border-hair pt-9 text-2xl font-bold text-ink">Should I use job management software or custom AI automation for my trade business?</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Both. Keep the job software: it runs the job. Custom AI takes on the repetitive work around it, and it works best when it&apos;s connected to the job software, Xero and everything else, so the AI can see the whole business.</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Both: the job software runs the job, and custom AI from Flow State takes on the repetitive work around it. The AI works best when it&apos;s connected to the job software, Xero and everything else, so it can see the whole business.</p>
           <h2 className="mt-12 max-w-[34ch] text-2xl font-bold text-ink">Does it work with Tradify, ServiceM8, AroFlo or Xero?</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Pretty much, yes. Flow State can work with any job management software, ServiceM8 included. The easiest is software with full API access, which is a proper way for other systems to plug into it. Xero has that, and so does AroFlo.</p>
-          <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Tradify doesn&apos;t have full API access, so there we automate through the browser, with the AI clicking through the screens like a person would. That works, it&apos;s just more fiddly and can break when they change their screens. If you&apos;re not sure about your job software, check whether it has full API access.</p>
+          <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Tradify doesn&apos;t have full API access, so there Flow State automates through the browser, with the AI clicking through the screens like a person would. That works, it&apos;s just more fiddly and can break when they change their screens. If you&apos;re not sure about your job software, check whether it has full API access.</p>
           <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">For the detail on the two most common ones, see <a className="font-semibold text-atlantic underline underline-offset-4" href="/fergus-automation/">Fergus automation</a> and <a className="font-semibold text-atlantic underline underline-offset-4" href="/simpro-automation/">Simpro automation</a>.</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />

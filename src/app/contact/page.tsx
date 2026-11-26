@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact/" },
   openGraph: { url: "/contact/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Contact",
-  description: "Book a free 30-minute call with Ivan about your NZ electrical business. If it's a fit, we build a custom implementation plan, with scope and rate agreed before any build starts.",
+  description: "Book a free 30-minute call with Ivan from Flow State. If it's a fit, Flow State builds a custom plan, with scope and rate agreed before any build starts.",
 };
 
 /**
@@ -36,7 +36,7 @@ export default function Contact() {
           </Reveal>
           <Reveal delay={90}>
             <p className="mt-7 max-w-[52ch] text-[1.1rem] leading-relaxed text-mute">
-              {"About 30 minutes, free, with no pitch deck. Tell me how your business runs and where work gets held up. If it's a fit, we build a custom implementation plan from there. Scope and rate are agreed before any build starts."}
+              {"Book a free 30-minute call with Ivan, Flow State's founder, with no pitch deck. Tell me how your business runs and where work gets held up. If it's a fit, Flow State builds a custom implementation plan from there. Scope and rate are agreed before any build starts."}
             </p>
           </Reveal>
           <Reveal delay={160}>
