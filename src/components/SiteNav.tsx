@@ -49,7 +49,7 @@ export default function SiteNav({ ground = "light" }: { ground?: "light" | "dark
       {/*
         Mobile: the same links on their own row, always visible.
 
-        Deliberately not a hamburger. There are five links — hiding them
+        Deliberately not a hamburger. There are seven links — hiding them
         behind a tap costs a discovery step and buys back a bit of tidiness,
         and it needs JS, focus management and a scroll lock to do properly.
         This works with JS off and nothing can get stuck open.

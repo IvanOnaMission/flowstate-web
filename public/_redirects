@@ -17,3 +17,7 @@
 /ai-for-trades-businesses      /services/  301
 /business-essentials/          /services/  301
 /business-essentials           /services/  301
+# The receptionist answer page moved to the blog as Jordan's post (D44, 2026-11-27).
+/ai-receptionist-for-tradies/  /blog/ai-receptionist-for-tradies/  301
+/ai-receptionist-for-tradies   /blog/ai-receptionist-for-tradies/  301
+/ai-receptionist-for-tradies/index.html  /blog/ai-receptionist-for-tradies/  301

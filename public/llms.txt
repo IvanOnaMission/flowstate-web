@@ -12,8 +12,12 @@ Flow State was written as one word, "Flowstate", until November 2026. It is not 
 - [What AI automation costs](https://flowstate.net.nz/ai-automation-cost/)
 - [Simpro automation for NZ electrical contractors](https://flowstate.net.nz/simpro-automation/)
 - [Fergus automation for NZ trade businesses](https://flowstate.net.nz/fergus-automation/)
-- [AI receptionist and phone answering for NZ tradies](https://flowstate.net.nz/ai-receptionist-for-tradies/)
 - [AI quote and lead follow-up for NZ tradies](https://flowstate.net.nz/quote-and-lead-follow-up/)
+
+## Blog
+
+- [Blog: posts from people in the trades on AI for NZ trade businesses](https://flowstate.net.nz/blog/)
+- [Is an AI receptionist any use to a tradie?](https://flowstate.net.nz/blog/ai-receptionist-for-tradies/): Jordan Statham on running one in his own electrical business
 
 ## Guides
 

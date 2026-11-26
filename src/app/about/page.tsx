@@ -18,10 +18,8 @@ export const metadata: Metadata = {
  * words. They are the strongest proof this business has while there are no
  * case studies, so they survive the rebuild unchanged.
  *
- * ⚠️ Jordan's role label is deliberately "Strategy", NOT "Partner". The 10%
- * equity term sheet was sent 2026-06-29 and is still unanswered, so claiming
- * a partnership publicly would be ahead of the facts. Do not "tidy" this to
- * Partner without checking [[jordan]] first.
+ * Jordan's role label is "Partner, Business Strategy": Ivan approved it on
+ * 2026-11-27 with Jordan's blog byline (D46). Keep the two the same.
  */
 const people = [
   {
@@ -38,10 +36,10 @@ const people = [
   },
   {
     n: "02",
-    role: "Strategy",
+    role: "Partner, Business Strategy",
     name: "Jordan",
     photo: "/assets/team/jordan.jpg",
-    alt: "Jordan, strategy at Flow State",
+    alt: "Jordan, partner, business strategy at Flow State",
     paras: [
       "Jordan brings the good looks, the beard, and, more usefully, eight years of running his own electrical business. His actual thing is systems: building trade businesses that run efficiently without the owner having to touch everything.",
       "He's found and fixed the leaks in his own operation, so he knows exactly where the time and money go in yours. He brings the business strategy and the trades know-how.",
@@ -133,8 +131,7 @@ export default function About() {
 
         {/* ── Why we joined forces ──────────────────────────────────
             Carried over from the previous site. Same photo, same argument,
-            trimmed. Note it says "joined forces" and not "partners" — same
-            reason Jordan's label above is Strategy. */}
+            trimmed. */}
         <section className="shell pb-[clamp(3rem,6vw,5rem)]">
           <div className="grid items-center gap-10 border-t border-hair pt-[clamp(1.75rem,3vw,2.5rem)] md:grid-cols-[22rem_1fr] md:gap-16">
             <Reveal>

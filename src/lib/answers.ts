@@ -12,7 +12,6 @@ export const answerPages = [
   { href: "/ai-automation-cost/", label: "What AI automation costs" },
   { href: "/simpro-automation/", label: "Simpro automation" },
   { href: "/fergus-automation/", label: "Fergus automation" },
-  { href: "/ai-receptionist-for-tradies/", label: "AI receptionist and phone answering" },
   { href: "/quote-and-lead-follow-up/", label: "Quote and lead follow-up" },
   { href: "/guides/ai-for-builders-nz/", label: "AI for NZ builders" },
 ] as const;
