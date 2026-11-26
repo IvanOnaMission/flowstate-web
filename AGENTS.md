@@ -16,6 +16,13 @@ Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan
 | `docs/content/profile-copy-google-linkedin.md` | Paste-ready Google profile and LinkedIn page copy, with sources per claim | editing the Google profile or LinkedIn page, writing their posts, replying to reviews | changing | direct |
 | `docs/baseline/` | Visibility baseline: protocol, questions, raw results per engine | running or comparing the "after" run | stable | propose |
 | `docs/audits/` | Dated audits of external profiles (Google Business Profile first) with proposed fixes | editing the Google profile or planning local or AI-visibility work | changing | direct |
+| `docs/backlog.md` | Ranked page backlog: scores, evidence, Johan's triage | choosing the next pages, writing a brief | changing | direct |
+| `docs/briefs/` | One brief per approved backlog row, with its question pack; template in its README | drafting a page, preparing an interview | changing | direct |
+| `docs/interviews/` | Ivan's answers word for word, recorded by `/seo-interview` | drafting from a brief, checking where a claim came from | stable | propose (new answer files are created by `/seo-interview`; recorded answers are never edited, corrections are added as dated lines) |
+| `docs/research/` | Dated research, such as the third-party source map; a study's own raw data sits in `docs/research/data/` | outreach, listings, planning pages | changing | direct |
+| `docs/sweeps/` | Dated monthly checks (index check, visibility sweep) | the monthly sweep, indexing questions | changing | direct |
+| `docs/data/` | Raw exports by month (Search Console, Bing, autocomplete) | scoring the backlog, checking an evidence line | stable | propose (new months are added directly) |
+| `.claude/agents/flowstate-seo.md`, `.claude/commands/seo-interview.md` | SEO agent rules and the interview command | research or drafting sessions, running an interview | stable | propose |
 | Jordan's SEO plan (tasks T1...), Project only | Original plan and task ids | checking task ids or original scope | stable | propose (owned by Jordan, not edited here) |
 | Jordan's playbook: `marketing/seo/claude-seo-aio-playbook.md` in the private repo `IvanOnaMission/flowstate-business` (linked, never copied here: this repo is public, D29) | Full method for SEO and AI-answer work: agent setup, question data, interview, page rules, Google profile, measurement, mistakes log. Where it differs from our decisions, see D29 to D35 | planning pages, the Google profile, measurement or the monthly sweep | stable | propose (owned by Jordan, not edited here) |
 

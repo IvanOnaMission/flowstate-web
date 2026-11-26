@@ -1,0 +1,619 @@
+engine,query,rank,url,domain,type
+google,Q1,1,flowstate.net.nz/fergus-automation/,flowstate.net.nz,flowstate
+google,Q1,2,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,Q1,3,intellecttechnologies.co.nz/industries/trades-professional-services-nz,intellecttechnologies.co.nz,other AI or automation provider
+google,Q1,4,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+google,Q1,5,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+google,Q1,6,levystreet.com/compare/ai-automation-agencies-nz/,levystreet.com,other AI or automation provider
+google,Q1,7,ricoh.co.nz/workflow-and-automation,ricoh.co.nz,other
+google,Q1,8,workflowtrade.co.nz/blog/best-app-for-tradies-nz,workflowtrade.co.nz,software vendor or marketplace
+google,Q1,9,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q1,10,momentumcrm.co.nz/trades,momentumcrm.co.nz,software vendor or marketplace
+google,Q1,11,ez-ai.nz/ai-for-small-business-nz,ez-ai.nz,competitor (baseline 13)
+google,Q1,12,tasmantech.co.nz/blog/how-business-automation-workflows-save-time-and-cut-errors,tasmantech.co.nz,other AI or automation provider
+google,Q1,13,hyperdigital.nz/insights/crm-for-tradies/,hyperdigital.nz,competitor (baseline 13)
+google,Q1,14,nelsonai.co.nz/services/ai-automation-nz,nelsonai.co.nz,other AI or automation provider
+google,Q1,15,tradienet.nz/blogs/resource-centre/crm-for-tradies,tradienet.nz,other AI or automation provider
+google,Q1,16,e2e.nz/resource-library,e2e.nz,competitor (baseline 13)
+google,Q1,17,strideai.co.nz/blogs/page/10/,strideai.co.nz,competitor (baseline 13)
+google,Q1,18,sophiie.ai/location/nz,sophiie.ai,competitor (baseline 13)
+google,Q1,19,automateai.co.nz/blog/quote-automation-for-trades-nz/,automateai.co.nz,competitor (baseline 13)
+google,Q2,1,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,Q2,2,strideai.co.nz/tradesandconstruction/,strideai.co.nz,competitor (baseline 13)
+google,Q2,3,ez-ai.nz/ai-for-construction-nz,ez-ai.nz,competitor (baseline 13)
+google,Q2,4,aiagency.nz/compare/best-ai-automation-agencies-nz/,aiagency.nz,other AI or automation provider
+google,Q2,5,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+google,Q2,6,wiselyglobal.tech/blog/ai-automation-companies-nz,wiselyglobal.tech,competitor (baseline 13)
+google,Q2,7,intellecttechnologies.co.nz/industries/trades-professional-services-nz,intellecttechnologies.co.nz,other AI or automation provider
+google,Q2,8,harknessai.nz/,harknessai.nz,other AI or automation provider
+google,Q2,9,tradie-ai.com/,tradie-ai.com,other AI or automation provider
+google,Q2,10,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+google,Q2,11,hyperdigital.nz/ai-automation/,hyperdigital.nz,competitor (baseline 13)
+google,Q2,12,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+google,Q2,13,avtrix.co.nz/industries/construction-trades/,avtrix.co.nz,other AI or automation provider
+google,Q2,14,exodesk.co.nz/ai-workflow-automation/,exodesk.co.nz,other AI or automation provider
+google,Q2,15,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q2,16,arkhamsolutions.com/industries/trades,arkhamsolutions.com,other AI or automation provider
+google,Q2,17,cofounderbase.com/top/ai-automation-agencies-in-new-zealand/,cofounderbase.com,directory
+google,Q2,18,it360.co.nz/ai-automation,it360.co.nz,other AI or automation provider
+google,Q2,19,servicem8.com/nz/ai-job-management-software-for-trade-contractors,servicem8.com,software vendor or marketplace
+google,Q3,1,cherryai.co.nz/journal/how-much-does-ai-automation-cost-new-zealand,cherryai.co.nz,other AI or automation provider
+google,Q3,2,growin.nz/insights/ai-automation-cost-nz-2026,growin.nz,other AI or automation provider
+google,Q3,3,strideai.co.nz/how-much-does-ai-automation-cost-nz/,strideai.co.nz,competitor (baseline 13)
+google,Q3,4,flowstate.net.nz/ai-automation-cost/,flowstate.net.nz,flowstate
+google,Q3,5,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q3,6,ez-ai.nz/how-to-implement-ai-nz,ez-ai.nz,competitor (baseline 13)
+google,Q3,7,heyautomate.co.nz/blog/roi-of-ai-automation-nz,heyautomate.co.nz,other AI or automation provider
+google,Q3,8,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+google,Q3,9,octavius.ai/ai-strategy/ai-automation-budget-for-a-small-nz-business/,octavius.ai,other AI or automation provider
+google,Q3,10,nexronsolutions.com/ai-automation-cost-nz,nexronsolutions.com,other AI or automation provider
+google,Q3,11,levystreet.com/compare/ai-automation-agencies-nz/,levystreet.com,other AI or automation provider
+google,Q3,12,avtrix.co.nz/pricing/,avtrix.co.nz,other AI or automation provider
+google,Q3,13,fsmdevelopments.co.nz/ai-automation,fsmdevelopments.co.nz,other AI or automation provider
+google,Q3,14,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+google,Q3,15,automateai.co.nz/pricing/,automateai.co.nz,competitor (baseline 13)
+google,Q3,16,ez-ai.nz/ai-for-small-business-nz,ez-ai.nz,competitor (baseline 13)
+google,Q3,17,belton.co.nz/ai/plans,belton.co.nz,other AI or automation provider
+google,Q3,18,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+google,Q3,19,cherryai.co.nz/faq,cherryai.co.nz,other AI or automation provider
+google,Q4,1,flowstate.net.nz/ai-receptionist-for-tradies/,flowstate.net.nz,flowstate
+google,Q4,2,talkify.nz/electrician/auckland,talkify.nz,competitor (baseline 13)
+google,Q4,3,tamakiai.co.nz/for-tradies,tamakiai.co.nz,other AI or automation provider
+google,Q4,4,servicegecko.co.nz/blog/ai-receptionist-tradies-nz/,servicegecko.co.nz,other AI or automation provider
+google,Q4,5,sophiie.ai/location/nz,sophiie.ai,competitor (baseline 13)
+google,Q4,6,kiwiagent.ai/industries/electrician,kiwiagent.ai,other AI or automation provider
+google,Q4,7,waboom.ai/blog/ai-voice-agent-for-electricians-nz-au,waboom.ai,other AI or automation provider
+google,Q4,8,h3llo.nz/trades,h3llo.nz,competitor (baseline 13)
+google,Q4,9,alwaysanswer.co.nz/ai-receptionist-for-electricians-nz.html,alwaysanswer.co.nz,other AI or automation provider
+google,Q4,10,trade.aitools.co.nz/,aitools.co.nz,other AI or automation provider
+google,Q4,11,heyjodie.com/en-nz/,heyjodie.com,other AI or automation provider
+google,Q4,12,syntalia.com/voice-ai-for/electricians,syntalia.com,other AI or automation provider
+google,Q4,13,firstvoice.co.nz/industries/trades,firstvoice.co.nz,competitor (baseline 13)
+google,Q4,14,johnni.ai/ai-receptionist-new-zealand/,johnni.ai,other AI or automation provider
+google,Q4,15,callcatcher.co.nz/ai-answering-service,callcatcher.co.nz,other AI or automation provider
+google,Q4,16,talkify.nz/electrician,talkify.nz,competitor (baseline 13)
+google,Q4,17,fiord.ai/ai-phone-answering-service-nz,fiord.ai,other AI or automation provider
+google,Q4,18,reddit.com/r/nzbusiness/comments/1ujkywu/how_can_ai_benefit_a_tradie_business_in_nz/,reddit.com,forum or Reddit
+google,Q4,19,kingtide.nz/lead-capture,kingtide.nz,other AI or automation provider
+google,Q5,1,flowstate.net.nz/fergus-automation/,flowstate.net.nz,flowstate
+google,Q5,2,virtualcoastie.co.nz/,virtualcoastie.co.nz,other AI or automation provider
+google,Q5,3,fergus.com/nz/advisor-partners/,fergus.com,software vendor or marketplace
+google,Q5,4,fergus.com/nz/,fergus.com,software vendor or marketplace
+google,Q5,5,workflowtrade.co.nz/fergus-alternative,workflowtrade.co.nz,software vendor or marketplace
+google,Q5,6,tradiehq.co.nz/fergus/,tradiehq.co.nz,software vendor or marketplace
+google,Q5,7,virtualinnovation.co.nz/fergus-crm-integration/,virtualinnovation.co.nz,other AI or automation provider
+google,Q5,8,fergus.com/nz/certified-partner/,fergus.com,software vendor or marketplace
+google,Q5,9,invven.com/fergus-alternative,invven.com,software vendor or marketplace
+google,Q5,10,virtualassistant.co.nz/blog/why-you-should-use-fergus-software-if-you-are-a-tradie/,virtualassistant.co.nz,other
+google,Q5,11,nextminute.com/nz/compare/fergus-alternative,nextminute.com,software vendor or marketplace
+google,Q5,12,intellecttechnologies.co.nz/industries/trades-professional-services-nz,intellecttechnologies.co.nz,other AI or automation provider
+google,Q5,13,fergus.com/nz/fergus-ai/,fergus.com,software vendor or marketplace
+google,Q5,14,tradeflow.org.nz/guides/category/software,tradeflow.org.nz,publisher or news
+google,Q5,15,freeup.co.nz/fergus/,freeup.co.nz,other
+google,Q5,16,workarc.io/fergus,workarc.io,software vendor or marketplace
+google,Q5,17,facebook.com/fergusapp/posts/one-easy-tool-to-manage-your-trade-business-theres-a-reason-over-25000-trades-bu/1612592410882443/,facebook.com,forum or Reddit
+google,Q6,1,simprogroup.com/blog/nz-electrical-suppliers-integrate-with-simpro,simprogroup.com,software vendor or marketplace
+google,Q6,2,simprogroup.com/industries/electrical-software,simprogroup.com,software vendor or marketplace
+google,Q6,3,advanceelectrical.co.nz/cool-shit/tradie-tools/simpro/,advanceelectrical.co.nz,other
+google,Q6,4,certmate.co.nz/integrations/simpro/,certmate.co.nz,software vendor or marketplace
+google,Q6,5,scottelectrical.co.nz/pages/integration-partners,scottelectrical.co.nz,other
+google,Q6,6,lentune.com/customers/dalton-electrical,lentune.com,software vendor or marketplace
+google,Q6,7,ez-ai.nz/ai-for-construction-nz,ez-ai.nz,competitor (baseline 13)
+google,Q6,8,digit.business/apps/simpro,digit.business,software vendor or marketplace
+google,Q6,9,flowstate.net.nz/ai-receptionist-for-tradies/,flowstate.net.nz,flowstate
+google,Q6,10,toolie.co.nz/simpro-alternative,toolie.co.nz,software vendor or marketplace
+google,Q6,11,partners.simprogroup.com/,simprogroup.com,software vendor or marketplace
+google,Q6,12,automateai.co.nz/blog/construction-project-management-software-nz/,automateai.co.nz,competitor (baseline 13)
+google,Q6,13,syncezy.com/top-simpro-integrations-for-field-services/,syncezy.com,software vendor or marketplace
+google,Q6,14,ideal.co.nz/pages/simpro,ideal.co.nz,other
+google,Q6,15,simprogroup.com/blog/beginners-guide-to-adopting-ai-for-electrical-business,simprogroup.com,software vendor or marketplace
+google,Q6,16,macrogen360.co.nz/services/simpro/,macrogen360.co.nz,other
+google,Q6,17,certifi.co.nz/simpro,certifi.co.nz,software vendor or marketplace
+google,Q6,18,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q6,19,itrade.net/post/job-management-software-for-new-zealand-tradies,itrade.net,software vendor or marketplace
+google,Q7,1,talkify.nz/,talkify.nz,competitor (baseline 13)
+google,Q7,2,h3llo.nz/trades,h3llo.nz,competitor (baseline 13)
+google,Q7,3,firstvoice.co.nz/,firstvoice.co.nz,competitor (baseline 13)
+google,Q7,4,sophiie.ai/location/nz,sophiie.ai,competitor (baseline 13)
+google,Q7,5,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,Q7,6,tkfsolutions.co.nz/blog/ai-receptionist-nz,tkfsolutions.co.nz,other AI or automation provider
+google,Q7,7,aivolve.co.nz/,aivolve.co.nz,other AI or automation provider
+google,Q7,8,hyperdigital.nz/insights/ai-receptionist-nz/,hyperdigital.nz,competitor (baseline 13)
+google,Q7,9,servicegecko.co.nz/blog/ai-receptionist-tradies-nz/,servicegecko.co.nz,other AI or automation provider
+google,Q7,10,aiagency.nz/guides/answering-service-for-tradies/,aiagency.nz,other AI or automation provider
+google,Q7,11,tamakiai.co.nz/,tamakiai.co.nz,other AI or automation provider
+google,Q7,12,heyjodie.com/en-nz/guides/best-ai-receptionist/,heyjodie.com,other AI or automation provider
+google,Q7,13,incendo.co.nz/tradies,incendo.co.nz,other AI or automation provider
+google,Q7,14,levystreet.com/compare/ai-receptionists-nz/,levystreet.com,other AI or automation provider
+google,Q7,15,flowstate.net.nz/ai-receptionist-for-tradies/,flowstate.net.nz,flowstate
+google,Q7,16,intactmedia.co.nz/services/ai-receptionist/,intactmedia.co.nz,other AI or automation provider
+google,Q7,17,kingtide.nz/lead-capture,kingtide.nz,other AI or automation provider
+google,Q7,18,lunacal.ai/blogs/ai-answering-service-new-zealand,lunacal.ai,software vendor or marketplace
+google,Q7,19,tradeflow.org.nz/guides/ai-receptionist-for-tradies-nz,tradeflow.org.nz,publisher or news
+google,Q8,1,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+google,Q8,2,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q8,3,ihsanops.ai/blog/job-management-software-vs-custom-automation-trades-uk/,ihsanops.ai,other AI or automation provider
+google,Q8,4,i4tbusiness.com/au/ai-job-management-software-use-cases/,i4tbusiness.com,other AI or automation provider
+google,Q8,5,digitalrabbit.com.au/custom-ai-automation-vs-software/,digitalrabbit.com.au,other AI or automation provider
+google,Q8,6,enterprisedna.co/resources/blog/au-ai-tools-trades-business/,enterprisedna.co,other AI or automation provider
+google,Q8,7,automateai.co.nz/blog/business-automation/,automateai.co.nz,competitor (baseline 13)
+google,Q8,8,sophiie.ai/news/how-ai-job-management-software-helps-tradies-save-time-and-win-more-jobs,sophiie.ai,competitor (baseline 13)
+google,Q8,9,reddit.com/r/AustralianStartups/comments/1tjbhcq/built_a_job_management_app_for_aussie_tradies/,reddit.com,forum or Reddit
+google,Q8,10,linkedin.com/pulse/does-your-business-need-custom-software-automation-iym0c,linkedin.com,software vendor or marketplace
+google,Q8,11,servicem8.com/nz/ai-job-management-software-for-trade-contractors,servicem8.com,software vendor or marketplace
+google,Q8,12,enduraa.com/insights/ai-automation-vs-traditional-software-what-should-your-business-build,enduraa.com,other AI or automation provider
+google,Q8,13,chanautomation.com/blog/ai-for-trade-businesses,chanautomation.com,other AI or automation provider
+google,Q8,14,fiord.ai/blog/how-can-i-use-ai-in-my-business-nz,fiord.ai,other AI or automation provider
+google,Q8,15,flowstate.net.nz/questions/,flowstate.net.nz,flowstate
+google,Q8,16,closecrew.ai/blog/service-businesses/best-job-management-software-trades,closecrew.ai,other AI or automation provider
+google,Q8,17,sandlabs.com.au/blog/ai-for-australian-trades-software,sandlabs.com.au,other AI or automation provider
+google,Q8,18,theautomators.ai/blog/revolutionizing-your-business-with-job-scheduling-automation-for-trades/,theautomators.ai,other AI or automation provider
+google,Q9,1,ez-ai.nz/ai-for-construction-nz,ez-ai.nz,competitor (baseline 13)
+google,Q9,2,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+google,Q9,3,openclaws.nz/blog/ai-for-tradespeople-nz,openclaws.nz,other AI or automation provider
+google,Q9,4,branz.co.nz/design-build/articles/new-zealands-next-ai-frontier-is-on-the-job-site,branz.co.nz,publisher or news
+google,Q9,5,puttiapps.com/blog/how-can-ai-agents-cut-admin-work-nz/,puttiapps.com,other AI or automation provider
+google,Q9,6,it360.co.nz/insights/ai-construction-trades-nz-2026,it360.co.nz,other AI or automation provider
+google,Q9,7,harknessai.nz/ai-for-construction-nz,harknessai.nz,other AI or automation provider
+google,Q9,8,aiagentagency.co.nz/ai-automation-construction-companies-nz/,aiagentagency.co.nz,other AI or automation provider
+google,Q9,9,manatech.nz/blog/ai-for-nz-tradies,manatech.nz,other AI or automation provider
+google,Q9,10,buildrite.nz/ai-building-consent-process-nz-branz-research/,buildrite.nz,other AI or automation provider
+google,Q9,11,theblueprint.net.nz/insights/ai-tools-construction-business-nz,theblueprint.net.nz,publisher or news
+google,Q9,12,business.govt.nz/operations/getting-started-with-ai/work-smarter-not-harder-with-ai,business.govt.nz,government
+google,Q9,13,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,Q9,14,advantagebusiness.co.nz/ai-in-2026-to-reduce-admin-and-improve-productivity/,advantagebusiness.co.nz,other AI or automation provider
+google,Q9,15,bedigital.group/ai-nz-construction-company-what-works/,bedigital.group,other AI or automation provider
+google,Q9,16,kauri-systems.com/locations/ai-construction-new-zealand.html,kauri-systems.com,other AI or automation provider
+google,Q9,17,enterprisedna.co/resources/blog/nz-ai-construction/,enterprisedna.co,other AI or automation provider
+google,Q9,18,buildxact.com/nz/blog/ai-tech-estimating/,buildxact.com,software vendor or marketplace
+google,Q9,19,tailoredintelligence.co.nz/ai-for/builders,tailoredintelligence.co.nz,other AI or automation provider
+google,Q10,1,strideai.co.nz/,strideai.co.nz,competitor (baseline 13)
+google,Q10,2,automateai.co.nz/locations/auckland/,automateai.co.nz,competitor (baseline 13)
+google,Q10,3,aiworkflows.agency/,aiworkflows.agency,other AI or automation provider
+google,Q10,4,aiautomationagency.co.nz/,aiautomationagency.co.nz,other AI or automation provider
+google,Q10,5,unisphere.co.nz/ai-services-in-auckland-for-enterprise-automation-and-ai/,unisphere.co.nz,other AI or automation provider
+google,Q10,6,tkfsolutions.co.nz/services/automation-agents,tkfsolutions.co.nz,other AI or automation provider
+google,Q10,7,ez-ai.nz/ai-automation-auckland,ez-ai.nz,competitor (baseline 13)
+google,Q10,8,appy.co.nz/ai-agents-automation/,appy.co.nz,other AI or automation provider
+google,Q10,9,apiconnects.co.nz/blog/ai-automation-agency-nz-strategy-roi-compliance-guide,apiconnects.co.nz,other AI or automation provider
+google,Q10,10,aiagency.nz/compare/best-ai-automation-agencies-nz/,aiagency.nz,other AI or automation provider
+google,Q10,11,arkhamsolutions.com/locations/auckland,arkhamsolutions.com,other AI or automation provider
+google,Q10,12,odysseyprojects.io/ai-automation,odysseyprojects.io,other AI or automation provider
+google,Q10,13,levystreet.com/compare/ai-automation-agencies-nz/,levystreet.com,other AI or automation provider
+google,Q10,14,aisolutionsnz.co.nz/,aisolutionsnz.co.nz,other AI or automation provider
+google,Q10,15,verum.nz/ai-and-automation,verum.nz,other AI or automation provider
+google,Q10,16,rkconsulting.co.nz/ai-automation/,rkconsulting.co.nz,other AI or automation provider
+google,Q10,17,highpeakdigital.co.nz/services,highpeakdigital.co.nz,other AI or automation provider
+google,Q10,18,blyntic.co.nz/,blyntic.co.nz,other AI or automation provider
+google,Q10,19,ential.com/ai-agency-auckland,ential.com,other AI or automation provider
+google,Q11,1,flowstate.net.nz/quote-and-lead-follow-up/,flowstate.net.nz,flowstate
+google,Q11,2,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,Q11,3,strideai.co.nz/tradesandconstruction/,strideai.co.nz,competitor (baseline 13)
+google,Q11,4,intellecttechnologies.co.nz/services/ai-chatbot-nz/for-construction,intellecttechnologies.co.nz,other AI or automation provider
+google,Q11,5,hyperdigital.nz/ai-automation/,hyperdigital.nz,competitor (baseline 13)
+google,Q11,6,trade.aitools.co.nz/,aitools.co.nz,other AI or automation provider
+google,Q11,7,sophiie.ai/location/nz,sophiie.ai,competitor (baseline 13)
+google,Q11,8,talkify.nz/tradesman,talkify.nz,competitor (baseline 13)
+google,Q11,9,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+google,Q11,10,agentworks.nz/ai-for-tradies-nz/,agentworks.nz,other AI or automation provider
+google,Q11,11,tradie-ai.com/,tradie-ai.com,other AI or automation provider
+google,Q11,12,growin.nz/services/ai-automation,growin.nz,other AI or automation provider
+google,Q11,13,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+google,Q11,14,bizzyboss.co.nz/,bizzyboss.co.nz,other AI or automation provider
+google,Q11,15,aiagency.nz/guides/ai-for-small-business/,aiagency.nz,other AI or automation provider
+google,Q11,16,harknessai.nz/ai-for-tradies-nz,harknessai.nz,other AI or automation provider
+google,Q11,17,nextminute.com/nz/solutions/ai-integration,nextminute.com,software vendor or marketplace
+google,Q11,18,enterprisedna.co/resources/blog/nz-ai-tools-tradie-business/,enterprisedna.co,other AI or automation provider
+google,Q11,19,servicem8.com/nz/ai-job-management-software-for-trade-contractors,servicem8.com,software vendor or marketplace
+google,Q12,1,fergus.com/nz/industries/electrical/,fergus.com,software vendor or marketplace
+google,Q12,2,juicycrm.nz/for-your-industry/electricians/,juicycrm.nz,software vendor or marketplace
+google,Q12,3,tradiealley.nz/electricians-home/,tradiealley.nz,software vendor or marketplace
+google,Q12,4,fylo.co.nz/,fylo.co.nz,competitor (baseline 13)
+google,Q12,5,tradifyhq.com/nz/trades/electrician-av-software-app,tradifyhq.com,software vendor or marketplace
+google,Q12,6,capterra.co.nz/directory/31006/electrical-contractor/software,capterra.co.nz,review site
+google,Q12,7,nimbus.co.nz/industries/electrical/,nimbus.co.nz,software vendor or marketplace
+google,Q12,8,intellecttechnologies.co.nz/industries/trades-professional-services-nz,intellecttechnologies.co.nz,other AI or automation provider
+google,Q12,9,workflowtrade.co.nz/trades/electrical,workflowtrade.co.nz,software vendor or marketplace
+google,Q12,10,heyjodie.com/en-nz/guides/best-electrician-software/,heyjodie.com,other AI or automation provider
+google,Q12,11,arkhamsolutions.com/industries/trades,arkhamsolutions.com,other AI or automation provider
+google,Q12,12,servicem8.com/nz/industries/electrician-software,servicem8.com,software vendor or marketplace
+google,Q12,13,invenix.ai/nz/business-automation/,invenix.ai,other AI or automation provider
+google,Q12,14,fastcrew.nz/electrician,fastcrew.nz,software vendor or marketplace
+google,Q12,15,tradeflow.org.nz/guides/ai-for-electricians-nz,tradeflow.org.nz,publisher or news
+google,Q12,16,daltonelectrical.co.nz/,daltonelectrical.co.nz,other
+google,Q12,17,facebook.com/groups/1451983265066835/posts/4204406846491116/,facebook.com,forum or Reddit
+google,Q12,18,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+google,S1,1,fergus.com/nz/,fergus.com,software vendor or marketplace
+google,S1,2,flowstate.net.nz/fergus-automation/,flowstate.net.nz,flowstate
+google,S1,3,fergus.com/nz/features/field-service-management-software/,fergus.com,software vendor or marketplace
+google,S1,4,fergus.com/marketplace/zapier/,fergus.com,software vendor or marketplace
+google,S1,5,app.fergus.com/auth/login/,fergus.com,software vendor or marketplace
+google,S1,6,facebook.com/fergusapp/posts/new-in-fergus-assistant-automations-set-it-once-and-fergus-assistant-keeps-it-ti/1623919536416397/,facebook.com,forum or Reddit
+google,S1,7,virtualcoastie.co.nz/blog/post/149061/game-changer-alert-fergus-is-finally-stepping-into-ai-automation-and-its-about-time/,virtualcoastie.co.nz,other AI or automation provider
+google,S1,8,fergus.com/marketplace/unbox-ai/,fergus.com,software vendor or marketplace
+google,S1,9,nz.linkedin.com/company/fergus-software-limited,linkedin.com,software vendor or marketplace
+google,S1,10,help.fergus.com/en/articles/1895370-introducing-fergus,fergus.com,software vendor or marketplace
+google,S1,11,fergus.com/nz/fergus-ai/,fergus.com,software vendor or marketplace
+google,S1,12,mcpmarket.com/server/fergus,mcpmarket.com,directory
+google,S1,13,help.fergus.com/en/articles/11644092-zapier-integration,fergus.com,software vendor or marketplace
+google,S1,14,fylo.co.nz/assistant,fylo.co.nz,competitor (baseline 13)
+google,S1,15,chesterman.com.au/articles/google-review-automation-from-fergus-2-practical-methods,chesterman.com.au,other
+google,S1,16,fergus.com/nz/features/on-the-job/,fergus.com,software vendor or marketplace
+google,S1,17,facebook.com/fergusapp/posts/you-asked-what-fergus-assistant-can-actually-do-here-are-5-to-get-you-started-sc/1556196833188668/,facebook.com,forum or Reddit
+google,S1,18,nz.trustpilot.com/review/fergus.com,trustpilot.com,review site
+google,S1,19,virtualinnovation.co.nz/fergus-crm-integration/,virtualinnovation.co.nz,other AI or automation provider
+google,S2,1,simprogroup.com/blog/field-service-automation,simprogroup.com,software vendor or marketplace
+google,S2,2,simprogroup.com/,simprogroup.com,software vendor or marketplace
+google,S2,3,simprogroup.com/features/data-feed,simprogroup.com,software vendor or marketplace
+google,S2,4,ez-ai.nz/simpro-automation-nz,ez-ai.nz,competitor (baseline 13)
+google,S2,5,simprogroup.com/features/save-time,simprogroup.com,software vendor or marketplace
+google,S2,6,capterra.co.nz/software/10529/simpro-enterprise,capterra.co.nz,review site
+google,S2,7,make.com/integrations/simpro-community,make.com,software vendor or marketplace
+google,S2,8,simprogroup.com/blog/ai-field-service-automation-trade-contractors,simprogroup.com,software vendor or marketplace
+google,S2,9,workato.com/integrations/simpro,workato.com,software vendor or marketplace
+google,S2,10,youtube.com/watch?v=PJ-pGqTCdSE,youtube.com,software vendor or marketplace
+google,S2,11,flowmondo.com/integrate-automate/simpro,flowmondo.com,software vendor or marketplace
+google,S2,12,en.wikipedia.org/wiki/Simpro,wikipedia.org,other
+google,S2,13,simprogroup.com/blog/automating-data-management-with-data-feed,simprogroup.com,software vendor or marketplace
+google,S2,14,simplementary.com/automation-and-ai,simplementary.com,other AI or automation provider
+google,S2,15,getapp.co.nz/software/91468/simpro-enterprise,getapp.co.nz,review site
+google,S2,16,facebook.com/groups/simprosecrets/posts/1275713247967076/,facebook.com,forum or Reddit
+google,S2,17,simprogroup.com/blog/simpro-update-set-and-forget-with-automated-invoicing,simprogroup.com,software vendor or marketplace
+google,S2,18,lentune.com/integrations/simpro,lentune.com,software vendor or marketplace
+google,S3,1,talkify.nz/,talkify.nz,competitor (baseline 13)
+google,S3,2,firstvoice.co.nz/,firstvoice.co.nz,competitor (baseline 13)
+google,S3,3,heyjodie.com/en-nz/,heyjodie.com,other AI or automation provider
+google,S3,4,ez-ai.nz/ai-receptionist-nz,ez-ai.nz,competitor (baseline 13)
+google,S3,5,tkfsolutions.co.nz/blog/ai-receptionist-nz,tkfsolutions.co.nz,other AI or automation provider
+google,S3,6,juicycrm.nz/features/ai-receptionist/,juicycrm.nz,software vendor or marketplace
+google,S3,7,42voice.com/nz/ai-receptionist/,42voice.com,other AI or automation provider
+google,S3,8,kingtide.nz/lead-capture,kingtide.nz,other AI or automation provider
+google,S3,9,telnet.co.nz/automation/contact%20centre/customer%20experience/ai-receptionist-vs-virtual-receptionist-vs-call-centre/,telnet.co.nz,other
+google,S3,10,aivolve.co.nz/,aivolve.co.nz,other AI or automation provider
+google,S3,11,lyngo.ai/country/new-zealand/,lyngo.ai,other AI or automation provider
+google,S3,12,receptionhq.co.nz/,receptionhq.co.nz,other AI or automation provider
+google,S3,13,hyperdigital.nz/insights/ai-receptionist-nz/,hyperdigital.nz,competitor (baseline 13)
+google,S3,14,servicegecko.co.nz/blog/ai-receptionist-tradies-nz/,servicegecko.co.nz,other AI or automation provider
+google,S3,15,automateai.co.nz/solutions/voice-agents/compare/,automateai.co.nz,competitor (baseline 13)
+google,S3,16,intactmedia.co.nz/services/ai-receptionist/,intactmedia.co.nz,other AI or automation provider
+google,S3,17,h3llo.nz/ai-receptionist,h3llo.nz,competitor (baseline 13)
+google,S3,18,hero.co.nz/ai-voice.html,hero.co.nz,other AI or automation provider
+google,S3,19,intelliconnect.co.nz/blog/what-is-an-ai-receptionist-nz-guide,intelliconnect.co.nz,other AI or automation provider
+google,S4,1,automateai.co.nz/,automateai.co.nz,competitor (baseline 13)
+google,S4,2,strideai.co.nz/,strideai.co.nz,competitor (baseline 13)
+google,S4,3,aiautomationagency.co.nz/,aiautomationagency.co.nz,other AI or automation provider
+google,S4,4,nelsonai.co.nz/services/ai-automation-nz,nelsonai.co.nz,other AI or automation provider
+google,S4,5,activate.co.nz/blog/ai-automation-nz-what-it-is-what-it-can-do-and-whether-your-business-is-ready/,activate.co.nz,other AI or automation provider
+google,S4,6,ez-ai.nz/,ez-ai.nz,competitor (baseline 13)
+google,S4,7,harknessai.nz/ai-automation-nz,harknessai.nz,other AI or automation provider
+google,S4,8,wiselyglobal.tech/blog/ai-automation-companies-nz,wiselyglobal.tech,competitor (baseline 13)
+google,S4,9,rkconsulting.co.nz/ai-automation/,rkconsulting.co.nz,other AI or automation provider
+google,S4,10,caretakers.io/expertise/ai-business-automation,caretakers.io,other AI or automation provider
+google,S4,11,brightly.nz/ai-automation,brightly.nz,other AI or automation provider
+google,S4,12,levystreet.com/compare/ai-automation-agencies-nz/,levystreet.com,other AI or automation provider
+google,S4,13,hatchit.co.nz/ai-automation-business-process-improvement/,hatchit.co.nz,other AI or automation provider
+google,S4,14,openclaws.nz/blog/ai-automation-nz-business,openclaws.nz,other AI or automation provider
+google,S4,15,tkfsolutions.co.nz/services/automation-agents,tkfsolutions.co.nz,other AI or automation provider
+google,S4,16,flockconsulting.co.nz/automation-ai,flockconsulting.co.nz,other AI or automation provider
+google,S4,17,automateai.co.nz/blog/,automateai.co.nz,competitor (baseline 13)
+google,S4,18,apiconnects.co.nz/blog/ai-automation-agency-nz-strategy-roi-compliance-guide,apiconnects.co.nz,other AI or automation provider
+google,S4,19,voice-ai.co.nz/blog/best-ai-agent-for-business-nz/,voice-ai.co.nz,other AI or automation provider
+bing,Q1,1,facebook.com/groups/homeassistantau/,facebook.com,forum or Reddit
+bing,Q1,2,companies-register.companiesoffice.govt.nz/help-centre/getting-support-to-use-the-companies-register/new-zealand-business-number-nzbn/,companiesoffice.govt.nz,government
+bing,Q1,3,learn.microsoft.com/en-us/power-automate/guidance/,microsoft.com,software vendor or marketplace
+bing,Q1,4,asb.co.nz/businesshub/resources/articles/small-business-grants-and-subsidies.html,asb.co.nz,other
+bing,Q1,5,automateshow.com/attend/show-schedule,automateshow.com,publisher or news
+bing,Q1,6,businesskiwi.com/how-to-register-a-sole-trader-business-in-nz/,businesskiwi.com,publisher or news
+bing,Q1,7,affordableindicators.com/articles/best-ninjatrader-automated-strategy/,affordableindicators.com,publisher or news
+bing,Q1,8,automate-x.nz/,automate-x.nz,other AI or automation provider
+bing,Q1,9,automateshow.com/attend,automateshow.com,publisher or news
+bing,Q1,10,marketaxess.com/trade/open-trading,marketaxess.com,other
+bing,Q1,11,telarc.org/,telarc.org,other
+bing,Q1,12,serverlessnotes.com/docs/understanding-the-power-automate-recurrence-schedule-trigger,serverlessnotes.com,publisher or news
+bing,Q1,13,reddit.com/r/automation/comments/1havl6y/what_are_the_best_tools_for_automating_everyday/,reddit.com,forum or Reddit
+bing,Q1,14,netsuite.com/portal/resource/articles/accounting/automate-accounting-processes.shtml,netsuite.com,software vendor or marketplace
+bing,Q1,15,hnry.co.nz/resources/tax-101/the-nz-self-employed-tax-calculator/,hnry.co.nz,other
+bing,Q1,16,business.govt.nz/getting-started/choosing-the-right-business-structure/starting-a-company/,business.govt.nz,government
+bing,Q1,17,consumer.org.nz/about-us/media-releases/consumer-nz-reveals-the-best-and-worst-power-companies,consumer.org.nz,publisher or news
+bing,Q1,18,tradeportalb.placemakers.co.nz/,placemakers.co.nz,other
+bing,Q1,19,riseuplabs.com/how-much-does-microsoft-power-automate-cost/,riseuplabs.com,software vendor or marketplace
+bing,Q2,1,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+bing,Q2,2,torqueai.co.nz/,torqueai.co.nz,competitor (baseline 13)
+bing,Q2,3,agencies.nz/specialty/ai-automation,agencies.nz,directory
+bing,Q2,4,tradiecorner.com/nz/our-services/ai-automation,tradiecorner.com,other AI or automation provider
+bing,Q2,5,readysite.co.nz/,readysite.co.nz,other AI or automation provider
+bing,Q2,6,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+bing,Q2,7,strideai.co.nz/tradesandconstruction/,strideai.co.nz,competitor (baseline 13)
+bing,Q2,8,simplyautomated.nz/,simplyautomated.nz,other AI or automation provider
+bing,Q2,9,f6s.com/companies/artificial-intelligence/new-zealand/co,f6s.com,directory
+bing,Q2,10,aiforsmallbusiness.co.nz/best-ai-agencies-nz/,aiforsmallbusiness.co.nz,other AI or automation provider
+bing,Q2,11,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+bing,Q2,12,automateai.co.nz/,automateai.co.nz,competitor (baseline 13)
+bing,Q2,13,tradeflow.org.nz/guides/category/ai-automation,tradeflow.org.nz,publisher or news
+bing,Q2,14,quarvo.co.nz/guides/ai-for-tradies,quarvo.co.nz,publisher or news
+bing,Q2,15,wiselyglobal.tech/blog/ai-automation-companies-nz,wiselyglobal.tech,competitor (baseline 13)
+bing,Q2,16,made4tradies.co.nz/automations,made4tradies.co.nz,other AI or automation provider
+bing,Q2,17,custodianai.co.nz/,custodianai.co.nz,other AI or automation provider
+bing,Q2,18,builderconnect.co.nz/blog/what-are-the-best-websites-to-find-reliable-tradies-in-new-zealand/,builderconnect.co.nz,publisher or news
+bing,Q2,19,allaboutai.com/nz/best-ai-tools/productivity/task-automation/,allaboutai.com,publisher or news
+bing,Q2,20,tradietools.nz/,tradietools.nz,publisher or news
+bing,Q3,1,capitalautomation.nz/insights/automation-cost-nz.html,capitalautomation.nz,other AI or automation provider
+bing,Q3,2,kageworks.nz/blog/ai-automation-cost-nz,kageworks.nz,other AI or automation provider
+bing,Q3,3,strideai.co.nz/how-much-does-ai-automation-cost-nz/,strideai.co.nz,competitor (baseline 13)
+bing,Q3,4,growin.nz/insights/ai-automation-cost-nz-2026,growin.nz,other AI or automation provider
+bing,Q3,5,cherryai.co.nz/journal/how-much-does-ai-automation-cost-new-zealand,cherryai.co.nz,other AI or automation provider
+bing,Q3,6,ez-ai.nz/pricing,ez-ai.nz,competitor (baseline 13)
+bing,Q3,7,puttiapps.com/blog/ai-implementation-cost-nz/,puttiapps.com,other AI or automation provider
+bing,Q3,8,overcomersai.com/2026/06/28/how-much-does-automation-cost-small-business-nz/,overcomersai.com,other AI or automation provider
+bing,Q3,9,pulsebay.co.nz/cost-calculator/ai-solution-cost/,pulsebay.co.nz,other AI or automation provider
+bing,Q3,10,makings.co.nz/ai-automation,makings.co.nz,other AI or automation provider
+bing,Q3,11,aiforsmallbusiness.co.nz/,aiforsmallbusiness.co.nz,other AI or automation provider
+bing,Q3,12,mbie.govt.nz/business-and-employment/business/support-for-business/research-and-reports-for-small-business/ai-adoption-by-new-zealand-small-and-medium-sized-businesses,mbie.govt.nz,government
+bing,Q3,13,smartinstallations.co.nz/costs/,smartinstallations.co.nz,other AI or automation provider
+bing,Q3,14,sotatek.com/blogs/ai-and-machine-learning/ai-automation-cost/,sotatek.com,software vendor or marketplace
+bing,Q3,15,parix.ai/blog/how-much-does-ai-automation-cost/,parix.ai,other AI or automation provider
+bing,Q3,16,builts.ai/blog/how-much-does-business-automation-cost/,builts.ai,other AI or automation provider
+bing,Q3,17,autonomous.ai/ourblog/ai-automation-for-small-businesses,autonomous.ai,other AI or automation provider
+bing,Q3,18,implementai.co.nz/resources/ai-automation-nz-businesses-practical-guide,implementai.co.nz,other AI or automation provider
+bing,Q3,19,disrupt.co.nz/ai-in-new-zealand/top-ai-automation-tools-for-new-zealand-businesses/,disrupt.co.nz,publisher or news
+bing,Q3,20,digitalagencynetwork.com/ai-automation-pricing/,digitalagencynetwork.com,directory
+bing,Q4,1,waboom.ai/blog/ai-voice-agent-for-electricians-nz-au,waboom.ai,other AI or automation provider
+bing,Q4,2,answr.co.nz/industries/electricians,answr.co.nz,other AI or automation provider
+bing,Q4,3,answr.co.nz/locations/auckland/electricians,answr.co.nz,other AI or automation provider
+bing,Q4,4,callcatcher.co.nz/,callcatcher.co.nz,other AI or automation provider
+bing,Q4,5,talkify.nz/electrician,talkify.nz,competitor (baseline 13)
+bing,Q4,6,automateai.co.nz/solutions/voice-agents/,automateai.co.nz,competitor (baseline 13)
+bing,Q4,7,aivolve.co.nz/,aivolve.co.nz,other AI or automation provider
+bing,Q4,8,firstvoice.co.nz/,firstvoice.co.nz,competitor (baseline 13)
+bing,Q4,9,tamakiai.co.nz/for-tradies,tamakiai.co.nz,other AI or automation provider
+bing,Q4,10,envokeai.co.nz/,envokeai.co.nz,other AI or automation provider
+bing,Q4,11,alwaysanswer.co.nz/,alwaysanswer.co.nz,other AI or automation provider
+bing,Q4,12,buildforce.com/resource/how-to-start-using-ai-for-electrical-contracting,buildforce.com,other AI or automation provider
+bing,Q4,13,upfirst.ai/blog/best-ai-answering-services,upfirst.ai,software vendor or marketplace
+bing,Q4,14,heyautomate.co.nz/,heyautomate.co.nz,other AI or automation provider
+bing,Q4,15,zeeg.me/en/blog/post/how-to-use-ai-for-phone-answering,zeeg.me,software vendor or marketplace
+bing,Q4,16,tahatu.govt.nz/,tahatu.govt.nz,government
+bing,Q4,17,oncallclerk.com/blog/ai-phone-answering-service-guide,oncallclerk.com,software vendor or marketplace
+bing,Q4,18,screenapp.io/blog/10-best-ai-call-assistants-small-business,screenapp.io,software vendor or marketplace
+bing,Q4,19,receptionhq.co.nz/,receptionhq.co.nz,other AI or automation provider
+bing,Q4,20,buildops.com/resources/ai-for-electrical-contractors,buildops.com,software vendor or marketplace
+bing,Q5,1,fergus.com/nz/fergus-ai/,fergus.com,software vendor or marketplace
+bing,Q5,2,fergus.com/nz/ai/,fergus.com,software vendor or marketplace
+bing,Q5,3,virtualcoastie.co.nz/,virtualcoastie.co.nz,other AI or automation provider
+bing,Q5,4,readysite.co.nz/blog/fergus-guide-for-nz-tradies,readysite.co.nz,other AI or automation provider
+bing,Q5,5,virtualcoastie.co.nz/implementation/,virtualcoastie.co.nz,other AI or automation provider
+bing,Q5,6,help.fergus.com/en/,fergus.com,software vendor or marketplace
+bing,Q5,7,ideal.co.nz/pages/fergus,ideal.co.nz,other
+bing,Q5,8,help.fergus.com/en/articles/10593481-xero-integration,fergus.com,software vendor or marketplace
+bing,Q5,9,cleverops.ai/integrations/fergus,cleverops.ai,software vendor or marketplace
+bing,Q5,10,20minutemarketing.co.nz/blog/fergus,20minutemarketing.co.nz,other AI or automation provider
+bing,Q5,11,fergus.com/nz/features/track-manage-jobs/,fergus.com,software vendor or marketplace
+bing,Q5,12,fergus.com/nz/industries/,fergus.com,software vendor or marketplace
+bing,Q5,13,fergus.com/tradehub/how-to-videos/,fergus.com,software vendor or marketplace
+bing,Q5,14,nzbusinesstools.co.nz/job-management/fergus-review-nz,nzbusinesstools.co.nz,review site
+bing,Q5,15,fergus.com/features/scheduling/,fergus.com,software vendor or marketplace
+bing,Q5,16,freeup.co.nz/fergus/,freeup.co.nz,other
+bing,Q5,17,fergus.com/nz/about/,fergus.com,software vendor or marketplace
+bing,Q5,18,fergus.com/uk/,fergus.com,software vendor or marketplace
+bing,Q5,19,virtualcoastie.co.nz/fergus/,virtualcoastie.co.nz,other AI or automation provider
+bing,Q5,20,virtualcoastie.co.nz/blog/post/149061/game-changer-alert-fergus-is-finally-stepping-into-ai-automation-and-its-about-time/,virtualcoastie.co.nz,other AI or automation provider
+bing,Q6,1,softcon.co.nz/simpro,softcon.co.nz,other AI or automation provider
+bing,Q6,2,e2e.nz/,e2e.nz,competitor (baseline 13)
+bing,Q6,3,it4tradies.co.nz/,it4tradies.co.nz,other AI or automation provider
+bing,Q6,4,e2e.nz/simpro,e2e.nz,competitor (baseline 13)
+bing,Q6,5,partners.simprogroup.com/,simprogroup.com,software vendor or marketplace
+bing,Q6,6,lentune.com/customers/dalton-electrical,lentune.com,software vendor or marketplace
+bing,Q6,7,advanceelectrical.co.nz/cool-shit/tradie-tools/simpro/,advanceelectrical.co.nz,other
+bing,Q6,8,ideal.co.nz/pages/simpro,ideal.co.nz,other
+bing,Q6,9,evenodds.co.nz/for/simpro-xero,evenodds.co.nz,software vendor or marketplace
+bing,Q6,10,softcon.co.nz/,softcon.co.nz,other AI or automation provider
+bing,Q6,11,workyard.com/compare/simpro-review,workyard.com,review site
+bing,Q6,12,electricalnz.simprosuite.com/,simprosuite.com,software vendor or marketplace
+bing,Q6,13,simprogroup.com/contact-us/simpro-new-zealand,simprogroup.com,software vendor or marketplace
+bing,Q6,14,simprogroup.com/industries,simprogroup.com,software vendor or marketplace
+bing,Q6,15,softwareadvice.co.nz/software/154441/simpro-enterprise,softwareadvice.co.nz,review site
+bing,Q6,16,research.com/software/reviews/simpro,research.com,review site
+bing,Q6,17,simprogroup.com/pricing,simprogroup.com,software vendor or marketplace
+bing,Q6,18,softabase.com/software/fsm/simpro,softabase.com,review site
+bing,Q6,19,coopersandco.co.uk/2024/09/26/streamline-your-trade-business-with-simpro-software/,coopersandco.co.uk,other
+bing,Q6,20,simprogroup.com/resources/training-implementation,simprogroup.com,software vendor or marketplace
+bing,Q7,1,tradiecall.co.nz/,tradiecall.co.nz,competitor (baseline 13)
+bing,Q7,2,callangel.co.nz/,callangel.co.nz,other AI or automation provider
+bing,Q7,3,tradiecorner.com/nz/our-services/ai-receptionist,tradiecorner.com,other AI or automation provider
+bing,Q7,4,tradeflow.org.nz/guides/ai-receptionist-for-tradies-nz,tradeflow.org.nz,publisher or news
+bing,Q7,5,sophiie.ai/location/nz,sophiie.ai,competitor (baseline 13)
+bing,Q7,6,tamakiai.co.nz/for-tradies,tamakiai.co.nz,other AI or automation provider
+bing,Q7,7,kestro.co.nz/,kestro.co.nz,other AI or automation provider
+bing,Q7,8,tradiecall.co.nz/auckland,tradiecall.co.nz,competitor (baseline 13)
+bing,Q7,9,bizzyboss.co.nz/ai-receptionist,bizzyboss.co.nz,other AI or automation provider
+bing,Q7,10,corvidai.io/,corvidai.io,other AI or automation provider
+bing,Q7,11,bizzyboss.co.nz/,bizzyboss.co.nz,other AI or automation provider
+bing,Q7,12,dareena.ai/blog/ai-receptionist-for-tradies-nz,dareena.ai,other AI or automation provider
+bing,Q7,13,johnni.ai/new-zealand-johnni-ais-ai-receptionist-has-arrived/,johnni.ai,other AI or automation provider
+bing,Q7,14,aiagency.nz/ai-receptionist/,aiagency.nz,other AI or automation provider
+bing,Q7,15,aivolve.co.nz/,aivolve.co.nz,other AI or automation provider
+bing,Q7,16,answr.co.nz/,answr.co.nz,other AI or automation provider
+bing,Q7,17,bizzyboss.co.nz/faqs,bizzyboss.co.nz,other AI or automation provider
+bing,Q7,18,hibea.nz/,hibea.nz,other AI or automation provider
+bing,Q7,19,kiwiagent.ai/blog/ai-receptionist-for-tradies-nz,kiwiagent.ai,other AI or automation provider
+bing,Q7,20,automateai.co.nz/industries/construction/,automateai.co.nz,competitor (baseline 13)
+bing,Q8,1,tradienet.nz/blogs/resource-centre/tradie-systems-automation,tradienet.nz,other AI or automation provider
+bing,Q8,2,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+bing,Q8,3,tradeflow.org.nz/guides/category/ai-automation,tradeflow.org.nz,publisher or news
+bing,Q8,4,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+bing,Q8,5,automatethetrades.com/nz/job-management-software-for-tradies/,automatethetrades.com,software vendor or marketplace
+bing,Q8,6,servicem8.com/au/articles/best-job-management-software-for-tradesmen,servicem8.com,software vendor or marketplace
+bing,Q8,7,workever.com/blog/best-job-management-software-for-tradesmen/,workever.com,software vendor or marketplace
+bing,Q8,8,workever.com/blog/job-management-software/,workever.com,software vendor or marketplace
+bing,Q8,9,atlassian.com/agile/project-management/ai-workflow-automation,atlassian.com,software vendor or marketplace
+bing,Q8,10,forbes.com/councils/forbestechcouncil/2025/03/11/ai-versus-automation-what-your-business-actually-needs/,forbes.com,publisher or news
+bing,Q8,11,slack.com/blog/productivity/9-best-ai-automation-tools-to-automate-tasks-and-streamline-workflows,slack.com,software vendor or marketplace
+bing,Q8,12,migas.com.au/blog/how-to-use-ai-to-optimise-your-tradie-business,migas.com.au,other AI or automation provider
+bing,Q8,13,workflowtrade.co.nz/,workflowtrade.co.nz,software vendor or marketplace
+bing,Q8,14,servicetitan.com/blog/job-management-software-for-tradies,servicetitan.com,software vendor or marketplace
+bing,Q8,15,tradecloud.com.au/,tradecloud.com.au,software vendor or marketplace
+bing,Q8,16,tradiespace.com.au/posts/bestapps,tradiespace.com.au,publisher or news
+bing,Q8,17,wrike.com/workflow-guide/ai-workflow-automation/,wrike.com,software vendor or marketplace
+bing,Q8,18,truereview.co/post/trade-job-management-software,truereview.co,review site
+bing,Q8,19,tradehq.co.nz/5-examples-of-tradesman-software-that-will-make-life-easier-for-tradies-in-2022/,tradehq.co.nz,software vendor or marketplace
+bing,Q8,20,servicem8.com/uk/articles/best-job-management-software-for-tradesmen,servicem8.com,software vendor or marketplace
+bing,Q9,1,branz.co.nz/design-build/articles/new-zealands-next-ai-frontier-is-on-the-job-site,branz.co.nz,publisher or news
+bing,Q9,2,enterprisedna.co/resources/blog/nz-automation-tradies/,enterprisedna.co,other AI or automation provider
+bing,Q9,3,buildxact.com/nz/ebook/ai-residential-construction-software/,buildxact.com,software vendor or marketplace
+bing,Q9,4,overcomersai.com/2026/05/30/ai-for-nz-builders-and-construction-companies-what-actually-saves-you-time/,overcomersai.com,other AI or automation provider
+bing,Q9,5,aismartsolutions.co.nz/blog/how-ai-can-help-construction-companies-save-time-on-admin,aismartsolutions.co.nz,other AI or automation provider
+bing,Q9,6,manatech.nz/solutions/construction,manatech.nz,other AI or automation provider
+bing,Q9,7,myob.com/nz/insight/post/practical-ai-a-grounded-approach-to-construction-productivity,myob.com,software vendor or marketplace
+bing,Q9,8,theblueprint.net.nz/insights/ai-tools-construction-business-nz,theblueprint.net.nz,publisher or news
+bing,Q9,9,genaitraining.co.nz/articles/ai-for-tradespeople-nz/,genaitraining.co.nz,other AI or automation provider
+bing,Q9,10,buildpaperless.ai/nz-en,buildpaperless.ai,other AI or automation provider
+bing,Q9,11,openasset.com/resources/how-to-use-ai-in-construction,openasset.com,software vendor or marketplace
+bing,Q9,12,disrupt.co.nz/ai-business-growth/streamline-admin-tasks-using-ai/,disrupt.co.nz,publisher or news
+bing,Q9,13,disrupt.co.nz/ai-business-growth/revolutionizing-admin-tasks-with-ai/,disrupt.co.nz,publisher or news
+bing,Q9,14,disrupt.co.nz/ai-business-growth/efficient-admin-solutions-with-ai/,disrupt.co.nz,publisher or news
+bing,Q9,15,projul.com/blog/how-construction-teams-use-ai-cut-admin-time/,projul.com,software vendor or marketplace
+bing,Q9,16,building.govt.nz/building-officials/guides-for-building-officials/building-warrants-of-fitness,building.govt.nz,government
+bing,Q9,17,business.govt.nz/operations/getting-started-with-ai/how-ai-can-help-your-business/optimise-business-and-marketing-admin-with-ai,business.govt.nz,government
+bing,Q9,18,buildersandcontractors.co.nz/predicting-industry-automation/,buildersandcontractors.co.nz,publisher or news
+bing,Q9,19,disrupt.co.nz/ai-business-growth/admin-tasks-made-easy-with-ai/,disrupt.co.nz,publisher or news
+bing,Q9,20,nzherald.co.nz/business/on-the-up-the-ai-disruptors-kiwis-using-new-tech-to-boost-their-businesses-and-leading-the-way/GH2EAYLTBFGG7INQYTCQ2SR7KI/,nzherald.co.nz,publisher or news
+bing,Q10,1,strideai.co.nz/,strideai.co.nz,competitor (baseline 13)
+bing,Q10,2,automateai.co.nz/locations/auckland/,automateai.co.nz,competitor (baseline 13)
+bing,Q10,3,24seven.co.nz/,24seven.co.nz,other AI or automation provider
+bing,Q10,4,aiworkflows.agency/,aiworkflows.agency,other AI or automation provider
+bing,Q10,5,strideai.co.nz/auckland/,strideai.co.nz,competitor (baseline 13)
+bing,Q10,6,behiveai.co.nz/,behiveai.co.nz,other AI or automation provider
+bing,Q10,7,auxa.co.nz/,auxa.co.nz,other AI or automation provider
+bing,Q10,8,quiktalkai.com/,quiktalkai.com,other AI or automation provider
+bing,Q10,9,agencies.nz/specialty/ai-automation/auckland,agencies.nz,directory
+bing,Q10,10,agencies.nz/specialty/ai-automation,agencies.nz,directory
+bing,Q10,11,revenuebase.ai/companies/ai-automation-agencies/new-zealand/auckland,revenuebase.ai,directory
+bing,Q10,12,ez-ai.nz/,ez-ai.nz,competitor (baseline 13)
+bing,Q10,13,matrixconsulting.ai/,matrixconsulting.ai,other AI or automation provider
+bing,Q10,14,makings.co.nz/ai-automation,makings.co.nz,other AI or automation provider
+bing,Q10,15,aiworkflows.nz/,aiworkflows.nz,other AI or automation provider
+bing,Q10,16,topsoftwarecompanies.co/new-zealand/process-ai-automation/agencies/auckland,topsoftwarecompanies.co,directory
+bing,Q10,17,automateai.co.nz/,automateai.co.nz,competitor (baseline 13)
+bing,Q10,18,topsoftwarecompanies.co/new-zealand/workflow-ai-automation/agencies/auckland,topsoftwarecompanies.co,directory
+bing,Q10,19,tkfsolutions.co.nz/services/automation-agents,tkfsolutions.co.nz,other AI or automation provider
+bing,Q10,20,virtualblue.co.nz/,virtualblue.co.nz,other AI or automation provider
+bing,Q11,1,tradeflow.org.nz/guides/best-ai-tools-for-tradies-nz,tradeflow.org.nz,publisher or news
+bing,Q11,2,ailabs.co.nz/blog/ai-automation-nz-tradies/,ailabs.co.nz,other AI or automation provider
+bing,Q11,3,agentworks.nz/ai-for-tradies-nz/,agentworks.nz,other AI or automation provider
+bing,Q11,4,tradienet.nz/blogs/resource-centre/tradie-systems-automation,tradienet.nz,other AI or automation provider
+bing,Q11,5,enterprisedna.co/resources/blog/nz-ai-tools-tradie-business/,enterprisedna.co,other AI or automation provider
+bing,Q11,6,automatethetrades.com/nz/crm-for-tradies-nz/,automatethetrades.com,software vendor or marketplace
+bing,Q11,7,trade.aitools.co.nz/,aitools.co.nz,other AI or automation provider
+bing,Q11,8,tradeflow.org.nz/guides/ai-for-tradies-nz,tradeflow.org.nz,publisher or news
+bing,Q11,9,20minutemarketing.co.nz/blog/tradies-guide-getting-more-leads-online-new-zealand-2026,20minutemarketing.co.nz,other AI or automation provider
+bing,Q11,10,hyperdigital.nz/insights/do-you-follow-up-your-leads/,hyperdigital.nz,competitor (baseline 13)
+bing,Q11,11,servicem8.com/nz/ai-job-management-software-for-trade-contractors,servicem8.com,software vendor or marketplace
+bing,Q11,12,strideai.co.nz/ai-for-nz-real-estate-agents/,strideai.co.nz,competitor (baseline 13)
+bing,Q11,13,tradietools.nz/articles/ai-tools-nz-tradies-2026/,tradietools.nz,publisher or news
+bing,Q11,14,lucidleads.co.nz/blog/lead-generation-for-tradies-nz/,lucidleads.co.nz,other AI or automation provider
+bing,Q11,15,twoandahalfstudio.co.nz/tradies,twoandahalfstudio.co.nz,other AI or automation provider
+bing,Q11,16,reply.io/blog/ai-lead-follow-up/,reply.io,software vendor or marketplace
+bing,Q11,17,salesgenie.com/lp/lead-gen-solutions-for-every-business/,salesgenie.com,software vendor or marketplace
+bing,Q11,18,strideai.co.nz/lead-follow-up-automation-nz/,strideai.co.nz,competitor (baseline 13)
+bing,Q11,19,envokeai.co.nz/,envokeai.co.nz,other AI or automation provider
+bing,Q11,20,bizcover.co.nz/tips-for-following-up-on-trade-quotes/,bizcover.co.nz,other
+bing,Q12,1,fylo.co.nz/,fylo.co.nz,competitor (baseline 13)
+bing,Q12,2,fergus.com/nz/industries/electrical/,fergus.com,software vendor or marketplace
+bing,Q12,3,servicem8.com/nz/industries/electrician-software,servicem8.com,software vendor or marketplace
+bing,Q12,4,agentworks.nz/ai-for-tradies-nz/,agentworks.nz,other AI or automation provider
+bing,Q12,5,advanceelectrical.co.nz/cool-shit/tradie-tools/simpro/,advanceelectrical.co.nz,other
+bing,Q12,6,kiwidynamics.co.nz/solutions/automations/electricians/,kiwidynamics.co.nz,other AI or automation provider
+bing,Q12,7,fieldservice.tptsolutions.co.nz/blog/best-electrical-business-software-nz-2026,tptsolutions.co.nz,other AI or automation provider
+bing,Q12,8,capterra.co.nz/directory/31006/electrical-contractor/software,capterra.co.nz,review site
+bing,Q12,9,zynoff.co.nz/industry/electrical,zynoff.co.nz,other AI or automation provider
+bing,Q12,10,kove.nz/power-platform-for-electricians-nz,kove.nz,other AI or automation provider
+bing,Q12,11,yada.co.nz/page/useful/less-admin-more-paid-work-how-specialists-save-time-finding-clients/electrician,yada.co.nz,other
+bing,Q12,12,teammbe.co.nz/,teammbe.co.nz,other AI or automation provider
+bing,Q12,13,tradifyhq.com/nz/trades/electrician-av-software-app,tradifyhq.com,software vendor or marketplace
+bing,Q12,14,softwareadvice.com/construction/electrical-contractor-comparison/,softwareadvice.com,review site
+bing,Q12,15,advancedelectricalservices.co.nz/,advancedelectricalservices.co.nz,other
+bing,Q12,16,getautomate.co.nz/,getautomate.co.nz,other AI or automation provider
+bing,Q12,17,heyautomate.co.nz/case-studies,heyautomate.co.nz,other AI or automation provider
+bing,Q12,18,christchurchelectrical.co.nz/smart-home-automation,christchurchelectrical.co.nz,other
+bing,Q12,19,lasergroup.co.nz/electrical,lasergroup.co.nz,other
+bing,Q12,20,automateai.co.nz/,automateai.co.nz,competitor (baseline 13)
+bing,S1,1,help.fergus.com/en/articles/18484955-automations-in-fergus-assistant,fergus.com,software vendor or marketplace
+bing,S1,2,fergus.com/nz/industries/services/,fergus.com,software vendor or marketplace
+bing,S1,3,fergus.com/,fergus.com,software vendor or marketplace
+bing,S1,4,help.fergus.com/en/articles/10198235-automated-price-books,fergus.com,software vendor or marketplace
+bing,S1,5,app.fergus.com/auth/login,fergus.com,software vendor or marketplace
+bing,S1,6,mcpmarket.com/server/fergus,mcpmarket.com,directory
+bing,S1,7,virtualcoastie.co.nz/,virtualcoastie.co.nz,other AI or automation provider
+bing,S1,8,virtualcoastie.co.nz/blog/post/149061/game-changer-alert-fergus-is-finally-stepping-into-ai-automation-and-its-about-time/,virtualcoastie.co.nz,other AI or automation provider
+bing,S1,9,botit.com/explore-bots/fergus,botit.com,directory
+bing,S1,10,accountantshb.co.nz/software-solutions/fergus,accountantshb.co.nz,other
+bing,S1,11,fergus.com/nz/industries/,fergus.com,software vendor or marketplace
+bing,S1,12,fergus.com/nz/features/scheduling/,fergus.com,software vendor or marketplace
+bing,S1,13,fergus.com/integrations/groundplan/,fergus.com,software vendor or marketplace
+bing,S1,14,fergus.com/industries/,fergus.com,software vendor or marketplace
+bing,S1,15,capterra.co.nz/software/155571/fergus,capterra.co.nz,review site
+bing,S1,16,fergus.com/features/track-manage-jobs/,fergus.com,software vendor or marketplace
+bing,S1,17,fergus.com/features/reporting/,fergus.com,software vendor or marketplace
+bing,S1,18,fergus.com/features/team-management/,fergus.com,software vendor or marketplace
+bing,S1,19,halotradegroup.co.nz/system-and-process,halotradegroup.co.nz,other
+bing,S1,20,fergus.com/industries/electrical/,fergus.com,software vendor or marketplace
+bing,S2,1,marketplace.simprogroup.com/t/integration-type/workflows-and-automations,simprogroup.com,software vendor or marketplace
+bing,S2,2,sautomation.simprosuite.com/,simprosuite.com,software vendor or marketplace
+bing,S2,3,simprogroup.com/,simprogroup.com,software vendor or marketplace
+bing,S2,4,marketplace.simprogroup.com/,simprogroup.com,software vendor or marketplace
+bing,S2,5,simprogroup.com/blog/field-service-automation,simprogroup.com,software vendor or marketplace
+bing,S2,6,simpro.it/en/,simpro.it,software vendor or marketplace
+bing,S2,7,sprigr.com/blog/ai-automation-simpro-guide,sprigr.com,software vendor or marketplace
+bing,S2,8,helpguide.simprogroup.com/,simprogroup.com,software vendor or marketplace
+bing,S2,9,helpguide.simprogroup.com/articles/,simprogroup.com,software vendor or marketplace
+bing,S2,10,flowmondo.com/integrate-automate/simpro,flowmondo.com,software vendor or marketplace
+bing,S2,11,simprogroup.com/features/scheduling-software,simprogroup.com,software vendor or marketplace
+bing,S2,12,simprogroup.com/features/manage-your-people,simprogroup.com,software vendor or marketplace
+bing,S2,13,simprogroup.com/features/data-feed,simprogroup.com,software vendor or marketplace
+bing,S2,14,simprogroup.com/solutions/job-management-software,simprogroup.com,software vendor or marketplace
+bing,S2,15,softcon.co.nz/simpro,softcon.co.nz,other AI or automation provider
+bing,S2,16,en.wikipedia.org/wiki/Simpro,wikipedia.org,other
+bing,S2,17,simprogroup.com/solutions/simpro-premium,simprogroup.com,software vendor or marketplace
+bing,S2,18,learning.simprogroup.com/,simprogroup.com,software vendor or marketplace
+bing,S2,19,simprogroup.com/solutions/project-management-software,simprogroup.com,software vendor or marketplace
+bing,S2,20,simprogroup.com/industries,simprogroup.com,software vendor or marketplace
+bing,S3,1,firstvoice.co.nz/,firstvoice.co.nz,competitor (baseline 13)
+bing,S3,2,talkify.nz/,talkify.nz,competitor (baseline 13)
+bing,S3,3,tamakiai.co.nz/,tamakiai.co.nz,other AI or automation provider
+bing,S3,4,juicycrm.nz/features/ai-receptionist/,juicycrm.nz,software vendor or marketplace
+bing,S3,5,ceptionist.nz/,ceptionist.nz,other AI or automation provider
+bing,S3,6,automateai.co.nz/solutions/voice-agents/,automateai.co.nz,competitor (baseline 13)
+bing,S3,7,ravenai.nz/,ravenai.nz,other AI or automation provider
+bing,S3,8,hibea.nz/,hibea.nz,other AI or automation provider
+bing,S3,9,alwaysanswer.co.nz/,alwaysanswer.co.nz,other AI or automation provider
+bing,S3,10,tradiecall.co.nz/,tradiecall.co.nz,competitor (baseline 13)
+bing,S3,11,waboom.ai/blog/forward-calls-to-an-ai-receptionist-nz-au,waboom.ai,other AI or automation provider
+bing,S3,12,h3llo.nz/ai-receptionist,h3llo.nz,competitor (baseline 13)
+bing,S3,13,tkfsolutions.co.nz/blog/ai-receptionist-vs-staff,tkfsolutions.co.nz,other AI or automation provider
+bing,S3,14,johnni.ai/,johnni.ai,other AI or automation provider
+bing,S3,15,answr.co.nz/,answr.co.nz,other AI or automation provider
+bing,S3,16,capterra.co.nz/alternatives/1095527/AI-Receptionist,capterra.co.nz,review site
+bing,S3,17,codestage.co.nz/blog/ai-receptionist-nz,codestage.co.nz,other AI or automation provider
+bing,S3,18,aevaai.com/,aevaai.com,other AI or automation provider
+bing,S3,19,aivolve.co.nz/,aivolve.co.nz,other AI or automation provider
+bing,S3,20,smith.ai/,smith.ai,other AI or automation provider
+bing,S4,1,automateai.co.nz/,automateai.co.nz,competitor (baseline 13)
+bing,S4,2,activate.co.nz/blog/ai-automation-nz-what-it-is-what-it-can-do-and-whether-your-business-is-ready/,activate.co.nz,other AI or automation provider
+bing,S4,3,caretakers.io/expertise/ai-business-automation,caretakers.io,other AI or automation provider
+bing,S4,4,strideai.co.nz/,strideai.co.nz,competitor (baseline 13)
+bing,S4,5,ez-ai.nz/,ez-ai.nz,competitor (baseline 13)
+bing,S4,6,nelsonai.co.nz/services/ai-automation-nz,nelsonai.co.nz,other AI or automation provider
+bing,S4,7,aiworkflows.agency/,aiworkflows.agency,other AI or automation provider
+bing,S4,8,simplyautomated.nz/,simplyautomated.nz,other AI or automation provider
+bing,S4,9,sunriseai.co.nz/,sunriseai.co.nz,other AI or automation provider
+bing,S4,10,agencies.nz/specialty/ai-automation,agencies.nz,directory
+bing,S4,11,fsmdevelopments.co.nz/ai-automation,fsmdevelopments.co.nz,other AI or automation provider
+bing,S4,12,automateai.co.nz/about/,automateai.co.nz,competitor (baseline 13)
+bing,S4,13,mbie.govt.nz/assets/new-zealands-strategy-for-artificial-intelligence.pdf,mbie.govt.nz,government
+bing,S4,14,lumenbusiness.co.nz/services/ai-consulting-services/,lumenbusiness.co.nz,other AI or automation provider
+bing,S4,15,automateai.co.nz/blog/ai-automation-guide-nz-businesses/,automateai.co.nz,competitor (baseline 13)
+bing,S4,16,aiworkflows.nz/,aiworkflows.nz,other AI or automation provider
+bing,S4,17,aiinnovisory.com/,aiinnovisory.com,other AI or automation provider
+bing,S4,18,implementai.co.nz/resources/ai-automation-nz-businesses-practical-guide,implementai.co.nz,other AI or automation provider
+bing,S4,19,ez-ai.nz/how-to-implement-ai-nz,ez-ai.nz,competitor (baseline 13)
+bing,S4,20,openclaws.nz/blog/ai-automation-nz-business,openclaws.nz,other AI or automation provider

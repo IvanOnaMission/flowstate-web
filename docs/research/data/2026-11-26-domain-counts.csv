@@ -1,0 +1,274 @@
+domain,type,queries_of_16,google_queries,bing_queries
+automateai.co.nz,competitor (baseline 13),13,Q1 Q2 Q3 Q6 Q7 Q8 Q9 Q10 Q11 Q12 S3 S4,Q2 Q4 Q7 Q10 Q12 S3 S4
+ez-ai.nz,competitor (baseline 13),9,Q1 Q2 Q3 Q6 Q9 Q10 S2 S3 S4,Q3 Q10 S4
+flowstate.net.nz,flowstate,9,Q1 Q3 Q4 Q5 Q6 Q7 Q8 Q11 S1,
+tradeflow.org.nz,publisher or news,7,Q2 Q3 Q5 Q7 Q8 Q11 Q12,Q2 Q7 Q8 Q11
+enterprisedna.co,other AI or automation provider,6,Q1 Q2 Q3 Q8 Q9 Q11,Q8 Q9 Q11
+manatech.nz,other AI or automation provider,6,Q1 Q2 Q3 Q6 Q8 Q9,Q9
+strideai.co.nz,competitor (baseline 13),6,Q1 Q2 Q3 Q10 Q11 S4,Q2 Q3 Q10 Q11 S4
+facebook.com,forum or Reddit,5,Q5 Q12 S1 S2,Q1
+hyperdigital.nz,competitor (baseline 13),5,Q1 Q2 Q7 Q11 S3,Q11
+intellecttechnologies.co.nz,other AI or automation provider,5,Q1 Q2 Q5 Q11 Q12,
+levystreet.com,other AI or automation provider,5,Q1 Q3 Q7 Q10 S4,
+sophiie.ai,competitor (baseline 13),5,Q1 Q4 Q7 Q8 Q11,Q7
+aiagency.nz,other AI or automation provider,4,Q2 Q7 Q10 Q11,Q7
+ailabs.co.nz,other AI or automation provider,4,Q1 Q2 Q3 Q11,Q2 Q11
+capterra.co.nz,review site,4,Q12 S2,Q12 S1 S3
+harknessai.nz,other AI or automation provider,4,Q2 Q9 Q11 S4,
+heyjodie.com,other AI or automation provider,4,Q4 Q7 Q12 S3,
+servicem8.com,software vendor or marketplace,4,Q2 Q8 Q11 Q12,Q8 Q11 Q12
+talkify.nz,competitor (baseline 13),4,Q4 Q7 Q11 S3,Q4 S3
+tkfsolutions.co.nz,other AI or automation provider,4,Q7 Q10 S3 S4,Q10 S3
+workflowtrade.co.nz,software vendor or marketplace,4,Q1 Q5 Q12,Q8
+agencies.nz,directory,3,,Q2 Q10 S4
+aivolve.co.nz,other AI or automation provider,3,Q7 S3,Q4 Q7 S3
+answr.co.nz,other AI or automation provider,3,,Q4 Q7 S3
+arkhamsolutions.com,other AI or automation provider,3,Q2 Q10 Q12,
+fergus.com,software vendor or marketplace,3,Q5 Q12 S1,Q5 Q12 S1
+firstvoice.co.nz,competitor (baseline 13),3,Q4 Q7 S3,Q4 S3
+h3llo.nz,competitor (baseline 13),3,Q4 Q7 S3,S3
+heyautomate.co.nz,other AI or automation provider,3,Q3,Q4 Q12
+johnni.ai,other AI or automation provider,3,Q4,Q7 S3
+kingtide.nz,other AI or automation provider,3,Q4 Q7 S3,
+reddit.com,forum or Reddit,3,Q4 Q8,Q1
+servicegecko.co.nz,other AI or automation provider,3,Q4 Q7 S3,
+tamakiai.co.nz,other AI or automation provider,3,Q4 Q7,Q4 Q7 S3
+tradienet.nz,other AI or automation provider,3,Q1,Q8 Q11
+20minutemarketing.co.nz,other AI or automation provider,2,,Q5 Q11
+advanceelectrical.co.nz,other,2,Q6,Q6 Q12
+agentworks.nz,other AI or automation provider,2,Q11,Q11 Q12
+aiautomationagency.co.nz,other AI or automation provider,2,Q10 S4,
+aiforsmallbusiness.co.nz,other AI or automation provider,2,,Q2 Q3
+aitools.co.nz,other AI or automation provider,2,Q4 Q11,Q11
+aiworkflows.agency,other AI or automation provider,2,Q10,Q10 S4
+aiworkflows.nz,other AI or automation provider,2,,Q10 S4
+alwaysanswer.co.nz,other AI or automation provider,2,Q4,Q4 S3
+apiconnects.co.nz,other AI or automation provider,2,Q10 S4,
+automatethetrades.com,software vendor or marketplace,2,,Q8 Q11
+avtrix.co.nz,other AI or automation provider,2,Q2 Q3,
+bizzyboss.co.nz,other AI or automation provider,2,Q11,Q7
+business.govt.nz,government,2,Q9,Q1 Q9
+disrupt.co.nz,publisher or news,2,,Q3 Q9
+e2e.nz,competitor (baseline 13),2,Q1,Q6
+envokeai.co.nz,other AI or automation provider,2,,Q4 Q11
+fiord.ai,other AI or automation provider,2,Q4 Q8,
+fsmdevelopments.co.nz,other AI or automation provider,2,Q3,S4
+fylo.co.nz,competitor (baseline 13),2,Q12 S1,Q12
+growin.nz,other AI or automation provider,2,Q3 Q11,Q3
+hibea.nz,other AI or automation provider,2,,Q7 S3
+ideal.co.nz,other,2,Q6,Q5 Q6
+implementai.co.nz,other AI or automation provider,2,,Q3 S4
+intactmedia.co.nz,other AI or automation provider,2,Q7 S3,
+it360.co.nz,other AI or automation provider,2,Q2 Q9,
+juicycrm.nz,software vendor or marketplace,2,Q12 S3,S3
+kiwiagent.ai,other AI or automation provider,2,Q4,Q7
+lentune.com,software vendor or marketplace,2,Q6 S2,Q6
+linkedin.com,software vendor or marketplace,2,Q8 S1,
+makings.co.nz,other AI or automation provider,2,,Q3 Q10
+mbie.govt.nz,government,2,,Q3 S4
+nelsonai.co.nz,other AI or automation provider,2,Q1 S4,S4
+nextminute.com,software vendor or marketplace,2,Q5 Q11,
+openclaws.nz,other AI or automation provider,2,Q9 S4,S4
+overcomersai.com,other AI or automation provider,2,,Q3 Q9
+puttiapps.com,other AI or automation provider,2,Q9,Q3
+readysite.co.nz,other AI or automation provider,2,,Q2 Q5
+receptionhq.co.nz,other AI or automation provider,2,S3,Q4
+rkconsulting.co.nz,other AI or automation provider,2,Q10 S4,
+simplyautomated.nz,other AI or automation provider,2,,Q2 S4
+simprogroup.com,software vendor or marketplace,2,Q6 S2,Q6 S2
+simprosuite.com,software vendor or marketplace,2,,Q6 S2
+softcon.co.nz,other AI or automation provider,2,,Q6 S2
+tradie-ai.com,other AI or automation provider,2,Q2 Q11,
+tradiecall.co.nz,competitor (baseline 13),2,,Q7 S3
+tradiecorner.com,other AI or automation provider,2,,Q2 Q7
+tradietools.nz,publisher or news,2,,Q2 Q11
+virtualcoastie.co.nz,other AI or automation provider,2,Q5 S1,Q5 S1
+virtualinnovation.co.nz,other AI or automation provider,2,Q5 S1,
+waboom.ai,other AI or automation provider,2,Q4,Q4 S3
+wiselyglobal.tech,competitor (baseline 13),2,Q2 S4,Q2
+24seven.co.nz,other AI or automation provider,1,,Q10
+42voice.com,other AI or automation provider,1,S3,
+accountantshb.co.nz,other,1,,S1
+activate.co.nz,other AI or automation provider,1,S4,S4
+advancedelectricalservices.co.nz,other,1,,Q12
+advantagebusiness.co.nz,other AI or automation provider,1,Q9,
+aevaai.com,other AI or automation provider,1,,S3
+affordableindicators.com,publisher or news,1,,Q1
+aiagentagency.co.nz,other AI or automation provider,1,Q9,
+aiinnovisory.com,other AI or automation provider,1,,S4
+aismartsolutions.co.nz,other AI or automation provider,1,,Q9
+aisolutionsnz.co.nz,other AI or automation provider,1,Q10,
+allaboutai.com,publisher or news,1,,Q2
+appy.co.nz,other AI or automation provider,1,Q10,
+asb.co.nz,other,1,,Q1
+atlassian.com,software vendor or marketplace,1,,Q8
+automate-x.nz,other AI or automation provider,1,,Q1
+automateshow.com,publisher or news,1,,Q1
+autonomous.ai,other AI or automation provider,1,,Q3
+auxa.co.nz,other AI or automation provider,1,,Q10
+bedigital.group,other AI or automation provider,1,Q9,
+behiveai.co.nz,other AI or automation provider,1,,Q10
+belton.co.nz,other AI or automation provider,1,Q3,
+bizcover.co.nz,other,1,,Q11
+blyntic.co.nz,other AI or automation provider,1,Q10,
+botit.com,directory,1,,S1
+branz.co.nz,publisher or news,1,Q9,Q9
+brightly.nz,other AI or automation provider,1,S4,
+builderconnect.co.nz,publisher or news,1,,Q2
+buildersandcontractors.co.nz,publisher or news,1,,Q9
+buildforce.com,other AI or automation provider,1,,Q4
+building.govt.nz,government,1,,Q9
+buildops.com,software vendor or marketplace,1,,Q4
+buildpaperless.ai,other AI or automation provider,1,,Q9
+buildrite.nz,other AI or automation provider,1,Q9,
+buildxact.com,software vendor or marketplace,1,Q9,Q9
+builts.ai,other AI or automation provider,1,,Q3
+businesskiwi.com,publisher or news,1,,Q1
+callangel.co.nz,other AI or automation provider,1,,Q7
+callcatcher.co.nz,other AI or automation provider,1,Q4,Q4
+capitalautomation.nz,other AI or automation provider,1,,Q3
+caretakers.io,other AI or automation provider,1,S4,S4
+ceptionist.nz,other AI or automation provider,1,,S3
+certifi.co.nz,software vendor or marketplace,1,Q6,
+certmate.co.nz,software vendor or marketplace,1,Q6,
+chanautomation.com,other AI or automation provider,1,Q8,
+cherryai.co.nz,other AI or automation provider,1,Q3,Q3
+chesterman.com.au,other,1,S1,
+christchurchelectrical.co.nz,other,1,,Q12
+cleverops.ai,software vendor or marketplace,1,,Q5
+closecrew.ai,other AI or automation provider,1,Q8,
+codestage.co.nz,other AI or automation provider,1,,S3
+cofounderbase.com,directory,1,Q2,
+companiesoffice.govt.nz,government,1,,Q1
+consumer.org.nz,publisher or news,1,,Q1
+coopersandco.co.uk,other,1,,Q6
+corvidai.io,other AI or automation provider,1,,Q7
+custodianai.co.nz,other AI or automation provider,1,,Q2
+daltonelectrical.co.nz,other,1,Q12,
+dareena.ai,other AI or automation provider,1,,Q7
+digit.business,software vendor or marketplace,1,Q6,
+digitalagencynetwork.com,directory,1,,Q3
+digitalrabbit.com.au,other AI or automation provider,1,Q8,
+enduraa.com,other AI or automation provider,1,Q8,
+ential.com,other AI or automation provider,1,Q10,
+evenodds.co.nz,software vendor or marketplace,1,,Q6
+exodesk.co.nz,other AI or automation provider,1,Q2,
+f6s.com,directory,1,,Q2
+fastcrew.nz,software vendor or marketplace,1,Q12,
+flockconsulting.co.nz,other AI or automation provider,1,S4,
+flowmondo.com,software vendor or marketplace,1,S2,S2
+forbes.com,publisher or news,1,,Q8
+freeup.co.nz,other,1,Q5,Q5
+genaitraining.co.nz,other AI or automation provider,1,,Q9
+getapp.co.nz,review site,1,S2,
+getautomate.co.nz,other AI or automation provider,1,,Q12
+halotradegroup.co.nz,other,1,,S1
+hatchit.co.nz,other AI or automation provider,1,S4,
+hero.co.nz,other AI or automation provider,1,S3,
+highpeakdigital.co.nz,other AI or automation provider,1,Q10,
+hnry.co.nz,other,1,,Q1
+i4tbusiness.com,other AI or automation provider,1,Q8,
+ihsanops.ai,other AI or automation provider,1,Q8,
+incendo.co.nz,other AI or automation provider,1,Q7,
+intelliconnect.co.nz,other AI or automation provider,1,S3,
+invenix.ai,other AI or automation provider,1,Q12,
+invven.com,software vendor or marketplace,1,Q5,
+it4tradies.co.nz,other AI or automation provider,1,,Q6
+itrade.net,software vendor or marketplace,1,Q6,
+kageworks.nz,other AI or automation provider,1,,Q3
+kauri-systems.com,other AI or automation provider,1,Q9,
+kestro.co.nz,other AI or automation provider,1,,Q7
+kiwidynamics.co.nz,other AI or automation provider,1,,Q12
+kove.nz,other AI or automation provider,1,,Q12
+lasergroup.co.nz,other,1,,Q12
+lucidleads.co.nz,other AI or automation provider,1,,Q11
+lumenbusiness.co.nz,other AI or automation provider,1,,S4
+lunacal.ai,software vendor or marketplace,1,Q7,
+lyngo.ai,other AI or automation provider,1,S3,
+macrogen360.co.nz,other,1,Q6,
+made4tradies.co.nz,other AI or automation provider,1,,Q2
+make.com,software vendor or marketplace,1,S2,
+marketaxess.com,other,1,,Q1
+matrixconsulting.ai,other AI or automation provider,1,,Q10
+mcpmarket.com,directory,1,S1,S1
+microsoft.com,software vendor or marketplace,1,,Q1
+migas.com.au,other AI or automation provider,1,,Q8
+momentumcrm.co.nz,software vendor or marketplace,1,Q1,
+myob.com,software vendor or marketplace,1,,Q9
+netsuite.com,software vendor or marketplace,1,,Q1
+nexronsolutions.com,other AI or automation provider,1,Q3,
+nimbus.co.nz,software vendor or marketplace,1,Q12,
+nzbusinesstools.co.nz,review site,1,,Q5
+nzherald.co.nz,publisher or news,1,,Q9
+octavius.ai,other AI or automation provider,1,Q3,
+odysseyprojects.io,other AI or automation provider,1,Q10,
+oncallclerk.com,software vendor or marketplace,1,,Q4
+openasset.com,software vendor or marketplace,1,,Q9
+parix.ai,other AI or automation provider,1,,Q3
+placemakers.co.nz,other,1,,Q1
+projul.com,software vendor or marketplace,1,,Q9
+pulsebay.co.nz,other AI or automation provider,1,,Q3
+quarvo.co.nz,publisher or news,1,,Q2
+quiktalkai.com,other AI or automation provider,1,,Q10
+ravenai.nz,other AI or automation provider,1,,S3
+reply.io,software vendor or marketplace,1,,Q11
+research.com,review site,1,,Q6
+revenuebase.ai,directory,1,,Q10
+ricoh.co.nz,other,1,Q1,
+riseuplabs.com,software vendor or marketplace,1,,Q1
+salesgenie.com,software vendor or marketplace,1,,Q11
+sandlabs.com.au,other AI or automation provider,1,Q8,
+scottelectrical.co.nz,other,1,Q6,
+screenapp.io,software vendor or marketplace,1,,Q4
+serverlessnotes.com,publisher or news,1,,Q1
+servicetitan.com,software vendor or marketplace,1,,Q8
+simplementary.com,other AI or automation provider,1,S2,
+simpro.it,software vendor or marketplace,1,,S2
+slack.com,software vendor or marketplace,1,,Q8
+smartinstallations.co.nz,other AI or automation provider,1,,Q3
+smith.ai,other AI or automation provider,1,,S3
+softabase.com,review site,1,,Q6
+softwareadvice.co.nz,review site,1,,Q6
+softwareadvice.com,review site,1,,Q12
+sotatek.com,software vendor or marketplace,1,,Q3
+sprigr.com,software vendor or marketplace,1,,S2
+sunriseai.co.nz,other AI or automation provider,1,,S4
+syncezy.com,software vendor or marketplace,1,Q6,
+syntalia.com,other AI or automation provider,1,Q4,
+tahatu.govt.nz,government,1,,Q4
+tailoredintelligence.co.nz,other AI or automation provider,1,Q9,
+tasmantech.co.nz,other AI or automation provider,1,Q1,
+teammbe.co.nz,other AI or automation provider,1,,Q12
+telarc.org,other,1,,Q1
+telnet.co.nz,other,1,S3,
+theautomators.ai,other AI or automation provider,1,Q8,
+theblueprint.net.nz,publisher or news,1,Q9,Q9
+toolie.co.nz,software vendor or marketplace,1,Q6,
+topsoftwarecompanies.co,directory,1,,Q10
+torqueai.co.nz,competitor (baseline 13),1,,Q2
+tptsolutions.co.nz,other AI or automation provider,1,,Q12
+tradecloud.com.au,software vendor or marketplace,1,,Q8
+tradehq.co.nz,software vendor or marketplace,1,,Q8
+tradiealley.nz,software vendor or marketplace,1,Q12,
+tradiehq.co.nz,software vendor or marketplace,1,Q5,
+tradiespace.com.au,publisher or news,1,,Q8
+tradifyhq.com,software vendor or marketplace,1,Q12,Q12
+truereview.co,review site,1,,Q8
+trustpilot.com,review site,1,S1,
+twoandahalfstudio.co.nz,other AI or automation provider,1,,Q11
+unisphere.co.nz,other AI or automation provider,1,Q10,
+upfirst.ai,software vendor or marketplace,1,,Q4
+verum.nz,other AI or automation provider,1,Q10,
+virtualassistant.co.nz,other,1,Q5,
+virtualblue.co.nz,other AI or automation provider,1,,Q10
+voice-ai.co.nz,other AI or automation provider,1,S4,
+wikipedia.org,other,1,S2,S2
+workarc.io,software vendor or marketplace,1,Q5,
+workato.com,software vendor or marketplace,1,S2,
+workever.com,software vendor or marketplace,1,,Q8
+workyard.com,review site,1,,Q6
+wrike.com,software vendor or marketplace,1,,Q8
+yada.co.nz,other,1,,Q12
+youtube.com,software vendor or marketplace,1,S2,
+zeeg.me,software vendor or marketplace,1,,Q4
+zynoff.co.nz,other AI or automation provider,1,,Q12
