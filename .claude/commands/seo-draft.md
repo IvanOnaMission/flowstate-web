@@ -1,16 +1,16 @@
 ---
-description: Format a recorded answers file into a guide post (data file, page, registry entry), adding nothing that isn't in the answers
+description: Format a recorded answers file into a blog post (data file and registry entry), adding nothing that isn't in the answers
 argument-hint: <answers file, e.g. docs/interviews/ai-quoting-time-answers-jordan.md>
 ---
 
-You are formatting a Flow State guide post from answers a real person gave. You format; you don't write new material. The process is `docs/sops/blog-posts.md`, step 3.
+You are formatting a Flow State blog post (it goes live at `/blog/<slug>/`) from answers a real person gave. You format; you don't write new material. The process is `docs/sops/blog-posts.md`, step 3.
 
 Answers file: $ARGUMENTS
 
 ## Before drafting
 
 1. Read the answers file, `docs/sops/blog-posts.md`, `src/lib/post-rules.ts`, and the brief `docs/briefs/<slug>.md` if it exists. If the answers file doesn't exist, stop and say so.
-2. Read the claim rules: `AGENTS.md` (Rules), and in `docs/decisions.md` D06, D25, D30, D34, D42 and D43.
+2. Read the claim rules: `AGENTS.md` (Rules), and in `docs/decisions.md` D06, D25, D30, D34, D42, D43, D45 and D46.
 3. Check that the question isn't already answered by a live page. Grep `src/app` for the main question's key words. If a live page answers it, stop and propose adding the answer to that page instead.
 4. Set the author to the person who gave the answers. That person must be in `authors` in `src/lib/post-rules.ts`; if they aren't, stop and say so.
 
@@ -23,13 +23,8 @@ Answers file: $ARGUMENTS
    - Set `published` to the planned release day. Don't set `updated`.
    - Fill `claims` with one line per factual statement: `"<claim>: docs/interviews/<file>, Q<n>"`, or a D-number.
    - If a sentence has no source, put it in your report as `UNSOURCED: <sentence>` and leave it out of the post.
-3. Write `src/app/guides/<slug>/page.tsx`, copying an existing post page if there is one:
-   ```tsx
-   import GuidePost, { postMetadata } from "@/components/GuidePost";
-   import post from "@/content/posts/<slug>";
-   export const metadata = postMetadata(post);
-   export default function Page() { return <GuidePost post={post} />; }
-   ```
+   - Inline links stay as `[text](url)` inside the strings. A finished post's opening paragraph goes in `intro`, its closing line in `closing`, and its subheadings inside a section as `{ h3: "..." }` blocks. Its schema blocks aren't copied: the page builds them.
+3. No page file: `src/app/blog/[slug]/page.tsx` renders every post in `posts`.
 4. Import the post in `src/lib/posts.ts` and add it at the top of `posts`, which is ordered newest first.
 5. Run `npm run check:posts`. Fix what it reports by cutting or reordering the speaker's words, never by adding new ones. Repeat until it passes.
 
@@ -47,5 +42,5 @@ Stop there. Don't commit, push or publish unless Johan asks.
 
 - Edit the answers file.
 - Invent an author, a quote, a client, a figure or a photo, or use a stock or AI-made image.
-- Put a price or a percentage on the page, even if the speaker said one (D06).
+- Put a price or a percentage on the page unless it is a third-party research figure, another company's published price, or the author's own business data, listed in `figures` and quoted in a `claims` line with its source (D45). Never Flow State's own prices or results (D06).
 - Send anything to anyone.

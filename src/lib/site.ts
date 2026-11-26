@@ -48,6 +48,7 @@ export const nav = [
   { href: "/ai-for-electricians/", label: "AI for electricians" },
   { href: "/services/", label: "How it works" },
   { href: "/guides/", label: "Guides" },
+  { href: "/blog/", label: "Blog" },
   { href: "/questions/", label: "Questions" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },

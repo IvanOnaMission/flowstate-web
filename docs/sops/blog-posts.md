@@ -10,7 +10,7 @@ owner: Johan
 supersedes: none
 ---
 
-A blog post here is a guide at `/guides/<slug>/`. Every post answers one question tradies really search, in the words of the real person who knows the answer, and names Flow State in its answer so search engines and AI assistants can quote it. This is Jordan's playbook (sections 4.3, 5, 6.1, 8.6, 9.10, 12.5) applied to our site, with our decisions on top. The playbook lives in the private `flowstate-business` repo (D29).
+A blog post lives at `/blog/<slug>/`, listed on `/blog/` and linked from the "Blog" item in the top nav (D44). `/guides/` keeps its hand-written guides only. Every post answers one question tradies really search, in the words of the real person who knows the answer, and names Flow State in its answer so search engines and AI assistants can quote it. This is Jordan's playbook (sections 4.3, 5, 6.1, 8.6, 9.10, 12.5) applied to our site, with our decisions on top. The playbook lives in the private `flowstate-business` repo (D29).
 
 ## Who does what
 
@@ -41,7 +41,7 @@ Johan adds each one to `docs/backlog.md` if it isn't already there. If a live pa
 
 ### 2. Answers (Jordan)
 
-Jordan answers in his own words: by Slack message, a doc, or a voice note transcript. Prose copy is fine too; it's still his words. What makes a post worth publishing (playbook 5.2):
+Jordan answers in his own words: by Slack message, a doc, or a voice note transcript. Prose copy is fine too; it's still his words. A finished post (Markdown with frontmatter, as his first one was) is handled the same way: saved as sent, then formatted. Its schema blocks aren't pasted, because the page builds them from the same data. What makes a post worth publishing (playbook 5.2):
 
 - the direct answer, the way he'd say it to a tradie on site, in two or three sentences;
 - one real job: the problem, what was done, the result (no client names unless the client agreed in writing);
@@ -55,7 +55,7 @@ Johan saves the answers exactly as they arrived in `docs/interviews/<slug>-answe
 Run `/seo-draft docs/interviews/<slug>-answers-jordan.md`. The command:
 
 1. writes a coverage map: every question gets one fate (heading, FAQ item, answered on another page, or dropped with a reason);
-2. builds `src/content/posts/<slug>.ts` and `src/app/guides/<slug>/page.tsx`, and adds the post to `src/lib/posts.ts`;
+2. builds `src/content/posts/<slug>.ts` and adds it to `src/lib/posts.ts`; the page itself comes from `src/app/blog/[slug]/page.tsx`, so no page file is written per post;
 3. uses Jordan's sentences, reordered into the template; it cuts and orders, it doesn't invent;
 4. marks any sentence it can't source as `UNSOURCED` in its report, and leaves that sentence out;
 5. runs `npm run check:posts` until it passes;
@@ -68,7 +68,8 @@ The template is enforced in code (`src/lib/post-rules.ts`). The build fails if a
 - one H2 per searched question, each opening with a sentence that answers it;
 - "In short" naming Flow State; FAQ of 0, or 3 to 10 questions, rendered and in FAQPage schema word for word;
 - BlogPosting schema with the real author and dates;
-- no prices or percentages (D06), no em or en dashes (D34), "Flow State" as two words (D43);
+- no prices or percentages (D06), except the exact strings listed in the post's `figures`, each quoted in a `claims` line: third-party research figures, other companies' published prices and the author's own business data, never Flow State's own prices or results (D45); no em or en dashes (D34); "Flow State" as two words (D43);
+- inline links written `[text](https://...)` or `[text](/path/)`;
 - a non-empty claims list.
 
 `scripts/check-posts.mts` adds two checks across posts (playbook 12.5): at least 300 words per post, and no two posts sharing half their wording.
@@ -81,7 +82,7 @@ New client claims or numbers go under "Questions for Ivan" in `docs/status.md`. 
 
 ### 5. PR and preview (Johan)
 
-One PR per release, holding every post that's ready. Check on the Netlify preview: the page renders, the date shows, the FAQ is visible, View source has BlogPosting (and FAQPage if there is a FAQ), the post shows on `/guides/`, and it's in `/sitemap.xml`.
+One PR per release, holding every post that's ready. Check on the Netlify preview: the page renders, the date shows, the FAQ is visible, View source has BlogPosting (and FAQPage if there is a FAQ), the post shows on `/blog/`, the author box shows, inline links work, and it's in `/sitemap.xml`.
 
 ### 6. Publish (Johan)
 
@@ -109,14 +110,14 @@ Real photos only: Jordan's or Ivan's own jobs, the team, real screenshots. Never
 
 Photos help trust and clicks, not ranking (9.10). A post can go live without a photo; the page then uses the site image for link previews.
 
-To add a photo, put it in `public/assets/guides/<slug>/`, at least 1200 pixels wide. Write alt text that says what's in it, and add it as `image` in the post file. Hiring a photographer is Ivan's spend decision. Phone photos from real jobs are fine meanwhile.
+To add a photo, put it in `public/assets/blog/<slug>/`, at least 1200 pixels wide. Write alt text that says what's in it, and add it as `image` in the post file. Hiring a photographer is Ivan's spend decision. Phone photos from real jobs are fine meanwhile.
 
 ## Bylines
 
 The byline is the real person whose answers the post is built from (playbook 5.4: no invented author or persona byline). Authors are listed in `src/lib/post-rules.ts`:
 
 - Ivan Barnett, Founder;
-- Jordan, Strategy: the same name and role as `/about/` ("Strategy", never "Partner").
+- Jordan Statham, Partner, Business Strategy: the title and bio he wrote in his first post, approved by Ivan on 2026-11-27 (D46). `/about/` shows the same title.
 
 A new author is added only with that person's yes.
 
