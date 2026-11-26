@@ -3,7 +3,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // Ivan's answers Q7 and Q8 (D25 a, e, f).
 const page = {
   title: "AI quote and lead follow-up for NZ tradies",
-  description: "How Flowstate sets up AI to reply to new enquiries, follow up quotes nobody answered, and make sure every customer gets asked for a Google review, with you approving drafts until you choose to let it send.",
+  description: "How Flowstate sets up AI to reply to enquiries, follow up unanswered quotes and ask every customer for a Google review, with you approving the drafts.",
   path: "/quote-and-lead-follow-up/",
   sections: [
     {

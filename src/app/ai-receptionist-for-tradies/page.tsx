@@ -4,7 +4,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // never offer one as a product. Q4's caller split is described without numbers (no percentages).
 const page = {
   title: "AI receptionist and phone answering for NZ tradies and electricians",
-  description: "Flowstate's view on AI phone answering: what AI can do on the phone for a trade business today, why a person should still book the job, and when an AI receptionist is worth having.",
+  description: "Flowstate's view on AI phone answering for trade businesses: what AI can do today, why a person should still book the job, and when it's worth having.",
   path: "/ai-receptionist-for-tradies/",
   sections: [
     {

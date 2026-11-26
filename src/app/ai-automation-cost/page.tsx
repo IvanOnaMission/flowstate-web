@@ -3,7 +3,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // Ivan's answers Q1 to Q3 (docs/content/answers-batch-1.md). No prices or figures (D06).
 const page = {
   title: "How much does AI automation cost for a small trade business in NZ?",
-  description: "There's no set price list. Flowstate works the cost out from what the problem is costing you, as a one-off fee or a monthly retainer, and the build has to pay for itself.",
+  description: "Flowstate has no set price list. The cost comes from what the problem is costing you, as a one-off fee or monthly retainer, and the build must pay for itself.",
   path: "/ai-automation-cost/",
   sections: [
     {

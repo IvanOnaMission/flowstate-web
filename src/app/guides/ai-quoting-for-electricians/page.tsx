@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/guides/ai-quoting-for-electricians/" },
   openGraph: { url: "/guides/ai-quoting-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI quoting for electricians: what you still check",
-  description: "Flowstate's practical scope for AI quote preparation: supply job details, quantities and prices, check missing information, then review the draft before sending.",
+  description: "Flowstate's practical scope for AI quote preparation: supply job details, quantities and prices, check missing information, then review the draft.",
 };
 
 export default function Page() {

@@ -3,7 +3,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // Ivan's answer Q10 (D25 h).
 const page = {
   title: "Fergus automation for NZ trade businesses",
-  description: "Flowstate builds automation on Fergus for NZ trade businesses. Here's what AI can do inside Fergus, what Fergus's API can't, and why it works best connected to Xero, your calendar and email.",
+  description: "Flowstate builds automation on Fergus for NZ trade businesses: what AI can do in Fergus, what its API can't, and why it works best connected to Xero and email.",
   path: "/fergus-automation/",
   sections: [
     {

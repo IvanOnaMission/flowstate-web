@@ -4,7 +4,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // no "we work with" until Ivan confirms whose business it is (status.md, questions for Ivan).
 const page = {
   title: "How NZ builders and tradies use AI to cut admin",
-  description: "Flowstate's view on which admin a builder, plumber or electrician can hand to AI today, what stays with you, and what the trade businesses getting ahead are doing differently.",
+  description: "Flowstate's view on which admin a builder, plumber or electrician can hand to AI today, what stays with you, and what the businesses getting ahead do.",
   path: "/guides/ai-for-builders-nz/",
   sections: [
     {

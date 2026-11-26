@@ -5,7 +5,7 @@ import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
 const title = "Your job management software runs the job. There’s still manual work around it.";
-const description = "Flowstate builds AI workflows to take on that repetitive work, using your processes and the software you already have. Your team checks the results and stays in control.";
+const description = "Flowstate builds AI workflows for the repetitive work around your job software, using your processes and tools. Your team checks the results.";
 const path = "/guides/job-software-or-custom-ai/";
 
 export const metadata: Metadata = {

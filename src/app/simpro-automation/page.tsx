@@ -3,7 +3,7 @@ import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 // Ivan's answer Q11, with the "no full Simpro build yet" line dropped and Jordan's business as the proof point (D24, D25 i).
 const page = {
   title: "Simpro automation for NZ electrical contractors",
-  description: "Flowstate automates Simpro for NZ electrical contractors. Here's what AI can do in Simpro, what you need first, and why the value comes from connecting it to the rest of your business.",
+  description: "Flowstate automates Simpro for NZ electrical contractors: what AI can do in Simpro, what you need first, and why the value comes from connecting it up.",
   path: "/simpro-automation/",
   sections: [
     {

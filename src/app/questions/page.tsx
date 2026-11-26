@@ -63,7 +63,7 @@ const groups: { title: string; items: Item[] }[] = [
 ];
 
 const title = "Questions NZ tradies ask about AI automation";
-const description = `${site.entity} Straight answers on cost, quoting, follow-up, reviews, phone answering, Fergus, Simpro and getting started.`;
+const description = "Flowstate's straight answers to tradies' questions about AI: cost, quoting, follow-up, reviews, phone answering, Fergus, Simpro and getting started.";
 const path = "/questions/";
 
 export const metadata: Metadata = {
