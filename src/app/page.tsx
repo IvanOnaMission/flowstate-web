@@ -25,7 +25,6 @@ export default function Home() {
           left-to-right scrim. Below 768px the portrait crop sits in a
           faded band under the type. */}
       <section className="home-hero relative isolate bg-night on-dark">
-        <div className="home-hero-fill" aria-hidden="true" />
         <picture>
           <source
             media="(max-width: 767px)"
@@ -36,7 +35,7 @@ export default function Home() {
             alt="Ivan Barnett seated at a desk in a hi-vis top, with a client standing beside him"
             fetchPriority="high"
             decoding="async"
-            className="home-hero-photo absolute inset-0 h-full w-full object-cover object-[62%_center]"
+            className="home-hero-photo"
           />
         </picture>
         {/* Carries the headline on desktop. Must reach ~58% before fading
@@ -112,8 +111,6 @@ export default function Home() {
           One statue across three frames — see spec §4.5 before regenerating
           any of these images. */}
       <section id="ladder" className="fs-bg fs-bg-ladder scroll-mt-8 on-dark">
-        <div className="fs-photo-fill" aria-hidden="true" />
-        <div className="fs-photo-sharp" aria-hidden="true" />
         <div className="shell py-[clamp(3.75rem,8vw,6.5rem)]">
         <Reveal>
           <p className="eyebrow mb-4 text-gold">The ladder</p>
@@ -170,8 +167,6 @@ export default function Home() {
 
       {/* ── The part everyone skips ──────────────────────────────────── */}
       <section className="fs-bg fs-bg-context on-dark">
-        <div className="fs-photo-fill" aria-hidden="true" />
-        <div className="fs-photo-sharp" aria-hidden="true" />
         <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
           <Reveal>
             <p className="eyebrow mb-4 text-gold">The part everyone skips</p>
@@ -254,8 +249,6 @@ export default function Home() {
 
       {/* ── What happens on the call ───────────────────────────── */}
       <section className="fs-bg fs-bg-cta on-dark">
-        <div className="fs-photo-fill" aria-hidden="true" />
-        <div className="fs-photo-sharp" aria-hidden="true" />
         <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
           <Reveal>
             <p className="eyebrow mb-4 text-gold">

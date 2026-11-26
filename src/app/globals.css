@@ -27,6 +27,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* clip does not force the other axis into a scroll container. */
+    overflow-x: clip;
   }
 
   body {
@@ -34,8 +36,7 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    /* Full-bleed hero sections must never make the page scroll sideways. */
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Never remove the focus ring — it is the only affordance a keyboard user
@@ -150,22 +151,34 @@
  * graded and blurred, so these rules only place them and lay a brand wash
  * over the top. Gold #f5cc47 with ink text is 9.87:1.
  */
+.home-hero {
+  overflow: hidden;
+}
+
 .home-hero-scrim {
   background: rgba(3, 16, 26, 0.84);
 }
 
-/* Blurred, darkened copy fills the hero so the smaller sharp photo has no hard edge. */
-.home-hero-fill {
+/* Full frame, slightly shorter than a cover crop, flush to the right.
+   The mask dissolves the left edge into the night ground. */
+.home-hero-photo {
   position: absolute;
-  inset: -14%;
   z-index: 0;
-  background: url("/assets/real/hero-home_01_16x10.jpg") center / cover no-repeat;
-  filter: blur(32px) brightness(0.5) saturate(0.75);
+  right: 0;
+  width: auto;
+  max-width: none;
   pointer-events: none;
 }
 
-.home-hero-photo {
-  z-index: 1;
+@media (min-width: 768px) {
+  .home-hero .home-hero-photo {
+    top: 3%;
+    height: 94%;
+    object-fit: contain;
+    object-position: right center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%);
+  }
 }
 
 @media (max-width: 767px) {
@@ -180,162 +193,123 @@
     );
   }
 
-  .home-hero .home-hero-fill {
-    inset: auto -12% -8% -12%;
-    height: 52%;
-    background-image: url("/assets/real/hero-mobile_01_portrait.jpg");
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
-  }
-
   .home-hero .home-hero-photo {
     top: auto;
-    right: 6%;
-    bottom: 1.25rem;
-    left: auto;
-    width: auto;
-    max-width: 78%;
-    height: 36%;
-    object-fit: contain;
-    object-position: center bottom;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 56%;
+    object-fit: cover;
+    object-position: center 40%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%);
   }
 
   .home-hero .home-hero-copy {
-    padding-bottom: 38vh;
+    padding-bottom: 34vh;
   }
 }
 
-@media (min-width: 768px) {
-  .home-hero .home-hero-photo {
-    top: 18%;
-    right: 3%;
-    bottom: auto;
-    left: auto;
-    width: auto;
-    max-width: 40%;
-    height: 60%;
-    object-fit: contain;
-    object-position: right center;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
-  }
-}
-
+/* One photo layer, the height of the section, anchored on the right.
+   aspect-ratio matches the file so the whole frame is visible (more of the
+   room than a cover crop) and the left edge fades into the section colour. */
 .fs-bg {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   background: #06283d;
 }
 
+.fs-bg::before,
 .fs-bg::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 2;
   pointer-events: none;
+}
+
+.fs-bg::before {
+  z-index: 0;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  aspect-ratio: var(--fs-ratio);
+  background: var(--fs-photo) center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+}
+
+.fs-bg::after {
+  inset: 0;
+  z-index: 1;
   background: var(--fs-overlay);
 }
 
-.fs-photo-fill,
-.fs-photo-sharp {
-  position: absolute;
-  pointer-events: none;
-}
-
-/* Dark blurred copy of the same photo, so the smaller sharp frame has no empty gap. */
-.fs-photo-fill {
-  inset: -12%;
-  z-index: 0;
-  background: var(--fs-photo) center / cover no-repeat;
-  filter: blur(34px) brightness(0.3) saturate(0.65);
-}
-
-/* Full photo, deliberately small, anchored to the open side. */
-.fs-photo-sharp {
-  z-index: 1;
-  top: auto;
-  right: 3%;
-  bottom: 7%;
-  width: min(36%, 520px);
-  height: 54%;
-  background: var(--fs-photo) right center / contain no-repeat;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
-}
-
-.fs-bg > :not(.fs-photo-fill):not(.fs-photo-sharp) {
+.fs-bg > * {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
 .fs-bg-ladder {
   --fs-photo: url("/assets/real/bg-ladder_02.jpg");
-  --fs-pos: right center;
+  --fs-ratio: 1.637;
   --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 0.9) 0%, rgba(6, 40, 61, 0.72) 32%, rgba(6, 40, 61, 0.28) 62%, rgba(6, 40, 61, 0.22) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.25) 55%, rgba(3, 16, 26, 0.9) 100%);
+    linear-gradient(90deg, rgba(6, 40, 61, 0.92) 0%, rgba(6, 40, 61, 0.78) 34%, rgba(6, 40, 61, 0.34) 58%, rgba(6, 40, 61, 0.16) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.2) 55%, rgba(3, 16, 26, 0.88) 100%);
 }
 
 .fs-bg-context {
   background: #0f4b70;
   --fs-photo: url("/assets/real/bg-context_05.jpg");
-  --fs-pos: right center;
+  --fs-ratio: 2.513;
   --fs-overlay:
-    linear-gradient(90deg, rgba(15, 75, 112, 0.95) 0%, rgba(15, 75, 112, 0.86) 34%, rgba(15, 75, 112, 0.4) 60%, rgba(15, 75, 112, 0.22) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.45) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.5) 100%);
+    linear-gradient(90deg, rgba(15, 75, 112, 0.96) 0%, rgba(15, 75, 112, 0.84) 36%, rgba(15, 75, 112, 0.32) 62%, rgba(15, 75, 112, 0.14) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.4) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.45) 100%);
 }
 
 .fs-bg-cta {
   --fs-photo: url("/assets/real/bg-cta_04.jpg");
-  --fs-pos: right center;
-  --fs-size: contain;
+  --fs-ratio: 1.35;
   --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 1) 0%, rgba(6, 40, 61, 0.94) 30%, rgba(6, 40, 61, 0.62) 50%, rgba(6, 40, 61, 0.26) 72%, rgba(6, 40, 61, 0.3) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 35%, rgba(3, 16, 26, 0.45) 100%);
+    linear-gradient(90deg, rgba(6, 40, 61, 0.98) 0%, rgba(6, 40, 61, 0.9) 32%, rgba(6, 40, 61, 0.4) 54%, rgba(6, 40, 61, 0.16) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.32) 0%, rgba(3, 16, 26, 0) 32%, rgba(3, 16, 26, 0.4) 100%);
 }
 
 @media (max-width: 767px) {
-  .fs-photo-fill {
-    inset: auto -10% -6% -10%;
-    height: 16rem;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 46%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 46%);
-  }
-
-  .fs-photo-sharp {
+  .fs-bg::before {
     top: auto;
-    right: 8%;
-    bottom: 0.75rem;
-    left: 8%;
-    width: auto;
-    height: 7.5rem;
-    background-position: center bottom;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 24%);
   }
 
   .fs-bg-ladder {
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 62%, rgba(3, 16, 26, 0.35) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 58%, rgba(3, 16, 26, 0.35) 100%);
   }
 
   .fs-bg-context {
-    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.12) 0%, rgba(15, 75, 112, 0) 58%, rgba(3, 16, 26, 0.4) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.12) 0%, rgba(15, 75, 112, 0) 55%, rgba(3, 16, 26, 0.4) 100%);
   }
 
   .fs-bg-cta {
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.16) 0%, rgba(6, 40, 61, 0) 58%, rgba(3, 16, 26, 0.4) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.16) 0%, rgba(6, 40, 61, 0) 55%, rgba(3, 16, 26, 0.4) 100%);
   }
 
+  /* Padding % is of the shell width, which tracks the full-width photo. */
   .fs-bg-ladder > .shell {
-    padding-bottom: 16rem;
+    padding-bottom: calc(61% + 1.75rem);
   }
 
   .fs-bg-context > .shell {
-    padding-bottom: 17rem;
+    padding-bottom: calc(40% + 1.75rem);
   }
 
   .fs-bg-cta > .shell {
-    padding-bottom: 18rem;
+    padding-bottom: calc(74% + 1.75rem);
   }
 }
 
