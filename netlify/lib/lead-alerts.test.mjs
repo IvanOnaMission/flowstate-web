@@ -135,3 +135,11 @@ test('Kit keeps the existing lead tag while adding the separate booking-reminder
     if (oldKey === undefined) delete process.env.KIT_API_KEY; else process.env.KIT_API_KEY = oldKey;
   }
 });
+
+test('a second form with the same email does not replace the lead already waiting', async () => {
+  const s = fakeStore();
+  await holdLead({name: 'Jane', email: 'jane@example.com', phone: '021'}, s);
+  await holdLead({name: 'Someone else', email: 'JANE@example.com', phone: '029', offer: 'Quote Machine'}, s);
+  const [{lead}] = await dueLeads(0, s);
+  assert.equal(lead.name, 'Jane'); assert.equal(lead.phone, '021'); assert.equal(lead.offer, 'Quote Machine');
+});

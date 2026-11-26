@@ -17,7 +17,9 @@ export function leadKey({email, phone}) {
 export async function holdLead(lead, s = store()) {
   const key = leadKey(lead);
   if (!key) throw new Error('lead has no email or phone to key on');
-  await s.setJSON(key, {...lead, heldAt: Date.now()});
+  // A second form with the same email only fills gaps: it can't replace who Ivan is told to call.
+  const waiting = await s.get(key, {type: 'json'});
+  await s.setJSON(key, waiting ? {...lead, ...waiting} : {...lead, heldAt: Date.now()});
   return key;
 }
 

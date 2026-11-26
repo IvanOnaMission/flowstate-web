@@ -2,6 +2,7 @@
 // who has been on the holding list longer than the delay and still hasn't booked.
 // See submission-created.mjs for why the alert waits. Each lead is removed from the
 // list only after Telegram accepts the message, so a failed send is retried next minute.
+import {createHash} from 'node:crypto';
 import {aboutLead} from '../lib/about.mjs';
 import {formLeadMessage} from '../lib/messages.mjs';
 import {DELAY_MS, dueLeads, forgetLead} from '../lib/pending.mjs';
@@ -19,7 +20,9 @@ export default async () => {
       await forgetLead(key);
       sent += 1;
     } catch (err) {
-      console.error(`pending-lead-alerts: ${key} failed, will retry:`, err.message);
+      // Log a short hash, not the email the key is made of.
+      const ref = createHash('sha256').update(key).digest('hex').slice(0, 10);
+      console.error(`pending-lead-alerts: ${ref} failed, will retry:`, err.message);
     }
   }
   if (due.length) console.log(`pending-lead-alerts: ${sent}/${due.length} sent`);
