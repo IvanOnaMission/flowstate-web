@@ -270,7 +270,7 @@
 
 .fs-bg-ladder {
   --fs-photo: url("/assets/real/bg-ladder_02.jpg");
-  --fs-ratio: 1.637;
+  --fs-ratio: 1.5;
   --fs-overlay:
     linear-gradient(90deg, rgba(6, 40, 61, 0.92) 0%, rgba(6, 40, 61, 0.78) 34%, rgba(6, 40, 61, 0.34) 58%, rgba(6, 40, 61, 0.16) 100%),
     linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.2) 55%, rgba(3, 16, 26, 0.88) 100%);
@@ -330,7 +330,7 @@
   }
 
   .fs-bg-ladder > .shell {
-    padding-bottom: calc(max(15.5rem, 100% / 1.637) + 2.75rem);
+    padding-bottom: calc(max(15.5rem, 100% / 1.5) + 2.75rem);
   }
 
   .fs-bg-context > .shell {
