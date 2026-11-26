@@ -94,15 +94,6 @@ export default function Home() {
 
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <section aria-labelledby="diagnostic-heading" className="grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
-            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
-            <div>
-              <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                The paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
-              </p>
-              <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
-            </div>
-          </section>
           <SoftwareExplanation />
           <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-atlantic">
             <Link href="/ai-for-electricians/">AI for electrical businesses →</Link>
@@ -131,7 +122,7 @@ export default function Home() {
         <ol className="mt-[clamp(1.875rem,4vw,2.875rem)] grid gap-[clamp(1rem,2vw,1.625rem)] md:grid-cols-3">
           {rungs.map((r, i) => (
             <Reveal as="li" key={r.n} delay={i * 90}>
-              <article className="flex h-full flex-col rounded-2xl border border-white/15 border-t-[3px] border-t-gold bg-[rgba(6,40,61,.66)] p-[clamp(1.5rem,2.4vw,2rem)] shadow-[0_24px_50px_-30px_rgba(0,0,0,.6)] backdrop-blur-[14px]">
+              <article className="flex h-full flex-col rounded-2xl border border-white/15 border-t-[3px] border-t-gold bg-[rgba(6,40,61,.84)] p-[clamp(1.5rem,2.4vw,2rem)] shadow-[0_24px_50px_-30px_rgba(0,0,0,.6)] backdrop-blur-[14px]">
                 <div className="flex flex-1 flex-col gap-2.5">
                   <div className="flex items-baseline gap-3">
                     <span className="text-[2.2rem] font-extrabold leading-none tracking-[-0.04em] text-gold">
@@ -157,6 +148,20 @@ export default function Home() {
             Start with one useful workflow. Expand as it proves its value.
           </p>
         </Reveal>
+        </div>
+      </section>
+
+      <section id="roadmap" className="scroll-mt-8 border-y border-hair bg-white">
+        <div className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
+          <section aria-labelledby="diagnostic-heading" className="grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
+            <div>
+              <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
+                The paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
+              </p>
+              <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
+            </div>
+          </section>
         </div>
       </section>
 
