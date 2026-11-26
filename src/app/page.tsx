@@ -21,33 +21,35 @@ export default function Home() {
   return (
     <>
       {/* ── The hero ──────────────────────────────────────────────────
-          Full bleed, full viewport height.
-          The image is 16:9 and the viewport rarely is, so cropping is
-          unavoidable — focus sits at 62% across to keep the hi-vis in frame
-          and the dark side under the type. */}
-      <section className="relative isolate bg-night on-dark">
-        <Image
-          src="/assets/hero/workshop-hook.jpg"
-          alt="A workshop with the owner's hi-vis vest and hard hat hanging on a hook, the crew still working behind"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[62%_center]"
-        />
-        {/* Carries the headline. Must reach ~58% before fading or a full
-            line of type drifts onto the bright part of the workshop.
-            Desktop only — see the flat scrim below for why. */}
+          Full bleed, full viewport height. Desktop keeps the existing
+          left-to-right scrim. Below 768px the portrait crop sits in a
+          faded band under the type. */}
+      <section className="home-hero relative isolate bg-night on-dark">
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet="/assets/real/hero-mobile_01_portrait.jpg"
+          />
+          <img
+            src="/assets/real/hero-home_01_16x10.jpg"
+            alt="Ivan Barnett seated at a desk in a hi-vis top, with a client standing beside him"
+            fetchPriority="high"
+            decoding="async"
+            className="home-hero-photo absolute inset-0 h-full w-full object-cover object-[62%_center]"
+          />
+        </picture>
+        {/* Carries the headline on desktop. Must reach ~58% before fading
+            or a full line of type drifts onto the bright side of the photo. */}
         <div className="absolute inset-0 hidden md:block md:bg-[linear-gradient(96deg,rgba(3,16,26,.97)_0%,rgba(3,16,26,.92)_36%,rgba(3,16,26,.66)_58%,rgba(3,16,26,.2)_80%,rgba(3,16,26,.03)_94%)]" />
-        {/* On a phone the text column is full width, so a left-to-right
-            gradient would leave the headline sitting on the bright hi-vis.
-            A flat scrim keeps every line legible at 390px. */}
-        <div className="absolute inset-0 bg-[rgba(3,16,26,.84)] md:hidden" />
+        {/* On a phone the text is full width, so the scrim is a vertical
+            wash and the photo shows through underneath it. */}
+        <div className="home-hero-scrim absolute inset-0 md:hidden" />
         <div className="absolute inset-x-0 top-0 h-[150px] bg-[linear-gradient(rgba(3,16,26,.72),transparent)]" />
         <div className="absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(transparent,rgba(3,16,26,.85))]" />
 
         {/* Fill the visible screen, allowing the content to grow on smaller
             devices or when the visitor increases their text size. */}
-        <div className="relative z-10 flex min-h-dvh flex-col">
+        <div className="home-hero-copy relative z-10 flex min-h-dvh flex-col">
           <SiteNav ground="dark" />
 
           <div
@@ -122,10 +124,11 @@ export default function Home() {
           Cards, not heroes. The hero is the emotional hit; this explains.
           One statue across three frames — see spec §4.5 before regenerating
           any of these images. */}
-      <section id="ladder" className="shell scroll-mt-8 pb-[clamp(3.25rem,7vw,5.75rem)]">
+      <section id="ladder" className="fs-bg fs-bg-ladder scroll-mt-8 on-dark">
+        <div className="shell py-[clamp(3.75rem,8vw,6.5rem)]">
         <Reveal>
-          <p className="eyebrow mb-4 text-mute">The ladder</p>
-          <h2 className="h-sec max-w-[22ch] text-ink">
+          <p className="eyebrow mb-4 text-gold">The ladder</p>
+          <h2 className="h-sec max-w-[22ch] text-white">
             Flowstate&apos;s AI climbs the same ladder everyone in your business climbed.
           </h2>
         </Reveal>
@@ -133,27 +136,18 @@ export default function Home() {
         <ol className="mt-[clamp(1.875rem,4vw,2.875rem)] grid gap-[clamp(1rem,2vw,1.625rem)] md:grid-cols-3">
           {rungs.map((r, i) => (
             <Reveal as="li" key={r.n} delay={i * 90}>
-              <article className="group flex h-full flex-col overflow-hidden border border-hair bg-white transition-[border-color,box-shadow,transform] duration-300 [transition-timing-function:var(--ease-out-soft)] hover:-translate-y-[3px] hover:border-[#bfd6e3] hover:shadow-[0_18px_40px_-24px_rgba(6,40,61,.42)]">
-                <div className="relative aspect-4/3 bg-night">
-                  <Image
-                    src={`${r.img}.jpg`}
-                    alt={r.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-2.5 p-[clamp(1.125rem,2vw,1.625rem)]">
+              <article className="flex h-full flex-col rounded-2xl border border-white/15 border-t-[3px] border-t-gold bg-[rgba(6,40,61,.66)] p-[clamp(1.5rem,2.4vw,2rem)] shadow-[0_24px_50px_-30px_rgba(0,0,0,.6)] backdrop-blur-[14px]">
+                <div className="flex flex-1 flex-col gap-2.5">
                   <div className="flex items-baseline gap-3">
-                    <span className="text-[1.55rem] font-extrabold leading-none tracking-[-0.04em] text-atlantic">
+                    <span className="text-[2.2rem] font-extrabold leading-none tracking-[-0.04em] text-gold">
                       {r.n}
                     </span>
-                    <span className="eyebrow text-mute">{r.rung}</span>
+                    <span className="eyebrow text-gold">{r.rung}</span>
                   </div>
-                  <h3 className="text-[1.18rem] font-[750] leading-tight tracking-[-0.02em] text-ink">
+                  <h3 className="text-[1.18rem] font-[750] leading-tight tracking-[-0.02em] text-white">
                     {r.title}
                   </h3>
-                  <p className="text-[0.95rem] leading-relaxed text-mute">
+                  <p className="text-[0.95rem] leading-relaxed text-[rgba(226,238,246,.86)]">
                     {r.body}
                   </p>
                 </div>
@@ -164,24 +158,24 @@ export default function Home() {
 
         {/* Expansion follows demonstrated value, not an automatic progression. */}
         <Reveal delay={120}>
-          <p className="mt-[clamp(1.5rem,3vw,2.25rem)] max-w-[60ch] border-l-2 border-hair pl-4 text-[0.93rem] text-mute">
+          <p className="mt-[clamp(1.5rem,3vw,2.25rem)] max-w-[60ch] border-l-2 border-gold/70 pl-4 text-[0.93rem] text-[rgba(226,238,246,.86)]">
             Start with one useful workflow. Expand as it proves its value.
           </p>
         </Reveal>
+        </div>
       </section>
 
       {/* ── The part everyone skips ──────────────────────────────────── */}
-      <section className="relative bg-atlantic on-dark">
-        <div className="shell py-[clamp(3.5rem,8vw,6.5rem)]">
+      <section className="fs-bg fs-bg-context on-dark">
+        <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
           <Reveal>
-            <p className="eyebrow mb-4 text-sky/90">The part everyone skips</p>
+            <p className="eyebrow mb-4 text-gold">The part everyone skips</p>
             <h2 className="h-sec max-w-[20ch] text-white">
               AI needs to know how your business works.
             </h2>
           </Reveal>
-          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Reveal delay={90}>
-            <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-sky/85">
+            <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(226,238,246,.86)]">
               <p>
                 A useful workflow needs your business information and clear
                 instructions: how a job moves through your team, where the
@@ -195,17 +189,6 @@ export default function Home() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={150}>
-            <Image
-              src="/assets/business-context.webp"
-              alt="Illustration of business documents and processes feeding into AI."
-              width={1200}
-              height={800}
-              sizes="(max-width: 1023px) 100vw, 50vw"
-              className="h-auto w-full rounded-2xl lg:mt-8"
-            />
-          </Reveal>
-          </div>
         </div>
       </section>
 
@@ -265,18 +248,18 @@ export default function Home() {
       </section>
 
       {/* ── What happens on the call ───────────────────────────── */}
-      <section className="border-t border-hair bg-sky-50">
-        <div className="shell py-[clamp(3.25rem,7vw,5.75rem)]">
+      <section className="fs-bg fs-bg-cta on-dark">
+        <div className="shell py-[clamp(4.5rem,9vw,7.5rem)]">
           <Reveal>
-            <p className="eyebrow mb-4 text-mute">
+            <p className="eyebrow mb-4 text-gold">
               What happens on the call
             </p>
-            <h2 className="h-sec max-w-[20ch] text-ink">
+            <h2 className="h-sec max-w-[20ch] text-white">
               A few questions about your business.
             </h2>
           </Reveal>
           <Reveal delay={90}>
-            <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-mute">
+            <div className="mt-7 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-[rgba(226,238,246,.86)]">
               <p>
                 {"You and Ivan from Flowstate will talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
@@ -287,8 +270,11 @@ export default function Home() {
           </Reveal>
           <Reveal delay={180}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <CallButton tone="atlantic" />
-              <span className="text-[0.85rem] text-mute">{callPromise}</span>
+              <CallButton
+                tone="atlantic"
+                className="!bg-gold !text-ink hover:!brightness-100 hover:!shadow-[0_16px_32px_-14px_rgba(245,204,71,.55)]"
+              />
+              <span className="text-[0.85rem] text-white/80">{callPromise}</span>
             </div>
           </Reveal>
         </div>
