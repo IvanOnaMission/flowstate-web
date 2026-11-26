@@ -2,9 +2,10 @@
    The page only has Calendly's booking ids; booking-details looks the rest up server-side.
    Without them (or if the lookup fails) the page still reads fine and points to the email. */
 (() => {
+  // The inline script in the page head saved the ids and removed them from the URL.
   const params = new URLSearchParams(location.search);
-  const event = params.get('event') || '';
-  const invitee = params.get('invitee') || '';
+  const event = window.qmBooking?.event || params.get('event') || '';
+  const invitee = window.qmBooking?.invitee || params.get('invitee') || '';
   if (!event || !invitee) return;
   const $ = selector => document.querySelector(selector);
 

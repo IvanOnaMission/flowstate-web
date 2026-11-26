@@ -321,7 +321,6 @@
     // ---- Config ----
     // After deploying the Apps Script (audit-backend/Code.gs), paste its web-app URL here.
     // Until then, leads fall back to Netlify Forms so nothing is lost.
-    var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxJyBLRD0UhYxqJP537IRSCRTsTy7Xdct-1Q_Uz5OEIS5N991q90pFzKCr6kLxQdb-ng/exec';
 
     // ---- Calc constants ----
     var REACT = 0.01;     // 1% of database reactivated / month (conservative)
@@ -416,21 +415,9 @@
         proposal: fmt(n.proposal) + '/yr',
         missing_systems: missing, ai_opportunities: aiOpps, top_leaks: topLeaks, employees: document.getElementById('employees').value, hourly_rate: n.rate, db_size: n.db, avg_job: n.avg
       };
-      // Send the lead. If the Apps Script endpoint is set, use it (stores in your Sheet + emails the
-      // proposal + alerts you). Otherwise fall back to Netlify Forms so leads are never lost.
-      if (LEAD_ENDPOINT) {
-        try {
-          var fd = new FormData();
-          Object.keys(payload).forEach(function(k){ fd.append(k, payload[k]); });
-          navigator.sendBeacon(LEAD_ENDPOINT, fd);
-        } catch (e2) {
-          fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) });
-        }
-        unlock();
-      } else {
-        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) })
-          .then(function(){ unlock(); }).catch(function(){ unlock(); /* still reveal — don't punish the user for a network hiccup */ });
-      }
+      // Send the lead to Netlify Forms.
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) })
+        .then(function(){ unlock(); }).catch(function(){ unlock(); /* still reveal — don't punish the user for a network hiccup */ });
     });
 
     function unlock(){

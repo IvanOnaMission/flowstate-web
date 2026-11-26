@@ -153,7 +153,6 @@
 
   <script>
     // tick = "this still eats my time" → AI takes it off your plate (ticked items ADD up).
-    var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxJyBLRD0UhYxqJP537IRSCRTsTy7Xdct-1Q_Uz5OEIS5N991q90pFzKCr6kLxQdb-ng/exec';
     var BASELINE = 5, REACT = 0.01, UNLOCKED = false, leadSent = false, LEAD = {};
     var ITEMS = [
       {n:'Answering calls & missed calls', ai:'AI phone / voice receptionist answers + logs them', h:1},
@@ -220,10 +219,11 @@
     });
 
     function encode(o){ return Object.keys(o).map(function(k){ return encodeURIComponent(k)+'='+encodeURIComponent(o[k]); }).join('&'); }
+    // Leads go to the Netlify form "audit" (registered on /audit-full/).
     function post(payload){
-      if (!LEAD_ENDPOINT) return;
-      try { var fd=new FormData(); Object.keys(payload).forEach(function(k){ fd.append(k,payload[k]); }); navigator.sendBeacon(LEAD_ENDPOINT, fd); }
-      catch(e){ fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)}); }
+      if (payload.kind) return;
+      payload['form-name'] = 'audit';
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload),keepalive:true}).catch(function(){});
     }
     function sendLead(){
       if (leadSent || !LEAD.email) return; leadSent = true;
