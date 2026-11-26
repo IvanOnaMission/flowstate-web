@@ -154,48 +154,70 @@
   background: rgba(3, 16, 26, 0.84);
 }
 
+/* Blurred, darkened copy fills the hero so the smaller sharp photo has no hard edge. */
+.home-hero-fill {
+  position: absolute;
+  inset: -14%;
+  z-index: 0;
+  background: url("/assets/real/hero-home_01_16x10.jpg") center / cover no-repeat;
+  filter: blur(32px) brightness(0.5) saturate(0.75);
+  pointer-events: none;
+}
+
+.home-hero-photo {
+  z-index: 1;
+}
+
 @media (max-width: 767px) {
   .home-hero .home-hero-scrim {
     background: linear-gradient(
       180deg,
-      rgba(3, 16, 26, 0.92) 0%,
-      rgba(3, 16, 26, 0.88) 50%,
-      rgba(3, 16, 26, 0.6) 68%,
-      rgba(3, 16, 26, 0.15) 88%,
-      rgba(3, 16, 26, 0.35) 100%
+      rgba(3, 16, 26, 0.94) 0%,
+      rgba(3, 16, 26, 0.9) 46%,
+      rgba(3, 16, 26, 0.55) 70%,
+      rgba(3, 16, 26, 0.2) 88%,
+      rgba(3, 16, 26, 0.4) 100%
     );
+  }
+
+  .home-hero .home-hero-fill {
+    inset: auto -12% -8% -12%;
+    height: 52%;
+    background-image: url("/assets/real/hero-mobile_01_portrait.jpg");
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
   }
 
   .home-hero .home-hero-photo {
     top: auto;
-    right: 0;
-    bottom: 0;
+    right: 6%;
+    bottom: 1.25rem;
     left: auto;
     width: auto;
-    max-width: 100%;
-    height: 54%;
+    max-width: 78%;
+    height: 36%;
     object-fit: contain;
     object-position: center bottom;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
   }
 
   .home-hero .home-hero-copy {
-    padding-bottom: 34vh;
+    padding-bottom: 38vh;
   }
 }
 
 @media (min-width: 768px) {
   .home-hero .home-hero-photo {
-    top: 4%;
-    right: 1.5%;
+    top: 18%;
+    right: 3%;
     bottom: auto;
     left: auto;
     width: auto;
-    max-width: 68%;
-    height: 92%;
+    max-width: 40%;
+    height: 60%;
     object-fit: contain;
     object-position: right center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
   }
 }
 
@@ -205,28 +227,45 @@
   background: #06283d;
 }
 
-.fs-bg::before,
 .fs-bg::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 2;
   pointer-events: none;
-}
-
-.fs-bg::before {
-  z-index: 0;
-  /* contain shows the whole graded frame. cover was cropping heads and desks. */
-  background: #06283d var(--fs-photo) var(--fs-pos, right center) / var(--fs-size, contain) no-repeat;
-}
-
-.fs-bg::after {
-  z-index: 1;
   background: var(--fs-overlay);
 }
 
-.fs-bg > * {
+.fs-photo-fill,
+.fs-photo-sharp {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Dark blurred copy of the same photo, so the smaller sharp frame has no empty gap. */
+.fs-photo-fill {
+  inset: -12%;
+  z-index: 0;
+  background: var(--fs-photo) center / cover no-repeat;
+  filter: blur(34px) brightness(0.3) saturate(0.65);
+}
+
+/* Full photo, deliberately small, anchored to the open side. */
+.fs-photo-sharp {
+  z-index: 1;
+  top: auto;
+  right: 3%;
+  bottom: 7%;
+  width: min(36%, 520px);
+  height: 54%;
+  background: var(--fs-photo) right center / contain no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+}
+
+.fs-bg > :not(.fs-photo-fill):not(.fs-photo-sharp) {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .fs-bg-ladder {
@@ -246,10 +285,6 @@
     linear-gradient(180deg, rgba(3, 16, 26, 0.45) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.5) 100%);
 }
 
-.fs-bg-context::before {
-  filter: saturate(0.85);
-}
-
 .fs-bg-cta {
   --fs-photo: url("/assets/real/bg-cta_04.jpg");
   --fs-pos: right center;
@@ -260,33 +295,35 @@
 }
 
 @media (max-width: 767px) {
-  .fs-bg::before {
+  .fs-photo-fill {
+    inset: auto -10% -6% -10%;
+    height: 16rem;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 46%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 46%);
+  }
+
+  .fs-photo-sharp {
     top: auto;
-    bottom: 0;
-    height: var(--fs-mh, 46%);
-    background-size: contain;
-    background-position: var(--fs-mpos, center bottom);
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+    right: 8%;
+    bottom: 0.75rem;
+    left: 8%;
+    width: auto;
+    height: 7.5rem;
+    background-position: center bottom;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
   }
 
   .fs-bg-ladder {
-    --fs-mh: 15rem;
-    --fs-mpos: center bottom;
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.25) 0%, rgba(6, 40, 61, 0) 60%, rgba(3, 16, 26, 0.18) 82%, rgba(3, 16, 26, 0.55) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 62%, rgba(3, 16, 26, 0.35) 100%);
   }
 
   .fs-bg-context {
-    --fs-mh: 12rem;
-    --fs-mpos: center bottom;
-    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.15) 0%, rgba(15, 75, 112, 0) 55%, rgba(15, 75, 112, 0.12) 80%, rgba(3, 16, 26, 0.5) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.12) 0%, rgba(15, 75, 112, 0) 58%, rgba(3, 16, 26, 0.4) 100%);
   }
 
   .fs-bg-cta {
-    --fs-size: contain;
-    --fs-mh: 16rem;
-    --fs-mpos: center bottom;
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 55%, rgba(3, 16, 26, 0.5) 100%);
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.16) 0%, rgba(6, 40, 61, 0) 58%, rgba(3, 16, 26, 0.4) 100%);
   }
 
   .fs-bg-ladder > .shell {
