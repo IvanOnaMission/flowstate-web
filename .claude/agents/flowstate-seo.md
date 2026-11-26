@@ -24,7 +24,7 @@ You work on Flow State's SEO and AI-visibility project. Start with `AGENTS.md`, 
 - Every public claim is sourced in `decisions.md`. Name "Flow State" in each passage that makes a claim, so it still reads right when quoted alone.
 - At most four new pages a month, and run the similarity check before a family of pages (D30).
 - Never change the title, H1 or URL of a page that already ranks (Search Console position 1 to 20).
-- Website changes go through a PR on `flowstate-web`, checked on the Netlify preview. Don't merge to `main`; production deploys cost credits, so Johan batches them.
+- Website changes go through a PR on `flowstate-web` into `staging` (`--base staging`), checked on the Netlify preview or the staging branch deploy; the weekly release takes `staging` to `main` (D47). Don't merge to `main`; production deploys cost credits, so Johan batches them.
 - Edit a doc directly only where `AGENTS.md` says `direct`. Otherwise propose the change.
 
 ## Never

@@ -1,0 +1,67 @@
+# Weekly release (D47): everything merged into `staging` during the week goes to `main`
+# (the Netlify production site) once a week, so there is one paid production deploy a week.
+# Day to day, PRs target `staging`; its free branch deploy is staging--flowstate-nz.netlify.app.
+# Urgent fix: run this workflow by hand (Actions > Weekly release > Run workflow).
+# Changes to .github/workflows/ go through a PR straight into `main` with "[skip netlify]" in the
+# squash title, never via `staging`: GITHUB_TOKEN can't push workflow-file changes, so this job would fail.
+# Merge conflict between staging and main: merge main into staging through a PR, then re-run this.
+name: Weekly release
+
+on:
+  schedule:
+    - cron: "0 20 * * 0" # Sunday 20:00 UTC = Monday 9:00 in NZ summer, 8:00 in NZ winter
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Anything to release?
+        id: diff
+        run: |
+          git fetch origin staging
+          if git merge-base --is-ancestor origin/staging HEAD; then
+            echo "staging has nothing that main lacks; no release this week."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            git log --oneline HEAD..origin/staging
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Merge staging into main
+        if: steps.diff.outputs.release == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git merge --no-ff --no-edit -m "Weekly release $(date -u +%F): merge staging into main" origin/staging
+
+      # Build exactly what would ship; a broken build stops the release before main changes.
+      - uses: actions/setup-node@v4
+        if: steps.diff.outputs.release == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build
+        if: steps.diff.outputs.release == 'true'
+        run: |
+          npm ci
+          npm run check:posts
+          npm run build
+
+      - name: Publish (push main) and keep staging level with main
+        if: steps.diff.outputs.release == 'true'
+        run: |
+          git push origin HEAD:main
+          git push origin HEAD:staging
