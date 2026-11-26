@@ -47,15 +47,14 @@ Competitors named across engines: Automate AI, Stride AI, Ez-AI, Sophiie, Tradie
 
 ## Questions for Ivan
 Only what Johan can't decide himself; everything else Johan settles (D22, D16).
-- Site pages: Does the paid diagnostic still sit between the first call and the foundation build? Ivan's Q18 and Q19 skip it, but the live site sells it.
-- Site pages: Are two training sessions, a one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" (the check itself, and its length) standard for every client? The live site says these are agreed per client.
-- Site pages: Hosting: does the system run on the client's own account (Q15), or in "the automation service we host for them" (privacy page)? Can the site say Singapore by default and that business AI plans don't train on client data?
 - Google profile: the reviews from Elish Barnett (family?) and Jordan Statham (our advisor) may breach Google's conflict-of-interest rules. Reply, leave, or ask them to remove the reviews?
-- Site pages: Is the Auckland electrical business in Q20 (150 reviews in three months) Jordan's own business? Backlog rows 11, 12 and 14 wait on this.
+- Site pages: are the one-page cheat sheet, 30 days of support and "a person checks every draft for the first month" standard for every client? (Training sessions are out, D41.)
+- Site pages: can the site say business AI plans don't train on client data (Q15)?
 - Backlog (draft, not sent): the five questions prospects ask most before booking a call, in their words; does Flowstate chase overdue invoices, and how (row 8); has Flowstate built on ServiceM8 (rows 5 and 9); any plumbing or HVAC client we could mention (rows 10 and 15); which trades Flowstate has built for (row 11); any AroFlo client example (row 13). Draft message in `docs/backlog.md`, Customer-sourced questions.
 - Backlog (draft, not sent): a page targeting Auckland (row 12) is a targeting choice. Build it or not?
 
 ## Changes since last update
+2026-11-26: Ivan answered the site-pages questions (D38 to D42, relayed by Johan): the paid diagnostic is dropped from the offer and the site, the system runs on the client's own accounts (never "we host it"), no Singapore default, training sessions out, and the Q20 business is Jordan's own, not a client (backlog rows 11, 12 and 14 can use that). Site copy, `/workflow-diagnostic/` copy and title, privacy page, llms.txt, the Google and LinkedIn copy and the T17 drafts updated in PR 79. Google service 5 still says "paid diagnostic": Johan pastes the new text from the profile copy doc. Ivan's "You're on Netlify now" confirms the Netlify access already recorded.
 2026-11-26: Johan said yes to the `AGENTS.md` rows and D37: seven rows added to the index, D37 settled, sources column added to `docs/baseline/protocol.md` for the 21 Dec run. Adjacent issues fixed in PR 78, to check on its Netlify preview before merging: `/ai-for-trades-businesses/` and `/business-essentials/` now 301 to `/services/` (A1); meta descriptions on `/`, `/about/` and `/workflow-diagnostic/` shortened for Bing (A2; the ranking diagnostic page keeps its title).
 2026-11-26: `/seo-interview` command and `flowstate-seo` agent added (issue 77), with a brief template, interviews folder and a three-question dry-run pack; AGENTS.md rows and D37 proposed, not applied.
 2026-11-26: Ranked page backlog done (issue 76): 15 rows with evidence, five live-page improvements, old URLs `/ai-for-trades-businesses/` and `/business-essentials/` found returning 404; message to Ivan drafted, not sent.

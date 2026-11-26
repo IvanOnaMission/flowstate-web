@@ -59,7 +59,7 @@ Fergus does the most when it's connected to everything else. We link it to Xero,
 
 The AI drafts and you approve. Nothing goes to a customer without your OK, and anything it can't price is marked CHECK instead of guessed. Everything runs on your own accounts, so you own the system.
 
-One Auckland electrical business we work with has quotes coming back 95% built and added 150 reviews in three months.
+Jordan's own Auckland electrical business has quotes coming back almost fully built and added 150 reviews in three months.
 
 We start with a 30-minute call to work out what's costing your business the most. The foundation (accounts in your name, your software connected, the company brain) is set up in 2 to 3 days, then we add helpers one at a time.
 
@@ -120,7 +120,7 @@ How we build it:
 - Every helper is tested on real past jobs before it goes live.
 - It runs on your own accounts and card, so you own the system and your data stays with you.
 
-One Auckland electrical business we work with has quotes coming back 95% built and added 150 reviews in three months.
+Jordan's own Auckland electrical business has quotes coming back almost fully built and added 150 reviews in three months.
 
 API access needs Simpro's Premium plan, and Simpro approves each connection. We start with a 30-minute call to work out what's costing your business the most. The foundation (accounts in your name, your software connected, the company brain) is set up in 2 to 3 days, then we add helpers one at a time.
 

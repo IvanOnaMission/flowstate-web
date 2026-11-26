@@ -7,7 +7,7 @@ import { site, callPromise } from "@/lib/site";
 
 // The FAQ hub: short answers to Ivan's batch 1 questions (docs/content/answers-batch-1.md, D25),
 // each linking to the page that answers it in full. Held: Q15 hosting, Q16 package terms, Q14 draft
-// checks and "Flowstate fixes it", Q17 "own accounts", the D16 receptionist line.
+// checks and "Flowstate fixes it", the D16 receptionist line.
 type Item = { q: string; a: string; more?: { href: string; label: string } };
 
 const groups: { title: string; items: Item[] }[] = [
@@ -43,14 +43,14 @@ const groups: { title: string; items: Item[] }[] = [
     items: [
       { q: "Will AI sound robotic to my customers?", a: "Not if it's set up right. We build a voice profile from your meetings, emails and texts, so it writes the way you talk, with a different tone for a supplier than a new customer. You can tell it which words to use and never use. Everything goes out from your own email or phone, signed by you, and you see the draft first." },
       { q: "What happens if the AI makes a mistake with a customer?", a: "Drafts come to you to approve by default. Anything it isn't sure about gets marked CHECK rather than guessed, and every helper is tested on real past jobs before it goes live. If something we built isn't working right, we fix it within the support agreed for your business." },
-      { q: "Do I need to be good with tech to use this?", a: "No. If you can use a phone and send an email you'll be fine. It runs in the background on the software you already use, and the drafts come to you to approve. We do the setup, and training and support are agreed for your business." },
+      { q: "Do I need to be good with tech to use this?", a: "No. If you can use a phone and send an email you'll be fine. It runs in the background on the software you already use, and the drafts come to you to approve. We do the setup, and support is agreed for your business." },
     ],
   },
   {
     title: "Getting started",
     items: [
       { q: "Who can automate my trade business in NZ, and what makes Flowstate different?", a: `${site.entity} It's trained and backed by a real electrical company that's been automating its own business for the last six years, and it has delivered for 10+ clients across different trades. We build on the software you already use, and if AI isn't the answer for something we'll tell you straight. The goal is to be New Zealand's go-to for AI in trade businesses.`, more: { href: "/about/", label: "About Flowstate" } },
-      { q: "What does getting set up look like, and how long does it take?", a: "It starts with a free 30-minute call to work out where the time's going. If it's a fit, a paid diagnostic gives you a prioritised roadmap. Then we build the foundation: connect your job software and Xero and build the AI brain of your prices, rules and processes, which takes 2 to 3 days. After that we build helpers one at a time, each tested on real past jobs.", more: { href: "/workflow-diagnostic/", label: "The diagnostic and AI partnership" } },
+      { q: "What does getting set up look like, and how long does it take?", a: "It starts with a free 30-minute call to work out where the time's going. If it's a fit, we build a custom implementation plan. Then we build the foundation: set up the accounts in your name, connect your job software and Xero and build the AI brain of your prices, rules and processes, which takes 2 to 3 days. It runs on your own accounts, so you own it. After that we build helpers one at a time, each tested on real past jobs.", more: { href: "/workflow-diagnostic/", label: "How getting started works" } },
       { q: "What do you need from me to get started?", a: "Just 30 minutes to start. Once we get into the build, we'll need things like your price list, some past quotes and invoices, and access to your job software and Xero, which you log into yourself." },
     ],
   },
@@ -109,7 +109,7 @@ export default function QuestionsPage() {
           ))}
           <div className="mt-12 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
-            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a>
+            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">See how getting started works</a>
           </div>
           <p className="mt-3 text-sm text-mute">{callPromise}</p>
         </article>

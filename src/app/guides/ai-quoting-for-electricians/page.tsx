@@ -53,9 +53,9 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Compare similar jobs and keep a record of the problems the workflow encounters. That gives you a basis for deciding whether it is helping. Producing a draft quickly, on its own, doesn't establish the overall time saved."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We aren't quoting a measured customer saving for this workflow. It is in development, and results would need to be established in use."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Want to assess where AI could help your quoting?"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate starts with a paid diagnostic of your workflows and a prioritised roadmap. Quoting is one possible area to assess. After the diagnostic, we agree the scope and rate for an ongoing AI partnership covering implementation, training and support. You keep approval of quotes and pricing."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free introductory call to discuss the paid diagnostic. We assess software access and constraints before agreeing any implementation."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate starts with a free 30-minute call. Quoting is one possible area to look at. If it's a fit, we agree the scope and rate before any build starts, as part of an ongoing AI partnership covering implementation and support. You keep approval of quotes and pricing."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See how getting started works →"}</a></p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free introductory call to work out where the time's going. We assess software access and constraints before agreeing any implementation."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
         </article>
       </main>

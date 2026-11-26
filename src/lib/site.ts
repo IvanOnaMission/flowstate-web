@@ -10,7 +10,7 @@ export const site = {
   email: "ivan@flowstate.net.nz",
   phone: "027 200 6121",
   phoneHref: "tel:+64272006121",
-  /** Every "Book a call" goes through the diagnostic enquiry form first; the Calendly
+  /** Every "Book a call" goes through the enquiry form first; the Calendly
    *  link lives on that page (public/workflow-diagnostic/index.html). */
   booking: "/workflow-diagnostic/",
   callMinutes: 30,

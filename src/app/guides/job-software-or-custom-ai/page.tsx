@@ -53,7 +53,7 @@ export default function Page() {
           <p className="mt-4 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">For the detail on the two most common ones, see <a className="font-semibold text-atlantic underline underline-offset-4" href="/fergus-automation/">Fergus automation</a> and <a className="font-semibold text-atlantic underline underline-offset-4" href="/simpro-automation/">Simpro automation</a>.</p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
-            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a>
+            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">See how getting started works</a>
           </div>
         </article>
       </main>

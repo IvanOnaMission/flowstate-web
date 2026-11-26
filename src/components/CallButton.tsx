@@ -1,7 +1,7 @@
 import { site } from "@/lib/site";
 
 /**
- * The only conversion on the public site. Every instance points at the diagnostic
+ * The only conversion on the public site. Every instance points at the
  * enquiry page, where a short form comes before the calendar, so there is one
  * thing to change if it ever moves.
  *
