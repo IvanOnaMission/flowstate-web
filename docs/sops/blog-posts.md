@@ -82,13 +82,13 @@ New client claims or numbers go under "Questions for Ivan" in `docs/status.md`. 
 
 ### 5. PR and preview (Johan)
 
-One PR per release, holding every post that's ready. Check on the Netlify preview: the page renders, the date shows, the FAQ is visible, View source has BlogPosting (and FAQPage if there is a FAQ), the post shows on `/blog/`, the author box shows, inline links work, and it's in `/sitemap.xml`.
+One PR into `staging` per release, holding every post that's ready. Check on the Netlify preview (or, after merging, the `staging` branch deploy at staging--flowstate-nz.netlify.app): the page renders, the date shows, the FAQ is visible, View source has BlogPosting (and FAQPage if there is a FAQ), the post shows on `/blog/`, the author box shows, inline links work, and it's in `/sitemap.xml`.
 
 ### 6. Publish (Johan)
 
-Merging to `main` is publishing, and every merge to `main` is a paid Netlify production deploy. So there is one release day a week, and one merge per release.
+Merging to `main` is publishing, and every merge to `main` is a paid Netlify production deploy. So there is one release a week: the Weekly release workflow merges `staging` into `main` every Monday morning NZ time (D47). Merging a post's PR into `staging` schedules it for the next release.
 
-The yes names the posts: "Publish now: <slug>, <slug>". Johan says it in the session (playbook 8.6, gate 1).
+The yes names the posts: "Publish now: <slug>, <slug>". Johan says it in the session before the PR is merged into `staging` (playbook 8.6, gate 1). To publish before Monday, run the workflow by hand (Actions, Weekly release, Run workflow).
 
 ### 7. After publishing (Johan, with the agent)
 

@@ -36,7 +36,7 @@ Flow State (flowstate.net.nz) builds AI automation for NZ trade businesses. Joha
 - Never send messages, posts or emails to anyone without Johan's explicit go-ahead in the session.
 - Never type or store passwords. Johan logs in himself.
 - Tasks are GitHub Issues on `flowstate-web`, one per deliverable, each with an owner and a `Context:` line listing 1 to 3 docs.
-- Website changes go through PRs on `flowstate-web`; check the Netlify preview before merging.
+- Website changes go through PRs on `flowstate-web` into `staging`; check the Netlify preview or the `staging` branch deploy (staging--flowstate-nz.netlify.app) before merging. The Weekly release workflow merges `staging` into `main` (production) every Monday morning NZ time; an urgent fix can be released early by running it by hand. Changes under `.github/workflows/` go straight to `main` in a PR with "[skip netlify]" in the squash title (D47).
 - The "after" visibility run must repeat `docs/baseline/protocol.md` exactly (same questions, engines, modes, run count).
 
 ## Context rules
