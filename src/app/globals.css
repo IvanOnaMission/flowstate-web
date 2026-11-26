@@ -27,6 +27,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* clip does not force the other axis into a scroll container. */
+    overflow-x: clip;
   }
 
   body {
@@ -34,8 +36,7 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    /* Full-bleed hero sections must never make the page scroll sideways. */
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Never remove the focus ring — it is the only affordance a keyboard user
@@ -150,39 +151,90 @@
  * graded and blurred, so these rules only place them and lay a brand wash
  * over the top. Gold #f5cc47 with ink text is 9.87:1.
  */
+.home-hero {
+  overflow: hidden;
+}
+
 .home-hero-scrim {
   background: rgba(3, 16, 26, 0.84);
 }
 
+/* Full frame, slightly shorter than a cover crop, flush to the right.
+   The mask dissolves the left edge into the night ground. */
+.home-hero-photo {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .home-hero .home-hero-photo {
+    top: 3%;
+    height: 94%;
+    object-fit: contain;
+    object-position: right center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%);
+  }
+}
+
 @media (max-width: 767px) {
+  /* The portrait is 810×890. Show the whole frame under the type, on its
+     own band, so the headline never sits on the photo. */
   .home-hero .home-hero-scrim {
     background: linear-gradient(
-      180deg,
-      rgba(3, 16, 26, 0.92) 0%,
-      rgba(3, 16, 26, 0.88) 50%,
-      rgba(3, 16, 26, 0.6) 68%,
-      rgba(3, 16, 26, 0.15) 88%,
-      rgba(3, 16, 26, 0.35) 100%
+      to top,
+      rgba(3, 16, 26, 0.18) 0%,
+      rgba(3, 16, 26, 0.18) 6%,
+      rgba(3, 16, 26, 0.55) 14%,
+      rgba(3, 16, 26, 0.94) 28%,
+      rgba(3, 16, 26, 0.97) 42%,
+      #03101a 58%
     );
+  }
+
+  .home-hero > .bottom-0 {
+    height: 4.5rem;
+    background: linear-gradient(transparent, rgba(3, 16, 26, 0.35));
   }
 
   .home-hero .home-hero-photo {
     top: auto;
     bottom: 0;
-    height: 60%;
-    object-position: 68% 100%;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 810 / 890;
+    object-fit: cover;
+    object-position: center center;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 16%);
   }
 
   .home-hero .home-hero-copy {
-    padding-bottom: 34vh;
+    /* Drop the full-screen minimum so the portrait sits just under the type
+       instead of leaving a band of empty navy. */
+    min-height: 0;
+    padding-bottom: calc(109.9% + 1.25rem);
+  }
+
+  .home-hero .home-hero-copy > .flex-1 {
+    align-items: flex-start;
+    padding-top: 1.25rem;
+    padding-bottom: 0;
   }
 }
 
+/* One photo layer, the height of the section, anchored on the right.
+   aspect-ratio matches the file so the whole frame is visible (more of the
+   room than a cover crop) and the left edge fades into the section colour. */
 .fs-bg {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   background: #06283d;
 }
 
@@ -190,16 +242,23 @@
 .fs-bg::after {
   content: "";
   position: absolute;
-  inset: 0;
   pointer-events: none;
 }
 
 .fs-bg::before {
   z-index: 0;
-  background: #06283d var(--fs-photo) var(--fs-pos, center) / var(--fs-size, cover) no-repeat;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  aspect-ratio: var(--fs-ratio);
+  background: var(--fs-photo) center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
 }
 
 .fs-bg::after {
+  inset: 0;
   z-index: 1;
   background: var(--fs-overlay);
 }
@@ -211,74 +270,75 @@
 
 .fs-bg-ladder {
   --fs-photo: url("/assets/real/bg-ladder_02.jpg");
-  --fs-pos: center 20%;
+  --fs-ratio: 1.5;
   --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 0.9) 0%, rgba(6, 40, 61, 0.72) 32%, rgba(6, 40, 61, 0.28) 62%, rgba(6, 40, 61, 0.22) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.25) 55%, rgba(3, 16, 26, 0.9) 100%);
+    linear-gradient(90deg, rgba(6, 40, 61, 0.92) 0%, rgba(6, 40, 61, 0.78) 34%, rgba(6, 40, 61, 0.34) 58%, rgba(6, 40, 61, 0.16) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.2) 55%, rgba(3, 16, 26, 0.88) 100%);
 }
 
 .fs-bg-context {
   background: #0f4b70;
   --fs-photo: url("/assets/real/bg-context_05.jpg");
-  --fs-pos: right 20%;
+  --fs-ratio: 2.513;
   --fs-overlay:
-    linear-gradient(90deg, rgba(15, 75, 112, 0.95) 0%, rgba(15, 75, 112, 0.86) 34%, rgba(15, 75, 112, 0.4) 60%, rgba(15, 75, 112, 0.22) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.45) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.5) 100%);
-}
-
-.fs-bg-context::before {
-  filter: saturate(0.85);
+    linear-gradient(90deg, rgba(15, 75, 112, 0.96) 0%, rgba(15, 75, 112, 0.84) 36%, rgba(15, 75, 112, 0.32) 62%, rgba(15, 75, 112, 0.14) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.4) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.45) 100%);
 }
 
 .fs-bg-cta {
   --fs-photo: url("/assets/real/bg-cta_04.jpg");
-  --fs-pos: right 38%;
-  --fs-size: auto 125%;
+  --fs-ratio: 1.35;
   --fs-overlay:
-    linear-gradient(90deg, rgba(6, 40, 61, 1) 0%, rgba(6, 40, 61, 0.94) 30%, rgba(6, 40, 61, 0.62) 50%, rgba(6, 40, 61, 0.26) 72%, rgba(6, 40, 61, 0.3) 100%),
-    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 35%, rgba(3, 16, 26, 0.45) 100%);
+    linear-gradient(90deg, rgba(6, 40, 61, 0.98) 0%, rgba(6, 40, 61, 0.9) 32%, rgba(6, 40, 61, 0.4) 54%, rgba(6, 40, 61, 0.16) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.32) 0%, rgba(3, 16, 26, 0) 32%, rgba(3, 16, 26, 0.4) 100%);
 }
 
 @media (max-width: 767px) {
+  /* Photo sits in its own band under the copy. min-height keeps the very
+     wide context frame from collapsing into a thin strip; cover then crops
+     only the empty sides, with the people held in frame. */
   .fs-bg::before {
     top: auto;
+    right: 0;
     bottom: 0;
-    height: var(--fs-mh, 46%);
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: var(--fs-mh);
+    background-position: var(--fs-mpos, center 42%);
     background-size: cover;
-    background-position: var(--fs-mpos, center);
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 14%);
   }
 
   .fs-bg-ladder {
-    --fs-mh: 13rem;
-    --fs-mpos: 68% 18%;
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.25) 0%, rgba(6, 40, 61, 0) 60%, rgba(3, 16, 26, 0.18) 82%, rgba(3, 16, 26, 0.55) 100%);
+    --fs-mh: 15.5rem;
+    --fs-mpos: 70% 46%;
+    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
   }
 
   .fs-bg-context {
-    --fs-mh: 14rem;
-    --fs-mpos: 70% 25%;
-    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.15) 0%, rgba(15, 75, 112, 0) 55%, rgba(15, 75, 112, 0.12) 80%, rgba(3, 16, 26, 0.5) 100%);
+    --fs-mh: 15.5rem;
+    --fs-mpos: center 40%;
+    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
   }
 
   .fs-bg-cta {
-    --fs-size: cover;
-    --fs-mh: 14rem;
-    --fs-mpos: 52% 30%;
-    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 55%, rgba(3, 16, 26, 0.5) 100%);
+    --fs-mh: 16.5rem;
+    --fs-mpos: center 42%;
+    --fs-overlay: linear-gradient(180deg, transparent 0%, transparent 78%, rgba(3, 16, 26, 0.28) 100%);
   }
 
   .fs-bg-ladder > .shell {
-    padding-bottom: 16rem;
+    padding-bottom: calc(max(15.5rem, 100% / 1.5) + 2.75rem);
   }
 
   .fs-bg-context > .shell {
-    padding-bottom: 17rem;
+    padding-bottom: calc(max(15.5rem, 100% / 2.513) + 2.75rem);
   }
 
   .fs-bg-cta > .shell {
-    padding-bottom: 18rem;
+    padding-bottom: calc(max(16.5rem, 100% / 1.35) + 2.75rem);
   }
 }
 
