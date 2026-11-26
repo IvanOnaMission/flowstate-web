@@ -141,7 +141,7 @@
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Where should we send your plan?</h2>
-      <p>Your breakdown + what we'd build, straight to your inbox.</p>
+      <p>Your breakdown + what we'd build, and Ivan will be in touch.</p>
       <div class="field"><label>Name</label><input type="text" id="fName" placeholder="Jordan" /></div>
       <div class="field"><label>Email</label><input type="email" id="fEmail" placeholder="you@business.co.nz" /></div>
       <div class="field"><label>Phone</label><input type="tel" id="fPhone" placeholder="021 234 5678" /></div>
@@ -221,7 +221,6 @@
     function encode(o){ return Object.keys(o).map(function(k){ return encodeURIComponent(k)+'='+encodeURIComponent(o[k]); }).join('&'); }
     // Leads go to the Netlify form "audit" (registered on /audit-full/).
     function post(payload){
-      if (payload.kind) return;
       payload['form-name'] = 'audit';
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload),keepalive:true}).catch(function(){});
     }

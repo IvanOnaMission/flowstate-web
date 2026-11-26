@@ -17,7 +17,7 @@ export async function verifiedCalendlyBody(uri, apiToken, fetcher = fetch) {
   const event = EVENT_URI.test(String(invitee.event)) ? await get(invitee.event) : null;
   return {
     event: invitee.status === 'canceled' ? 'invitee.canceled' : 'invitee.created',
-    payload: {...invitee, scheduled_event: event ? {start_time: event.start_time} : undefined},
+    payload: {...invitee, scheduled_event: event ? {start_time: event.start_time, end_time: event.end_time} : undefined},
   };
 }
 
