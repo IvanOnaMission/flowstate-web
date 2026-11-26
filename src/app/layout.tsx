@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Flowstate helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",
+    "Flow State helps you rethink how that work gets done. We identify the repetitive steps AI could take on, build around your processes and information, and keep your judgement where it matters.",
   openGraph: {
     type: "website",
     locale: "en_NZ",
@@ -59,6 +59,7 @@ export default function RootLayout({
           "@type": "Organization",
           "@id": `${site.url}/#organization`,
           name: site.name,
+          alternateName: site.alternateName,
           url: site.url,
           email: site.email,
           telephone: site.phone,

@@ -1,6 +1,6 @@
 import AnswerPage, { answerMetadata } from "@/components/AnswerPage";
 
-// Ivan's answers Q5 and Q4 (D25 a, k). D16: never say Flowstate doesn't sell a receptionist, and
+// Ivan's answers Q5 and Q4 (D25 a, k). D16: never say Flow State doesn't sell a receptionist, and
 // never offer one as a product. Q4's caller split is described without numbers (no percentages).
 const page = {
   title: "AI receptionist and phone answering for NZ tradies and electricians",
@@ -12,7 +12,7 @@ const page = {
       a: [
         "It can answer and take the details, and then you or the office call back and book it.",
         "I wouldn't have it booking jobs straight into your calendar on its own, customers don't trust it with that yet and you lose control of the diary.",
-        "The way Flowstate sets things up, the AI captures the job and puts it in front of you, and you say yes.",
+        "The way Flow State sets things up, the AI captures the job and puts it in front of you, and you say yes.",
       ],
     },
     {

@@ -51,7 +51,7 @@ Claims the page will need, each with its source in `decisions.md`, `content/answ
 
 ## Question pack
 
-Five to eight questions for Ivan, one per line, numbered Q1, Q2 and so on. Each asks for something only Flowstate can say: a real job, a figure, a name Ivan can share, a date, a result. Never put an answer in the question.
+Five to eight questions for Ivan, one per line, numbered Q1, Q2 and so on. Each asks for something only Flow State can say: a real job, a figure, a name Ivan can share, a date, a result. Never put an answer in the question.
 
 ## How we'll check it worked
 

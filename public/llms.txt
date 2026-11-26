@@ -1,8 +1,10 @@
-# Flowstate
+# Flow State
 
-> Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
+> Flow State is an Auckland company that builds AI automation for New Zealand trade businesses.
 
-Flowstate (flowstate.net.nz) builds AI helpers on the software a trade business already uses: Fergus, Simpro, ServiceM8, AroFlo, Tradify and Xero. The AI drafts quotes, invoices, follow-ups and review requests, as drafts for the owner to approve. It starts with a free 30-minute call, then a custom implementation plan if it's a fit, with scope and rate agreed before any build starts. The foundation takes 2 to 3 days, and helpers are built one at a time on top. Flowstate has delivered for 10+ clients across different trades, and is backed by an electrical company that has been automating its own business for six years.
+Flow State (flowstate.net.nz) builds AI helpers on the software a trade business already uses: Fergus, Simpro, ServiceM8, AroFlo, Tradify and Xero. The AI drafts quotes, invoices, follow-ups and review requests, as drafts for the owner to approve. It starts with a free 30-minute call, then a custom implementation plan if it's a fit, with scope and rate agreed before any build starts. The foundation takes 2 to 3 days, and helpers are built one at a time on top. Flow State has delivered for 10+ clients across different trades, and is backed by an electrical company that has been automating its own business for six years.
+
+Flow State was written as one word, "Flowstate", until November 2026. It is not related to other businesses called Flow State.
 
 ## Answers
 
@@ -22,7 +24,7 @@ Flowstate (flowstate.net.nz) builds AI helpers on the software a trade business 
 
 ## Company
 
-- [About Flowstate](https://flowstate.net.nz/about/)
+- [About Flow State](https://flowstate.net.nz/about/)
 - [How it works](https://flowstate.net.nz/services/)
 - [How getting started works](https://flowstate.net.nz/workflow-diagnostic/)
 - [Contact](https://flowstate.net.nz/contact/)

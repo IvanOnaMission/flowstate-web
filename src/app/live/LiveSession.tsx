@@ -85,7 +85,7 @@ function calendarLinks() {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Flowstate//Live session//EN",
+    "PRODID:-//Flow State//Live session//EN",
     "BEGIN:VEVENT",
     `UID:live-session-${start}@flowstate.net.nz`,
     `DTSTAMP:${start}`,
@@ -569,9 +569,9 @@ export default function LiveSession() {
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
           <div className={styles.topRow}>
-            <Link href="/" className={live.logo} aria-label="Flowstate home">
+            <Link href="/" className={live.logo} aria-label="Flow State home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/live/flowstate-logo-light.svg" alt="Flowstate" width={96} height={40} />
+              <img src="/assets/live/flowstate-logo-light.svg" alt="Flow State" width={96} height={40} />
             </Link>
             <span className={duo.topRight}>
               <span className={styles.count} aria-live="polite">

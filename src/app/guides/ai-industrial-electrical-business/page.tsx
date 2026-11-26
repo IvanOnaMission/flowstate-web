@@ -5,7 +5,7 @@ import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
 const title = "AI for the work around industrial electrical projects.";
-const description = "Flowstate builds AI workflows around your processes and existing software. Your team reviews the output and keeps control of technical decisions.";
+const description = "Flow State builds AI workflows around your processes and existing software. Your team reviews the output and keeps control of technical decisions.";
 const path = "/guides/ai-industrial-electrical-business/";
 
 export const metadata: Metadata = {

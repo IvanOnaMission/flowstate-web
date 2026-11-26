@@ -5,7 +5,7 @@ import { ANSWERS_FORM, COVER, FORM_NAME } from "./pack";
 import { formFields } from "../essentials/questions";
 
 const path = "/pack/";
-const title = "Free AI systems pack for electrical businesses | Flowstate";
+const title = "Free AI systems pack for electrical businesses | Flow State";
 const description =
   "127 AI systems running inside an Auckland electrical business. What each one does, what it fixes and which to set up first. Join the waitlist.";
 

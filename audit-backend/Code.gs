@@ -1,5 +1,5 @@
 /**
- * Flowstate — Systemization Audit lead handler
+ * Flow State — Systemization Audit lead handler
  * Google Apps Script web app. Bound to the "Audit Leads" Google Sheet.
  *
  * Does three things on every audit submission:
@@ -16,7 +16,7 @@
 var OWNER_EMAIL  = 'ivan@barnettdigital.co';                 // where YOUR lead alerts go
 var BOOK_CALL_URL = 'https://calendly.com/barnettdigital/discovery_call';   // the "book a call" link in the lead's email
 var SHEET_NAME   = 'Leads';
-var FROM_NAME    = 'Ivan — Flowstate';
+var FROM_NAME    = 'Ivan — Flow State';
 
 function doPost(e) {
   try {
@@ -150,7 +150,7 @@ function proposalHtml(d) {
         '</td></tr>' +
         '<tr><td style="padding:20px 32px 4px;text-align:center;">' +
           '<div style="font-family:Georgia,\'Times New Roman\',serif;font-style:italic;font-size:22px;color:' + blue + ';">Systems will set you free.</div>' +
-          '<div style="color:#999;font-size:13px;margin-top:6px;">— Ivan, Flowstate</div>' +
+          '<div style="color:#999;font-size:13px;margin-top:6px;">— Ivan, Flow State</div>' +
         '</td></tr>' +
         '<tr><td style="padding:18px 32px 30px;">' +
           '<div style="border-top:1px solid #eee;padding-top:14px;color:#aaa;font-size:12px;line-height:1.5;">Numbers are estimates from typical NZ trades workflows — we nail down your real figures on the call.</div>' +

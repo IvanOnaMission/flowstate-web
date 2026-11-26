@@ -7,7 +7,7 @@ import CallButton from "@/components/CallButton";
 export const metadata: Metadata = {
   alternates: { canonical: "/services/" },
   openGraph: { url: "/services/", images: ["/assets/hero/workshop-hook.jpg"] },
-  title: "How getting started with Flowstate works",
+  title: "How getting started with Flow State works",
   description: "Book a free call, then a custom implementation plan. Scope and rate are agreed before any build starts, then an ongoing AI partnership.",
 };
 
@@ -19,7 +19,7 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <p className="eyebrow mb-5 text-atlantic">{"How it works"}</p>
           <h1 className="h-hero max-w-[24ch] text-ink">{"Start with the work that's getting held up."}</h1>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flow State builds and configures AI around your team’s processes, business knowledge and existing tools. We help reduce repetitive work, bring information together and keep work moving between people and systems."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We start by finding where AI could make the biggest difference, whether you work in industrial, commercial or residential electrical."}</p>
           <SoftwareExplanation />
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"1. Book a call"}</h2>

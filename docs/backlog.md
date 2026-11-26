@@ -26,13 +26,13 @@ All free (Decision B: free first; a DataForSEO volume pull is Ivan's call under 
 
 Folder note: the plan said `docs/data/2026-12/`. The exports were made on 26 Nov, so they sit in `docs/data/2026-11/`.
 
-Scoring (playbook 4.5 with the Flowstate adjustments):
+Scoring (playbook 4.5 with the Flow State adjustments):
 - **Demand (D):** 5 if Search Console shows impressions for the wording, 4 if only Bing does, otherwise 2 for an autocomplete or People also ask string (no volume data). Plus 1 if any listed wording is a "who can / how much / is it worth it" question (cost strings count), plus 1 if customer-sourced. Capped at 5.
-- **Gap (G):** 5 if Search Console shows position 11 to 30; 4 if measured anywhere else (Search Console outside that range, or Flowstate absent in the 26 Nov searches); 3 if unmeasured.
+- **Gap (G):** 5 if Search Console shows position 11 to 30; 4 if measured anywhere else (Search Console outside that range, or Flow State absent in the 26 Nov searches); 3 if unmeasured.
 - **Fit (F):** 2, plus 2 if the page's main question is a comparison or cost question, plus 1 if a live money page exists for it to feed.
 - **Proof gate:** no showable proof means parked, not scored. "Pending" means Ivan can supply it in the next interview, and the row says what to ask.
 - Ties go to measured evidence, then customer-sourced questions, then sourced proof over pending, then the number of wordings.
-- Gate likely to fail (playbook 2.2): 0 indexed, 1 retrieval (the engine doesn't read the page), 2 naming (it reads the page but doesn't name Flowstate). Every new page meets gate 0 first: 7 of the 19 live pages weren't on Bing yet on 26 Nov. The row gives the gate after that. "Other risk" covers the dedupe, D30 and proof checks.
+- Gate likely to fail (playbook 2.2): 0 indexed, 1 retrieval (the engine doesn't read the page), 2 naming (it reads the page but doesn't name Flow State). Every new page meets gate 0 first: 7 of the 19 live pages weren't on Bing yet on 26 Nov. The row gives the gate after that. "Other risk" covers the dedupe, D30 and proof checks.
 - Each string from the pull is listed under one row only; strings that belong to a live page are in the dedupe table instead.
 - Proposed slugs: 3 to 7 words, no year, no "best" (playbook 4.7). The brief settles the final slug.
 
@@ -61,7 +61,7 @@ Position is Google, 26 Nov (`research/third-party-sources-2026-11.md`).
 
 Reference only: nothing below is copied or paraphrased into our pages.
 
-| search | competitor page with a dedicated answer | Flowstate |
+| search | competitor page with a dedicated answer | Flow State |
 |---|---|---|
 | Q2 | automateai.co.nz `/industries/construction/`, strideai.co.nz `/tradesandconstruction/`, ez-ai.nz `/ai-for-construction-nz` | no trades-wide page |
 | Q6, S2 | ez-ai.nz `/simpro-automation-nz` (#4 on S2) | `/simpro-automation/` exists but doesn't rank |
@@ -116,12 +116,12 @@ Ties are ordered by the rule above. Rows 3, 5 and 6 overlap each other and row 1
 ### Row details
 
 **1. Which job software can you automate?** Money page: `/services/`. Linked from `/guides/job-software-or-custom-ai/`, `/fergus-automation/`, `/simpro-automation/`.
-- Wordings: GSC "job management systems" and "job management"; "best job management software for electricians nz"; "What is the best job management software for tradies?" (People also ask); "fergus integration" (the product strings "tradify integrations", "servicem8 automations" and "aroflo automation" are listed under rows 7, 9 and 13). The two GSC strings count because they are the head terms of this page's subject (job management software), and Google already shows Flowstate for them.
+- Wordings: GSC "job management systems" and "job management"; "best job management software for electricians nz"; "What is the best job management software for tradies?" (People also ask); "fergus integration" (the product strings "tradify integrations", "servicem8 automations" and "aroflo automation" are listed under rows 7, 9 and 13). The two GSC strings count because they are the head terms of this page's subject (job management software), and Google already shows Flow State for them.
 - Evidence: GSC "job management systems" 2 impressions at #3 and "job management" 1 impression at #26 (measured, 7 Sep to 24 Nov; the export doesn't show the landing page). Autocomplete and People also ask, 26 Nov (measured).
 - Scores: D 5 (GSC impressions for the wording "job management"), G 5 (#26 is inside 11 to 30), F 5 (comparison, feeds `/services/`). If Johan doesn't accept the two GSC strings as this page's wordings, it is D 2, G 4, so 40.
 - Proof: sourced. D25 (h) Fergus API, D25 (i) with D24 Simpro API and Jordan's business, D25 (j) with D14 Xero and AroFlo full API, Tradify by browser, any job software.
 - Gate likely to fail: 1, retrieval (Search Console already shows "job management" at #26, so ranking is the work).
-- Other risk: dedupe against `/guides/job-software-or-custom-ai/`, which shares "job software" but answers "software or custom AI". Keep this page to what each product lets Flowstate automate, not a product review. If Johan judges it too close, fold it into that guide instead.
+- Other risk: dedupe against `/guides/job-software-or-custom-ai/`, which shares "job software" but answers "software or custom AI". Keep this page to what each product lets Flow State automate, not a product review. If Johan judges it too close, fold it into that guide instead.
 
 **2. AI phone answering for electricians.** Money page: `/ai-receptionist-for-tradies/`. Linked from `/ai-for-electricians/`, `/ai-receptionist-for-tradies/`, `/questions/`.
 - Wordings: GSC "ai answering for electricians nz"; "ai receptionist for electricians"; "ai answering service tradies".
@@ -137,21 +137,21 @@ Ties are ordered by the rule above. Rows 3, 5 and 6 overlap each other and row 1
 - Scores: D 3 (2, plus 1 for "fergus vs tradify cost nz"), G 3, F 5.
 - Proof: sourced. D25 (h) Fergus API, D25 (j) Tradify through the browser, which can break.
 - Gate likely to fail: 1, retrieval (unmeasured).
-- Other risk: Fit in practice. The buyer is choosing software, which Flowstate doesn't sell, so the page has to stay on the automation angle. It also overlaps row 1.
+- Other risk: Fit in practice. The buyer is choosing software, which Flow State doesn't sell, so the page has to stay on the automation angle. It also overlaps row 1.
 
 **4. Is AI worth it for a trade business?** Money page: `/ai-automation-cost/`. Linked from `/ai-automation-cost/`, `/guides/where-to-start-with-ai/`, `/questions/`.
 - Wordings: "is ai worth it for a trade business nz"; "do i need ai in my business"; "how can ai help small businesses"; "is ai automation nz legit".
 - Evidence: autocomplete, 26 Nov (measured; no volume).
 - Scores: D 3 (2, plus 1 for "is it worth it"), G 3 (unmeasured), F 5 (cost question, feeds the cost page).
 - Proof: sourced. D25 (l) value = hours saved a week x hourly rate x 52, D25 (m) what it can't do, D25 (n) how builds are priced, with no figures (D06).
-- Gate likely to fail: 2, naming (cost and value pages get used without the business being named; name Flowstate inside each claim).
+- Gate likely to fail: 2, naming (cost and value pages get used without the business being named; name Flow State inside each claim).
 - Other risk: D06. The page must show the method, never a number or a percentage.
 
 **5. ServiceM8 vs Simpro: what you can automate.** Money page: `/simpro-automation/`. Linked from `/simpro-automation/`, `/guides/job-software-or-custom-ai/`.
 - Wordings: "servicem8 vs simpro"; "servicem8 vs simpro integration"; "servicem8 vs simpro cost comparison".
 - Evidence: autocomplete, 26 Nov (measured).
 - Scores: D 3 (2, plus 1 for "servicem8 vs simpro cost comparison"), G 3, F 5.
-- Proof: pending. Ask Ivan what ServiceM8's API allows, and whether Flowstate has built on it.
+- Proof: pending. Ask Ivan what ServiceM8's API allows, and whether Flow State has built on it.
 - Gate likely to fail: 1, retrieval (unmeasured).
 - Other risk: proof.
 
@@ -175,7 +175,7 @@ Ties are ordered by the rule above. Rows 3, 5 and 6 overlap each other and row 1
 - Wordings: "invoice follow up automation cost nz"; "how to follow up on an invoice"; "how to automate invoices"; "invoice automation software".
 - Evidence: autocomplete (measured).
 - Scores: D 3 (2, plus 1 for "invoice follow up automation cost nz"), G 3, F 3 (the page's main question is how to automate it, not cost).
-- Proof: partly sourced. D25 (c) covers drafting invoices in Xero or the job software, but chasing unpaid invoices isn't sourced. Ask Ivan whether Flowstate chases overdue invoices, and how.
+- Proof: partly sourced. D25 (c) covers drafting invoices in Xero or the job software, but chasing unpaid invoices isn't sourced. Ask Ivan whether Flow State chases overdue invoices, and how.
 - Gate likely to fail: 1, retrieval (unmeasured).
 - Other risk: proof.
 
@@ -183,7 +183,7 @@ Ties are ordered by the rule above. Rows 3, 5 and 6 overlap each other and row 1
 - Wordings: "servicem8 automations"; "best servicem8 automations nz"; "servicem8 recurring jobs"; "servicem8 automation vs tradify"; "servicem8 automation costs nz".
 - Evidence: autocomplete (measured). servicem8.com appears on 4 of the 16 searches (measured).
 - Scores: D 3 (2, plus 1 for "servicem8 automation costs nz"), G 3, F 3.
-- Proof: pending. D25 (j) with D14 says ServiceM8 counts and Flowstate works with any job management software, but unlike AroFlo (full API, row 13) nothing sourced says what ServiceM8 lets Flowstate automate. Ask Ivan what ServiceM8 allows and for a client example.
+- Proof: pending. D25 (j) with D14 says ServiceM8 counts and Flow State works with any job management software, but unlike AroFlo (full API, row 13) nothing sourced says what ServiceM8 lets Flow State automate. Ask Ivan what ServiceM8 allows and for a client example.
 - Gate likely to fail: 1, retrieval (unmeasured).
 - Other risk: proof.
 
@@ -197,15 +197,15 @@ Ties are ordered by the rule above. Rows 3, 5 and 6 overlap each other and row 1
 
 **11. AI automation for NZ trade businesses.** Money page: `/services/`. Linked from `/`, `/ai-for-electricians/`, `/guides/where-to-start-with-ai/`.
 - Wordings: Q2 "Best AI automation company for tradies in New Zealand"; "ai automation for tradies"; "best ai for tradies"; "ai tools for tradies"; "best ai for tradesmen".
-- Evidence: Flowstate absent on Q2, Google and Bing, 26 Nov (measured). Autocomplete (measured). Context, not scored: the old URL `/ai-for-trades-businesses/` had 15 impressions at #16.3 and now returns 404 (GSC pages export, measured); that is page-level data, and the queries export has no trades-wide wording, so it doesn't count under the scoring method.
+- Evidence: Flow State absent on Q2, Google and Bing, 26 Nov (measured). Autocomplete (measured). Context, not scored: the old URL `/ai-for-trades-businesses/` had 15 impressions at #16.3 and now returns 404 (GSC pages export, measured); that is page-level data, and the queries export has no trades-wide wording, so it doesn't count under the scoring method.
 - Scores: D 2 (no listed wording is a who can, how much or is it worth it question; "who can automate my trade business nz" belongs to the live Q1 pages, dedupe table), G 4 (absent on Q2, measured), F 3 (feeds `/services/`).
 - Proof: sourced, except D12. D13 ("10+ clients", "six years" for the electrical company), D25 (e) and (p). D12 (the Auckland client) is pending until Ivan answers whether that business is Jordan's own (`status.md`, Questions for Ivan); if it is, "client" is wrong.
 - Gate likely to fail: 1, retrieval (absent on Q2; engines read competitor trade pages).
-- Other risk: D30 similarity with `/` and `/ai-for-electricians/`. Needs its own material, such as which trades Flowstate has built for, from Ivan. Reusing the old slug recovers the 404 (adjacent issue A1).
+- Other risk: D30 similarity with `/` and `/ai-for-electricians/`. Needs its own material, such as which trades Flow State has built for, from Ivan. Reusing the old slug recovers the 404 (adjacent issue A1).
 
 **12. AI automation in Auckland.** Money page: `/services/`. Linked from `/`, `/about/`, `/contact/`.
 - Wordings: Q10 "AI automation agency Auckland"; "ai automation auckland"; "ai consultant auckland"; "best ai consultant nz auckland"; "ai automation agency nz".
-- Evidence: Flowstate absent on Q10, Google and Bing, 26 Nov; three baseline competitors have Auckland pages (measured). Autocomplete (measured).
+- Evidence: Flow State absent on Q10, Google and Bing, 26 Nov; three baseline competitors have Auckland pages (measured). Autocomplete (measured).
 - Scores: D 2 (no listed wording is a who can, how much or is it worth it question; "ai automation nz costs" belongs to `/ai-automation-cost/`, dedupe table), G 4, F 3.
 - Proof: pending. It rests on D12 alone (Auckland electrical business, "150 reviews in three months"; the "95%" figure can't go on a public page, D06), and Ivan hasn't yet said whether that business is Jordan's own (`status.md`, Questions for Ivan).
 - Gate likely to fail: 1, retrieval (three competitors already have Auckland pages).

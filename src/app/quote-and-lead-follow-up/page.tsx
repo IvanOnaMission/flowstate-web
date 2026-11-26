@@ -9,8 +9,8 @@ const page = {
     {
       q: "Who can set up AI to follow up quotes and leads for a NZ tradie?",
       a: [
-        "Flowstate sets this up for trade businesses. New enquiries get a reply drafted within minutes, asking the right questions, and quotes with no reply get followed up at 3 and 7 days until the customer answers.",
-        "Flowstate sets these up as drafts first that you approve, then once you trust it you can switch it to send on its own. It stops as soon as someone replies or says stop.",
+        "Flow State sets this up for trade businesses. New enquiries get a reply drafted within minutes, asking the right questions, and quotes with no reply get followed up at 3 and 7 days until the customer answers.",
+        "Flow State sets these up as drafts first that you approve, then once you trust it you can switch it to send on its own. It stops as soon as someone replies or says stop.",
       ],
     },
     {
