@@ -37,8 +37,13 @@ footer a{color:var(--muted)}
 [hidden]{display:none!important}
 @media(min-width:700px){.actions{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding-top:48px}}
 </style>
+<script>
+/* Keep Calendly's booking ids out of the address bar before the pixel reads the page URL. */
+(function(){var q=new URLSearchParams(location.search);window.qmBooking={event:q.get('event')||'',invitee:q.get('invitee')||''};
+if(q.has('event')||q.has('invitee')){q.delete('event');q.delete('invitee');var r=q.toString();history.replaceState(null,'',location.pathname+(r?'?'+r:'')+location.hash);}})();
+</script>
 <script src="/assets/quoting/analytics.js?v=3" defer></script>
-<script src="/assets/quoting/quote-machine-booked.js?v=1" defer></script>
+<script src="/assets/quoting/quote-machine-booked.js?v=2" defer></script>
 </head>
 <body>
 <div class="wrap">

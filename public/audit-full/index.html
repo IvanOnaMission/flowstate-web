@@ -189,7 +189,7 @@
       <div class="combined">Together, that's <strong id="rTotal">$0</strong> a year on the table.</div>
       <div class="propose">
         <div class="k">Your custom plan is on its way</div>
-        <div class="v">Check your inbox 📥</div>
+        <div class="v">Ivan will be in touch</div>
       </div>
       <p style="text-align:center; font-family:var(--bd-font-editorial); font-style:italic; font-size:23px; color:var(--bd-accent); margin-top:26px;">Systems will set you free.</p>
       <p class="foot-note">Estimates based on typical NZ trades workflows — your real numbers get nailed down in the plan we send you.</p>
@@ -202,13 +202,14 @@
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Where should we send your plan?</h2>
-      <p>Your full breakdown + the build roadmap, straight to your inbox. Takes 10 seconds.</p>
+      <p>Your full breakdown + the build roadmap. Ivan will be in touch. Takes 10 seconds.</p>
       <!-- Netlify Forms detection form (hidden, static) -->
       <form name="audit" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="name" /><input type="email" name="email" /><input type="text" name="business" />
         <input type="tel" name="phone" />
         <input type="text" name="hrs_leaking" /><input type="text" name="dollars_leaking" /><input type="text" name="proposal" />
         <input type="text" name="missing_systems" /><input type="text" name="employees" /><input type="text" name="hourly_rate" /><input type="text" name="db_size" /><input type="text" name="avg_job" />
+        <input type="text" name="time_leaking" /><input type="text" name="revenue_leaking" /><input type="text" name="ai_opportunities" /><input type="text" name="top_leaks" /><input type="text" name="top_priority" /><input type="text" name="kind" />
       </form>
       <div class="field"><label>Your name</label><input type="text" id="fName" placeholder="Jordan" /></div>
       <div class="field"><label>Email</label><input type="email" id="fEmail" placeholder="you@business.co.nz" /></div>
@@ -321,7 +322,6 @@
     // ---- Config ----
     // After deploying the Apps Script (audit-backend/Code.gs), paste its web-app URL here.
     // Until then, leads fall back to Netlify Forms so nothing is lost.
-    var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxJyBLRD0UhYxqJP537IRSCRTsTy7Xdct-1Q_Uz5OEIS5N991q90pFzKCr6kLxQdb-ng/exec';
 
     // ---- Calc constants ----
     var REACT = 0.01;     // 1% of database reactivated / month (conservative)
@@ -416,21 +416,9 @@
         proposal: fmt(n.proposal) + '/yr',
         missing_systems: missing, ai_opportunities: aiOpps, top_leaks: topLeaks, employees: document.getElementById('employees').value, hourly_rate: n.rate, db_size: n.db, avg_job: n.avg
       };
-      // Send the lead. If the Apps Script endpoint is set, use it (stores in your Sheet + emails the
-      // proposal + alerts you). Otherwise fall back to Netlify Forms so leads are never lost.
-      if (LEAD_ENDPOINT) {
-        try {
-          var fd = new FormData();
-          Object.keys(payload).forEach(function(k){ fd.append(k, payload[k]); });
-          navigator.sendBeacon(LEAD_ENDPOINT, fd);
-        } catch (e2) {
-          fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) });
-        }
-        unlock();
-      } else {
-        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) })
-          .then(function(){ unlock(); }).catch(function(){ unlock(); /* still reveal — don't punish the user for a network hiccup */ });
-      }
+      // Send the lead to Netlify Forms.
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: encode(payload) })
+        .then(function(){ unlock(); }).catch(function(){ unlock(); /* still reveal — don't punish the user for a network hiccup */ });
     });
 
     function unlock(){

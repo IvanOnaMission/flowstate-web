@@ -146,3 +146,13 @@ test('opportunity listing keeps the updatedAt lower bound',async()=>{
  rows.opportunities.set('new',{id:'new',updatedAt:'2026-11-01T00:00:00.000Z',sourceRecordKind:'DUPLICATE'});
  assert.deepEqual((await listOpportunities({since:'2026-10-01T00:00:00.000Z'})).map(row=>row.id),['new']);
 });
+test('a later form adds missing details but never replaces saved type, ad or click ids',async()=>{
+ const fbclid='AbCdEfGhIjKlMnOpQrStUvWxYz1234567890',other='ZzCdEfGhIjKlMnOpQrStUvWxYz1234567890';
+ await twentyLead({email:'keep@example.test',name:'Keep',customerType:'electrical_owner',adId:'120249982198220753',fbclid});
+ const op=await twentyLead({email:'keep@example.test',name:'Attacker',customerType:'unknown_type',adId:'999999999999',fbclid:other});
+ const saved=rows.opportunities.get(op.id);
+ assert.equal(saved.sourceAdId,'120249982198220753');assert.equal(saved.fbclid,fbclid);assert.equal(saved.trade,'Electrical');
+});
+test('an invalid email never reaches a CRM filter',async()=>{
+ await assert.rejects(()=>twentyLead({email:'x"],or(id[neq]:"'}),/valid email/);assert.equal(calls.length,0);
+});

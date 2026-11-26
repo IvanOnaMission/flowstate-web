@@ -19,20 +19,24 @@ async function request(path,method='GET',data){return (await requestFull(path,me
 let metaFieldWarning=false;
 // Optional opportunity fields. A workspace without them keeps the lead; the
 // marketing record still stores the same keys.
-export async function rememberMetaMatch(id,input={}){
+// Keys already on the record are kept: a later form can't swap someone's attribution.
+export async function rememberMetaMatch(id,input={},existing={}){
  const match=acceptedMatch({meta_lead_id:input.metaLeadId||input.meta_lead_id,fbclid:input.fbclid,fbc:input.fbc,fbp:input.fbp});
  const update={};
  if(match.meta_lead_id)update.metaLeadId=match.meta_lead_id;
  if(match.fbclid)update.fbclid=match.fbclid;
  if(match.fbc)update.fbc=match.fbc;
  if(match.fbp)update.fbp=match.fbp;
+ for(const key of Object.keys(update))if(existing[key])delete update[key];
  if(!id||!Object.keys(update).length)return;
  try{await request('/opportunities/'+id,'PATCH',update);}
  catch(error){if(!metaFieldWarning){metaFieldWarning=true;console.error('Twenty did not store Meta match fields ('+(error.status||'error')+'). They remain on the marketing lead.');}}
 }
 const filter=(field,value)=>encodeURIComponent(`${field}[eq]:${JSON.stringify(value)}`);
 const findOne=async path=>{try{return await request(path);}catch(error){if(error.status===404)return null;throw error;}};
+const validEmail=email=>emailKey(email).length<=200&&/^[^\s@"\\]+@[^\s@"\\]+\.[^\s@"\\]+$/.test(emailKey(email));
 async function findOpportunity(email){
+ if(!validEmail(email))throw new Error('Twenty CRM lookup needs a valid email');
  const rows=(await request('/opportunities?filter='+filter('emailLookup',emailKey(email))+'&limit=60')).opportunities;
  return rows.find(r=>r.sourceRecordKind!=='DUPLICATE'&&r.sourceRecordKind!=='TEST')||null;
 }
@@ -67,12 +71,13 @@ export async function twentyLead(input){
  if(!input.email)return;
  const op=await ensureOpportunity(input),kind=normaliseCustomerType(input.customerType),date=today();
  const update={nextAction:'Call within 5 minutes',nextActionDate:date+'T00:00:00Z',lastTouch:date};
- if(kind!=='unknown')update.customerType=selectValue(CUSTOMER_LABELS[kind]);
- if(/^\d{8,30}$/.test(input.adId||''))update.sourceAdId=input.adId;
- if(kind==='electrical_owner')update.trade='Electrical';
+ // A public form can add these to a record, never replace what is already there.
+ if(kind!=='unknown'&&!op.customerType)update.customerType=selectValue(CUSTOMER_LABELS[kind]);
+ if(!op.sourceAdId&&/^\d{8,30}$/.test(input.adId||''))update.sourceAdId=input.adId;
+ if(kind==='electrical_owner'&&!op.trade)update.trade='Electrical';
  await request('/opportunities/'+op.id,'PATCH',update);
  await followUp(op,update.nextAction,date);
- await rememberMetaMatch(op.id,input);
+ await rememberMetaMatch(op.id,input,op);
  return op;
 }
 export async function twentyBooked(input){
@@ -106,7 +111,7 @@ export async function twentyMetaLead(input){
   Object.assign(update,{nextAction:'Call within 5 minutes',nextActionDate:date+'T00:00:00Z',lastTouch:date});
  }
  if(Object.keys(update).length)await request('/opportunities/'+op.id,'PATCH',update);
- await rememberMetaMatch(op.id,{metaLeadId:input.metaLeadId||input.id,fbclid:input.fbclid,fbc:input.fbc,fbp:input.fbp});
+ await rememberMetaMatch(op.id,{metaLeadId:input.metaLeadId||input.id,fbclid:input.fbclid,fbc:input.fbc,fbp:input.fbp},op);
  return op;
 }
 export async function twentyMetaAnswers({email,name,phone,id,answers=[],at,ad_id,progress=false,channel,crm_ref,questionnaire}){

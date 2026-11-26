@@ -15,11 +15,22 @@
 [functions]
   directory = "netlify/functions"
 
+# Baseline browser protections for every page. Netlify already serves HSTS on HTTPS.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
 [[headers]]
   for = "/ads/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
+    # The dashboard holds a signed-in session: allow only its own scripts and the Supabase login.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'"
 
 # Static export writes /about/index.html etc, so Netlify's default
 # pretty-URL handling is enough — no redirects needed for the app routes.

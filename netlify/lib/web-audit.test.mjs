@@ -5,7 +5,7 @@ import {flushAuditDigests, QUIET_MS} from './meta-audit-chat.mjs';
 
 function memory() {
   const map=new Map();let version=0;
-  return {map,async get(k){return structuredClone(map.get(k)?.data||null);},
+  return {map,async delete(k){map.delete(k);},async get(k){return structuredClone(map.get(k)?.data||null);},
     async getWithMetadata(k){return structuredClone(map.get(k)||null);},
     async setJSON(k,data,options={}){const old=map.get(k);if(options.onlyIfNew&&old||options.onlyIfMatch&&old?.etag!==options.onlyIfMatch)return {modified:false};const etag=String(++version);map.set(k,{data:structuredClone(data),etag});return {modified:true,etag};},
     list({prefix=''}={}){const blobs=[...map.keys()].filter(k=>k.startsWith(prefix)).map(key=>({key}));return {[Symbol.asyncIterator]:async function*(){yield {blobs};}};}};
@@ -79,4 +79,27 @@ test('starting a different enquiry clears only the browser session and preserves
   const {store,handler,cookie}=await setup();await handler(request({action:'answer',index:0,choice:0},cookie));
   const reset=await handler(request({action:'restart'},cookie));assert.equal(reset.status,200);assert.equal((await reset.json()).saved,false);assert.match(reset.headers.get('set-cookie'),/Max-Age=0/);
   assert.equal((await store.get(key)).lead.email,details.email);assert.equal((await store.get(key)).lead.answers[0].answer,'Electrical');assert.equal((await (await handler(request())).json()).saved,false);
+});
+
+test('new enquiries are rate limited per IP and per email; existing ones are not',async()=>{
+  const store=memory();const handler=createWebAuditHandler({store,save:async()=>true,now:()=>1000});
+  const ip={'x-nf-client-connection-ip':'203.0.113.9'};const post=(n,email)=>handler(request({...details,nonce:n.repeat(64),email},'',ip));
+  for(const [i,n] of ['1','2','3','4','5'].entries())assert.equal((await post(n,`p${i}@example.test`)).status,201);
+  assert.equal((await post('6','p6@example.test')).status,429);
+  assert.equal((await post('1','p0@example.test')).status,200);
+  const other=createWebAuditHandler({store,save:async()=>true,now:()=>1000});
+  for(const n of ['7','8','9'])assert.equal((await other(request({...details,nonce:n.repeat(64)}))).status,201);
+  assert.equal((await other(request({...details,nonce:'c'.repeat(64)}))).status,429);
+  assert.equal([...store.map.keys()].some(k=>k.includes('203.0.113.9')||k.includes('example.test')),false);
+});
+
+test('delivered enquiries are deleted after they expire; undelivered ones are kept',async()=>{
+  const {store}=await setup();const effects={tracking:async()=>{},kit:async()=>{}};
+  await flushWebAuditEffects({store,effects,now:2000});assert.ok(await store.get(key));
+  const late=1000+8*86400000;
+  await flushWebAuditEffects({store,effects,now:late});assert.ok(await store.get(key),'kept until Telegram has it');
+  await flushAuditDigests({store,now:late,send:async()=>({message_id:9})});
+  const result=await flushWebAuditEffects({store,effects,now:late});
+  assert.equal(result.purged,1);assert.equal(await store.get(key),null);
+  assert.equal([...store.map.keys()].filter(k=>k.startsWith('rate:')).length,0);
 });

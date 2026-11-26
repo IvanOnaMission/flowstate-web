@@ -141,7 +141,7 @@
   <div class="overlay" id="overlay">
     <div class="modal">
       <h2>Where should we send your plan?</h2>
-      <p>Your breakdown + what we'd build, straight to your inbox.</p>
+      <p>Your breakdown + what we'd build, and Ivan will be in touch.</p>
       <div class="field"><label>Name</label><input type="text" id="fName" placeholder="Jordan" /></div>
       <div class="field"><label>Email</label><input type="email" id="fEmail" placeholder="you@business.co.nz" /></div>
       <div class="field"><label>Phone</label><input type="tel" id="fPhone" placeholder="021 234 5678" /></div>
@@ -153,7 +153,6 @@
 
   <script>
     // tick = "this still eats my time" → AI takes it off your plate (ticked items ADD up).
-    var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxJyBLRD0UhYxqJP537IRSCRTsTy7Xdct-1Q_Uz5OEIS5N991q90pFzKCr6kLxQdb-ng/exec';
     var BASELINE = 5, REACT = 0.01, UNLOCKED = false, leadSent = false, LEAD = {};
     var ITEMS = [
       {n:'Answering calls & missed calls', ai:'AI phone / voice receptionist answers + logs them', h:1},
@@ -220,10 +219,10 @@
     });
 
     function encode(o){ return Object.keys(o).map(function(k){ return encodeURIComponent(k)+'='+encodeURIComponent(o[k]); }).join('&'); }
+    // Leads go to the Netlify form "audit" (registered on /audit-full/).
     function post(payload){
-      if (!LEAD_ENDPOINT) return;
-      try { var fd=new FormData(); Object.keys(payload).forEach(function(k){ fd.append(k,payload[k]); }); navigator.sendBeacon(LEAD_ENDPOINT, fd); }
-      catch(e){ fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)}); }
+      payload['form-name'] = 'audit';
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload),keepalive:true}).catch(function(){});
     }
     function sendLead(){
       if (leadSent || !LEAD.email) return; leadSent = true;

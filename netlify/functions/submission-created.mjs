@@ -14,6 +14,11 @@ import {addToKit, crmLead, crmQuiz, safely} from '../lib/crm.mjs';
 import {quizAnswers, quizContact, verifiedQuizBooking} from '../lib/booking-quiz.mjs';
 import {aboutLead} from '../lib/about.mjs';
 import {clean, formLeadMessage} from '../lib/messages.mjs';
+// Only a well-formed address goes on to Kit, the CRM lookup and the holding list.
+const cleanEmail = value => {
+  const email = clean(value);
+  return email.length <= 200 && /^[^\s@"\\]+@[^\s@"\\]+\.[^\s@"\\]+$/.test(email) ? email : '';
+};
 import {holdLead, updateHeldLead} from '../lib/pending.mjs';
 import {OFFER as QUOTE_MACHINE, sourceLine} from '../lib/quote-machine.mjs';
 import {sendAlert, sendContact} from '../lib/telegram.mjs';
@@ -59,7 +64,7 @@ export default async (req) => {
   const answerPage = ANSWER_FORMS.get(formName);
   if (answerPage) {
     // The optional questions after a live-session or pack signup. Never a new lead or a second alert.
-    const contact = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone)};
+    const contact = {email: cleanEmail(data.email), name: clean(data.name), phone: clean(data.phone)};
     const answers = answerPage.answers(data);
     if (!answers.length) return new Response('no answers', {status: 200});
     const customerType = answerPage.customerType(data);
@@ -84,7 +89,7 @@ export default async (req) => {
   const live = formName === LIVE_FORM;
   const pack = formName === PACK_FORM;
   const customerType = essentials ? essentialsCustomerType(data) : live || pack ? undefined : data.customer_type;
-  const lead = {email: clean(data.email), name: clean(data.name), phone: clean(data.phone),
+  const lead = {email: cleanEmail(data.email), name: clean(data.name), phone: clean(data.phone),
     ...(quoteMachine ? {offer: QUOTE_MACHINE, source: sourceLine(data)} : {}),
     ...(essentials ? {offer: ESSENTIALS, quiz: essentialsAnswers(data)} : {}),
     ...(live ? {offer: LIVE, extra: LIVE_EXTRA, headline: LIVE_HEADLINE} : {}),

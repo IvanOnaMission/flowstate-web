@@ -13,6 +13,17 @@ export const webLeadKey=nonce=>'lead:web:'+createHash('sha256').update(nonce).di
 const clean=value=>String(value??'').replace(/\s+/g,' ').trim();
 const json=(status,body,headers={})=>new Response(JSON.stringify(body),{status,headers:{'content-type':'application/json','cache-control':'no-store','X-Robots-Tag':'noindex, nofollow',...headers}});
 const tokenOf=request=>request.headers.get('cookie')?.match(/(?:^|;\s*)__Host-fs-audit=([a-f0-9]{64})(?:;|$)/)?.[1];
+// New enquiries per client IP per hour and per email per day. Keys hold a hash, never the raw value.
+const RATE={ip:{limit:5,window:3600000},email:{limit:3,window:86400000}};
+async function overLimit(db,kind,value,time){
+  if(!value)return false;
+  const {limit,window}=RATE[kind],slot=Math.floor(time/window);
+  const key=`rate:${kind}:${createHash('sha256').update(String(value)).digest('hex')}:${slot}`;
+  const used=(await db.get(key,{type:'json'}))?.n||0;
+  if(used>=limit)return true;
+  await db.setJSON(key,{n:used+1,until:(slot+1)*window});
+  return false;
+}
 const view=state=>({saved:true,eventId:state.lead.id,index:state.index,answered:state.lead.answers.filter(a=>a.answer!=='Not answered').length,finished:state.index===10,question:state.index<10?META_AUDIT_QUESTIONS[state.index]:null,test:state.test===true});
 
 function contactInput(data,now){
@@ -53,6 +64,7 @@ export function createWebAuditHandler({store=auditChatStore,save=twentyMetaProgr
           let state=await db.get(key,{type:'json'});
           if(state&&(state.lead.email!==lead.email||state.lead.name!==lead.name||state.lead.phone!==lead.phone)){response=json(409,{error:'Please reload and start a new enquiry.'});return;}
           const fresh=!state;
+          if(!state&&(await overLimit(db,'ip',request.headers.get('x-nf-client-connection-ip'),time)||await overLimit(db,'email',lead.email,time))){response=json(429,{error:'Too many enquiries. Please try again later, or call us.'});return;}
           if(!state){
             state={lead,index:0,startedAt:time,lastActivity:time,expiresAt:time+LIFETIME,revision:0,notifiedRevision:-1,crmDirty:true,test:lead.name.startsWith('[TEST]')&&lead.email.endsWith('@example.invalid'),webEffectsDone:{}};
             await db.setJSON(key,state,{onlyIfNew:true});
@@ -105,7 +117,7 @@ const liveEffects={
   capi:lead=>sendCrmEvent({eventName:'Lead',eventTime:lead.at,email:lead.email,phone:lead.phone,name:lead.name,fbclid:lead.fbclid,fbc:lead.fbc,fbp:lead.fbp,test:lead.name?.startsWith('[TEST]')&&lead.email?.endsWith('@example.invalid')}),
 };
 export async function flushWebAuditEffects({store=auditChatStore(),effects=liveEffects,now=Date.now()}={}){
-  let failed=0;
+  let failed=0;const purged=[];
   for await(const {blobs} of store.list({prefix:'lead:web:',paginate:true}))for(const {key} of blobs){
     await withAuditLeadLease(store,key,now,async()=>{
       const state=await store.get(key,{type:'json'});if(!state)return;
@@ -119,7 +131,14 @@ export async function flushWebAuditEffects({store=auditChatStore(),effects=liveE
         }
         catch{failed++;}
       }
+      // Privacy: once the enquiry has expired and reached the CRM, Telegram and every service, drop the copy here.
+      const delivered=!state.crmDirty&&state.notifiedRevision===state.revision&&['tracking','kit',...(effects.capi?['capi']:[])].every(stage=>state.webEffectsDone[stage]||typeof effects[stage]!=='function');
+      if(state.expiresAt<=now&&delivered){await store.delete(key);purged.push(key);}
     });
   }
-  return {failed};
+  for(const key of purged)await store.delete('lock:'+key);
+  for await(const {blobs} of store.list({prefix:'rate:',paginate:true}))for(const {key} of blobs){
+    const entry=await store.get(key,{type:'json'});if(!entry||entry.until<=now)await store.delete(key);
+  }
+  return {failed,purged:purged.length};
 }

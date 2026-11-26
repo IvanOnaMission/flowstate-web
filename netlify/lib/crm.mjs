@@ -14,7 +14,7 @@ async function kit(path, body) {
     headers: {'content-type': 'application/json', 'x-kit-api-key': process.env.KIT_API_KEY},
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`Kit ${path} ${res.status} ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`Kit ${path.split('?')[0]} ${res.status}`); // The body can echo the subscriber's email.
 }
 
 export async function addToKit({email, name, phone, tagId, tagIds = [], sequenceIds = []}) {

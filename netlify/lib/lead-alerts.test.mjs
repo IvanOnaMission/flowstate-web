@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {contactCard, dialable} from './telegram.mjs';
 import {dueLeads, holdLead, leadKey, releaseLead} from './pending.mjs';
 import {bookedMessage, formLeadMessage, quietCalendlyEvent} from './messages.mjs';
-import {pageSummary, workDomain} from './about.mjs';
+import {aboutLead, pageSummary, workDomain} from './about.mjs';
 
 function fakeStore() {
   const map = new Map();
@@ -134,4 +134,27 @@ test('Kit keeps the existing lead tag while adding the separate booking-reminder
     globalThis.fetch = oldFetch;
     if (oldKey === undefined) delete process.env.KIT_API_KEY; else process.env.KIT_API_KEY = oldKey;
   }
+});
+
+test('a second form with the same email does not replace the lead already waiting', async () => {
+  const s = fakeStore();
+  await holdLead({name: 'Jane', email: 'jane@example.com', phone: '021'}, s);
+  await holdLead({name: 'Someone else', email: 'JANE@example.com', phone: '029', offer: 'Quote Machine'}, s);
+  const [{lead}] = await dueLeads(0, s);
+  assert.equal(lead.name, 'Jane'); assert.equal(lead.phone, '021'); assert.equal(lead.offer, 'Quote Machine');
+});
+
+test('the website check refuses redirects to internal or plain-http addresses and caps what it reads', async () => {
+  const original = globalThis.fetch, seen = [];
+  const page = (status, headers, body = '') => new Response(body, {status, headers});
+  try {
+    for (const location of ['http://acme.co.nz/', 'https://169.254.169.254/latest', 'https://localhost/', 'https://acme.co.nz:8443/']) {
+      globalThis.fetch = async (u, opts) => { seen.push(String(u)); assert.equal(opts.redirect, 'manual'); return page(301, {location}); };
+      const lines = await aboutLead({email: 'a@acme.co.nz'});
+      assert.match(lines[0], /couldn't read the website/);
+    }
+    assert.ok(seen.every(u => u === 'https://acme.co.nz/'));
+    globalThis.fetch = async () => page(200, {'content-type': 'text/html'}, '<title>Acme</title>' + 'x'.repeat(500_000));
+    assert.deepEqual((await aboutLead({email: 'a@acme.co.nz'})).slice(0, 2), ['Website: acme.co.nz', 'Acme']);
+  } finally { globalThis.fetch = original; }
 });

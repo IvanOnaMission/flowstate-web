@@ -28,13 +28,39 @@ export function pageSummary(html) {
   return {title: clean(decode(title), 120), description: clean(decode(description), 300)};
 }
 
+// Follows at most 3 redirects, each to a public https name (no IP literals, no localhost),
+// and stops reading after 200 KB, so a lead's email can't point the check somewhere internal.
+const publicHttps = u => u.protocol === 'https:' && !u.port && /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(u.hostname) && !/^[\d.]+$/.test(u.hostname);
+async function readCapped(res, limit = 200_000) {
+  const reader = res.body?.getReader();
+  if (!reader) return '';
+  const chunks = [];
+  let size = 0;
+  while (size < limit) {
+    const {done, value} = await reader.read();
+    if (done) break;
+    chunks.push(value); size += value.length;
+  }
+  await reader.cancel().catch(() => {});
+  return Buffer.concat(chunks).subarray(0, limit).toString('utf8');
+}
 async function website(domain, timeoutMs) {
-  const res = await fetch(`https://${domain}/`, {
-    signal: AbortSignal.timeout(timeoutMs),
-    headers: {'user-agent': 'Mozilla/5.0 (Flow State lead alert)'},
-  });
-  if (!res.ok || !/html/i.test(res.headers.get('content-type') || '')) return null;
-  return pageSummary((await res.text()).slice(0, 200_000));
+  const signal = AbortSignal.timeout(timeoutMs);
+  let url = new URL(`https://${domain}/`);
+  for (let hop = 0; hop <= 3; hop++) {
+    if (!publicHttps(url)) return null;
+    const res = await fetch(url, {signal, redirect: 'manual', headers: {'user-agent': 'Mozilla/5.0 (Flow State lead alert)'}});
+    if (res.status >= 300 && res.status < 400) {
+      const next = res.headers.get('location');
+      await res.body?.cancel().catch(() => {});
+      if (!next) return null;
+      url = new URL(next, url);
+      continue;
+    }
+    if (!res.ok || !/html/i.test(res.headers.get('content-type') || '')) return null;
+    return pageSummary(await readCapped(res));
+  }
+  return null;
 }
 
 function source(tracking) {
