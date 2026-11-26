@@ -2,8 +2,10 @@
 //   Kit webhook      POST /.netlify/functions/lead-alert?source=kit
 //   Calendly webhook POST /.netlify/functions/lead-alert?source=calendly
 // Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
-// Optional hardening: KIT_WEBHOOK_TOKEN (then add &token=… to the Kit URL),
-//   CALENDLY_SIGNING_KEY (signature check) or CALENDLY_TOKEN (confirms the booking with Calendly).
+// Kit: KIT_WEBHOOK_TOKEN (add &token=… to the Kit URL); without it, the subscriber is confirmed
+//   with Kit via KIT_API_KEY and Kit's record is used. Neither set: rejected.
+// Calendly: CALENDLY_SIGNING_KEY (signature check); without it, the invitee is confirmed via
+//   CALENDLY_TOKEN and Calendly's record is used. Neither set: rejected.
 import crypto from 'node:crypto';
 import {addToKit, crmBooked, safely} from '../lib/crm.mjs';
 import {aboutLead} from '../lib/about.mjs';
@@ -14,6 +16,7 @@ import {recordBooking} from '../lib/ads-tracking.mjs';
 import {trackingDatabase} from '../lib/tracking-server.mjs';
 import {sendCrmEvent} from '../lib/meta-capi.mjs';
 import {loadStoredMatch} from '../lib/meta-match.mjs';
+import {verifiedCalendlyBody, verifiedKitSubscriber} from '../lib/webhook-verify.mjs';
 
 const json = (status, body) => new Response(JSON.stringify(body), {status, headers: {'content-type': 'application/json'}});
 
@@ -26,7 +29,8 @@ function safeEqual(a, b) {
 function calendlySignatureValid(header, raw, key) {
   const parts = Object.fromEntries(String(header || '').split(',').map(p => p.split('=')));
   if (!parts.t || !parts.v1) return false;
-  if (Math.abs(Date.now() / 1000 - Number(parts.t)) > 300) return false;
+  const t = Number(parts.t);
+  if (!Number.isFinite(t) || Math.abs(Date.now() / 1000 - t) > 300) return false;
   const expected = crypto.createHmac('sha256', key).update(`${parts.t}.${raw}`).digest('hex');
   return safeEqual(expected, parts.v1);
 }
@@ -78,14 +82,20 @@ export default async (req) => {
 
   let text, contact = null;
   if (source === 'kit') {
-    const token = process.env.KIT_WEBHOOK_TOKEN;
+    const token = process.env.KIT_WEBHOOK_TOKEN, kitKey = process.env.KIT_API_KEY;
     if (token && !safeEqual(url.searchParams.get('token') || '', token)) return json(401, {error: 'unauthorised'});
-    const s = kitSubscriber(body);
+    let s = kitSubscriber(body);
     if (!s?.id || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email_address || '')) {
       console.error('lead-alert: unexpected Kit payload shape', JSON.stringify(shape(body)));
       return json(400, {error: 'not a Kit subscriber payload'});
     }
-    text = kitMessage(body);
+    if (!token) {
+      // No shared secret: confirm the subscriber with Kit and use Kit's record, not the posted one.
+      if (!kitKey) return json(401, {error: 'kit not configured'});
+      s = await verifiedKitSubscriber(s, kitKey).catch(() => null);
+      if (!s) return json(401, {error: 'unverified subscriber'});
+    }
+    text = kitMessage({subscriber: s});
     contact = {name: s.fields?.full_name || s.first_name, phone: s.fields?.phone, email: s.email_address, label: 'Quoting lead'};
   } else if (source === 'calendly') {
     const key = process.env.CALENDLY_SIGNING_KEY, apiToken = process.env.CALENDLY_TOKEN || process.env.Calendly_Token;
@@ -93,15 +103,11 @@ export default async (req) => {
     if (key) {
       if (!calendlySignatureValid(req.headers.get('calendly-webhook-signature'), raw, key)) return json(401, {error: 'unauthorised'});
     } else if (apiToken) {
-      // No shared secret: confirm the invitee really exists in Ivan's Calendly before texting.
-      const uri = body.payload?.uri || '';
-      if (!uri.startsWith('https://api.calendly.com/')) return json(400, {error: 'bad payload'});
-      const check = await fetch(uri, {headers: {authorization: `Bearer ${apiToken}`}});
-      if (!check.ok) return json(401, {error: 'unverified booking'});
-      // The API response is authoritative when there is no webhook signature.
-      const actual=(await check.json()).resource;
-      if(!actual?.uri||!actual.email)return json(401,{error:'unverified booking'});
-      trackingBooking={event:actual.status==='canceled'?'invitee.canceled':'invitee.created',payload:actual};
+      // No shared secret: confirm the invitee with Calendly, then use only Calendly's record.
+      const verified = await verifiedCalendlyBody(body.payload?.uri, apiToken).catch(() => null);
+      if (!verified) return json(401, {error: 'unverified booking'});
+      body = verified;
+      trackingBooking = verified;
     } else {
       return json(401, {error: 'calendly not configured'});
     }
