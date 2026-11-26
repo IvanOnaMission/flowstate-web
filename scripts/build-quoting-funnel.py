@@ -38,8 +38,8 @@ js = js.replace("const hero=document.querySelector('.hero');", "const hero=docum
 for name in ['quoting-workbook.pdf', 'quoting-workbook-prompts.txt']:
     shutil.copyfile(Path('/Users/ivanbarnett/Flow State Lab/output/pdf')/name, assets/name)
 
-header = '<a class="skip" href="#main">Skip to content</a><header><span class="brand">FLOWSTATE</span><span class="small">For electrical business owners</span></header>'
-footer = '<footer><span>FLOWSTATE · New Zealand</span><span><a href="/about/">About Ivan</a> · <a href="/quoting-privacy/">Privacy</a> · <a href="mailto:ivan@flowstate.net.nz">Contact</a></span></footer>'
+header = '<a class="skip" href="#main">Skip to content</a><header><span class="brand">FLOW STATE</span><span class="small">For electrical business owners</span></header>'
+footer = '<footer><span>FLOW STATE · New Zealand</span><span><a href="/about/">About Ivan</a> · <a href="/quoting-privacy/">Privacy</a> · <a href="mailto:ivan@flowstate.net.nz">Contact</a></span></footer>'
 pages = {
  'workbook': ('quoting-workbook', 'Free AI quoting workbook for electricians | Flow State', 'Teach AI your quoting process with a practical workbook, ready-to-use prompts and real-job tests.'),
  'ready': ('quoting-workbook/start', 'Your quoting workbook | Flow State', 'Download your quoting workbook and learn the two ways to work through it with your AI.'),
