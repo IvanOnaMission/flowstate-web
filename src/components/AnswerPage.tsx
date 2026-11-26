@@ -66,7 +66,7 @@ export default function AnswerPage({ title, description, path, sections }: Props
           ))}
           <div className="mt-12 flex flex-wrap items-center gap-6">
             <CallButton tone="atlantic" />
-            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">Explore the diagnostic and AI partnership</a>
+            <a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">See how getting started works</a>
           </div>
           <p className="mt-3 text-sm text-mute">{callPromise}</p>
           <h2 className="mt-14 border-t border-hair pt-9 text-xl font-bold text-ink">More answers</h2>

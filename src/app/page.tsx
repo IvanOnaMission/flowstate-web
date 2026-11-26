@@ -10,7 +10,7 @@ import { callPromise, rungs } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "AI partner for NZ electrical businesses",
-  description: "Less admin, more time to run your electrical business. Start with a paid workflow diagnostic and roadmap, then agree ongoing AI partner scope with Flowstate.",
+  description: "Less admin, more time to run your electrical business. Start with a free 30-minute call, then a custom plan and an ongoing AI partnership with Flowstate.",
 };
 
 /**
@@ -72,7 +72,7 @@ export default function Home() {
                     <CallButton tone="sky" className="!px-6 !py-4">Book a free call</CallButton>
                     <Link href="/services/" className="inline-flex min-h-11 items-center font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">See how it works →</Link>
                   </div>
-                  <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · diagnostic quoted separately</p>
+                  <p className="mt-4 max-w-[52ch] text-[0.8rem] text-white/75">Free introductory call · about 30 minutes · then a plan if it's a fit</p>
                 </Reveal>
               </div>
             </div>
@@ -94,13 +94,13 @@ export default function Home() {
 
       <section id="how-it-fits" className="shell scroll-mt-8 py-[clamp(3.25rem,7vw,5.75rem)]">
         <Reveal>
-          <section aria-labelledby="diagnostic-heading" className="grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
-            <h2 id="diagnostic-heading" className="h-sec max-w-[18ch] text-atlantic">A clear roadmap. An AI partner to help you act on it.</h2>
+          <section aria-labelledby="plan-heading" className="grid gap-6 rounded-2xl border border-atlantic/15 border-l-4 border-l-atlantic bg-[#EBFDFF] p-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[1fr_1.2fr] md:gap-12">
+            <h2 id="plan-heading" className="h-sec max-w-[18ch] text-atlantic">A clear plan. An AI partner to help you act on it.</h2>
             <div>
               <p className="max-w-[60ch] text-[1.0625rem] leading-relaxed text-mute">
-                The paid diagnostic reviews how your business works and identifies where AI could help. Your roadmap sets the priorities; the ongoing AI partnership brings agreed implementation, training and support.
+                After a free 30-minute call, we build a custom implementation plan if it's a fit. The foundation takes 2 to 3 days, then we add helpers one at a time. The ongoing AI partnership brings agreed implementation and support.
               </p>
-              <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">Explore the diagnostic and AI partnership →</a>
+              <a href="/workflow-diagnostic/" className="mt-6 inline-flex min-h-11 items-center gap-3 font-semibold text-atlantic underline decoration-atlantic/30 underline-offset-4 transition-colors hover:decoration-atlantic">See how getting started works →</a>
             </div>
           </section>
           <SoftwareExplanation />
@@ -110,7 +110,7 @@ export default function Home() {
             <Link href="/ai-automation-cost/">What AI automation costs →</Link>
             <Link href="/simpro-automation/">Simpro automation →</Link>
             <Link href="/fergus-automation/">Fergus automation →</Link>
-            <a href="/workflow-diagnostic/">Explore the diagnostic and AI partnership →</a>
+            <a href="/workflow-diagnostic/">See how getting started works →</a>
           </div>
         </Reveal>
       </section>
@@ -177,8 +177,8 @@ export default function Home() {
                 details live and what a good result looks like.
               </p>
               <p>
-                That&apos;s where the diagnostic starts. We review the work,
-                identify what AI would need and decide which tasks are worth
+                That&apos;s where the foundation starts. We build the AI brain from
+                how you run things, work out what AI needs and decide which tasks are worth
                 tackling. Your team keeps control of pricing, technical
                 decisions and final approval.
               </p>
@@ -259,7 +259,7 @@ export default function Home() {
                 {"We'll talk about how your business runs, the software you use and where work gets held up. Bring one recent example: a quote that took too long to prepare, or an enquiry that went quiet."}
               </p>
               <p>
-                {"The introductory call is free and takes about 30 minutes. We'll discuss whether a paid diagnostic is a useful next step. Its scope and fee are agreed before you commit; the ongoing AI partner scope and rate are agreed after the diagnostic."}
+                {"The introductory call is free and takes about 30 minutes. If it's a fit, we build a custom implementation plan from there. Scope and rate are agreed before any build starts."}
               </p>
             </div>
           </Reveal>

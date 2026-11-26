@@ -31,11 +31,11 @@ export default function Page() {
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"The first scope is quote preparation"}</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Independent calculation of quantities and prices is outside the initial scope. You supply those inputs."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Automated quote follow-up is a possible later workflow with its own scope. Before it sends a reminder, it needs a reliable way to establish whether the quote still needs following up."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Assess quoting in your diagnostic"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The paid diagnostic can review how your quotes are prepared and where work gets held up. If quoting becomes a priority on your roadmap, we can agree an implementation as part of the ongoing AI partnership. AI prepares drafts; you approve the scope, quantities, pricing and final quote."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Look at quoting on the first call"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The free call can look at how your quotes are prepared and where work gets held up. If quoting is the priority, we can agree an implementation plan as part of the ongoing AI partnership. AI prepares drafts; you approve the scope, quantities, pricing and final quote."}</p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See how getting started works →"}</a></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Would this fit the way you quote?"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free introductory call. We'll discuss whether a paid diagnostic would help. The ongoing AI partner scope and rate are agreed after the diagnostic."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Bring a recent example to a free introductory call. We'll work out where the time's going. The scope and rate are agreed before any build starts."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
         </article>

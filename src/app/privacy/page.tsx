@@ -44,7 +44,7 @@ const sections = [
   {
     h: "Where it's stored and for how long",
     p: [
-      "Records the automation keeps (such as job details and a log of what it did) are stored in the client's own Google Sheet and Drive, and in the automation service we host for them. We keep them for as long as the client uses the service, and delete them when the client asks or the service ends.",
+      "Records the automation keeps (such as job details and a log of what it did) are stored in the client's own Google Sheet and Drive, and in the automation accounts the client owns. We keep them for as long as the client uses the service, and delete them when the client asks or the service ends.",
     ],
   },
   {

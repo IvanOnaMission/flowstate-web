@@ -7,8 +7,8 @@ import CallButton from "@/components/CallButton";
 export const metadata: Metadata = {
   alternates: { canonical: "/services/" },
   openGraph: { url: "/services/", images: ["/assets/hero/workshop-hook.jpg"] },
-  title: "How the diagnostic and AI partnership work",
-  description: "Book a call, then a paid workflow diagnostic and prioritised roadmap. Agree the ongoing AI partner scope and rate after the diagnostic.",
+  title: "How getting started with Flowstate works",
+  description: "Book a free call, then a custom implementation plan. Scope and rate are agreed before any build starts, then an ongoing AI partnership.",
 };
 
 export default function Page() {
@@ -26,21 +26,21 @@ export default function Page() {
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Fill in a short form and pick a time that suits you."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"2. A 30-minute discovery call"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We talk about your business, how you quote and the software you use. We discuss whether a paid diagnostic is the right next step."}</p>
-          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"3. The paid diagnostic"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree the diagnostic scope and fee before starting. Then we review your workflows, business information and existing software to identify where AI could help. You get a prioritised roadmap for what to tackle first."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We talk about your business, how you quote and the software you use. We work out where the time's going and whether it's a fit."}</p>
+          <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"3. Your implementation plan"}</h2>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"If it's a fit, we build a custom implementation plan from there, and agree the scope and rate before any build starts. Stage one is the foundation, which takes 2 to 3 days: we set up the accounts in your name, connect your job software and Xero, and build the AI brain of your prices, rules and processes. Then we build helpers on top one at a time, each tested on real past jobs before it goes live."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"4. Your ongoing AI partner"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"After the diagnostic, we agree the scope and rate for an ongoing AI partnership. I work with you on the priorities from your roadmap, with implementation, training and support agreed for your business."}</p>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Implementation can include building and testing workflows around your existing tools, helping your team use them on real work, and improving them within the agreed scope."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"The ongoing AI partnership has its scope and rate agreed before any build starts. I work with you on the priorities in your plan, with implementation and support agreed for your business."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Implementation can include building and testing workflows around your existing tools, making sure you understand how it all fits together, and improving them within the agreed scope."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"For a quoting workflow, AI helps prepare the drafts. You check the scope, quantities and prices, and approve the final quote before it is sent."}</p>
-          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"Explore the diagnostic and AI partnership →"}</a></p>
+          <p className="mt-6"><a className="font-semibold text-atlantic underline underline-offset-4" href="/workflow-diagnostic/">{"See how getting started works →"}</a></p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/ai-quoting-for-electricians/">{"Explore the quoting workflow →"}</Link></p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"5. Ongoing support"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree what support is included in the AI partnership. We review how the work is going and decide together what to tackle next from your roadmap."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"We agree what support is included in the AI partnership. We review how the work is going and decide together what to tackle next from your plan."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"What you'll need to bring"}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Have a few recent examples ready. Before the diagnostic, we agree which workflows, records and people to include. You don't need to be technical. If you can send a text, you can use it."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Have a few recent examples ready. Once we get into the build, we'll need things like your price list, some past quotes and invoices, and access to your job software and Xero, which you log into yourself. You don't need to be technical. If you can send a text, you can use it."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"Tell me where work is getting stuck."}</h2>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. We'll discuss whether the paid diagnostic is right for your business before you commit."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Book a free discovery call. It's 30 minutes of your time to start."}</p>
           <div className="mt-7"><CallButton tone="atlantic" /></div>
           <p className="mt-3 text-sm text-mute">{"Free · about 30 minutes · no pitch deck"}</p>
         </article>
