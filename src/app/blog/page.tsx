@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog/" },
   openGraph: { url: "/blog/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "Blog: straight answers on AI for NZ tradies",
-  description: "Straight answers from people in the trades on what AI can and can't do for an NZ trade business, from AI receptionists to quoting and admin.",
+  description: "Flow State's straight answers from people in the trades on what AI can and can't do for an NZ trade business, from AI receptionists to quoting and admin.",
 };
 
 export default function Page() {
