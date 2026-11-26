@@ -11,3 +11,9 @@
 /quoting-workbook/start        /workflow-diagnostic/  301
 /quoting-workbook/             /workflow-diagnostic/  301
 /quoting-workbook              /workflow-diagnostic/  301
+# Pages removed in the revert of 2026-11 (#46) that Search Console still shows (backlog A1).
+# Both go to /services/. If backlog row 11 is built at /ai-for-trades-businesses/, delete its two lines.
+/ai-for-trades-businesses/     /services/  301
+/ai-for-trades-businesses      /services/  301
+/business-essentials/          /services/  301
+/business-essentials           /services/  301

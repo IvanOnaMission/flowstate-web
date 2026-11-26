@@ -4,7 +4,7 @@ purpose: Changes to AGENTS.md and decisions.md that the playbook-gaps steps need
 read_when: reviewing or applying these changes
 updated: 2026-11-26
 audience: [Johan, agents]
-status: proposed
+status: applied
 stability: changing
 owner: Johan
 supersedes: none
@@ -36,6 +36,12 @@ Why: plan step 4.5 maps the playbook's `seo/` folders onto ours, and an agent fi
 
 It stays "proposed" until Johan says yes. It adds a recording column to the stable baseline protocol (`docs/baseline/protocol.md`), which is why it gets a judge review first. Once Johan settles it, the matching `protocol.md` edit (a sources column) is drafted and reviewed as its own change, and the summary paragraph at the top of `decisions.md` mentions D37.
 
+## Applied
+
+Johan said yes on 2026-11-26 ("Yes to the AGENTS.md rows and D37"). The seven rows are in `AGENTS.md`, D37 is settled in `decisions.md` and named in its summary paragraph, and `docs/baseline/protocol.md` has the sources column. The settled row, the protocol edit and the A1 and A2 site fixes were judged together as their own change (second review below).
+
 ## Review
 
 Judge review, 2026-11-26 (independent agent): UPHELD WITH CONDITIONS. Condition 1 (the `docs/interviews/` edits value must allow `/seo-interview` to create answer files) is applied above. Minor findings handled: raw data in `docs/research/data/` is now named in the research row and in the agent file; the D37 protocol edit and the decision-log summary are noted as follow-ups. Not changed: `docs/briefs/README.md` stays `stable` while the folder is `direct`, because briefs change and the template doesn't.
+
+Second judge review, 2026-11-26 (independent agent), of the applied change (D37 settled, the protocol sources column, the seven rows, A1 redirects, A2 descriptions): UPHELD WITH CONDITIONS. Condition 1 (this paragraph replaces a line that claimed an earlier review) is met here. Condition 2 (user-confirmable): before PR 78 is merged, check on its Netlify preview that the four old URLs return 301 to `/services/`, `/ai-makeover/` still returns 302 to `/essentials/`, and the three pages serve the new meta descriptions. Minor findings handled: the stale `/business-essentials/` comments in `netlify.toml` and `src/app/essentials/page.tsx` are updated, and the protocol now says which results file gets the column.

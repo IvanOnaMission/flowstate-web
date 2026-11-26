@@ -10,7 +10,7 @@ import { callPromise, rungs } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "AI partner for NZ electrical businesses",
-  description: "Less admin. More time to run your electrical business. Start with a paid workflow diagnostic and prioritised roadmap, then agree your ongoing AI partner scope and rate.",
+  description: "Less admin, more time to run your electrical business. Start with a paid workflow diagnostic and roadmap, then agree ongoing AI partner scope with Flowstate.",
 };
 
 /**

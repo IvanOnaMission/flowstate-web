@@ -257,7 +257,7 @@ Not received yet. This draft is for Johan to send to Ivan, or to use in the next
 
 Answers add 1 to Demand on matching rows and may add new rows.
 
-## Adjacent issues recorded (not fixed here)
+## Adjacent issues
 
-- **A1** Old URLs in Search Console: `/ai-for-trades-businesses/` (15 impressions, #16.3) and `/business-essentials/` (15 impressions, #6.3) return 404. `/ai-makeover/` returns a 302. Redirect them, or reuse the first one for row 11. It's a site change, so it needs its own PR.
-- **A2** Bing: meta description and title lengths on `/`, `/about/` and `/workflow-diagnostic/` (from the index check).
+- **A1** Old URLs in Search Console: `/ai-for-trades-businesses/` (15 impressions, #16.3) and `/business-essentials/` (15 impressions, #6.3) return 404. `/ai-makeover/` returns a 302. Fixed 26 Nov in PR 78 (check on the Netlify preview before merging): both 404s now 301 to `/services/` (`public/_redirects`). If row 11 is built at `/ai-for-trades-businesses/`, delete that redirect. `/ai-makeover/` stays a 302: it carries the live Meta ad to `/essentials/` on purpose.
+- **A2** Bing: meta description and title lengths on `/`, `/about/` and `/workflow-diagnostic/` (from the index check). Fixed 26 Nov in PR 78: the three meta descriptions are now 160 characters or fewer. The `/workflow-diagnostic/` title stays as it is, because the page ranks (Search Console position 5.5) and the rules don't change the title of a ranking page.
