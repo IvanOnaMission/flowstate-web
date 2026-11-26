@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import CallButton from "@/components/CallButton";
+import { posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/guides/" },
@@ -18,6 +19,13 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <h1 className="h-hero max-w-[24ch] text-ink">{"Practical AI guides for electrical business owners"}</h1>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Understand where AI could fit into your business, what information it needs and what you should still check yourself."}</p>
+          {posts.map((p) => (
+            <section key={p.slug}>
+              <h2 className="mt-10 text-2xl font-bold text-ink">{p.h1}</h2>
+              <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{p.card}</p>
+              <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href={`/guides/${p.slug}/`}>Read the guide →</Link></p>
+            </section>
+          ))}
           <h2 className="mt-10 text-2xl font-bold text-ink">How NZ builders and tradies use AI to cut admin</h2>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">Which admin a builder, plumber or electrician can hand to AI today, what stays with you, and what the trade businesses getting ahead are doing differently.</p>
           <p className="mt-6"><Link className="font-semibold text-atlantic underline underline-offset-4" href="/guides/ai-for-builders-nz/">Read the guide →</Link></p>
