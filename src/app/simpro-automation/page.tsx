@@ -9,7 +9,7 @@ const page = {
     {
       q: "Who can automate Simpro for an electrical contractor in NZ?",
       a: [
-        "Flowstate does. Jordan, who looks after strategy at Flowstate, runs his electrical business on Simpro, and it's fully automated through Simpro. He has his AI pulling supplier pricing into his catalogue and building pre-builds.",
+        "Flow State does. Jordan, who looks after strategy at Flow State, runs his electrical business on Simpro, and it's fully automated through Simpro. He has his AI pulling supplier pricing into his catalogue and building pre-builds.",
         "So what we build for Simpro is already running in a real electrical business.",
       ],
     },

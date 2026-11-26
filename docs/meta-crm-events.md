@@ -1,6 +1,6 @@
 # Meta CRM events (Conversions API)
 
-Flowstate sends lead-quality events to dataset `3159317364459626` so Meta can learn which ads produce people who book, attend and pay. This does not change any campaign, ad set, ad or budget. With `META_CAPI_TOKEN` unset, every existing lead path behaves as before: the new calls log once and return.
+Flow State sends lead-quality events to dataset `3159317364459626` so Meta can learn which ads produce people who book, attend and pay. This does not change any campaign, ad set, ad or budget. With `META_CAPI_TOKEN` unset, every existing lead path behaves as before: the new calls log once and return.
 
 The metric this is for is **cost per attended call**. In Ads Manager, Conversion Leads optimisation is available on instant-form campaigns. Website campaigns still use the browser pixel’s `Lead` and `Schedule` events. The CRM events below are separate (`action_source` `system_generated`) and are not deduplicated with those pixel events.
 

@@ -9,7 +9,7 @@
   const $ = selector => document.querySelector(selector);
 
   const stamp = date => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  const title = 'Quote Machine call with Ivan (Flowstate)';
+  const title = 'Quote Machine call with Ivan (Flow State)';
 
   fetch(`/.netlify/functions/booking-details?${new URLSearchParams({event, invitee})}`)
     .then(res => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
@@ -35,7 +35,7 @@
       calendar.hidden = false;
 
       const ics = [
-        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Flowstate//Quote Machine//EN', 'BEGIN:VEVENT',
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Flow State//Quote Machine//EN', 'BEGIN:VEVENT',
         `UID:${invitee}@flowstate.net.nz`, `DTSTAMP:${stamp(new Date())}`, `DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`,
         `SUMMARY:${title}`, `DESCRIPTION:${details.replace(/\n/g, '\\n').replace(/[,;]/g, m => `\\${m}`)}`,
         ...(call.join_url ? [`LOCATION:${call.join_url}`] : []), 'END:VEVENT', 'END:VCALENDAR',

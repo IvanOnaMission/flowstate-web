@@ -10,7 +10,7 @@ import { callPromise, rungs } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "AI partner for NZ electrical businesses",
-  description: "Less admin, more time to run your electrical business. Start with a free 30-minute call, then a custom plan and an ongoing AI partnership with Flowstate.",
+  description: "Less admin, more time to run your electrical business. Start with a free 30-minute call, then a custom plan and an ongoing AI partnership with Flow State.",
 };
 
 /**
@@ -199,7 +199,7 @@ export default function Home() {
             <div className="relative aspect-4/5 overflow-hidden bg-atlantic">
               <Image
                 src="/assets/team/ivan.jpg"
-                alt="Ivan Barnett, founder of Flowstate"
+                alt="Ivan Barnett, founder of Flow State"
                 fill
                 sizes="(max-width: 768px) 100vw, 16rem"
                 className="object-cover"

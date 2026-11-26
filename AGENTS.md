@@ -1,6 +1,6 @@
-Context index for the Flowstate SEO and AI-visibility project: read this first. Current status lives in `docs/status.md`. Source of truth: this repo (`flowstate-web`). The Claude Team Project holds copies; never edit a copy.
+Context index for the Flow State SEO and AI-visibility project: read this first. Current status lives in `docs/status.md`. Source of truth: this repo (`flowstate-web`). The Claude Team Project holds copies; never edit a copy.
 
-Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan runs the SEO and AI-visibility work from Jordan's SEO plan, so search engines and AI assistants (ChatGPT, Gemini, Google AI Overviews, Perplexity, Claude, Bing) name Flowstate when tradies ask about automation.
+Flow State (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan runs the SEO and AI-visibility work from Jordan's SEO plan, so search engines and AI assistants (ChatGPT, Gemini, Google AI Overviews, Perplexity, Claude, Bing) name Flow State when tradies ask about automation.
 
 ## Documents
 
@@ -27,7 +27,7 @@ Flowstate (flowstate.net.nz) builds AI automation for NZ trade businesses. Johan
 
 ## Rules
 
-- Brand name: "Flowstate", one word, everywhere (D04).
+- Brand name: "Flow State", two words, in all visible copy and schema `name` (D43). "Flowstate" appears only as schema `alternateName`; the domain, emails, URLs and internal keys stay `flowstate`.
 - No prices or percentages on any public page (D06).
 - Every public claim about clients, numbers or results needs a source in `decisions.md` before it goes live.
 - Never send messages, posts or emails to anyone without Johan's explicit go-ahead in the session.

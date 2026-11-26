@@ -5,7 +5,7 @@ import { ANSWERS_FORM, FORM_NAME, VIDEO_POSTER } from "./session";
 import { formFields } from "../essentials/questions";
 
 const path = "/live/";
-const title = "Free live session for electrical business owners | Flowstate";
+const title = "Free live session for electrical business owners | Flow State";
 const description =
   "A free live session for New Zealand electrical business owners with Jordan from Conduction Company. Tuesday, 10am NZ time.";
 

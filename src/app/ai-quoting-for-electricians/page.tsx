@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/ai-quoting-for-electricians/" },
   openGraph: { url: "/ai-quoting-for-electricians/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "AI quote preparation for electrical businesses",
-  description: "See the quoting workflow Flowstate is developing: owner-supplied job details, quantities and prices become a draft quote for the owner to review.",
+  description: "See the quoting workflow Flow State is developing: owner-supplied job details, quantities and prices become a draft quote for the owner to review.",
 };
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
         <article className="max-w-[52rem]">
           <p className="eyebrow mb-5 text-atlantic">{"Quoting workflow · in development"}</p>
           <h1 className="h-hero max-w-[24ch] text-ink">{"From job notes to a quote you can review."}</h1>
-          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flowstate is developing a quoting workflow for electrical businesses. You provide the job information, quantities and prices. The workflow checks for missing details and prepares a draft quote for your review."}</p>
+          <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Flow State is developing a quoting workflow for electrical businesses. You provide the job information, quantities and prices. The workflow checks for missing details and prepares a draft quote for your review."}</p>
           <p className="mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute">{"Implementation depends on the agreed scope and the access your job-management software supports. We assess those requirements before committing to a build."}</p>
           <h2 className="h-sec mb-3 mt-14 max-w-[30ch] border-t border-hair pt-9 text-ink">{"How the first workflow is intended to work"}</h2>
           <h3 className="mt-8 text-xl font-bold text-ink">{"1. Supply the job information"}</h3>

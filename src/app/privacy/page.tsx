@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: { url: "/privacy/" },
   title: "Privacy policy",
   description:
-    "How Flowstate handles the information its automations use, including data accessed through Google accounts.",
+    "How Flow State handles the information its automations use, including data accessed through Google accounts.",
 };
 
 /**
@@ -19,7 +19,7 @@ const sections = [
   {
     h: "Who we are",
     p: [
-      `Flowstate builds automation systems for New Zealand trade businesses. Flowstate is run by Ivan Barnett in Auckland. Contact: ${site.email}.`,
+      `Flow State builds automation systems for New Zealand trade businesses. Flow State is run by Ivan Barnett in Auckland. Contact: ${site.email}.`,
     ],
   },
   {
@@ -32,13 +32,13 @@ const sections = [
     h: "How we use it",
     p: [
       "The information is used only to run the client's automation: to understand incoming emails, keep the client's job records up to date, file documents and prepare or send the messages the client has asked for. Email content may be processed by an AI service (Anthropic's Claude) for that purpose only; it is not used to train AI models.",
-      "We do not sell personal information, use it for advertising, or share it with anyone except the service providers needed to run the automation (Google, our automation host and the AI service).",
+      "We do not sell personal information, use it for advertising, or share it with anyone except the service providers needed to run the automation (Google, the automation service and the AI service).",
     ],
   },
   {
     h: "Google user data",
     p: [
-      "Flowstate's use and transfer of information received from Google APIs to any other app will adhere to the Google API Services User Data Policy, including the Limited Use requirements.",
+      "Flow State's use and transfer of information received from Google APIs to any other app will adhere to the Google API Services User Data Policy, including the Limited Use requirements.",
     ],
   },
   {

@@ -5,7 +5,7 @@
  *
  * Every claim on these pages needs a source in docs/decisions.md (D06, D12, D14, D15,
  * D24, D25). Held until Ivan answers, so do not add: "10+ clients" / "six years" (D13),
- * that Flowstate doesn't sell an AI receptionist (D16), Q15 hosting claims, Q16 package
+ * that Flow State doesn't sell an AI receptionist (D16), Q15 hosting claims, Q16 package
  * terms, "first month" checks, and any percentage.
  */
 export const answerPages = [

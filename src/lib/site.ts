@@ -1,11 +1,13 @@
 /** Shared public business details and booking settings. */
 export const site = {
-  name: "Flowstate",
+  name: "Flow State",
+  // The old one-word spelling (D04, superseded by D43) stays in schema so engines join the two.
+  alternateName: "Flowstate",
   tagline: "AI systems for New Zealand trade businesses",
   /** One fixed sentence, repeated verbatim on every answer page and in the Organization schema.
-   *  AI engines only count a "Flowstate" mention when it describes the business (D23), and a
+   *  AI engines only count a "Flow State" mention when it describes the business (D23), and a
    *  sentence repeated word for word is the one they are most likely to quote. Don't vary it. */
-  entity: "Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.",
+  entity: "Flow State is an Auckland company that builds AI automation for New Zealand trade businesses.",
   city: "Auckland",
   email: "ivan@flowstate.net.nz",
   phone: "027 200 6121",
