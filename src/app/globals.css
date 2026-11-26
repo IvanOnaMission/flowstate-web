@@ -16,6 +16,7 @@
   --color-mute: #3f5f73; /* 6.85:1 on white */
   --color-hair: #d6e4ec;
   --color-night: #03101a; /* the hero ground */
+  --color-gold: #f5cc47; /* booking gold. Ink #06283d on this fill is 9.87:1 */
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
@@ -141,6 +142,143 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Home page real-photo treatment. Photos in public/assets/real/ are already
+ * graded and blurred, so these rules only place them and lay a brand wash
+ * over the top. Gold #f5cc47 with ink text is 9.87:1.
+ */
+.home-hero-scrim {
+  background: rgba(3, 16, 26, 0.84);
+}
+
+@media (max-width: 767px) {
+  .home-hero .home-hero-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 16, 26, 0.92) 0%,
+      rgba(3, 16, 26, 0.88) 50%,
+      rgba(3, 16, 26, 0.6) 68%,
+      rgba(3, 16, 26, 0.15) 88%,
+      rgba(3, 16, 26, 0.35) 100%
+    );
+  }
+
+  .home-hero .home-hero-photo {
+    top: auto;
+    bottom: 0;
+    height: 60%;
+    object-position: 68% 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+  }
+
+  .home-hero .home-hero-copy {
+    padding-bottom: 34vh;
+  }
+}
+
+.fs-bg {
+  position: relative;
+  isolation: isolate;
+  background: #06283d;
+}
+
+.fs-bg::before,
+.fs-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fs-bg::before {
+  z-index: 0;
+  background: #06283d var(--fs-photo) var(--fs-pos, center) / var(--fs-size, cover) no-repeat;
+}
+
+.fs-bg::after {
+  z-index: 1;
+  background: var(--fs-overlay);
+}
+
+.fs-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+.fs-bg-ladder {
+  --fs-photo: url("/assets/real/bg-ladder_02.jpg");
+  --fs-pos: center 20%;
+  --fs-overlay:
+    linear-gradient(90deg, rgba(6, 40, 61, 0.9) 0%, rgba(6, 40, 61, 0.72) 32%, rgba(6, 40, 61, 0.28) 62%, rgba(6, 40, 61, 0.22) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 22%, rgba(3, 16, 26, 0.25) 55%, rgba(3, 16, 26, 0.9) 100%);
+}
+
+.fs-bg-context {
+  background: #0f4b70;
+  --fs-photo: url("/assets/real/bg-context_05.jpg");
+  --fs-pos: right 20%;
+  --fs-overlay:
+    linear-gradient(90deg, rgba(15, 75, 112, 0.95) 0%, rgba(15, 75, 112, 0.86) 34%, rgba(15, 75, 112, 0.4) 60%, rgba(15, 75, 112, 0.22) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.45) 0%, rgba(3, 16, 26, 0) 28%, rgba(3, 16, 26, 0) 70%, rgba(3, 16, 26, 0.5) 100%);
+}
+
+.fs-bg-context::before {
+  filter: saturate(0.85);
+}
+
+.fs-bg-cta {
+  --fs-photo: url("/assets/real/bg-cta_04.jpg");
+  --fs-pos: right 38%;
+  --fs-size: auto 125%;
+  --fs-overlay:
+    linear-gradient(90deg, rgba(6, 40, 61, 1) 0%, rgba(6, 40, 61, 0.94) 30%, rgba(6, 40, 61, 0.62) 50%, rgba(6, 40, 61, 0.26) 72%, rgba(6, 40, 61, 0.3) 100%),
+    linear-gradient(180deg, rgba(3, 16, 26, 0.35) 0%, rgba(3, 16, 26, 0) 35%, rgba(3, 16, 26, 0.45) 100%);
+}
+
+@media (max-width: 767px) {
+  .fs-bg::before {
+    top: auto;
+    bottom: 0;
+    height: var(--fs-mh, 46%);
+    background-size: cover;
+    background-position: var(--fs-mpos, center);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+  }
+
+  .fs-bg-ladder {
+    --fs-mh: 13rem;
+    --fs-mpos: 68% 18%;
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.25) 0%, rgba(6, 40, 61, 0) 60%, rgba(3, 16, 26, 0.18) 82%, rgba(3, 16, 26, 0.55) 100%);
+  }
+
+  .fs-bg-context {
+    --fs-mh: 14rem;
+    --fs-mpos: 70% 25%;
+    --fs-overlay: linear-gradient(180deg, rgba(15, 75, 112, 0.15) 0%, rgba(15, 75, 112, 0) 55%, rgba(15, 75, 112, 0.12) 80%, rgba(3, 16, 26, 0.5) 100%);
+  }
+
+  .fs-bg-cta {
+    --fs-size: cover;
+    --fs-mh: 14rem;
+    --fs-mpos: 52% 30%;
+    --fs-overlay: linear-gradient(180deg, rgba(6, 40, 61, 0.2) 0%, rgba(6, 40, 61, 0) 55%, rgba(3, 16, 26, 0.5) 100%);
+  }
+
+  .fs-bg-ladder > .shell {
+    padding-bottom: 16rem;
+  }
+
+  .fs-bg-context > .shell {
+    padding-bottom: 17rem;
+  }
+
+  .fs-bg-cta > .shell {
+    padding-bottom: 18rem;
   }
 }
 
