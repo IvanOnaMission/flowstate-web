@@ -98,7 +98,7 @@ export function postProblems(p: Post): string[] {
   for (const t of visibleText(p)) {
     if (/[–—]/.test(t)) e.push(`em or en dash (D34): "${t.slice(0, 60)}"`);
     if (/\d\s*%|\bper ?cent\b/i.test(t)) e.push(`percentage (D06): "${t.slice(0, 60)}"`);
-    if (/(\$|NZD|NZ\$)\s*\d/i.test(t)) e.push(`price (D06): "${t.slice(0, 60)}"`);
+    if (/(\$|NZD|NZ\$)\s*\d|\b\d[\d,.]*\s*k?\s*(dollars|bucks)\b/i.test(t)) e.push(`price (D06): "${t.slice(0, 60)}"`);
     if (/Flowstate|FlowState|FLOWSTATE/.test(t)) e.push(`name must be "Flow State", two words (D43): "${t.slice(0, 60)}"`);
   }
   return e;
