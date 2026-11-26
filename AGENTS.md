@@ -19,6 +19,7 @@ Flow State (flowstate.net.nz) builds AI automation for NZ trade businesses. Joha
 | `docs/briefs/` | One brief per approved backlog row, with its question pack; template in its README | drafting a page, preparing an interview | changing | direct |
 | `docs/interviews/` | Ivan's answers word for word, recorded by `/seo-interview` | drafting from a brief, checking where a claim came from | stable | propose (new answer files are created by `/seo-interview`; recorded answers are never edited, corrections are added as dated lines) |
 | `docs/sops/blog-posts.md` | SOP for blog posts: Jordan's questions and answers to a live, indexed guide, with gates, cadence, photos and bylines | Jordan sends answers or copy, drafting or publishing a post, planning the publishing week | changing | direct |
+| `docs/plans/` | Dated plans for a sprint or multi-step change (outcome noted in the header when done), and proposed context-update records | planning or resuming a multi-step change | changing | direct |
 | `docs/research/` | Dated research, such as the third-party source map; a study's own raw data sits in `docs/research/data/` | outreach, listings, planning pages | changing | direct |
 | `docs/sweeps/` | Dated monthly checks (index check, visibility sweep) | the monthly sweep, indexing questions | changing | direct |
 | `docs/data/` | Raw exports by month (Search Console, Bing, autocomplete) | scoring the backlog, checking an evidence line | stable | propose (new months are added directly) |
@@ -29,7 +30,7 @@ Flow State (flowstate.net.nz) builds AI automation for NZ trade businesses. Joha
 ## Rules
 
 - Brand name: "Flow State", two words, in all visible copy and schema `name` (D43). "Flowstate" appears only as schema `alternateName`; the domain, emails, URLs and internal keys stay `flowstate`.
-- No prices or percentages on any public page (D06).
+- No prices or percentages on any public page (D06). One exception: a blog post may show third-party research figures, other companies' published prices and the author's own business data, each listed in the post's `figures` with a sourced `claims` line; never Flow State's own prices or results (D45).
 - Every public claim about clients, numbers or results needs a source in `decisions.md` before it goes live.
 - Never send messages, posts or emails to anyone without Johan's explicit go-ahead in the session.
 - Never type or store passwords. Johan logs in himself.
