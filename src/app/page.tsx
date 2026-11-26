@@ -174,7 +174,7 @@ export default function Home() {
       <section className="v4-split v4-split--08">
         <figure className="v4-split__media">
           <img
-            src="/assets/real/v4-context_08.jpg"
+            src="/assets/real/v4-context_ai-brain.jpg"
             alt="Ivan mapping out how a business runs on a whiteboard"
           />
         </figure>

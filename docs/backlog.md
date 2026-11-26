@@ -244,7 +244,7 @@ None. Every candidate has sourced proof or proof Ivan can give in an interview, 
 ## Improvements to live pages (not new pages; outside the D30 cap)
 
 - **I1** `/simpro-automation/`: doesn't rank for Q6 or S2, while ez-ai's Simpro page is #4. Lead with D24 (Jordan's Simpro-run business) in the title area. Don't change the title, H1 or URL of a page that already ranks; this one doesn't rank yet.
-- **I2** `/ai-receptionist-for-tradies/`: #15 for Q7 and absent for S3. Answer "is it worth it" and "AI vs a person" from D25 (k) and (o), with no prices, and add an electricians section if row 2 isn't built.
+- **I2** Done differently 2026-11-27: the page now 301s to Jordan's post `/blog/ai-receptionist-for-tradies/`, which answers "is it worth it", "AI vs a person" and cost (D44 to D46). Re-check Q4 and Q7 in the next sweep. Original note: `/ai-receptionist-for-tradies/`: #15 for Q7 and absent for S3. Answer "is it worth it" and "AI vs a person" from D25 (k) and (o), with no prices, and add an electricians section if row 2 isn't built.
 - **I3** `/guides/job-software-or-custom-ai/`: Q8 is answered by `/questions/` at #15, not by the guide. Link the guide from the Q8 answer on `/questions/`.
 - **I4** `/ai-for-electricians/`: 47 impressions at #8.3, but absent on Q12. Answer "who can automate admin for an electrician" in its first lines, and link `/guides/ai-quoting-for-electricians/` (today only `/guides/` links to it, and it sits at #20.7).
 - **I5** `/ai-quoting-for-electricians/`: add the wordings "ai trade quote generator" and "ai quoting for tradies" where they fit naturally.
