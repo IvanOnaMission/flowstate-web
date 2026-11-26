@@ -4,7 +4,7 @@ import EssentialsQuiz from "./EssentialsQuiz";
 import { formFields } from "./questions";
 
 const path = "/essentials/";
-const title = "Business Essentials | AI foundation for NZ trades | Flowstate";
+const title = "Business Essentials | AI foundation for NZ trades | Flow State";
 const description =
   "The AI foundation for a New Zealand trades business. Answer 7 quick questions, then book a free 30-minute audit with Ivan.";
 

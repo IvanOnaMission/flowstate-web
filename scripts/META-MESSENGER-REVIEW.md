@@ -4,7 +4,7 @@
 > for that route. Do not continue this checklist without a new request to use
 > the custom bot. See AD-TRACKING.md for the current configuration.
 
-# Flowstate Messenger review preparation — 29 October 2026
+# Flow State Messenger review preparation — 29 October 2026
 
 **Draft only. Public Messenger access is blocked.** The admin-account end-to-end
 test is verified; it does not establish access for public prospects. No ads were
@@ -12,7 +12,7 @@ launched and the live website budget remains NZ$60/day.
 
 ## Exact Meta state and next owner action
 
-- App: **Flowstate Ads**, `4854641474862084`.
+- App: **Flow State Ads**, `4854641474862084`.
 - Business portfolio: **Ivan Barnett**, `2087399378511036`, `not_verified`.
 - Page: **Ivan Barnett**, `1095779013619484`.
 - Permission: `pages_messaging`.
@@ -33,7 +33,7 @@ No verification details or declarations have been submitted on Ivan's behalf.
 This text is saved in the draft, with the Ivan Barnett Page selected. The allowed
 usage agreement is unchecked; a partial saved draft is not a completed review.
 
-> Flowstate Ads responds to people who choose to continue their free audit
+> Flow State Ads responds to people who choose to continue their free audit
 > enquiry in Messenger. A person first submits name, email and phone through our
 > Facebook Instant Form, then initiates the Page chat. The app matches the email
 > they confirm to the enquiry and sends ten optional business-process questions,
@@ -43,7 +43,7 @@ usage agreement is unchecked; a partial saved draft is not a completed review.
 > or book without completing the questions. `pages_messaging` is needed to receive
 > their messages and postbacks and send interactive responses. This permission
 > is not used to initiate unsolicited chats or process unrelated Page conversations.
-> The app also supports Flowstate's existing advertising operations. The actual
+> The app also supports Flow State's existing advertising operations. The actual
 > admin-account flow was tested on 29 October 2026; public access is pending
 > business verification and permission review.
 
@@ -129,10 +129,10 @@ they cannot recreate removed data. No deletion was performed during preparation.
 - Use the current privacy notice `https://flowstate.net.nz/quoting-privacy/` and
   deletion instructions `https://flowstate.net.nz/data-deletion/` in app settings
   after their production deployment is verified. Do not use Facebook's homepage
-  as a purported Flowstate terms or deletion policy.
+  as a purported Flow State terms or deletion policy.
 - Complete app icon, category and domain requirements, based on the actual app.
   Do not invent legal terms to fill an optional placeholder.
-  A 1024 × 1024 PNG rendered from the existing Flowstate vector logo is prepared
+  A 1024 × 1024 PNG rendered from the existing Flow State vector logo is prepared
   at `/Users/ivanbarnett/flowstate-output/marketing/flowstate-meta-app-icon-1024.png`.
   The extension blocked file upload because file-URL access is disabled; the
   icon has not been uploaded. Ivan can use **App settings → Basic → App icon**

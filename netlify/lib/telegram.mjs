@@ -41,7 +41,7 @@ export function contactCard({name, phone, email, label = 'AI Makeover lead'}) {
     `ORG:${vcardSafe(label)}`,
     `TEL;TYPE=CELL:${number}`,
     email ? `EMAIL:${vcardSafe(email)}` : null,
-    `NOTE:Flowstate ${vcardSafe(label)} from flowstate.net.nz`,
+    `NOTE:Flow State ${vcardSafe(label)} from flowstate.net.nz`,
     'END:VCARD',
   ].filter(Boolean).join('\n');
   return {phone_number: number, first_name: first.slice(0, 64), last_name: last.slice(0, 64), vcard};

@@ -11,10 +11,10 @@ Copy for audit items 2 to 6 and 9 to 15 in `docs/audits/gbp-audit-2026-11-24.md`
 
 ## Rules for this copy
 
-- "Flowstate", one word, every time (D04). The name comes paired with what we do (audit item 14).
+- "Flow State", two words, every time (D43, replacing D04's one-word "Flowstate"). The name comes paired with what we do (audit item 14).
 - No prices, no percentages, no "$" or "%" (D06, D12 without "95%").
-- Only claims cleared in D12 to D15, D24, D25, D28 and D38 to D42. Never used here: the AI receptionist offer (D16), a paid diagnostic (dropped, D38), any default hosting region such as Singapore (D40), training sessions (D41), and "client" or "we work with" for the Q20 business, which is Jordan's own (D42). Still held: the cheat sheet and 30 days of support (Q16), "a person checks every draft for the first month" and "Flowstate fixes it" (Q14), and "business AI plans don't train on your data" (Q15). Cleared: the system runs on the client's own accounts (D39).
-- "Six years" belongs to the electrical company behind Flowstate, never to Flowstate (D13). No founding year or opening date.
+- Only claims cleared in D12 to D15, D24, D25, D28 and D38 to D42. Never used here: the AI receptionist offer (D16), a paid diagnostic (dropped, D38), any default hosting region such as Singapore (D40), training sessions (D41), and "client" or "we work with" for the Q20 business, which is Jordan's own (D42). Still held: the cheat sheet and 30 days of support (Q16), "a person checks every draft for the first month" and "Flow State fixes it" (Q14), and "business AI plans don't train on your data" (Q15). Cleared: the system runs on the client's own accounts (D39).
+- "Six years" belongs to the electrical company behind Flow State, never to Flow State (D13). No founding year or opening date.
 - Bold, but every line can be proven. No "best", "leading", "#1" or "hottest". The attention comes from concrete numbers that are true (10+ clients, 3 and 7 days, 2 to 3 days, 150 reviews in three months) and from Ivan's own straight talk.
 - Same facts and wording as the site, so Google, LinkedIn and AI assistants read one story.
 
@@ -35,7 +35,7 @@ The tags only count once the site has analytics (D22). They do no harm before th
 
 ## Before anything else
 
-1. **Pending Google update (item 2).** On 2026-11-25 the list showed "Google updates (1)" before the edits and 0 after them, so nothing was left to accept or reject. Open "Google updates" in the profile manager. Accept a change only if it matches this doc: name "Flowstate", phone 027 200 6121, website flowstate.net.nz, hours open 24 hours (D28), service area New Zealand (D28). Reject anything else, such as an address, different hours or a two-word name.
+1. **Pending Google update (item 2).** On 2026-11-25 the list showed "Google updates (1)" before the edits and 0 after them, so nothing was left to accept or reject. Open "Google updates" in the profile manager. Accept a change only if it matches this doc: name "Flow State", phone 027 200 6121, website flowstate.net.nz, hours open 24 hours (D28), service area New Zealand (D28). Reject anything else, such as an address, different hours or a one-word name.
 2. **Categories (item 4).** Primary: **Automation company**. Secondary: **Software company**, **Business management consultant**. Pasted 2026-11-25: the picker offered all three exactly; they replace "Consultant".
 3. **Social profiles (item 9).** LinkedIn: `https://www.linkedin.com/company/146714299/` (the same URL as `sameAs` in `src/lib/site.ts`).
 4. **Opening date (item 10).** Leave blank.
@@ -45,7 +45,7 @@ The tags only count once the site has analytics (D22). They do no harm before th
 Limit 750 characters, and Google allows no URLs or prices. This draft is 737 characters.
 
 ```
-Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses. Electricians first, plus plumbing and HVAC businesses. We take the admin off the owner: AI drafts quotes and invoices from your price list and job notes, drafts replies to new enquiries within minutes, follows up quotes nobody answered, and writes emails in your own voice. You approve the drafts, until you choose to let follow-ups send on their own. It runs on the software you already use, like Xero, Fergus, Simpro, AroFlo, Tradify and ServiceM8. Flowstate has delivered for 10+ clients across different trades and is backed by an electrical company that has been automating its own business for six years. Start with a free 30-minute call.
+Flow State is an Auckland company that builds AI automation for New Zealand trade businesses. Electricians first, plus plumbing and HVAC businesses. We take the admin off the owner: AI drafts quotes and invoices from your price list and job notes, drafts replies to new enquiries within minutes, follows up quotes nobody answered, and writes emails in your own voice. You approve the drafts, until you choose to let follow-ups send on their own. It runs on the software you already use, like Xero, Fergus, Simpro, AroFlo, Tradify and ServiceM8. Flow State has delivered for 10+ clients across different trades and is backed by an electrical company that has been automating its own business for six years. Start with a free 30-minute call.
 ```
 
 Sources: entity sentence (D23 / `site.entity`); trades D05; quotes and invoices D25(c); enquiries and follow-up D25(e); voice D25(g); approval D25(a); tools Q10 to Q12 with D14; 10+ clients and six years D13; free 30-minute call D25(p) and the site's call button.
@@ -73,7 +73,7 @@ We build a voice profile from your meetings, emails and texts, so the AI writes 
 
 **4. Job software and Xero integration** (Q10 to Q12, Q18, D14, D25 h, i, j)
 ```
-We connect your job software and Xero so the AI sees the whole business, not one piece of it. Fergus, Simpro, AroFlo, Tradify, ServiceM8 and more: Flowstate can work with any job management software. Tradify is automated through the browser, which can break when Tradify changes its screens.
+We connect your job software and Xero so the AI sees the whole business, not one piece of it. Fergus, Simpro, AroFlo, Tradify, ServiceM8 and more: Flow State can work with any job management software. Tradify is automated through the browser, which can break when Tradify changes its screens.
 ```
 
 **5. Setup and AI foundation** (Q18, Q19, D15, D25 p, D38)
@@ -95,12 +95,12 @@ The reviewers' names and text aren't in the repo, so fill in each reply from the
 
 Template:
 ```
-Thanks [first name], really appreciate you taking the time. [One sentence that picks up only what they wrote, e.g. "Glad the quoting is taking less of your evenings."] Ivan, Flowstate
+Thanks [first name], really appreciate you taking the time. [One sentence that picks up only what they wrote, e.g. "Glad the quoting is taking less of your evenings."] Ivan, Flow State
 ```
 
 Example for a review that only says "Great to work with, highly recommend":
 ```
-Thanks [first name], that means a lot coming from you. Great working with you too. Ivan, Flowstate
+Thanks [first name], that means a lot coming from you. Great working with you too. Ivan, Flow State
 ```
 
 ## Weekly posts (item 12)
@@ -109,9 +109,9 @@ One a week, in this order. Post type "Update", with button "Learn more" pointing
 
 **gbp-01: Who we are** (button: `/about/`)
 ```
-Same team, one word: Flowstate.
+Same team, now two words: Flow State.
 
-Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses. We're backed by an electrical company that has been automating its own business for six years, and we've delivered for 10+ clients across different trades.
+Flow State is an Auckland company that builds AI automation for New Zealand trade businesses. We're backed by an electrical company that has been automating its own business for six years, and we've delivered for 10+ clients across different trades.
 
 We build on the software you already use. And if AI isn't the answer for something, we'll tell you straight.
 ```
@@ -121,7 +121,7 @@ Sources: D04, D23, D13, D25(q) Q17 trimmed.
 ```
 Still writing quotes at 9pm?
 
-Flowstate sets up AI that drafts your quotes and invoices in Xero or your job software, from your price list and the job notes. Anything it can't price gets marked CHECK. It never guesses a number. You look it over and press send.
+Flow State sets up AI that drafts your quotes and invoices in Xero or your job software, from your price list and the job notes. Anything it can't price gets marked CHECK. It never guesses a number. You look it over and press send.
 
 It works best on repeatable jobs. Big tender-style jobs still need your judgement.
 ```
@@ -219,7 +219,7 @@ Photos must be real. No stock shots of tradies, and no screenshots with client d
 
 Template:
 ```
-Hi [first name], Ivan from Flowstate here. If you've got a minute, a Google review about working with us would help other tradies find us: [review link]. Thanks, Ivan
+Hi [first name], Ivan from Flow State here. If you've got a minute, a Google review about working with us would help other tradies find us: [review link]. Thanks, Ivan
 ```
 
 ---
@@ -228,7 +228,7 @@ Hi [first name], Ivan from Flowstate here. If you've got a minute, a Google revi
 
 | field | value |
 |---|---|
-| Name | Flowstate |
+| Name | Flow State |
 | Tagline (limit 120) | see below |
 | Website | LinkedIn URL from the Links table |
 | Industry | IT Services and IT Consulting |
@@ -254,11 +254,11 @@ AI automation for New Zealand trade businesses
 LinkedIn allows up to 2000 characters. This one is 1,446 characters.
 
 ```
-Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses.
+Flow State is an Auckland company that builds AI automation for New Zealand trade businesses.
 
 Most tradies didn't get into the trade to do paperwork. Yet in a small business it's usually the owner doing the quoting, invoicing and chasing on top of the actual work. That's the work we take off them.
 
-What Flowstate builds:
+What Flow State builds:
 - Quotes and invoices drafted in Xero or your job software from your price list and job notes. Anything the AI can't price is marked CHECK, never guessed.
 - Replies to new enquiries drafted within minutes, and quotes followed up at 3 and 7 days until the customer answers.
 - Review requests drafted when a job's paid, then sent from your own phone or email.
@@ -266,9 +266,9 @@ What Flowstate builds:
 
 AI drafts, you approve, until you choose to let follow-ups send on their own. Every helper is tested on real past jobs before it goes live.
 
-It runs on the software you already use: Xero, Fergus, Simpro, AroFlo, Tradify, ServiceM8. Flowstate can work with any job management software.
+It runs on the software you already use: Xero, Fergus, Simpro, AroFlo, Tradify, ServiceM8. Flow State can work with any job management software.
 
-Flowstate is backed by an electrical company that has been automating its own business for six years, and has delivered for 10+ clients across different trades. Electricians first, plus plumbing and HVAC businesses. If AI isn't the answer for something, we'll tell you straight.
+Flow State is backed by an electrical company that has been automating its own business for six years, and has delivered for 10+ clients across different trades. Electricians first, plus plumbing and HVAC businesses. If AI isn't the answer for something, we'll tell you straight.
 
 The goal: to be New Zealand's go-to for AI in trade businesses.
 
@@ -291,7 +291,7 @@ li-01 and li-02 follow Alloy Robotics' early posts: a plain introduction with a 
 
 **li-01: Introduction** (link: homepage, `utm_content=li-01`)
 ```
-Hi LinkedIn, we're Flowstate.
+Hi LinkedIn, we're Flow State.
 
 We're an Auckland company that builds AI automation for New Zealand trade businesses. Electricians first, then plumbing and HVAC.
 
@@ -333,7 +333,7 @@ Sources: Q20 view D25(q); D12 without "95%" or "we work with"; D25(p) 30-minute 
 ```
 The rule we build every quoting AI around: if it can't price it, it says so.
 
-Flowstate's AI drafts the quote in Xero or your job software, from your price list and the job notes. Anything it can't price gets marked CHECK instead of a made-up number. Every helper is tested on real past jobs before it goes live.
+Flow State's AI drafts the quote in Xero or your job software, from your price list and the job notes. Anything it can't price gets marked CHECK instead of a made-up number. Every helper is tested on real past jobs before it goes live.
 
 AI drafts. You approve. That's how it earns trust, one quote at a time.
 ```
@@ -341,7 +341,7 @@ Sources: D25(a), (b), (c), (d).
 
 **li-04: Simpro, done properly** (link: `/simpro-automation/`)
 ```
-Jordan, who looks after strategy at Flowstate, runs his electrical business fully automated through Simpro. His AI pulls supplier pricing into his catalogue and builds pre-builds.
+Jordan, who looks after strategy at Flow State, runs his electrical business fully automated through Simpro. His AI pulls supplier pricing into his catalogue and builds pre-builds.
 
 Simpro's API covers quotes, invoices, payments, suppliers, purchase orders and stock. You need Simpro's Premium plan, and Simpro has to approve the connection. Then each status you set up can trigger the next step on its own.
 

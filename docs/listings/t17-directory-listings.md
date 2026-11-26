@@ -1,17 +1,17 @@
 ---
 title: T17 Directory Listings (Fergus, Simpro)
-purpose: What each directory needs to list Flowstate, and draft listing text ready to paste
+purpose: What each directory needs to list Flow State, and draft listing text ready to paste
 read_when: applying to the Fergus or Simpro partner programs, or editing either listing
 updated: 2026-11-25
 status: draft, nothing submitted
 owner: Johan
 ---
 
-Both directories list consultancies like Flowstate for free, but each needs a partner application and a signed partner agreement first. Nothing has been submitted. Copy below follows D04 (one-word "Flowstate"), D06 (no prices) and may use the D13 claims ("10+ clients"; six years are the electrical company's), settled 2026-11-25. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
+Both directories list consultancies like Flow State for free, but each needs a partner application and a signed partner agreement first. Nothing has been submitted. Copy below follows D43 ("Flow State", two words, replacing D04), D06 (no prices) and may use the D13 claims ("10+ clients"; six years are the electrical company's), settled 2026-11-25. Updated 2026-11-25 with Ivan's answers: Auckland client stats (D12), setup time (D15) and Jordan's Simpro business as the Simpro proof point (D24).
 
 ## Before submitting (settled 2026-11-25)
 
-1. **Signing the partner agreements.** Both programs bind Flowstate to terms (Fergus: annual certification, two-business-day reply to Fergus-related client enquiries; Simpro: five-business-day issue resolution, removal after repeated negative feedback). Ivan cleared Johan to sign both (D26); Johan signs himself.
+1. **Signing the partner agreements.** Both programs bind Flow State to terms (Fergus: annual certification, two-business-day reply to Fergus-related client enquiries; Simpro: five-business-day issue resolution, removal after repeated negative feedback). Ivan cleared Johan to sign both (D26); Johan signs himself.
 2. **Referral money.** Fergus pays referral bonuses into a bank account (details go to Fergus finance, not through Claude). Simpro makes you pick one: referral fee *or* a partner discount on subscriptions for referred customers, not both. Ivan chose the referral fee (D27).
 
 The earlier question of holding the Simpro listing until a first Simpro build is gone: Ivan says the "no full Simpro build yet" line is out of date (D24).
@@ -38,7 +38,7 @@ Where listings appear: [fergus.com/marketplace](https://fergus.com/marketplace/)
 Rules on how we describe ourselves (partner agreement):
 - Don't put "Fergus" in our business or product names.
 - Don't present ourselves as Fergus or as Fergus's agent.
-- Make clear our services come from Flowstate, not Fergus.
+- Make clear our services come from Flow State, not Fergus.
 - Certified partners may show the "Fergus Certified" badge and official Fergus logos.
 
 ### Listing fields (from the example listing)
@@ -47,13 +47,13 @@ Logo, name, one-line tagline, type badge, "Enquire Now" button (links to our sit
 
 ### Draft listing
 
-**Name:** Flowstate
+**Name:** Flow State
 
 **Tagline:**
 AI automation for NZ trade businesses, built on Fergus and the software you already use.
 
-**About Flowstate:**
-Flowstate builds AI helpers for New Zealand trade businesses, mainly electricians, plus plumbers and HVAC. We use the Fergus API to take admin off the owner: quotes started from a voice note on your phone, job updates, scheduling, and your job and financial info pulled into one place.
+**About Flow State:**
+Flow State builds AI helpers for New Zealand trade businesses, mainly electricians, plus plumbers and HVAC. We use the Fergus API to take admin off the owner: quotes started from a voice note on your phone, job updates, scheduling, and your job and financial info pulled into one place.
 
 Fergus does the most when it's connected to everything else. We link it to Xero, your email, your calendar and a company brain that holds your prices, rules and processes, so the AI sees the whole business instead of one piece of it.
 
@@ -63,7 +63,7 @@ Jordan's own Auckland electrical business has quotes coming back almost fully bu
 
 We start with a 30-minute call to work out what's costing your business the most. The foundation (accounts in your name, your software connected, the company brain) is set up in 2 to 3 days, then we add helpers one at a time.
 
-Flowstate is an independent business. Our services are provided by Flowstate, not by Fergus.
+Flow State is an independent business. Our services are provided by Flow State, not by Fergus.
 
 **Services:**
 
@@ -103,15 +103,15 @@ Logo, name, one-line summary, "Get In Touch" (contact form) and "Learn More" (ou
 
 ### Draft listing
 
-**Name:** Flowstate
+**Name:** Flow State
 
 **Summary (145 characters):**
-Flowstate builds AI automation for NZ trade businesses, connecting Simpro to Xero, email and your other software so admin runs in the background.
+Flow State builds AI automation for NZ trade businesses, connecting Simpro to Xero, email and your other software so admin runs in the background.
 
 **Description:**
-Flowstate builds AI helpers for New Zealand trade businesses, mainly electricians, plus plumbers and HVAC. The work is the admin around the tools: quotes, invoices, follow-ups and getting information into one place.
+Flow State builds AI helpers for New Zealand trade businesses, mainly electricians, plus plumbers and HVAC. The work is the admin around the tools: quotes, invoices, follow-ups and getting information into one place.
 
-Jordan, an advisor to Flowstate, runs his electrical business fully automated through Simpro, with AI pulling supplier pricing into his catalogue and building pre-builds. Simpro's API covers quotes, invoices, payments, suppliers, purchase orders and stock, so a lot of that admin can be automated inside Simpro. Your own drop-down options and statuses can trigger the next step, so when a job moves to a new status the follow-on work starts on its own.
+Jordan, an advisor to Flow State, runs his electrical business fully automated through Simpro, with AI pulling supplier pricing into his catalogue and building pre-builds. Simpro's API covers quotes, invoices, payments, suppliers, purchase orders and stock, so a lot of that admin can be automated inside Simpro. Your own drop-down options and statuses can trigger the next step, so when a job moves to a new status the follow-on work starts on its own.
 
 The biggest gain comes from connecting Simpro to everything else: Xero, your email, your calendar and a company brain that holds your prices, rules and processes. Then the AI sees the whole business, not one screen of it.
 
@@ -143,7 +143,7 @@ Sources: Jordan as advisor (D07), fully automated through Simpro (D24), supplier
 | "10+ clients", "six years" | Confirmed by Ivan 2026-11-25; six years are the electrical company's | D13 settled, may be used |
 | Any price, fee or percentage | No prices public | D06 |
 | Whether the Auckland client is on Fergus or Simpro | Not stated; the stats are used without naming the software | D12 |
-| "Flowstate built Jordan's Simpro setup" | Ivan's answer says the business is fully automated through Simpro, not who built it | D24 |
+| "Flow State built Jordan's Simpro setup" | Ivan's answer says the business is fully automated through Simpro, not who built it | D24 |
 
 ## Not checked
 

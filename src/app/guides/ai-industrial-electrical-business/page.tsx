@@ -5,7 +5,7 @@ import CallButton from "@/components/CallButton";
 import StructuredData from "@/components/StructuredData";
 
 const title = "AI for the work around industrial electrical projects.";
-const description = "Flowstate builds AI workflows around your processes and existing software. Your team reviews the output and keeps control of technical decisions.";
+const description = "Flow State builds AI workflows around your processes and existing software. Your team reviews the output and keeps control of technical decisions.";
 const path = "/guides/ai-industrial-electrical-business/";
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function Page() {
         <article>
           <h1 className="max-w-[30ch] text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] tracking-tight text-ink">{title}</h1>
           <p className="mt-6 text-sm text-mute">By Ivan Barnett · 9 September 2026</p>
-          <p className="mt-7 max-w-[65ch] text-xl leading-relaxed text-mute">Flowstate builds AI for the repetitive processes around your team&apos;s technical work:</p>
+          <p className="mt-7 max-w-[65ch] text-xl leading-relaxed text-mute">Flow State builds AI for the repetitive processes around your team&apos;s technical work:</p>
           <ul className="mt-9 grid gap-4 sm:grid-cols-2">
             {[
               ["Project updates", "Turn job notes into clear progress summaries."],

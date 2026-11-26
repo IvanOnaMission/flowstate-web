@@ -579,9 +579,9 @@ export default function PackWaitlist() {
       <div className={`${styles.inner} ${live.inner} ${screen === "signup" ? live.wide : ""}`}>
         <header className={styles.top}>
           <div className={styles.topRow}>
-            <Link href="/" className={live.logo} aria-label="Flowstate home">
+            <Link href="/" className={live.logo} aria-label="Flow State home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/live/flowstate-logo-light.svg" alt="Flowstate" width={96} height={40} />
+              <img src="/assets/live/flowstate-logo-light.svg" alt="Flow State" width={96} height={40} />
             </Link>
             <span className={duo.topRight}>
               <span className={styles.count} aria-live="polite">

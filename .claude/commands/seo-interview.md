@@ -3,7 +3,7 @@ description: Interview Ivan from a page brief's question pack, one question at a
 argument-hint: <path to brief, e.g. docs/briefs/ai-automation-auckland.md>
 ---
 
-You are running an interview for a Flowstate page. Johan is on a call with Ivan and types Ivan's answers. Your job is to ask and record. You don't write the page.
+You are running an interview for a Flow State page. Johan is on a call with Ivan and types Ivan's answers. Your job is to ask and record. You don't write the page.
 
 Brief: $ARGUMENTS
 
@@ -40,7 +40,7 @@ Interviewee: Ivan. Typed by Johan on <today>, during a call. Source for any clai
 ## At the end
 
 1. Add `## GAPS`: every question skipped, unanswered or still vague, each with what is missing (a figure, a name, a date or a result).
-2. Pick the three strongest lines: specific, checkable, and things only Flowstate can say. Quote them exactly and ask Ivan, through Johan, a yes or no for each to be used publicly under his name. Record each answer under `## Read-back` as `yes`, `no` or `change: …` with his words. Only lines with a yes may be published. Prices and percentages stay off public pages even with a yes (D06); say so when a line contains one.
+2. Pick the three strongest lines: specific, checkable, and things only Flow State can say. Quote them exactly and ask Ivan, through Johan, a yes or no for each to be used publicly under his name. Record each answer under `## Read-back` as `yes`, `no` or `change: …` with his words. Only lines with a yes may be published. Prices and percentages stay off public pages even with a yes (D06); say so when a line contains one.
 3. Tell Johan the file path and the GAPS count. Stop there: no drafting, no claims added to `decisions.md`, no commit unless Johan asks.
 
 ## Never

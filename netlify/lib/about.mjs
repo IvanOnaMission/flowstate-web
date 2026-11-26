@@ -31,7 +31,7 @@ export function pageSummary(html) {
 async function website(domain, timeoutMs) {
   const res = await fetch(`https://${domain}/`, {
     signal: AbortSignal.timeout(timeoutMs),
-    headers: {'user-agent': 'Mozilla/5.0 (Flowstate lead alert)'},
+    headers: {'user-agent': 'Mozilla/5.0 (Flow State lead alert)'},
   });
   if (!res.ok || !/html/i.test(res.headers.get('content-type') || '')) return null;
   return pageSummary((await res.text()).slice(0, 200_000));
