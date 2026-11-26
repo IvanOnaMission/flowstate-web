@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: { url: "/about/", images: ["/assets/hero/workshop-hook.jpg"] },
   title: "About",
   description:
-    "Flowstate is an Auckland company that builds AI automation for New Zealand trade businesses. Ivan builds the systems, Jordan handles strategy. Both out of the trades, not out of a software company.",
+    "Flowstate is an Auckland company building AI automation for NZ trade businesses. Ivan builds the systems, Jordan handles strategy. Both came out of the trades.",
 };
 
 /**

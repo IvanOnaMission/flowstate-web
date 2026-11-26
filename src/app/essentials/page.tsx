@@ -14,7 +14,7 @@ const calendly =
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  // Unlisted ad page. /business-essentials/ is the page that should rank.
+  // Unlisted ad page; keep it out of search. The old /business-essentials/ URL now redirects to /services/.
   robots: { index: false, follow: false },
   alternates: { canonical: path },
   openGraph: {
