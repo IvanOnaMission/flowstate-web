@@ -16,8 +16,8 @@ A blog post here is a guide at `/guides/<slug>/`. Every post answers one questio
 
 | who | does | never |
 |---|---|---|
-| Jordan | Pulls the searched questions (playbook 4.3), answers them in his own words, sends real photos | Writes in someone else's name |
-| Johan | Saves Jordan's answers as they arrived, runs `/seo-draft`, reads the draft, says the publishing yes, presses Request indexing | Edits a saved answers file |
+| Jordan | Answers the questions in his own words, may add questions of his own, sends real photos | Writes in someone else's name |
+| Johan | Runs the questions pull and sends Jordan the questions, saves his answers as they arrived, runs `/seo-draft`, reads the draft, says the publishing yes, presses Request indexing | Edits a saved answers file |
 | Agent (`/seo-draft`) | Formats the answers into the post template, checks the rules, lists every claim with its source | Adds a fact, figure, example or quote that isn't in the answers |
 | Ivan | Answers the monthly batch of "Questions for Ivan" (new client claims, new numbers) | Is asked about anything this SOP already settles |
 
@@ -25,9 +25,11 @@ Ivan decides public claims, pricing, naming and spend. Johan decides content and
 
 ## The steps
 
-### 1. Questions (Jordan)
+### 1. Questions (Johan, then Jordan)
 
-Jordan's "blog interview questions pull" is playbook step 4.3: the questions people actually search (Search Console, Bing, Google autocomplete and People also ask, AI fan-out searches). For each question he will answer, he sends:
+The "blog interview questions pull" is playbook step 4.3: the questions people actually search (Search Console, Bing, Google autocomplete and People also ask, AI fan-out searches). Our pull is `docs/backlog.md`, refreshed each month from `docs/data/<month>/`. Johan sends Jordan the rows marked "build", each with its searched wordings and the questions in its brief's question pack (`docs/briefs/`). Jordan picks the ones he can answer from his own work.
+
+If Jordan brings a question of his own, he sends:
 
 ```
 Question (exact searched words):
@@ -61,7 +63,7 @@ Run `/seo-draft docs/interviews/<slug>-answers-jordan.md`. The command:
 
 The template is enforced in code (`src/lib/post-rules.ts`). The build fails if a post breaks it, so the Netlify preview fails instead of shipping a broken post:
 
-- slug of 3 to 7 words, no year, no "best"; H1 of 60 characters or fewer; meta title of 50 to 60; description of 150 to 160;
+- slug of 3 to 7 words, no year, no "best"; H1 of 60 characters or fewer; meta title of 50 to 60 (the whole `<title>`; no " | Flow State" suffix is added); description of 150 to 160;
 - direct answer of 40 to 55 words, 320 characters or fewer, naming Flow State;
 - one H2 per searched question, each opening with a sentence that answers it;
 - "In short" naming Flow State; FAQ of 0, or 3 to 10 questions, rendered and in FAQPage schema word for word;
@@ -98,7 +100,7 @@ The yes names the posts: "Publish now: <slug>, <slug>". Johan says it in the ses
 ## How many, how often
 
 - **Jordan can write as fast as he likes.** Approved drafts wait in their PR. Nothing is lost by queueing.
-- **Publishing: no more than 4 new pages a month (D30)** until the monthly sweep shows the last batch was indexed and is clean. Then up to 2 a week. December's 4 go out in one or two weekly releases, so the 2026-12-21 run has indexed pages to find.
+- **Publishing: no more than 4 new pages a month (D30, proposed; Johan settles it under D03)** until the monthly sweep shows the last batch was indexed and is clean. Then up to 2 a week (proposed with D30, not yet a decision row). December's 4 go out in one or two weekly releases, so the 2026-12-21 run has indexed pages to find.
 - Why not 2 to 4 a week from day one? Jordan's own playbook says publishing cadence is SEO-neutral ("Drip-feeding is better" is folklore, section 11, theme L). It also sets the cap of 4 a month until the sweep shows the batch was indexed and clean (12.5). On a new site, the risk is thin or near-duplicate pages (scaled content abuse), not too few posts. Weekly releases also keep Netlify production deploys to about four a month.
 
 ## Photos

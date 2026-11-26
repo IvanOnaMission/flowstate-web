@@ -19,7 +19,7 @@ Answers file: $ARGUMENTS
 1. Write a coverage map first, in your report: every question in the answers file, with its fate. Each fate is H2, FAQ item, "answered on <page>", or "dropped: <reason>".
 2. Write `src/content/posts/<slug>.ts`, exporting `default` a `Post`, with `import type { Post } from "@/lib/post-rules";` as its only import.
    - Use the speaker's own sentences, cut and reordered to fit the template. You may fix spelling, join two of their sentences, or turn a run of items into a list. You may not add a fact, a figure, an example, a tool name, a quote or an opinion that isn't in the answers.
-   - The direct answer is their two or three sentences that answer the H1. Add "Flow State" only where they said "we" or "us" about Flow State.
+   - The direct answer is their two or three sentences that answer the H1. Add "Flow State" only where they said "we" or "us" about Flow State. Jordan's "we" often means his own electrical business: name that as his own business, never as Flow State or a Flow State client (D42). If it is unclear which he means, list the sentence under gaps.
    - Set `published` to the planned release day. Don't set `updated`.
    - Fill `claims` with one line per factual statement: `"<claim>: docs/interviews/<file>, Q<n>"`, or a D-number.
    - If a sentence has no source, put it in your report as `UNSOURCED: <sentence>` and leave it out of the post.

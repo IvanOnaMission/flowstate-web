@@ -10,14 +10,16 @@ import { posts } from "@/lib/posts";
 const fallbackImage = "/assets/hero/workshop-hook.jpg";
 const p = "mt-5 max-w-[65ch] text-[1.0625rem] leading-relaxed text-mute";
 
+/** "2026-06-15" -> "15 June 2026". Read as a calendar date in UTC, so the day never shifts with the NZ daylight-saving offset. */
 const nzDate = (d: string) =>
-  new Date(`${d}T00:00:00+13:00`).toLocaleDateString("en-NZ", { day: "numeric", month: "long", year: "numeric", timeZone: "Pacific/Auckland" });
+  new Date(`${d}T12:00:00Z`).toLocaleDateString("en-NZ", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
 /** Metadata for a post page: a page's openGraph replaces the layout's, so the image goes in every time. */
 export function postMetadata(post: Post): Metadata {
   const path = `/guides/${post.slug}/`;
   return {
-    title: post.metaTitle,
+    // absolute: the layout's "%s | Flow State" template would push the rendered title past the 50 to 60 rule.
+    title: { absolute: post.metaTitle },
     description: post.description,
     alternates: { canonical: path },
     openGraph: { type: "article", title: post.metaTitle, description: post.description, url: path, images: [post.image?.src ?? fallbackImage] },

@@ -16,7 +16,7 @@ export type Post = {
   slug: string;
   /** H1: the main searched question in its own words, 60 characters or fewer. */
   h1: string;
-  /** Meta title: 50 to 60 characters, the H1's words. */
+  /** Meta title: 50 to 60 characters, the H1's words. Rendered as the whole <title>, with no " | Flow State" suffix added. */
   metaTitle: string;
   /** Meta description: 150 to 160 characters. */
   description: string;
